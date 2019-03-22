@@ -7,32 +7,20 @@ import t2video from 'components/Prompts/videos/trezor-click-2.mp4';
 
 const TrezorConnect = ({ model, height }) => {
     const models = new Map([
-        ['1', t1video],
-        ['2', t2video],
+        [1, t1video],
+        [2, t2video],
     ]);
     return (
         <React.Fragment>
-            {
-                model === '1' && (
-                    <video height={height} autoPlay loop>
-                        <source src={models.get('1')} type="video/mp4" />
-                    </video>
-                )
-            }
-            {
-                model === '2' && (
-                    <video height={height} autoPlay loop>
-                        <source src={models.get('2')} type="video/mp4" />
-                    </video>
-                )
-            }
+            <video height={height} autoPlay loop>
+                <source src={models.get(model)} type="video/mp4" />
+            </video>
         </React.Fragment>
-
     );
 };
 
 TrezorConnect.propTypes = {
-    model: PropTypes.string.isRequired,
+    model: PropTypes.number.isRequired,
     height: PropTypes.number,
 };
 

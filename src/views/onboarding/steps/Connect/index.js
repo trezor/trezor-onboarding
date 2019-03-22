@@ -21,7 +21,7 @@ const TroubleShootWrapper = styled.div`
 `;
 
 class ConnectStep extends React.PureComponent {
-    static IS_SEARCHING_TIMEOUT = 1 * 1000;
+    static IS_SEARCHING_TIMEOUT = 5 * 1000;
 
     static IS_SEARCHING_TOO_LONG_TIMEOUT = 15 * 1000;
 
@@ -41,7 +41,7 @@ class ConnectStep extends React.PureComponent {
     }
 
     componentWillReceiveProps(nextProps) {
-        if (nextProps.device === null) {
+        if (this.props.device && nextProps.device === null) {
             this.setState({ isSearching: true });
             this.props.setTimeout(() => this.setState({ isSearchingTooLong: true }), 15 * 1000);
         } else {
@@ -59,7 +59,9 @@ class ConnectStep extends React.PureComponent {
 
     render() {
         const deviceIsConnected = Boolean(this.props.device && this.props.device.connected);
-        const { device, deviceCall, connectActions } = this.props;
+        const {
+            device, deviceCall, connectActions, model,
+        } = this.props;
         const { isSearching, isSearchingTooLong } = this.state;
         return (
             <StepWrapper>
@@ -84,7 +86,7 @@ class ConnectStep extends React.PureComponent {
                 <StepBodyWrapper>
                     {
                         deviceIsConnected && isSearching
-                            ? <Icon icon={icons.T1} size={64} />
+                            ? <Icon icon={model === 1 ? icons.T1 : icons.T2} size={64} />
                             : <TrezorConnect model={this.props.model} height={180} />
                     }
 
@@ -144,7 +146,7 @@ ConnectStep.propTypes = {
     deviceCall: types.deviceCall,
     connectActions: types.connectActions,
     onboardingActions: types.onboardingActions.isRequired,
-    model: PropTypes.string.isRequired,
+    model: types.model,
     setTimeout: PropTypes.func.isRequired,
 };
 

@@ -1,12 +1,12 @@
-// import { isDevelopment } from 'support/build';
+import { isDevelopment } from 'support/build';
 
-const DEVEL_ENDPOINT = 'http://localhost:8088/';
-// const DEVEL_ENDPOINT = 'https://sisyfos.trezor.io/blyat/';
+const LOCAL_ENDPOINT = 'http://localhost:8088/';
+const PRODUCTION_ENDPOINT = 'https://sisyfos.trezor.io/blyat/';
 
 export default {
     init: {
         transportReconnect: true,
-        debug: false,
+        debug: true,
         popup: false,
         webusb: false,
         manifest: {
@@ -14,5 +14,5 @@ export default {
             appUrl: 'http://localhost:8080',
         },
     },
-    endpoint: DEVEL_ENDPOINT, // todo: change to proper one
+    endpoint: isDevelopment() ? LOCAL_ENDPOINT : PRODUCTION_ENDPOINT, // todo: change to proper one
 };

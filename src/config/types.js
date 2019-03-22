@@ -22,7 +22,7 @@ export default {
     connectActions: PropTypes.objectOf(PropTypes.func), // todo: name all functions
     fetchActions: PropTypes.objectOf(PropTypes.func),
     transport: PropTypes.object, // todo: improve ?? not sure if needed.
-    model: PropTypes.oneOf(['1', '2']),
+    model: PropTypes.oneOf([1, 2]),
     fetchCall: PropTypes.shape({
         name: PropTypes.string,
         isProgress: PropTypes.bool,

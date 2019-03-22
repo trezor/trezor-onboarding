@@ -19,8 +19,13 @@ const Wrapper = styled.div`
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    background-color: ${props => (props.show ? colors.gray : colors.white)};
+    background-color: ${colors.white};
+
     ${props => (props.animate && css`animation: ${backgroundAnimation} 1s linear`)};
+    
+    @media only screen and (min-width: 600px) {
+        background-color: ${props => (props.show ? colors.gray : colors.white)};
+    }
 `;
 
 const exludedStepsForWrapper = [ID.WELCOME_STEP, ID.FINAL_STEP];

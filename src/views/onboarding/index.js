@@ -46,11 +46,14 @@ const Wrapper = styled.div`
     grid-template-rows: ${PROGRES_STEPS_HEIGHT}% ${MAIN_HEIGHT}% ${FOOTER_HEIGHT}%;    
     grid-template-columns: 1fr;
     background-color: ${colors.white};
-    height: ${WRAPPER_HEIGHT}vh;
-    max-height: ${WRAPPER_HEIGHT}80vh;
-    width: 80vw;
-    margin: auto;
-    border-radius: ${BORDER_RADIUS}px
+    border-radius: ${BORDER_RADIUS}px;
+    width: 95vw;
+
+    @media only screen and (min-width: 600px) {
+        width: 80vw;
+        margin: auto;
+        height: ${WRAPPER_HEIGHT}vh;
+    } 
 `;
 
 const ProgressStepsWrapper = styled.div`
@@ -59,7 +62,6 @@ const ProgressStepsWrapper = styled.div`
     margin-bottom: auto;
 `;
 
-// const ComponentWrapper = styled(CSSTransitionGroup)`
 const ComponentWrapper = styled(CSSTransitionGroup)`
     grid-area: main;
     display: flex;
@@ -192,7 +194,7 @@ class Onboarding extends React.Component {
         } = this.props;
         // model is either selected by user or later overrided by connected device
         // todo: this belongs to reducer;
-        const model = Number(device && device.features.majore_version ? device.features.majore_version : selectedModel) || 1;
+        const model = Number(device && device.features ? device.features.major_version : selectedModel) || 1;
 
         // todo: solve how to handle cases we fail to init connect;
         const errorStates = this.handleErrors();
@@ -209,7 +211,6 @@ class Onboarding extends React.Component {
 
         return (
             <React.Fragment>
-
                 <Wrapper>
                     {
                         errorStates.length > 0 && (
