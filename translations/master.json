@@ -1,0 +1,1262 @@
+{
+  "TR_MENU": {
+    "source": "Menu",
+    "meta": {
+      "comment": "Mobile sidebar toggler",
+      "occurrences": [
+        "src/components/GlobalWebNavigation/index.messages.js"
+      ]
+    }
+  },
+  "TR_TREZOR": {
+    "source": "Trezor",
+    "meta": {
+      "comment": "Link in header navigation",
+      "occurrences": [
+        "src/components/GlobalWebNavigation/index.messages.js"
+      ]
+    }
+  },
+  "TR_WIKI": {
+    "source": "Wiki",
+    "meta": {
+      "comment": "Link in header navigation",
+      "occurrences": [
+        "src/components/GlobalWebNavigation/index.messages.js"
+      ]
+    }
+  },
+  "TR_BLOG": {
+    "source": "Blog",
+    "meta": {
+      "comment": "Link in header navigation",
+      "occurrences": [
+        "src/components/GlobalWebNavigation/index.messages.js"
+      ]
+    }
+  },
+  "TR_SUPPORT": {
+    "source": "Support",
+    "meta": {
+      "comment": "Link in header navigation",
+      "occurrences": [
+        "src/components/GlobalWebNavigation/index.messages.js"
+      ]
+    }
+  },
+  "TR_CONTINUE": {
+    "source": "Continue",
+    "meta": {
+      "comment": "Continue button",
+      "occurrences": [
+        "src/support/commonMessages.js"
+      ]
+    }
+  },
+  "TR_BACK": {
+    "source": "Back",
+    "meta": {
+      "comment": "Back button",
+      "occurrences": [
+        "src/support/commonMessages.js"
+      ]
+    }
+  },
+  "TR_SKIP_ALL": {
+    "source": "Skip",
+    "meta": {
+      "comment": "Button. Skip the entire onboarding process.",
+      "occurrences": [
+        "src/support/commonMessages.js"
+      ]
+    }
+  },
+  "TR_SKIP": {
+    "source": "Skip",
+    "meta": {
+      "comment": "Button. Skip one step",
+      "occurrences": [
+        "src/support/commonMessages.js"
+      ]
+    }
+  },
+  "TR_CONTACT_SUPPORT": {
+    "source": "Contact support",
+    "meta": {
+      "comment": "Button to click to contact support",
+      "occurrences": [
+        "src/support/commonMessages.js"
+      ]
+    }
+  },
+  "TR_RETRY": {
+    "source": "Retry",
+    "meta": {
+      "comment": "Retry button",
+      "occurrences": [
+        "src/support/commonMessages.js"
+      ]
+    }
+  },
+  "TR_CONNECT_YOUR_DEVICE": {
+    "source": "Connect your device",
+    "meta": {
+      "comment": "Prompt to user to connect his device.",
+      "occurrences": [
+        "src/support/commonMessages.js"
+      ]
+    }
+  },
+  "TR_SUBMIT": {
+    "source": "Submit",
+    "meta": {
+      "comment": "Button text",
+      "occurrences": [
+        "src/support/commonMessages.js"
+      ]
+    }
+  },
+  "TR_BACKUP_INSTRUCTION": {
+    "source": "Now your device is going to show you 24 words to backup your wallet. Write them down. Do not disconnect your device.",
+    "meta": {
+      "comment": "The last instruction before initiating backup process",
+      "occurrences": [
+        "src/views/onboarding/steps/Backup/components/BackupModelOne.messages.js"
+      ]
+    }
+  },
+  "TR_BACKUP_OK": {
+    "source": "Okey.",
+    "meta": {
+      "comment": "Button text. Ok, Lets go, or something similar.",
+      "occurrences": [
+        "src/views/onboarding/steps/Backup/components/BackupModelOne.messages.js"
+      ]
+    }
+  },
+  "TR_WRITE_DOWN_NTH_WORD": {
+    "source": "Write down {NthWord} from your device to your recovery seed card.",
+    "meta": {
+      "comment": "Ordinal number of word that is currently displayed on Trezor device. For example: Check 1. word.",
+      "occurrences": [
+        "src/views/onboarding/steps/Backup/components/BackupModelOne.messages.js"
+      ]
+    }
+  },
+  "TR_CHECK_NTH_WORD": {
+    "source": "Check {NthWord}",
+    "meta": {
+      "comment": "Ordinal number of word that is currently displayed on Trezor device.",
+      "occurrences": [
+        "src/views/onboarding/steps/Backup/components/BackupModelOne.messages.js"
+      ]
+    }
+  },
+  "TR_NTH_WORD": {
+    "source": "{number}. word",
+    "meta": {
+      "comment": "Ordinal number. For example: 1. word",
+      "occurrences": [
+        "src/views/onboarding/steps/Backup/components/NthWord.messages.js"
+      ]
+    }
+  },
+  "TR_BACKUP_HEADING": {
+    "source": "Create or recover",
+    "meta": {
+      "comment": "Heading in start page",
+      "occurrences": [
+        "src/views/onboarding/steps/Backup/index.messages.js"
+      ]
+    }
+  },
+  "TR_BACKUP_SUBHEADING_1": {
+    "source": "Your recovery seed is the backup key to all your cryptocurrencies and applications.",
+    "meta": {
+      "comment": "Explanation what recovery seed is",
+      "occurrences": [
+        "src/views/onboarding/steps/Backup/index.messages.js"
+      ]
+    }
+  },
+  "TR_BACKUP_SUBHEADING_2": {
+    "source": "Your recovery seed can only be displayed once. Never make a digital copy of your recovery seed and never upload it online. Keep your recovery seed in a safe place.",
+    "meta": {
+      "comment": "Explanation what recovery seed is",
+      "occurrences": [
+        "src/views/onboarding/steps/Backup/index.messages.js"
+      ]
+    }
+  },
+  "TR_DO_NOT_UPLOAD_INSTRUCTION": {
+    "source": "Do not upload words on the internet",
+    "meta": {
+      "comment": "Instruction what user should never do with his seed.",
+      "occurrences": [
+        "src/views/onboarding/steps/Backup/index.messages.js"
+      ]
+    }
+  },
+  "TR_HIDE_TO_SAFE_PLACE_INSTRUCTION": {
+    "source": "Hide them somewhere safe",
+    "meta": {
+      "comment": "Instruction what user should do with his seed.",
+      "occurrences": [
+        "src/views/onboarding/steps/Backup/index.messages.js"
+      ]
+    }
+  },
+  "TR_DO_NOT_SAFE_IN_COMPUTER_INSTRUCTION": {
+    "source": "Do not write it into a computer",
+    "meta": {
+      "comment": "Instruction what user should never do with his seed.",
+      "occurrences": [
+        "src/views/onboarding/steps/Backup/index.messages.js"
+      ]
+    }
+  },
+  "TR_DO_NOT_TAKE_PHOTO_INSTRUCTION": {
+    "source": "Do not take a photo of your recovery seed",
+    "meta": {
+      "comment": "Instruction what user should never do with his seed.",
+      "occurrences": [
+        "src/views/onboarding/steps/Backup/index.messages.js"
+      ]
+    }
+  },
+  "TR_SEED_IS_MORE_IMPORTANT_THAN_YOUR_DEVICE": {
+    "source": "Seed is more important than your device",
+    "meta": {
+      "comment": "Instruction what user should never do with his seed.",
+      "occurrences": [
+        "src/views/onboarding/steps/Backup/index.messages.js"
+      ]
+    }
+  },
+  "TR_SATOSHILABS_CANNOT_BE_HELD_RESPONSIBLE": {
+    "source": "SatoshiLabs cannot be held responsible for security liabilities or financial losses resulting from not following security instructions described here.",
+    "meta": {
+      "comment": "Liability disclaimer.",
+      "occurrences": [
+        "src/views/onboarding/steps/Backup/index.messages.js"
+      ]
+    }
+  },
+  "TR_I_HAVE_READ_INSTRUCTIONS": {
+    "source": "I have read the instructions and agree",
+    "meta": {
+      "comment": "Checkbox text",
+      "occurrences": [
+        "src/views/onboarding/steps/Backup/index.messages.js"
+      ]
+    }
+  },
+  "TR_START_BACKUP": {
+    "source": "Start backup",
+    "meta": {
+      "comment": "Button text",
+      "occurrences": [
+        "src/views/onboarding/steps/Backup/index.messages.js"
+      ]
+    }
+  },
+  "TR_DEVICE_DISCONNECTED_DURING_ACTION": {
+    "source": "Device disconnected during action",
+    "meta": {
+      "comment": "Error message",
+      "occurrences": [
+        "src/views/onboarding/steps/Backup/index.messages.js"
+      ]
+    }
+  },
+  "TR_DEVICE_DISCONNECTED_DURING_ACTION_DESCRIPTION": {
+    "source": "You device disconnected during action which resulted in interuption of backup process. For security reasons you need to wipe your device now and start the backup process again.",
+    "meta": {
+      "comment": "Error message. Instruction what to do.",
+      "occurrences": [
+        "src/views/onboarding/steps/Backup/index.messages.js"
+      ]
+    }
+  },
+  "TR_WIPE_DEVICE_AND_START_AGAIN": {
+    "source": "Wipe device and start again",
+    "meta": {
+      "comment": "Button text",
+      "occurrences": [
+        "src/views/onboarding/steps/Backup/index.messages.js"
+      ]
+    }
+  },
+  "TR_BOOKMARK_HEADING": {
+    "source": "Browser bookmark",
+    "meta": {
+      "comment": "Heading in bookmark step",
+      "occurrences": [
+        "src/views/onboarding/steps/Bookmark/index.messages.js"
+      ]
+    }
+  },
+  "TR_BOOKMARK_SUBHEADING": {
+    "source": "Protect yourself against {TR_PHISHING_ATTACKS}. Bookmark Trezor Wallet (wallet.trezor.io) to avoid visiting fake sites.",
+    "meta": {
+      "comment": "Heading in bookmark step",
+      "occurrences": [
+        "src/views/onboarding/steps/Bookmark/index.messages.js"
+      ]
+    }
+  },
+  "TR_PHISHING_ATTACKS": {
+    "source": "phishing attacks",
+    "meta": {
+      "comment": "Term, type of hacker attack trying to fool user to enter his sensitive data into a fake site.",
+      "occurrences": [
+        "src/views/onboarding/steps/Bookmark/index.messages.js"
+      ]
+    }
+  },
+  "TR_USE_THE_KEYBOARD_SHORTCUT": {
+    "source": "Use the keyboard shortcut:",
+    "meta": {
+      "comment": "We want user to pres Ctrl + D",
+      "occurrences": [
+        "src/views/onboarding/steps/Bookmark/index.messages.js"
+      ]
+    }
+  },
+  "TR_BRIDGE_HEADING": {
+    "source": "Trezor Bridge",
+    "meta": {
+      "comment": "Heading on bridge page",
+      "occurrences": [
+        "src/views/onboarding/steps/Bridge/index.messages.js"
+      ]
+    }
+  },
+  "TR_BRIDGE_SUBHEADING": {
+    "source": "Trezor Bridge is a communication tool to facilitate the connection between your Trezor and your internet browser.",
+    "meta": {
+      "comment": "Description what Trezor Bridge is",
+      "occurrences": [
+        "src/views/onboarding/steps/Bridge/index.messages.js"
+      ]
+    }
+  },
+  "TR_DOWNLOAD": {
+    "source": "Download",
+    "meta": {
+      "comment": "Download button",
+      "occurrences": [
+        "src/views/onboarding/steps/Bridge/index.messages.js"
+      ]
+    }
+  },
+  "TR_BRIDGE_IS_RUNNING": {
+    "source": "Trezor bridge is up and running",
+    "meta": {
+      "comment": "Text that indicates that browser can communicate with Trezor Bridge.",
+      "occurrences": [
+        "src/views/onboarding/steps/Bridge/index.messages.js"
+      ]
+    }
+  },
+  "TR_DETECTING_BRIDGE": {
+    "source": "Detecting Trezor Bridge instalation",
+    "meta": {
+      "comment": "Message to show after user clicks download bridge.",
+      "occurrences": [
+        "src/views/onboarding/steps/Bridge/index.messages.js"
+      ]
+    }
+  },
+  "TR_NOT_RUNNING": {
+    "source": "not running",
+    "meta": {
+      "comment": "Bridge status in box next to heading",
+      "occurrences": [
+        "src/views/onboarding/steps/Bridge/index.messages.js"
+      ]
+    }
+  },
+  "TR_WAIT_FOR_FILE_TO_DOWNLOAD": {
+    "source": "Wait for file to download",
+    "meta": {
+      "comment": "Instruction for installing Trezor Bridge",
+      "occurrences": [
+        "src/views/onboarding/steps/Bridge/index.messages.js"
+      ]
+    }
+  },
+  "TR_DOUBLE_CLICK_IT_TO_RUN_INSTALLER": {
+    "source": "Double click it to run installer",
+    "meta": {
+      "comment": "Instruction for installing Trezor Bridge",
+      "occurrences": [
+        "src/views/onboarding/steps/Bridge/index.messages.js"
+      ]
+    }
+  },
+  "TR_CHECK_PGP_SIGNATURE": {
+    "source": "Optional. Check PGP signature",
+    "meta": {
+      "comment": "Instruction for installing Trezor Bridge",
+      "occurrences": [
+        "src/views/onboarding/steps/Bridge/index.messages.js"
+      ]
+    }
+  },
+  "TR_DEVICE_IN_BOOTLOADER_MODE": {
+    "source": "Device in bootloader mode",
+    "meta": {
+      "comment": "Indication that device is in bootloader mode",
+      "occurrences": [
+        "src/views/onboarding/steps/Connect/components/TroubleshootBootloader.messages.js"
+      ]
+    }
+  },
+  "TR_DEVICE_IN_BOOTLOADER_MODE_INSTRUCTIONS": {
+    "source": "Device is connected in bootloader mode. Plug out the USB cable and connect device again.",
+    "meta": {
+      "comment": "Instructions what to do if device is in bootloader mode",
+      "occurrences": [
+        "src/views/onboarding/steps/Connect/components/TroubleshootBootloader.messages.js"
+      ]
+    }
+  },
+  "TR_DEVICE_IS_INITIALIZED": {
+    "source": "Device is initialized",
+    "meta": {
+      "comment": "Indication that device is in already initialized",
+      "occurrences": [
+        "src/views/onboarding/steps/Connect/components/TroubleshootInitialized.messages.js"
+      ]
+    }
+  },
+  "TR_DEVICE_LABEL": {
+    "source": "Device label: {label}.",
+    "meta": {
+      "comment": "Display label of device",
+      "occurrences": [
+        "src/views/onboarding/steps/Connect/components/TroubleshootInitialized.messages.js"
+      ]
+    }
+  },
+  "TR_DEVICE_FIRMWARE_VERSION": {
+    "source": "Device firmware: {firmware}.",
+    "meta": {
+      "comment": "Display firmware of device",
+      "occurrences": [
+        "src/views/onboarding/steps/Connect/components/TroubleshootInitialized.messages.js"
+      ]
+    }
+  },
+  "TR_USER_HAS_WORKDED_WITH_THE_DEVICE": {
+    "source": "I have worked with it before",
+    "meta": {
+      "comment": "Option to click when troubleshooting initialized device.",
+      "occurrences": [
+        "src/views/onboarding/steps/Connect/components/TroubleshootInitialized.messages.js"
+      ]
+    }
+  },
+  "TR_USER_HAS_NOT_WORKDED_WITH_THIS_DEVICE": {
+    "source": "It is a brand new device, just unpacked",
+    "meta": {
+      "comment": "Option to click when troubleshooting initialized device.",
+      "occurrences": [
+        "src/views/onboarding/steps/Connect/components/TroubleshootInitialized.messages.js"
+      ]
+    }
+  },
+  "TR_INSTRUCTION_TO_SKIP_OR_WIPE": {
+    "source": "You might skip setup and continue to wallet or wipe your device to be able to go through the onboarding process again.",
+    "meta": {
+      "comment": "Instruction what to do when user knows the device he is holding was manipulated by him, not someone else.",
+      "occurrences": [
+        "src/views/onboarding/steps/Connect/components/TroubleshootInitialized.messages.js"
+      ]
+    }
+  },
+  "TR_WIPE_WARNING": {
+    "source": "Danger zone here, wiping device erases all data and can not be reverted",
+    "meta": {
+      "comment": "Wipe device action warning.",
+      "occurrences": [
+        "src/views/onboarding/steps/Connect/components/TroubleshootInitialized.messages.js"
+      ]
+    }
+  },
+  "TR_WIPE_DEVICE": {
+    "source": "Wipe device",
+    "meta": {
+      "comment": "Button",
+      "occurrences": [
+        "src/views/onboarding/steps/Connect/components/TroubleshootInitialized.messages.js"
+      ]
+    }
+  },
+  "TR_USER_HAS_NOT_WORKED_WITH_THIS_DEVICE_INSTRUCTIONS": {
+    "source": "In that case you should immediately contact Trezor support with detailed information on your purchase and refrain from using this device.",
+    "meta": {
+      "comment": "What to do if device is already initialized but not by user.",
+      "occurrences": [
+        "src/views/onboarding/steps/Connect/components/TroubleshootInitialized.messages.js"
+      ]
+    }
+  },
+  "TR_SEARCHING_TAKES_TOO_LONG": {
+    "source": "Searching for your device takes too long, you might want to try to:",
+    "meta": {
+      "comment": "Message to display when device is not detected after a decent period of time.",
+      "occurrences": [
+        "src/views/onboarding/steps/Connect/components/TroubleshootTooLong.messages.js"
+      ]
+    }
+  },
+  "TR_RECONNECT_INSTRUCTION": {
+    "source": "Reconnect your device and wait for a while",
+    "meta": {
+      "comment": "Troubleshooting instruction",
+      "occurrences": [
+        "src/views/onboarding/steps/Connect/components/TroubleshootTooLong.messages.js"
+      ]
+    }
+  },
+  "TR_REFRESH_INSTRUCTION": {
+    "source": "Refresh your internet browser window",
+    "meta": {
+      "comment": "Troubleshooting instruction",
+      "occurrences": [
+        "src/views/onboarding/steps/Connect/components/TroubleshootTooLong.messages.js"
+      ]
+    }
+  },
+  "TR_ANOTHER_CABLE_INSTRUCTION": {
+    "source": "Try using another cable",
+    "meta": {
+      "comment": "Troubleshooting instruction",
+      "occurrences": [
+        "src/views/onboarding/steps/Connect/components/TroubleshootTooLong.messages.js"
+      ]
+    }
+  },
+  "TR_LAST_RESORT_INSTRUCTION": {
+    "source": "If nothing helps, {ContactSupportLink}",
+    "meta": {
+      "comment": "Troubleshooting instruction. See TR_CONTACT_TREZOR_SUPPORT_LINK",
+      "occurrences": [
+        "src/views/onboarding/steps/Connect/components/TroubleshootTooLong.messages.js"
+      ]
+    }
+  },
+  "TR_CONTACT_TREZOR_SUPPORT_LINK": {
+    "source": "contact Trezor support.",
+    "meta": {
+      "comment": "Full sentences: If nothing helps, contact Trezor support. See TR_LAST_RESORT_INSTRUCTION",
+      "occurrences": [
+        "src/views/onboarding/steps/Connect/components/TroubleshootTooLong.messages.js"
+      ]
+    }
+  },
+  "TR_CONNECT_HEADING": {
+    "source": "Time to connect your device",
+    "meta": {
+      "comment": "Heading on connect page",
+      "occurrences": [
+        "src/views/onboarding/steps/Connect/index.messages.js"
+      ]
+    }
+  },
+  "TR_MAKE_SURE_IT_IS_WELL_CONNECTED": {
+    "source": "Make sure your device is well connected to avoid communication failures.",
+    "meta": {
+      "comment": "Instruction for connecting device.",
+      "occurrences": [
+        "src/views/onboarding/steps/Connect/index.messages.js"
+      ]
+    }
+  },
+  "TR_SEARCHING_FOR_YOUR_DEVICE": {
+    "source": "Searching for your device",
+    "meta": {
+      "comment": "Indication that we app does not see connected device yet.",
+      "occurrences": [
+        "src/views/onboarding/steps/Connect/index.messages.js"
+      ]
+    }
+  },
+  "TR_DEVICE_DETECTED": {
+    "source": "Device detected",
+    "meta": {
+      "comment": "App can see connected device",
+      "occurrences": [
+        "src/views/onboarding/steps/Connect/index.messages.js"
+      ]
+    }
+  },
+  "TR_FOUND_OK_DEVICE": {
+    "source": "Found an empty device, yay! You can continue now.",
+    "meta": {
+      "comment": "Case when device was connected and it is in expected state (not initialized)",
+      "occurrences": [
+        "src/views/onboarding/steps/Connect/index.messages.js"
+      ]
+    }
+  },
+  "TR_FINAL_HEADING": {
+    "source": "Good job! All done",
+    "meta": {
+      "comment": "Heading in newsletter step",
+      "occurrences": [
+        "src/views/onboarding/steps/Final/index.messages.js"
+      ]
+    }
+  },
+  "TR_FINAL_SUBHEADING": {
+    "source": "Now you are ready to enjoy bleeding edge security with Trezor.",
+    "meta": {
+      "comment": "Subheading in newsletter step",
+      "occurrences": [
+        "src/views/onboarding/steps/Final/index.messages.js"
+      ]
+    }
+  },
+  "TR_TREZOR_STABLE_WALLET": {
+    "source": "Trezor stable wallet",
+    "meta": {
+      "comment": "Name of application that might be used with Trezor",
+      "occurrences": [
+        "src/views/onboarding/steps/Final/index.messages.js"
+      ]
+    }
+  },
+  "TR_TREZOR_STABLE_WALLET_DESCRIPTION": {
+    "source": "Web wallet with support of Bitcoin, Dash, Zcash and other coins.",
+    "meta": {
+      "comment": "Description of application that might be used with Trezor.",
+      "occurrences": [
+        "src/views/onboarding/steps/Final/index.messages.js"
+      ]
+    }
+  },
+  "TR_TREZOR_PASSWORD_MANAGER": {
+    "source": "Trezor Password Manager",
+    "meta": {
+      "comment": "Name of application that might be used with Trezor",
+      "occurrences": [
+        "src/views/onboarding/steps/Final/index.messages.js"
+      ]
+    }
+  },
+  "TR_TREZOR_PASSWORD_MANAGER_DESCRIPTION": {
+    "source": "A safe way how to manage your credentials with Trezor.",
+    "meta": {
+      "comment": "Description of application that might be used with Trezor",
+      "occurrences": [
+        "src/views/onboarding/steps/Final/index.messages.js"
+      ]
+    }
+  },
+  "TR_TREZOR_ETHEREUM_WALLET": {
+    "source": "Ethereum beta wallet",
+    "meta": {
+      "comment": "Name of application that might be used with Trezor",
+      "occurrences": [
+        "src/views/onboarding/steps/Final/index.messages.js"
+      ]
+    }
+  },
+  "TR_TREZOR_ETHEREUM_WALLET_DESCRIPTION": {
+    "source": "New wallet with support of Ethereum and Ripple",
+    "meta": {
+      "comment": "Description of application that might be used with Trezor",
+      "occurrences": [
+        "src/views/onboarding/steps/Final/index.messages.js"
+      ]
+    }
+  },
+  "TR_FIRMWARE_HEADING": {
+    "source": "Get the latest firmware",
+    "meta": {
+      "comment": "Heading on firmware page",
+      "occurrences": [
+        "src/views/onboarding/steps/Firmware/index.messages.js"
+      ]
+    }
+  },
+  "TR_FIRMWARE_SUBHEADING": {
+    "source": "Your Trezor is shipped without firmware installed to ensure that you can get started with the latest features right away. The authenticity of the installed firmware is always checked during device start. If the firmware is not correctly signed by SatoshiLabs, your Trezor will display a warning.",
+    "meta": {
+      "comment": "Main text on firmware page for devices without firmware.",
+      "occurrences": [
+        "src/views/onboarding/steps/Firmware/index.messages.js"
+      ]
+    }
+  },
+  "TR_INSTALL": {
+    "source": "Install",
+    "meta": {
+      "comment": "Install button",
+      "occurrences": [
+        "src/views/onboarding/steps/Firmware/index.messages.js"
+      ]
+    }
+  },
+  "TR_INSTALL_ERROR_OCCURRED": {
+    "source": "Error occurred during firmware install: {error}",
+    "meta": {
+      "comment": "Error message when installing firmware to device",
+      "occurrences": [
+        "src/views/onboarding/steps/Firmware/index.messages.js"
+      ]
+    }
+  },
+  "TR_FETCH_ERROR_OCCURRED": {
+    "source": "Error occured during firmware download: {error}",
+    "meta": {
+      "comment": "Error message when downloading firmware",
+      "occurrences": [
+        "src/views/onboarding/steps/Firmware/index.messages.js"
+      ]
+    }
+  },
+  "TR_FIRMWARE_INSTALLED": {
+    "source": "Perfect. The newest firwmare is installed. Time to continue",
+    "meta": {
+      "comment": "Message to display in case firmware is installed",
+      "occurrences": [
+        "src/views/onboarding/steps/Firmware/index.messages.js"
+      ]
+    }
+  },
+  "TR_CONNECT_YOUR_DEVICE_AGAIN": {
+    "source": "Connect your device again",
+    "meta": {
+      "comment": "Prompt to connect device.",
+      "occurrences": [
+        "src/views/onboarding/steps/Firmware/index.messages.js"
+      ]
+    }
+  },
+  "TR_DISCONNECT_YOUR_DEVICE": {
+    "source": "Disconnect your device",
+    "meta": {
+      "comment": "Prompt to disconnect device.",
+      "occurrences": [
+        "src/views/onboarding/steps/Firmware/index.messages.js"
+      ]
+    }
+  },
+  "TR_WAIT_FOR_REBOOT": {
+    "source": "Wait for your device to reboot",
+    "meta": {
+      "comment": "Info what is happening with users device.",
+      "occurrences": [
+        "src/views/onboarding/steps/Firmware/index.messages.js"
+      ]
+    }
+  },
+  "TR_HOLOGRAM_STEPHEADING": {
+    "source": "Hologram check",
+    "meta": {
+      "comment": "Heading on hologram step page",
+      "occurrences": [
+        "src/views/onboarding/steps/Hologram/index.messages.js"
+      ]
+    }
+  },
+  "TR_HOLOGRAM_STEP_SUBHEADING": {
+    "source": "Please make sure hologram protecting your device is authentic",
+    "meta": {
+      "comment": "Subheading on hologram step page",
+      "occurrences": [
+        "src/views/onboarding/steps/Hologram/index.messages.js"
+      ]
+    }
+  },
+  "TR_HOLOGRAM_STEP_ACTION_OK": {
+    "source": "My hologram is OK",
+    "meta": {
+      "comment": "Button to click in allright case",
+      "occurrences": [
+        "src/views/onboarding/steps/Hologram/index.messages.js"
+      ]
+    }
+  },
+  "TR_HOLOGRAM_STEP_ACTION_NOT_OK": {
+    "source": "My hologram looks different",
+    "meta": {
+      "comment": "Button to click when hologram looks different",
+      "occurrences": [
+        "src/views/onboarding/steps/Hologram/index.messages.js"
+      ]
+    }
+  },
+  "TR_NAME_HEADING": {
+    "source": "Name your device",
+    "meta": {
+      "comment": "Heading in name step",
+      "occurrences": [
+        "src/views/onboarding/steps/Name/index.messages.js"
+      ]
+    }
+  },
+  "TR_NAME_HEADING_CHANGED": {
+    "source": "Hi, {label}",
+    "meta": {
+      "comment": "Subheading in name step after user changes label, so lets welcome him!",
+      "occurrences": [
+        "src/views/onboarding/steps/Name/index.messages.js"
+      ]
+    }
+  },
+  "TR_NAME_SUBHEADING": {
+    "source": "Personalize your device with your own name.",
+    "meta": {
+      "comment": "Subheading in name step",
+      "occurrences": [
+        "src/views/onboarding/steps/Name/index.messages.js"
+      ]
+    }
+  },
+  "TR_NAME_CHANGED_TEXT": {
+    "source": "Excellent, your device has a custom name now. It will be visible on your device display from now on.",
+    "meta": {
+      "comment": "Text to display after user has changed label.",
+      "occurrences": [
+        "src/views/onboarding/steps/Name/index.messages.js"
+      ]
+    }
+  },
+  "TR_NAME_ONLY_ASCII": {
+    "source": "Name can contain only basic letters",
+    "meta": {
+      "comment": "Validation message in label input",
+      "occurrences": [
+        "src/views/onboarding/steps/Name/index.messages.js"
+      ]
+    }
+  },
+  "TR_NAME_TOO_LONG": {
+    "source": "Name is too long",
+    "meta": {
+      "comment": "Validation message in label input",
+      "occurrences": [
+        "src/views/onboarding/steps/Name/index.messages.js"
+      ]
+    }
+  },
+  "TR_NAME_OK": {
+    "source": "Cool name",
+    "meta": {
+      "comment": "Validation message in label input",
+      "occurrences": [
+        "src/views/onboarding/steps/Name/index.messages.js"
+      ]
+    }
+  },
+  "TR_NEWSLETTER_HEADING": {
+    "source": "Stay in touch",
+    "meta": {
+      "comment": "Heading in newsletter step",
+      "occurrences": [
+        "src/views/onboarding/steps/Newsletter/index.messages.js"
+      ]
+    }
+  },
+  "TR_NEWSLETTER_SUBHEADING": {
+    "source": "Receive information on important security updates",
+    "meta": {
+      "comment": "Subheading in newsletter step",
+      "occurrences": [
+        "src/views/onboarding/steps/Newsletter/index.messages.js"
+      ]
+    }
+  },
+  "TR_THANK_YOU_FOR_EMAIL": {
+    "source": "Thank you for providing your email. You can also follow us on socials:",
+    "meta": {
+      "comment": "Displayed after user submits contact email",
+      "occurrences": [
+        "src/views/onboarding/steps/Newsletter/index.messages.js"
+      ]
+    }
+  },
+  "TR_EMAIL_SKIPPED": {
+    "source": "You chose not to provide your email. This is Ok. If you want, you might still follow us on socials:",
+    "meta": {
+      "comment": "Displayed after user skips contact email",
+      "occurrences": [
+        "src/views/onboarding/steps/Newsletter/index.messages.js"
+      ]
+    }
+  },
+  "TR_SENDING": {
+    "source": "Sending",
+    "meta": {
+      "comment": "Indicating progress status of email after submit.",
+      "occurrences": [
+        "src/views/onboarding/steps/Newsletter/index.messages.js"
+      ]
+    }
+  },
+  "TR_SENDING_ERROR": {
+    "source": "Failed to submit email",
+    "meta": {
+      "comment": "Indicating progress status of email after submit.",
+      "occurrences": [
+        "src/views/onboarding/steps/Newsletter/index.messages.js"
+      ]
+    }
+  },
+  "TR_WRONG_EMAIL_FORMAT": {
+    "source": "Wrong email format",
+    "meta": {
+      "comment": "Validation text displayed under email input",
+      "occurrences": [
+        "src/views/onboarding/steps/Newsletter/index.messages.js"
+      ]
+    }
+  },
+  "TR_PIN_HEADING_FIRST": {
+    "source": "Set new PIN",
+    "meta": {
+      "comment": "Heading in PIN page when entering PIN for the first time",
+      "occurrences": [
+        "src/views/onboarding/steps/Pin/index.messages.js"
+      ]
+    }
+  },
+  "TR_PIN_HEADING_REPEAT": {
+    "source": "Repeat PIN",
+    "meta": {
+      "comment": "Heading in PIN page when repeating PIN",
+      "occurrences": [
+        "src/views/onboarding/steps/Pin/index.messages.js"
+      ]
+    }
+  },
+  "TR_PIN_HEADING_SUCCESS": {
+    "source": "PIN enabled",
+    "meta": {
+      "comment": "Heading in PIN page when PIN set",
+      "occurrences": [
+        "src/views/onboarding/steps/Pin/index.messages.js"
+      ]
+    }
+  },
+  "TR_PIN_HEADING_MISMATCH": {
+    "source": "PIN mismatch",
+    "meta": {
+      "comment": "Heading in PIN page when PIN repeated incorrectly",
+      "occurrences": [
+        "src/views/onboarding/steps/Pin/index.messages.js"
+      ]
+    }
+  },
+  "TR_PIN_SUBHEADING": {
+    "source": "Protect device from unauthorized access by using a strong pin.",
+    "meta": {
+      "comment": "Subheading on PIN page",
+      "occurrences": [
+        "src/views/onboarding/steps/Pin/index.messages.js"
+      ]
+    }
+  },
+  "TR_SET_PIN": {
+    "source": "Set pin",
+    "meta": {
+      "comment": "Button text",
+      "occurrences": [
+        "src/views/onboarding/steps/Pin/index.messages.js"
+      ]
+    }
+  },
+  "TR_PIN_ENTERING_DESCRIPTION": {
+    "source": "In order to secure maximum security, we do not display pin on your computer. We will just show a blind matrix, real layout is displayed on your device.",
+    "meta": {
+      "comment": "Text describe how to enter PIN o trezor device",
+      "occurrences": [
+        "src/views/onboarding/steps/Pin/index.messages.js"
+      ]
+    }
+  },
+  "TR_FIRST_PIN_ENTERED": {
+    "source": "Good. You entered a new pin. But to make sure you did not make mistake, please enter it again. Look at your device now, numbers are now different.",
+    "meta": {
+      "comment": "Text describing what happens after user enters PIN for the first time.",
+      "occurrences": [
+        "src/views/onboarding/steps/Pin/index.messages.js"
+      ]
+    }
+  },
+  "TR_PIN_SET_SUCCESS": {
+    "source": "Purfect! Your device is now secured by pin.",
+    "meta": {
+      "comment": "Longer text indicating PIN was set succesfully.",
+      "occurrences": [
+        "src/views/onboarding/steps/Pin/index.messages.js"
+      ]
+    }
+  },
+  "TR_PIN_ERROR_TROUBLESHOOT": {
+    "source": "Are you confused, how PIN works? You can always refer to our {TR_DOCUMENTATION}",
+    "meta": {
+      "comment": "Troubleshooting text after user enters second PIN incorrectly.",
+      "occurrences": [
+        "src/views/onboarding/steps/Pin/index.messages.js"
+      ]
+    }
+  },
+  "TR_DOCUMENTATION": {
+    "source": "documentation",
+    "meta": {
+      "comment": "Link to trezor documentation (wiki)",
+      "occurrences": [
+        "src/views/onboarding/steps/Pin/index.messages.js"
+      ]
+    }
+  },
+  "TR_START_AGAIN": {
+    "source": "Start again",
+    "meta": {
+      "comment": "Button text",
+      "occurrences": [
+        "src/views/onboarding/steps/Pin/index.messages.js"
+      ]
+    }
+  },
+  "TR_RECOVER_HEADING": {
+    "source": "Recover your device",
+    "meta": {
+      "comment": "Heading in recover page",
+      "occurrences": [
+        "src/views/onboarding/steps/Recovery/index.messages.js"
+      ]
+    }
+  },
+  "TR_RECOVER_SUBHEADING": {
+    "source": "It is possible to re-create device from bip39 backup. First of all, chose number of words of your backup.",
+    "meta": {
+      "comment": "Subheading in recover page. Basic info about recovery",
+      "occurrences": [
+        "src/views/onboarding/steps/Recovery/index.messages.js"
+      ]
+    }
+  },
+  "TR_WORDS": {
+    "source": "{count} words",
+    "meta": {
+      "comment": "Number of words. For example: 12 words",
+      "occurrences": [
+        "src/views/onboarding/steps/Recovery/index.messages.js"
+      ]
+    }
+  },
+  "TR_START_RECOVERY": {
+    "source": "Start recovery",
+    "meta": {
+      "comment": "Button.",
+      "occurrences": [
+        "src/views/onboarding/steps/Recovery/index.messages.js"
+      ]
+    }
+  },
+  "TR_RECOVERY_TYPES_DESCRIPTION": {
+    "source": "Both methods are safe. Basic recovery uses on computer input of words in randomized order. Advanced recovery uses on-screen input to load your recovery seed. Learn more",
+    "meta": {
+      "comment": "There are two methods of recovery for T1. This is a short explanation text.",
+      "occurrences": [
+        "src/views/onboarding/steps/Recovery/index.messages.js"
+      ]
+    }
+  },
+  "TR_BASIC_RECOVERY_OPTION": {
+    "source": "Basic recovery (2 minutes)",
+    "meta": {
+      "comment": "Button for selecting basic recovery option",
+      "occurrences": [
+        "src/views/onboarding/steps/Recovery/index.messages.js"
+      ]
+    }
+  },
+  "TR_ADVANCED_RECOVERY_OPTION": {
+    "source": "Advanced recovery (5 minutes)",
+    "meta": {
+      "comment": "Button for selecting advanced recovery option",
+      "occurrences": [
+        "src/views/onboarding/steps/Recovery/index.messages.js"
+      ]
+    }
+  },
+  "TR_ENTER_SEED_WORDS_INSTRUCTION": {
+    "source": "Enter words from your seed in order displayed on your device.",
+    "meta": {
+      "comment": "User is instructed to enter words from seed (backup) into the form in browser",
+      "occurrences": [
+        "src/views/onboarding/steps/Recovery/index.messages.js"
+      ]
+    }
+  },
+  "TR_RANDOM_SEED_WORDS_DISCLAIMER": {
+    "source": "Please note, that to maximaze security, your device will ask you to enter {count} fake words that are not part of your seed.",
+    "meta": {
+      "comment": "User is instructed to enter words from seed (backup) into the form in browser",
+      "occurrences": [
+        "src/views/onboarding/steps/Recovery/index.messages.js"
+      ]
+    }
+  },
+  "TR_CHECK_YOUR_DEVICE": {
+    "source": "Check your device",
+    "meta": {
+      "comment": "Placeholder in seed input asking user to pay attention to his device",
+      "occurrences": [
+        "src/views/onboarding/steps/Recovery/index.messages.js"
+      ]
+    }
+  },
+  "TR_MORE_WORDS_TO_ENTER": {
+    "source": "{count} words to enter.",
+    "meta": {
+      "comment": "How many words will user need to enter before recovery is finished.",
+      "occurrences": [
+        "src/views/onboarding/steps/Recovery/index.messages.js"
+      ]
+    }
+  },
+  "TR_RECOVERY_ERROR": {
+    "source": "Device recovery failed with error: {error}",
+    "meta": {
+      "comment": "Error during recovery. For example wrong word retyped or device disconnected",
+      "occurrences": [
+        "src/views/onboarding/steps/Recovery/index.messages.js"
+      ]
+    }
+  },
+  "TR_RECOVERY_SUCCESS": {
+    "source": "Excellent, you recovered device from seed.",
+    "meta": {
+      "comment": "This is displayed upon successful recovery",
+      "occurrences": [
+        "src/views/onboarding/steps/Recovery/index.messages.js"
+      ]
+    }
+  },
+  "TR_SECURITY_HEADING": {
+    "source": "Basic setup is done, but...",
+    "meta": {
+      "comment": "Heading in security page",
+      "occurrences": [
+        "src/views/onboarding/steps/Security/index.messages.js"
+      ]
+    }
+  },
+  "TR_SECURITY_SUBHEADING": {
+    "source": "Good job, your wallet is ready. But we strongly recommend you to spend few more minutes and improve your security.",
+    "meta": {
+      "comment": "Text in security page",
+      "occurrences": [
+        "src/views/onboarding/steps/Security/index.messages.js"
+      ]
+    }
+  },
+  "TR_GO_TO_SECURITY": {
+    "source": "Take me to security (5 minutes)",
+    "meta": {
+      "comment": "Button in security page (start security setup)",
+      "occurrences": [
+        "src/views/onboarding/steps/Security/index.messages.js"
+      ]
+    }
+  },
+  "TR_SKIP_SECURITY": {
+    "source": "Skip for now",
+    "meta": {
+      "comment": "Button in security page (skip security setup)",
+      "occurrences": [
+        "src/views/onboarding/steps/Security/index.messages.js"
+      ]
+    }
+  },
+  "TR_SELECT_YOUR_DEVICE_HEADING": {
+    "source": "Select your device",
+    "meta": {
+      "comment": "Heading on select your device page",
+      "occurrences": [
+        "src/views/onboarding/steps/SelectDevice/index.messages.js"
+      ]
+    }
+  },
+  "TR_MODEL_ONE": {
+    "source": "Model one",
+    "meta": {
+      "comment": "Name of Trezor model 1",
+      "occurrences": [
+        "src/views/onboarding/steps/SelectDevice/index.messages.js"
+      ]
+    }
+  },
+  "TR_MODEL_T": {
+    "source": "Model T",
+    "meta": {
+      "comment": "Name of Trezor model T",
+      "occurrences": [
+        "src/views/onboarding/steps/SelectDevice/index.messages.js"
+      ]
+    }
+  },
+  "TR_START_HEADING": {
+    "source": "Create or recover",
+    "meta": {
+      "comment": "Heading in start page",
+      "occurrences": [
+        "src/views/onboarding/steps/Start/index.messages.js"
+      ]
+    }
+  },
+  "TR_START_CREATING": {
+    "source": "Creating",
+    "meta": {
+      "comment": "Alternative heading text that is displayed when create new wallet call is in progress",
+      "occurrences": [
+        "src/views/onboarding/steps/Start/index.messages.js"
+      ]
+    }
+  },
+  "TR_START_FROM_SCRATCH": {
+    "source": "Start from scratch",
+    "meta": {
+      "comment": "Option in start page (create new wallet or recover)",
+      "occurrences": [
+        "src/views/onboarding/steps/Start/index.messages.js"
+      ]
+    }
+  },
+  "TR_RECOVER": {
+    "source": "Recover",
+    "meta": {
+      "comment": "Option in start page (create new wallet or recover)",
+      "occurrences": [
+        "src/views/onboarding/steps/Start/index.messages.js"
+      ]
+    }
+  },
+  "TR_WELCOME_TO_TREZOR": {
+    "source": "Welcome to Trezor",
+    "meta": {
+      "comment": "Welcome message on welcome page",
+      "occurrences": [
+        "src/views/onboarding/steps/Welcome/index.messages.js"
+      ]
+    }
+  },
+  "TR_GET_STARTED": {
+    "source": "Get started (5 minutes)",
+    "meta": {
+      "comment": "Button on welcome page",
+      "occurrences": [
+        "src/views/onboarding/steps/Welcome/index.messages.js"
+      ]
+    }
+  }
+}

@@ -1,25 +1,41 @@
 import React from 'react';
 import { P, Link } from 'trezor-ui-components';
+import { FormattedMessage } from 'react-intl';
 
 import { UnorderedList } from 'components/Lists';
 import { SUPPORT_URL } from 'config/urls';
 
+import l10nMessages from './TroubleshootTooLong.messages';
+
+const ContactSupportLink = (
+    <Link href={SUPPORT_URL}>
+        <FormattedMessage {...l10nMessages.TR_CONTACT_TREZOR_SUPPORT_LINK} />
+    </Link>
+);
+
 const TroubleshootSearchingTooLong = () => (
     <React.Fragment>
-        <P />
-        <P>Searching for your device takes too long, you might want to try to:</P>
+        <P>
+            <FormattedMessage {...l10nMessages.TR_SEARCHING_TAKES_TOO_LONG} />
+        </P>
         <UnorderedList
             items={[{
-                component: <P>Reconnect your device and wait for a while</P>,
+                component: <P><FormattedMessage {...l10nMessages.TR_SEARCHING_TAKES_TOO_LONG} /></P>,
                 key: '1',
             }, {
-                component: <P>Refresh your internet browser window</P>,
+                component: <P><FormattedMessage {...l10nMessages.TR_REFRESH_INSTRUCTION} /></P>,
                 key: '2',
             }, {
-                component: <P>Try using another cable</P>,
+                component: <P><FormattedMessage {...l10nMessages.TR_ANOTHER_CABLE_INSTRUCTION} /></P>,
                 key: '3',
             }, {
-                component: <P>If nothing helps, <Link href={SUPPORT_URL}> contact Trezor support</Link></P>,
+                component: (
+                    <P>
+                        <FormattedMessage
+                            {...l10nMessages.TR_LAST_RESORT_INSTRUCTION}
+                            values={{ ContactSupportLink }}
+                        />
+                    </P>),
                 key: '4',
             }]}
         />

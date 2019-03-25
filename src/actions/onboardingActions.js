@@ -1,5 +1,6 @@
 import * as ONBOARDING from 'actions/constants/onboarding';
 import { ID } from 'views/onboarding/constants/steps';
+import { getLocalization } from './fetchActions';
 
 const goToNextStep = stepId => (dispatch, getState) => {
     const { device } = getState().connect;
@@ -77,9 +78,21 @@ const setApplicationError = error => ({
     error,
 });
 
+const setLocale = locale => (dispatch) => {
+    dispatch(getLocalization(`/${locale}.json`)).then(async (result) => {
+        const json = await result.json();
+        dispatch({
+            type: ONBOARDING.SET_LOCALIZATION,
+            language: locale,
+            messages: json,
+        });
+    });
+};
+
 export {
     goToNextStep,
     goToPreviousStep,
     selectTrezorModel,
     setApplicationError,
+    setLocale,
 };

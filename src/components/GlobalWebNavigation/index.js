@@ -1,18 +1,23 @@
 import React from 'react';
 import styled from 'styled-components';
+import { FormattedMessage } from 'react-intl';
+
 // import { SCREEN_SIZE } from 'config/variables';
 import { Link } from 'trezor-ui-components';
 
 import colors from 'config/colors';
 import { TREZOR_URL } from 'config/urls';
 
-// import LanguagePicker from './components/LanguagePicker/Container';
+import l10nMessages from './index.messages';
+import LanguagePicker from './components/LanguagePicker/Container';
 
 const Wrapper = styled.header`
     width: 100%;
     height: 52px;
     background: ${colors.black};
     z-index: 200;
+    /* max-width: 100vw; */
+    /* overflow-x: hidden; */
 `;
 
 const LayoutWrapper = styled.div`
@@ -126,23 +131,19 @@ const GlobalWebNavigation = () => (
             <MenuLinks>
                 <Projects>
                     <A href="https://trezor.io/" target="_blank" rel="noreferrer noopener">
-                        {/* <FormattedMessage {...l10nMessages.TR_TREZOR} /> */}
-                        Trezor
+                        <FormattedMessage {...l10nMessages.TR_TREZOR} />
                     </A>
                     <A href="https://wiki.trezor.io/" target="_blank" rel="noreferrer noopener">
-                        {/* <FormattedMessage {...l10nMessages.TR_WIKI} /> */}
-                        Wiki
+                        <FormattedMessage {...l10nMessages.TR_WIKI} />
                     </A>
                     <A href="https://blog.trezor.io/" target="_blank" rel="noreferrer noopener">
-                        {/* <FormattedMessage {...l10nMessages.TR_BLOG} /> */}
-                        Blog
+                        <FormattedMessage {...l10nMessages.TR_BLOG} />
                     </A>
                     <A href="https://trezor.io/support/" target="_blank" rel="noreferrer noopener">
-                        {/* <FormattedMessage {...l10nMessages.TR_SUPPORT} /> */}
-                        Support
+                        <FormattedMessage {...l10nMessages.TR_SUPPORT} />
                     </A>
                 </Projects>
-                {/* <LanguagePicker /> */}
+                <LanguagePicker />
             </MenuLinks>
         </LayoutWrapper>
     </Wrapper>

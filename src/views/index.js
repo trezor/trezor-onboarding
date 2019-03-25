@@ -7,6 +7,8 @@ import colors from 'config/colors';
 import Onboarding from 'views/onboarding/Container';
 // todo [vladimir]: really support? Used trezor-wallet approach here
 import ErrorBoundary from 'support/ErrorBoundary';
+import IntlProvider from 'support/ConnectedIntlProvider';
+
 import GlobalWebNavigation from 'components/GlobalWebNavigation';
 import { ID } from 'views/onboarding/constants/steps';
 
@@ -21,24 +23,39 @@ const Wrapper = styled.div`
     min-height: 100vh;
     background-color: ${colors.white};
 
-    ${props => (props.animate && css`animation: ${backgroundAnimation} 1s linear`)};
-    
     @media only screen and (min-width: 600px) {
+        ${props => (props.animate && css`animation: ${backgroundAnimation} 1s linear`)};
         background-color: ${props => (props.show ? colors.gray : colors.white)};
     }
 `;
 
 const exludedStepsForWrapper = [ID.WELCOME_STEP, ID.FINAL_STEP];
 
-const App = ({ error, activeStep }) => (
-    <Wrapper animate={!exludedStepsForWrapper.includes(activeStep)} show={!exludedStepsForWrapper.includes(activeStep)}>
-        {/* here we pass error possibly caught outside render that would not be caught by ErrorBoundary otherwise */}
-        <GlobalWebNavigation />
-        <ErrorBoundary error={error}>
-            <Onboarding />
-        </ErrorBoundary>
-    </Wrapper>
-);
+class App extends React.PureComponent {
+    componentDidMount() {
+        this.props.init();
+    }
+
+    render() {
+        console.warn('App render');
+        const { error, activeStep, init } = this.props;
+        return (
+            <Wrapper animate={!exludedStepsForWrapper.includes(activeStep)} show={!exludedStepsForWrapper.includes(activeStep)}>
+                <IntlProvider>
+                    {/* here we pass error possibly caught outside render that would not be caught by ErrorBoundary otherwise */}
+                    <React.Fragment>
+                        <GlobalWebNavigation />
+                        <ErrorBoundary error={error}>
+                            <Onboarding />
+                        </ErrorBoundary>
+                    </React.Fragment>
+
+                </IntlProvider>
+
+            </Wrapper>
+        );
+    }
+}
 
 App.propTypes = {
     error: Proptypes.object,

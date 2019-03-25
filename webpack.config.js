@@ -3,9 +3,10 @@ const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const GitRevisionPlugin = require('git-revision-webpack-plugin');
 const { DefinePlugin } = require('webpack');
+const Dotenv = require('dotenv-webpack');
 
 const gitRevisionPlugin = new GitRevisionPlugin({ branch: true });
-console.warn('proces.env', process.env.BUILD);
+
 module.exports = env => ({
     entry: ['@babel/polyfill', './src/index.js'],
     mode: 'development',
@@ -77,6 +78,7 @@ module.exports = env => ({
             BRANCH: JSON.stringify(gitRevisionPlugin.branch()),
             BUILD: JSON.stringify(env.BUILD),
         }),
+        // new Dotenv(),
     ],
 
 });

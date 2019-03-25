@@ -1,6 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import { FormattedMessage } from 'react-intl';
+
+import l10nMessages from './NthWord.messages';
 
 const Word = styled.div`
     font-size: 3em;
@@ -11,7 +14,7 @@ const NthWord = ({ number }) => {
         return null;
     }
     return (
-        <Word>{number} word.</Word>
+        <Word><FormattedMessage {...l10nMessages.TR_NTH_WORD} values={{ number }} /></Word>
     );
 };
 

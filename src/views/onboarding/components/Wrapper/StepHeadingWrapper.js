@@ -1,7 +1,4 @@
 import styled from 'styled-components';
-// import { variables } from 'trezor-ui-components';
-
-// console.warn('variables', variables);
 
 // todo: use variables
 const StepHeadingWrapper = styled.div`
@@ -16,7 +13,7 @@ const StepHeadingWrapper = styled.div`
     padding-right: 10%;
     font-weight: 300;
     font-size: 2rem;
-
+    line-height: 2.3rem;
 `;
 
 export default StepHeadingWrapper;

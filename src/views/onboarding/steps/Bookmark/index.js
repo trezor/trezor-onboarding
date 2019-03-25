@@ -6,10 +6,14 @@ import Platform from 'utils/Platform';
 import {
     P, Link, Button,
 } from 'trezor-ui-components';
+import { FormattedMessage } from 'react-intl';
 
 import colors from 'config/colors';
-import { PHISING_URL } from 'config/urls';
+import { PHISHING_URL } from 'config/urls';
 import types from 'config/types';
+
+import l10nCommonMessages from 'support/commonMessages';
+import l10nMessages from './index.messages';
 
 import {
     StepWrapper, StepBodyWrapper, StepHeadingWrapper, ControlsWrapper,
@@ -46,6 +50,7 @@ class BookmarkStep extends React.Component {
     }
 
     async setBookmarkFlagAndContinue() {
+        // todo: there is already special action for this 'callActionAndGoToNextStep'
         const flags = Flags.setFlag(BookmarkStep.TARGET_FLAG, this.props.device.features.flags);
         await this.props.connectActions.applyFlags({ flags });
         // check if flags were set correctly
@@ -77,19 +82,27 @@ class BookmarkStep extends React.Component {
         return (
             <StepWrapper>
                 <StepHeadingWrapper>
-                    Bookmark
+                    <FormattedMessage {...l10nMessages.TR_BOOKMARK_HEADING} />
                 </StepHeadingWrapper>
                 <StepBodyWrapper>
                     <P>
-                    Protect yourself against <Link isGreen href={PHISING_URL}>phishing attacks</Link>.
-                    Bookmark Trezor Wallet (wallet.trezor.io) to avoid visiting fake sites.
+                        <FormattedMessage
+                            {...l10nMessages.TR_BOOKMARK_SUBHEADING}
+                            values={{
+                                TR_PHISHING_ATTACKS: (
+                                    <Link isGreen href={PHISHING_URL}>
+                                        <FormattedMessage {...l10nMessages.TR_PHISHING_ATTACKS} />
+                                    </Link>
+                                ),
+                            }}
+                        />
                     </P>
 
                     {
                         !Platform.getInfo().isMobile && (
                             <React.Fragment>
                                 <P>
-                                    Use the keyboard shortcut:
+                                    <FormattedMessage {...l10nMessages.TR_USE_THE_KEYBOARD_SHORTCUT} />
                                 </P>
                                 {
                                     Platform.getInfo().os === Platform.MAC && (
@@ -121,8 +134,12 @@ class BookmarkStep extends React.Component {
                         {
                             !Platform.getInfo().isMobile && (
                                 <React.Fragment>
-                                    <Button isDisabled={this.nextDisabled()} onClick={() => this.setBookmarkFlagAndContinue()}>Continue</Button>
-                                    <Button isWhite onClick={() => this.setBookmarkFlagAndContinue()}>Skip</Button>
+                                    <Button isDisabled={this.nextDisabled()} onClick={() => this.setBookmarkFlagAndContinue()}>
+                                        <FormattedMessage {...l10nCommonMessages.TR_CONTINUE} />
+                                    </Button>
+                                    <Button isWhite onClick={() => this.setBookmarkFlagAndContinue()}>
+                                        <FormattedMessage {...l10nCommonMessages.TR_SKIP} />
+                                    </Button>
                                 </React.Fragment>
                             )
                         }

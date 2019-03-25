@@ -31,7 +31,6 @@ import ConnectStep from 'views/onboarding/steps/Connect';
 import RecoveryStep from 'views/onboarding/steps/Recovery';
 
 const WRAPPER_HEIGHT = 80;
-const PROGRES_STEPS_HEIGHT = 15;
 const MAIN_HEIGHT = 80;
 const FOOTER_HEIGHT = 5;
 const BORDER_RADIUS = 12;
@@ -41,25 +40,29 @@ const Wrapper = styled.div`
     display: grid;
     grid-template-areas: 
         'steps'
-        'main'
-        'footer';
-    grid-template-rows: ${PROGRES_STEPS_HEIGHT}% ${MAIN_HEIGHT}% ${FOOTER_HEIGHT}%;    
+        'main';
+    grid-template-rows: 50px;    
     grid-template-columns: 1fr;
     background-color: ${colors.white};
     border-radius: ${BORDER_RADIUS}px;
     width: 95vw;
+    margin: 20px auto 0 auto;
 
     @media only screen and (min-width: 600px) {
         width: 80vw;
         margin: auto;
-        height: ${WRAPPER_HEIGHT}vh;
+        min-height: ${WRAPPER_HEIGHT}vh;
+        grid-template-rows: 80px ${MAIN_HEIGHT}% ${FOOTER_HEIGHT}%;    
+    
     } 
 `;
 
 const ProgressStepsWrapper = styled.div`
     grid-area: steps;
-    margin-top: auto;
-    margin-bottom: auto;
+    
+    @media only screen and (min-width: 600px) {
+        margin: auto 0 auto 0;
+    } 
 `;
 
 const ComponentWrapper = styled(CSSTransitionGroup)`
@@ -69,7 +72,6 @@ const ComponentWrapper = styled(CSSTransitionGroup)`
 `;
 
 const FooterWrapper = styled.div`
-    grid-area: footer;
     padding: 3px 3% 3px 3%;
 `;
 
@@ -90,7 +92,6 @@ const FooterLinks = styled.div`
 const FooterLink = styled.a`
     display: inline;
     white-space: nowrap;
-    /* font-size: 0.4rem; */
     color: ${colors.gray};
     &:hover,
     &:active {
@@ -121,11 +122,7 @@ const UnexpectedStateOverlay = styled.div`
     z-index: 1000;
 `;
 
-class Onboarding extends React.Component {
-    componentWillMount() {
-        this.props.connectActions.init();
-    }
-
+class Onboarding extends React.PureComponent {
     getStep(activeStepId) {
         return this.props.steps.find(step => step.id === activeStepId);
     }
@@ -208,187 +205,186 @@ class Onboarding extends React.Component {
             TrezorActionText = () => <P>Complete action on your device.</P>;
         }
 
+        console.warn('onboarding render');
 
         return (
-            <React.Fragment>
-                <Wrapper>
-                    {
-                        errorStates.length > 0 && (
-                            <UnexpectedStateOverlay>
-                                <UnexpectedState caseType={errorStates[0]} model={model} />
-                            </UnexpectedStateOverlay>
-                        )
-                    }
-                    <ProgressStepsWrapper>
-                        { this.getStep(activeStep).title && this.getStep(activeStep).title !== 'Basic setup' && (
-                            <ProgressSteps
-                                steps={[...new Set(steps.filter(s => s.title).map(s => s.title))]}
-                                activeStep={this.getStep(activeStep)}
-                            />
-                        )}
-                    </ProgressStepsWrapper>
+            <Wrapper>
+                {
+                    errorStates.length > 0 && (
+                        <UnexpectedStateOverlay>
+                            <UnexpectedState caseType={errorStates[0]} model={model} />
+                        </UnexpectedStateOverlay>
+                    )
+                }
+                <ProgressStepsWrapper>
+                    { this.getStep(activeStep).title && this.getStep(activeStep).title !== 'Basic setup' && (
+                        <ProgressSteps
+                            steps={[...new Set(steps.filter(s => s.title).map(s => s.title))]}
+                            activeStep={this.getStep(activeStep)}
+                        />
+                    )}
+                </ProgressStepsWrapper>
 
-                    {/* todo: transitionName example, needs to change css as well */}
-                    <ComponentWrapper
-                        component="div"
-                        transitionName="example"
-                        transitionEnterTimeout={300}
-                        transitionLeave={false}
-                    >
+                {/* todo: transitionName example, needs to change css as well */}
+                <ComponentWrapper
+                    component="div"
+                    transitionName="example"
+                    transitionEnterTimeout={300}
+                    transitionLeave={false}
+                >
 
-                        <TrezorActionOverlay style={{ display: !this.isGlobalInteraction() ? 'none' : 'flex' }}>
-                            <Prompt model={model}>
-                                <TrezorActionText />
-                            </Prompt>
-                        </TrezorActionOverlay>
+                    <TrezorActionOverlay style={{ display: !this.isGlobalInteraction() ? 'none' : 'flex' }}>
+                        <Prompt model={model}>
+                            <TrezorActionText />
+                        </Prompt>
+                    </TrezorActionOverlay>
 
-                        {/* todo [vladimir]: how to find that I pass props and dont use them in component? any tooling? */}
-                        {this.getScreen() === ID.WELCOME_STEP && (
-                            <WelcomeStep
-                                onboardingActions={onboardingActions}
-                                transport={transport}
-                            />
-                        )}
-                        {this.getScreen() === ID.SELECT_DEVICE_STEP && (
-                            <SelectDeviceStep
-                                deviceCall={deviceCall}
-                                onboardingActions={onboardingActions}
-                            />
-                        )}
-                        {this.getScreen() === ID.UNBOXING_STEP && (
-                            <HologramStep
-                                onboardingActions={onboardingActions}
-                                model={model}
-                            />
-                        )}
-                        {this.getScreen() === ID.BRIDGE_STEP && (
-                            <BridgeStep
-                                onboardingActions={onboardingActions}
-                                transport={transport}
-                            />
-                        )}
-                        {this.getScreen() === ID.CONNECT_STEP && (
-                            <ConnectStep
-                                onboardingActions={onboardingActions}
-                                connectActions={connectActions}
-                                model={model}
-                                device={device}
-                                deviceCall={deviceCall}
-                            />
-                        )}
-                        {this.getScreen() === ID.FIRMWARE_STEP && (
-                            <FirmwareStep
-                                onboardingActions={onboardingActions}
-                                connectActions={connectActions}
-                                device={device}
-                                fetchCall={fetchCall}
-                                deviceCall={deviceCall}
-                            />
-                        )}
-                        {this.getScreen() === ID.START_STEP && (
-                            <StartStep
-                                onboardingActions={onboardingActions}
-                                connectActions={connectActions}
-                                deviceCall={deviceCall}
-                            />
-                        )}
-                        {this.getScreen() === ID.RECOVERY_STEP && (
-                            <RecoveryStep
-                                onboardingActions={onboardingActions}
-                                connectActions={connectActions}
-                                device={device}
-                                uiInteraction={uiInteraction}
-                                deviceCall={deviceCall}
-                            />
-                        )}
-                        {this.getScreen() === ID.SECURITY_STEP && (
-                            <SecurityStep
-                                onboardingActions={onboardingActions}
-                            />
-                        )}
-                        {this.getScreen() === ID.BACKUP_STEP && (
-                            <BackupStep
-                                onboardingActions={onboardingActions}
-                                connectActions={connectActions}
-                                device={device}
-                                deviceCall={deviceCall}
-                                deviceInteraction={deviceInteraction}
-                            />
-                        )}
-                        {this.getScreen() === ID.SET_PIN_STEP && (
-                            <SetPinStep
-                                device={device}
-                                onboardingActions={onboardingActions}
-                                connectActions={connectActions}
-                                deviceCall={deviceCall}
-                                uiInteraction={uiInteraction}
-                            />
-                        )}
-                        {this.getScreen() === ID.NAME_STEP && (
-                            <NameStep
-                                onboardingActions={onboardingActions}
-                                connectActions={connectActions}
-                                deviceCall={deviceCall}
-                                device={device}
-                            />
-                        )}
-                        {this.getScreen() === ID.NEWSLETTER_STEP && (
-                            <NewsletterStep
-                                onboardingActions={onboardingActions}
-                                connectActions={connectActions}
-                                device={device}
-                                deviceCall={deviceCall}
-                                fetchCall={fetchCall}
-                                fetchActions={fetchActions}
-                            />
-                        )}
-                        {this.getScreen() === ID.BOOKMARK_STEP && (
-                            <BookmarkStep
-                                onboardingActions={onboardingActions}
-                                connectActions={connectActions}
-                                device={device}
-                            />
-                        )}
-                        {this.getScreen() === ID.FINAL_STEP && (
-                            <FinalStep
-                                onboardingActions={onboardingActions}
-                            />
-                        )}
+                    {/* todo [vladimir]: how to find that I pass props and dont use them in component? any tooling? */}
+                    {this.getScreen() === ID.WELCOME_STEP && (
+                        <WelcomeStep
+                            onboardingActions={onboardingActions}
+                            transport={transport}
+                        />
+                    )}
+                    {this.getScreen() === ID.SELECT_DEVICE_STEP && (
+                        <SelectDeviceStep
+                            deviceCall={deviceCall}
+                            onboardingActions={onboardingActions}
+                        />
+                    )}
+                    {this.getScreen() === ID.UNBOXING_STEP && (
+                        <HologramStep
+                            onboardingActions={onboardingActions}
+                            model={model}
+                        />
+                    )}
+                    {this.getScreen() === ID.BRIDGE_STEP && (
+                        <BridgeStep
+                            onboardingActions={onboardingActions}
+                            transport={transport}
+                        />
+                    )}
+                    {this.getScreen() === ID.CONNECT_STEP && (
+                        <ConnectStep
+                            onboardingActions={onboardingActions}
+                            connectActions={connectActions}
+                            model={model}
+                            device={device}
+                            deviceCall={deviceCall}
+                        />
+                    )}
+                    {this.getScreen() === ID.FIRMWARE_STEP && (
+                        <FirmwareStep
+                            onboardingActions={onboardingActions}
+                            connectActions={connectActions}
+                            device={device}
+                            fetchCall={fetchCall}
+                            deviceCall={deviceCall}
+                        />
+                    )}
+                    {this.getScreen() === ID.START_STEP && (
+                        <StartStep
+                            onboardingActions={onboardingActions}
+                            connectActions={connectActions}
+                            deviceCall={deviceCall}
+                        />
+                    )}
+                    {this.getScreen() === ID.RECOVERY_STEP && (
+                        <RecoveryStep
+                            onboardingActions={onboardingActions}
+                            connectActions={connectActions}
+                            device={device}
+                            uiInteraction={uiInteraction}
+                            deviceCall={deviceCall}
+                        />
+                    )}
+                    {this.getScreen() === ID.SECURITY_STEP && (
+                        <SecurityStep
+                            onboardingActions={onboardingActions}
+                        />
+                    )}
+                    {this.getScreen() === ID.BACKUP_STEP && (
+                        <BackupStep
+                            onboardingActions={onboardingActions}
+                            connectActions={connectActions}
+                            device={device}
+                            deviceCall={deviceCall}
+                            deviceInteraction={deviceInteraction}
+                        />
+                    )}
+                    {this.getScreen() === ID.SET_PIN_STEP && (
+                        <SetPinStep
+                            device={device}
+                            onboardingActions={onboardingActions}
+                            connectActions={connectActions}
+                            deviceCall={deviceCall}
+                            uiInteraction={uiInteraction}
+                        />
+                    )}
+                    {this.getScreen() === ID.NAME_STEP && (
+                        <NameStep
+                            onboardingActions={onboardingActions}
+                            connectActions={connectActions}
+                            deviceCall={deviceCall}
+                            device={device}
+                        />
+                    )}
+                    {this.getScreen() === ID.NEWSLETTER_STEP && (
+                        <NewsletterStep
+                            onboardingActions={onboardingActions}
+                            connectActions={connectActions}
+                            device={device}
+                            deviceCall={deviceCall}
+                            fetchCall={fetchCall}
+                            fetchActions={fetchActions}
+                        />
+                    )}
+                    {this.getScreen() === ID.BOOKMARK_STEP && (
+                        <BookmarkStep
+                            onboardingActions={onboardingActions}
+                            connectActions={connectActions}
+                            device={device}
+                        />
+                    )}
+                    {this.getScreen() === ID.FINAL_STEP && (
+                        <FinalStep
+                            onboardingActions={onboardingActions}
+                        />
+                    )}
 
-                    </ComponentWrapper>
+                </ComponentWrapper>
 
-                    {
-                        (this.shouldDisplayGoBack() || this.shouldDisplaySkipSecurity()) && (
-                            <FooterWrapper>
-                                <FooterDivider />
-                                <FooterLinks>
-                                    {
-                                        this.shouldDisplayGoBack() && (
-                                            <FooterLink
-                                                style={{ justifySelf: 'flex-start' }}
-                                                onClick={() => onboardingActions.goToPreviousStep()}
-                                            >
+                {
+                    (this.shouldDisplayGoBack() || this.shouldDisplaySkipSecurity()) && (
+                        <FooterWrapper>
+                            <FooterDivider />
+                            <FooterLinks>
+                                {
+                                    this.shouldDisplayGoBack() && (
+                                        <FooterLink
+                                            style={{ justifySelf: 'flex-start' }}
+                                            onClick={() => onboardingActions.goToPreviousStep()}
+                                        >
                                     Go back
-                                            </FooterLink>
-                                        )
-                                    }
+                                        </FooterLink>
+                                    )
+                                }
 
-                                    {
-                                        this.shouldDisplaySkipSecurity() && (
-                                            <FooterLink
-                                                style={{ justifySelf: 'flex-end' }}
-                                            >Skip security
-                                            </FooterLink>
-                                        )
-                                    }
-                                </FooterLinks>
-                            </FooterWrapper>
-                        )
-                    }
+                                {
+                                    this.shouldDisplaySkipSecurity() && (
+                                        <FooterLink
+                                            style={{ justifySelf: 'flex-end' }}
+                                        >Skip security
+                                        </FooterLink>
+                                    )
+                                }
+                            </FooterLinks>
+                        </FooterWrapper>
+                    )
+                }
 
 
-                </Wrapper>
-            </React.Fragment>
+            </Wrapper>
 
         );
     }

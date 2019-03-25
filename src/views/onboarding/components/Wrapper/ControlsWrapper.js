@@ -14,9 +14,6 @@ const ControlsWrapper = styled.div`
 
     @media (max-width: 600px) {
         flex-direction: column;
-        /* & > * {
-            margin: 3px 10px 3px 10px;
-        } */
     }
 `;
 

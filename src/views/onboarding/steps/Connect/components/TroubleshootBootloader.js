@@ -1,10 +1,17 @@
 import React from 'react';
 import { H4, P } from 'trezor-ui-components';
+import { FormattedMessage } from 'react-intl';
+
+import l10nMessages from './TroubleshootBootloader.messages';
 
 const TroubleshootBootloader = () => (
     <React.Fragment>
-        <H4>Device in bootloader mode</H4>
-        <P>Device is connected in bootloader mode. Plug out the USB cable and connect device again.</P>
+        <H4>
+            <FormattedMessage {...l10nMessages.TR_DEVICE_IN_BOOTLOADER_MODE} />
+        </H4>
+        <P>
+            <FormattedMessage {...l10nMessages.TR_DEVICE_IN_BOOTLOADER_MODE_INSTRUCTIONS} />
+        </P>
     </React.Fragment>
 );
 

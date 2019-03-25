@@ -2,10 +2,10 @@ import React from 'react';
 import {
     Button, P,
 } from 'trezor-ui-components';
-
+import { FormattedMessage } from 'react-intl';
 import types from 'config/types';
-// import { ID } from 'views/onboarding/constants/steps';
 
+import l10nMessages from './index.messages';
 import {
     StepWrapper, StepBodyWrapper, StepHeadingWrapper, ControlsWrapper,
 } from '../../components/Wrapper';
@@ -13,18 +13,20 @@ import {
 const SecurityStep = ({ onboardingActions }) => (
     <StepWrapper>
         <StepHeadingWrapper>
-            Basic setup is done, but...
+            <FormattedMessage {...l10nMessages.TR_SECURITY_HEADING} />
         </StepHeadingWrapper>
         <StepBodyWrapper>
-            <P>Good job, your wallet is ready. But we strongly recommend you to spend few more minutes and improve your security</P>
+            <P>
+                <FormattedMessage {...l10nMessages.TR_SECURITY_SUBHEADING} />
+            </P>
             <ControlsWrapper>
                 <Button onClick={() => onboardingActions.goToNextStep()}>
-                    Take me to security <br />
-                    (5 minutes)
+                    <FormattedMessage {...l10nMessages.TR_GO_TO_SECURITY} />
                 </Button>
-                <Button isWhite>Skip for now</Button>
+                <Button isWhite>
+                    <FormattedMessage {...l10nMessages.TR_SKIP_SECURITY} />
+                </Button>
             </ControlsWrapper>
-
         </StepBodyWrapper>
     </StepWrapper>
 );

@@ -4,14 +4,17 @@ import {
     SELECT_TREZOR_MODEL,
     SET_STEPS,
     SET_APPLICATION_ERROR,
+    SET_LOCALIZATION,
 } from 'actions/constants/onboarding';
 import { ID } from 'views/onboarding/constants/steps';
 import steps from 'views/onboarding/config/steps';
 
 const initialState = {
-    selectedModel: '1',
+    selectedModel: 1,
     activeStep: ID.WELCOME_STEP,
     steps, // todo: move here directly probably for better readability
+    language: 'en',
+    messages: {},
 };
 
 const onboarding = (state = initialState, action) => {
@@ -40,6 +43,13 @@ const onboarding = (state = initialState, action) => {
             return {
                 ...state,
                 error: action.error,
+            };
+        }
+        case SET_LOCALIZATION: {
+            return {
+                ...state,
+                language: action.language,
+                messages: action.messages,
             };
         }
         default:

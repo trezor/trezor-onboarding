@@ -7,6 +7,7 @@ const OptionWrapper = styled.div`
     height: 200px;
     flex-grow: 1;
     width: 100%;
+    min-width: 120px;
     padding: 10px;
     margin: 5px;
     border: solid 1px ${colors.gray};

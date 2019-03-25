@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import {
     H4, P, Button, Checkbox,
 } from 'trezor-ui-components';
+import { FormattedMessage } from 'react-intl';
 
 import colors from 'config/colors';
 import types from 'config/types';
@@ -11,6 +12,8 @@ import { WIPE_DEVICE } from 'actions/constants/calls';
 import { UnorderedList } from 'components/Lists';
 import { ID } from 'views/onboarding/constants/steps';
 
+import l10nCommonMessages from 'support/commonMessages';
+import l10nMessages from './index.messages';
 import {
     StepWrapper, StepBodyWrapper, StepHeadingWrapper, ControlsWrapper, CheckboxWrapper,
 } from '../../components/Wrapper';
@@ -69,34 +72,41 @@ class BackupStep extends React.Component {
             device, deviceCall, onboardingActions, deviceInteraction, connectActions,
         } = this.props;
         const instructions = [{
-            component: <P>Do not upload words on the internet.</P>,
+            component: <P><FormattedMessage {...l10nMessages.TR_DO_NOT_UPLOAD_INSTRUCTION} /></P>,
             key: '1',
         }, {
-            component: <P>Hide them somewhere safe.</P>,
+            component: <P><FormattedMessage {...l10nMessages.TR_HIDE_TO_SAFE_PLACE_INSTRUCTION} /></P>,
             key: '2',
         }, {
-            component: <P>Your device can be lost or stolen but seed means access to your money.</P>,
+            component: <P><FormattedMessage {...l10nMessages.TR_DO_NOT_SAFE_IN_COMPUTER_INSTRUCTION} /></P>,
             key: '3',
+        }, {
+            component: <P><FormattedMessage {...l10nMessages.TR_DO_NOT_TAKE_PHOTO_INSTRUCTION} /></P>,
+            key: '4',
         }];
 
         return (
             <StepWrapper>
                 <StepHeadingWrapper>
-                    Seed is more important than your device
+                    <FormattedMessage {...l10nMessages.TR_SEED_IS_MORE_IMPORTANT_THAN_YOUR_DEVICE} />
+
                 </StepHeadingWrapper>
                 <StepBodyWrapper>
                     {
                         this.getStatus() === BackupStep.INITIAL_STATUS && (
                             <React.Fragment>
                                 <P>
-                                        Owning cryptocurrencies means having a secret and not sharing it with anyone! Now your device will
-                                        tell you the secret. This will happen only once. Write it down and keep it safe. Never tell anyone!
+                                    <FormattedMessage {...l10nMessages.TR_BACKUP_SUBHEADING_1} />
                                 </P>
+                                <P>
+                                    <FormattedMessage {...l10nMessages.TR_BACKUP_SUBHEADING_2} />
+                                </P>
+
                                 <UnorderedList items={instructions} />
 
                                 <Panel>
                                     <P>
-                                        Trezor cannot be held responsible for security liabilities or financial losses resulting from not following these security instructions
+                                        <FormattedMessage {...l10nMessages.TR_SATOSHILABS_CANNOT_BE_HELD_RESPONSIBLE} />
                                     </P>
                                 </Panel>
                                 <CheckboxWrapper style={{ alignSelf: 'flex-start' }}>
@@ -104,7 +114,9 @@ class BackupStep extends React.Component {
                                         isChecked={this.state.userUnderstands}
                                         onClick={() => this.setState(prevState => ({ userUnderstands: !prevState.userUnderstands }))}
                                     />
-                                    <P>I have read the instructions and agree</P>
+                                    <P>
+                                        <FormattedMessage {...l10nMessages.TR_I_HAVE_READ_INSTRUCTIONS} />
+                                    </P>
                                 </CheckboxWrapper>
 
                                 <ControlsWrapper>
@@ -112,7 +124,7 @@ class BackupStep extends React.Component {
                                         onClick={() => { this.setState({ status: 'started' }); }}
                                         isDisabled={!device || !this.state.userUnderstands}
                                     >
-                                        Start backup
+                                        <FormattedMessage {...l10nMessages.TR_START_BACKUP} />
                                     </Button>
                                 </ControlsWrapper>
                             </React.Fragment>
@@ -134,22 +146,24 @@ class BackupStep extends React.Component {
                     {
                         this.getStatus() === BackupStep.FAILED_STATUS && (
                             <React.Fragment>
-                                <H4>Device disconnected during action</H4>
+                                <H4>
+                                    <FormattedMessage {...l10nMessages.TR_DEVICE_DISCONNECTED_DURING_ACTION} />
+                                </H4>
                                 <P>
-                                    You device disconnected during action which resulted in interuption
-                                    of backup process. For security reasons you need to wipe your device now
-                                    and start the backup process again.
+                                    <FormattedMessage {...l10nMessages.TR_DEVICE_DISCONNECTED_DURING_ACTION_DESCRIPTION} />
                                 </P>
                                 <ControlsWrapper>
                                     <Button
                                         onClick={() => { this.wipeDeviceAndStartAgain(); }}
                                         isDisabled={!device || !device.connected}
                                     >
-                                            Wipe device and start again
+                                        <FormattedMessage {...l10nMessages.TR_WIPE_DEVICE_AND_START_AGAIN} />
                                     </Button>
                                 </ControlsWrapper>
                                 {
-                                    (!device || !device.connected) && (<P>Connect your device</P>)
+                                    (!device || !device.connected) && (
+                                        <P><FormattedMessage {...l10nCommonMessages.TR_CONNECT_YOUR_DEVICE} /></P>
+                                    )
                                 }
                             </React.Fragment>
                         )

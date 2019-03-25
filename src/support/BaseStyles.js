@@ -7,8 +7,10 @@ const baseStyles = createGlobalStyle`
         width: 100%;
         height: 100%;
         position: relative;
-        font-size: 14px;
         font-family: 'Roboto', sans-serif;
+        font-size: 14px;
+        ${'' /* font-size: calc(14px + (26 - 14) * ((100vw - 300px) / (1600 - 300)));
+        line-height: calc(1.3em + (1.5 - 1.2) * ((100vw - 300px)/(1600 - 300))); */}
     }
 
     * , *:before , *:after {

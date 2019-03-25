@@ -11,7 +11,10 @@
     "lint:css": "npx stylelint './src/**/*.js'",
     "build:beta": "rimraf dist && npx webpack --progress --bail --env.BUILD=beta",
     "build:production": "rimraf dist && npx webpack --progress --bail --env.BUILD=production",
-    "test": "jest"
+    "test": "jest",
+    "translations:extract": "rimraf translations/extractedMessages && cross-env NODE_ENV=translations babel src",
+    "translations:upload": "yarn translations:extract && yarn ttm merge-msgs && yarn ttm build-csv && yarn ttm upload",
+    "translations:download": "yarn ttm build-translations && sleep 1 && yarn ttm export-translations"
   },
   "dependencies": {
     "@sentry/browser": "^4.6.4",
@@ -24,7 +27,9 @@
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
     "react-hot-loader": "^4.6.3",
+    "react-intl": "^2.8.0",
     "react-redux": "^6.0.0",
+    "react-select": "^2.4.2",
     "react-svg": "^7.2.6",
     "react-timeout": "^1.2.0",
     "react-transition-group": "1.x",
@@ -39,6 +44,7 @@
     "trezor-ui-components": "1.0.0-beta.8"
   },
   "devDependencies": {
+    "@babel/cli": "^7.2.3",
     "@babel/core": "^7.2.2",
     "@babel/plugin-proposal-class-properties": "^7.2.3",
     "@babel/plugin-transform-runtime": "^7.3.4",
@@ -47,6 +53,8 @@
     "@babel/preset-react": "^7.0.0",
     "babel-eslint": "^10.0.1",
     "babel-loader": "^8.0.5",
+    "babel-plugin-react-intl": "^3.0.1",
+    "cross-env": "^5.2.0",
     "eslint": "^5.12.0",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-import-resolver-babel-module": "5.0.0-beta.1",
@@ -64,6 +72,7 @@
     "stylelint-custom-processor-loader": "^0.6.0",
     "stylelint-processor-styled-components": "^1.5.1",
     "svg-inline-loader": "^0.8.0",
+    "trezor-translations-manager": "^1.0.4",
     "uglifyjs-webpack-plugin": "^2.1.1",
     "webpack": "^4.28.4",
     "webpack-cli": "^3.2.1",

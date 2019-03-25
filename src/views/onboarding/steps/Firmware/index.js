@@ -1,5 +1,6 @@
 import React from 'react';
 import { P, Button } from 'trezor-ui-components';
+import { FormattedMessage, injectIntl } from 'react-intl';
 
 import types from 'config/types';
 import { DONUT_STROKE, DONUT_RADIUS } from 'config/constants';
@@ -8,6 +9,9 @@ import { GET_FIRMWARE } from 'actions/constants/fetchCalls';
 import { FIRMWARE_ERASE, FIRMWARE_UPLOAD } from 'actions/constants/calls';
 
 import { Donut, Dots } from 'components/Loaders';
+
+import commonMessages from 'support/commonMessages';
+import l10nMessages from './index.messages';
 
 import {
     StepWrapper, StepHeadingWrapper, StepBodyWrapper, ControlsWrapper,
@@ -55,10 +59,11 @@ class FirmwareStep extends React.Component {
             return 'downloading';
         }
 
-        if (device.firmware === 'none' || device.firmware === 'outdated' || device.firmware === 'unknown') {
+        if (device.firmware === 'none' || device.firmware === 'unknown') {
             return 'initial';
         }
 
+        // todo: ?? maybe throw error, there shouldt be unexpected state ever
         return '?';
     }
 
@@ -67,18 +72,13 @@ class FirmwareStep extends React.Component {
         const status = this.getStatus();
         if (device.features.major_version === 1) {
             if (status === 'reconnect' && !device.connected) {
-                return 'connect your device again';
+                return this.props.intl.formatMessage(l10nMessages.TR_CONNECT_YOUR_DEVICE_AGAIN);
             }
             if (status === 'reconnect' && device.connected) {
-                return 'disconnect your device';
+                return this.props.intl.formatMessage(l10nMessages.TR_DISCONNECT_YOUR_DEVICE);
             }
-        } else {
-            if (status === 'reconnect' && !device.connected) {
-                return 'wait for your device to reboot';
-            }
-            if (status === 'reconnect' && device.connected) {
-                return 'wait for your device to reboot';
-            }
+        } else if (status === 'reconnect') {
+            return this.props.intl.formatMessage(l10nMessages.TR_WAIT_FOR_REBOOT);
         }
 
         return status;
@@ -127,21 +127,19 @@ class FirmwareStep extends React.Component {
         return (
             <StepWrapper>
                 <StepHeadingWrapper>
-                    Get the latest firmware
+                    <FormattedMessage {...l10nMessages.TR_FIRMWARE_HEADING} />
                 </StepHeadingWrapper>
                 <StepBodyWrapper>
                     {
                         this.getStatus() === 'initial' && (
                             <React.Fragment>
                                 <P>
-                                Your Trezor is shipped without firmware installed to ensure that
-                                you can get started with the latest features right away.
-
-                                The authenticity of the installed firmware is always checked during device start.
-                                If the firmware is not correctly signed by SatoshiLabs, your Trezor will display a warning.
+                                    <FormattedMessage {...l10nMessages.TR_FIRMWARE_SUBHEADING} />
                                 </P>
                                 <ControlsWrapper>
-                                    <Button onClick={() => this.install()}>Install</Button>
+                                    <Button onClick={() => this.install()}>
+                                        <FormattedMessage {...l10nMessages.TR_INSTALL} />
+                                    </Button>
                                 </ControlsWrapper>
                             </React.Fragment>
                         )
@@ -166,18 +164,20 @@ class FirmwareStep extends React.Component {
                                             {
                                                 deviceCall.error && (
                                                     <P style={{ color: colors.error }}>
-                                                        Error occured during firmware install: {deviceCall.error}
+                                                        <FormattedMessage {...l10nMessages.TR_INSTALL_ERROR_OCCURRED} values={{ error: deviceCall.error }} />
                                                     </P>
                                                 )
                                             }
                                             {
                                                 fetchCall.error && (
                                                     <P style={{ color: colors.error }}>
-                                                        Error occured during firmware download: {fetchCall.error}
+                                                        <FormattedMessage {...l10nMessages.TR_FETCH_ERROR_OCCURRED} values={{ error: fetchCall.error }} />
                                                     </P>
                                                 )
                                             }
-                                            <Button onClick={() => this.install()}>Retry</Button>
+                                            <Button onClick={() => this.install()}>
+                                                <FormattedMessage {...commonMessages.TR_RETRY} />
+                                            </Button>
                                         </React.Fragment>
                                     )
                                 }
@@ -190,10 +190,12 @@ class FirmwareStep extends React.Component {
                         && (
                             <React.Fragment>
                                 <P>
-                                    Perfect. The newest firwmare is installed. Time to continue
+                                    <FormattedMessage {...l10nMessages.TR_FIRMWARE_INSTALLED} />
                                 </P>
                                 <ControlsWrapper>
-                                    <Button isDisabled={!isConnected} onClick={() => this.props.onboardingActions.goToNextStep()}>Continue</Button>
+                                    <Button isDisabled={!isConnected} onClick={() => this.props.onboardingActions.goToNextStep()}>
+                                        <FormattedMessage {...commonMessages.TR_CONTINUE} />
+                                    </Button>
                                 </ControlsWrapper>
                             </React.Fragment>
                         )
@@ -213,4 +215,4 @@ FirmwareStep.propTypes = {
 };
 
 
-export default FirmwareStep;
+export default injectIntl(FirmwareStep);

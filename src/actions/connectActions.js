@@ -115,16 +115,12 @@ const getDefaultParams = (name) => {
 const call = (name, params) => async (dispatch, getState) => {
     const { device } = getState().connect;
     // eslint-disable-next-line no-param-reassign
-    const callParams = {};
 
-    Object.assign(callParams, getDefaultParams(name, params), params);
-    if (device !== null) {
-        callParams.device = device;
-    }
     try {
         const currentCall = getState().connect.deviceCall;
         if (currentCall.isProgress) {
             console.warn('[ConnectActions]: device call in progress. Aborting call');
+            return;
         }
 
         // todo: maybe useles to have RESET and START right after?
@@ -134,6 +130,20 @@ const call = (name, params) => async (dispatch, getState) => {
             type: CONNECT.DEVICE_CALL_START,
             name,
         });
+
+        if (device === null) {
+            dispatch({
+                type: CONNECT.DEVICE_CALL_ERROR,
+                error: 'no device connected',
+                name,
+            });
+            return;
+        }
+
+        const callParams = {};
+        Object.assign(callParams, getDefaultParams(name, params), params);
+        callParams.device = device;
+
 
         let fn;
 

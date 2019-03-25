@@ -1,12 +1,15 @@
 import React from 'react';
 import {
-    H1, P, Button, Input,
+    P, Button, Input,
 } from 'trezor-ui-components';
 import styled from 'styled-components';
+import { FormattedMessage, injectIntl } from 'react-intl';
 
 import types from 'config/types';
 import { validateASCII } from 'utils/validate';
 
+import l10nCommonMessages from 'support/commonMessages';
+import l10nMessages from './index.messages';
 import {
     StepWrapper, StepBodyWrapper, StepHeadingWrapper, ControlsWrapper,
 } from '../../components/Wrapper';
@@ -43,12 +46,12 @@ class NameStep extends React.Component {
             return { state: '' };
         }
         if (!validateASCII(this.state.label)) {
-            return { state: 'error', bottomText: 'name can contain only basic letters' };
+            return { state: 'error', bottomText: this.props.intl.formatMessage(l10nMessages.TR_NAME_ONLY_ASCII) };
         }
         if (this.state.label.length > 16) {
-            return { state: 'error', bottomText: 'name is too long' };
+            return { state: 'error', bottomText: this.props.intl.formatMessage(l10nMessages.TR_NAME_TOO_LONG) };
         }
-        return { state: 'success', bottomText: 'cool name' };
+        return { state: 'success', bottomText: this.props.intl.formatMessage(l10nMessages.TR_NAME_OK) };
     }
 
     render() {
@@ -56,15 +59,17 @@ class NameStep extends React.Component {
         return (
             <StepWrapper>
                 <StepHeadingWrapper>
-                    {
-                        !this.state.labelChanged && <H1>Name your device</H1>
-                    }
+                    { !this.state.labelChanged && <FormattedMessage {...l10nMessages.TR_NAME_HEADING} /> }
+                    { this.state.labelChanged && <FormattedMessage {...l10nMessages.TR_NAME_HEADING_CHANGED} values={{ label: device.features.label }} /> }
+
                 </StepHeadingWrapper>
                 <StepBodyWrapper>
                     {
                         !this.state.labelChanged && (
                             <React.Fragment>
-                                <P>Personalize your device with your own name.</P>
+                                <P>
+                                    <FormattedMessage {...l10nMessages.TR_NAME_SUBHEADING} />
+                                </P>
                                 <InputWrapper>
                                     <Input
                                         value={this.state.label}
@@ -74,7 +79,9 @@ class NameStep extends React.Component {
                                         onChange={this.handleInputChange}
                                         isDisabled={this.props.deviceCall.isProgress}
                                     />
-                                    <Button isDisabled={this.validateInput().state !== 'success'} onClick={this.changeLabel}>Submit</Button>
+                                    <Button isDisabled={this.validateInput().state !== 'success'} onClick={this.changeLabel}>
+                                        <FormattedMessage {...l10nCommonMessages.TR_SUBMIT} />
+                                    </Button>
                                 </InputWrapper>
                             </React.Fragment>
                         )
@@ -83,13 +90,13 @@ class NameStep extends React.Component {
                     {
                         this.state.labelChanged && (
                             <React.Fragment>
-                                <H1>Hi {device.features.label}!</H1>
                                 <P>
-                                Excellent, your device has a custom name now.
-                                It will be visible on your device display from now on.
+                                    <FormattedMessage {...l10nMessages.TR_NAME_CHANGED_TEXT} />
                                 </P>
                                 <ControlsWrapper>
-                                    <Button onClick={() => this.props.onboardingActions.goToNextStep()}>Continue</Button>
+                                    <Button onClick={() => this.props.onboardingActions.goToNextStep()}>
+                                        <FormattedMessage {...l10nCommonMessages.TR_CONTINUE} />
+                                    </Button>
                                 </ControlsWrapper>
                             </React.Fragment>
                         )
@@ -107,4 +114,4 @@ NameStep.propTypes = {
     device: types.deviceCall,
 };
 
-export default NameStep;
+export default injectIntl(NameStep);

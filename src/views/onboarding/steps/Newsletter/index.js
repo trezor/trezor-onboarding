@@ -4,6 +4,7 @@ import {
     P, Button, Link, Input,
 } from 'trezor-ui-components';
 import { Flags } from 'trezor-flags';
+import { FormattedMessage, injectIntl } from 'react-intl';
 
 import types from 'config/types';
 import { SOCIAL_FACEBOOK_URL, SOCIAL_BLOG_URL, SOCIAL_TWITTER_URL } from 'config/urls';
@@ -11,6 +12,9 @@ import { IconSocial } from 'components/Icons';
 import { validateEmail } from 'utils/validate';
 import { SUBMIT_EMAIL } from 'actions/constants/fetchCalls';
 import { APPLY_FLAGS } from 'actions/constants/calls';
+
+import l10nCommonMessages from 'support/commonMessages';
+import l10nMessages from './index.messages';
 
 import {
     StepWrapper, StepBodyWrapper, StepHeadingWrapper, ControlsWrapper,
@@ -45,10 +49,10 @@ class NewsleterStep extends React.Component {
     getBottomText() {
         const { emailSendStatus } = this.state;
         if (emailSendStatus === 'sending') {
-            return this.state.emailSendStatus;
+            return this.props.intl.formatMessage(l10nMessages.TR_SENDING);
         }
         if (emailSendStatus === 'error') {
-            return 'failed to submit email';
+            return this.props.intl.formatMessage(l10nMessages.TR_SENDING_ERROR);
         }
         return this.validateInput().bottomText;
     }
@@ -80,7 +84,7 @@ class NewsleterStep extends React.Component {
             return { state: null };
         }
         if (!validateEmail(this.state.email)) {
-            return { state: 'error', bottomText: 'wrong email format' };
+            return { state: 'error', bottomText: this.props.intl.formatMessage(l10nMessages.TR_WRONG_EMAIL_FORMAT) };
         }
         return { state: 'success' };
     }
@@ -108,13 +112,15 @@ class NewsleterStep extends React.Component {
         return (
             <StepWrapper>
                 <StepHeadingWrapper>
-                    Stay in touch
+                    <FormattedMessage {...l10nMessages.TR_NEWSLETTER_HEADING} />
                 </StepHeadingWrapper>
                 <StepBodyWrapper>
                     {
                         status === 'initial' && (
                             <React.Fragment>
-                                <P>Receive information on important security updates</P>
+                                <P>
+                                    <FormattedMessage {...l10nMessages.TR_NEWSLETTER_SUBHEADING} />
+                                </P>
                                 <InputWrapper>
                                     <Input
                                         value={this.state.email}
@@ -127,13 +133,13 @@ class NewsleterStep extends React.Component {
                                 </InputWrapper>
                                 <ControlsWrapper>
                                     <Button isWhite onClick={() => this.skipEmail()}>
-                                        Skip
+                                        <FormattedMessage {...l10nCommonMessages.TR_SKIP} />
                                     </Button>
                                     <Button
                                         isDisabled={this.validateInput().state !== 'success' || this.getEmailStatus() === 'sending'}
                                         onClick={this.submitEmail}
                                     >
-                                        Submit
+                                        <FormattedMessage {...l10nCommonMessages.TR_SUBMIT} />
                                     </Button>
                                 </ControlsWrapper>
                             </React.Fragment>
@@ -146,14 +152,14 @@ class NewsleterStep extends React.Component {
                                 {
                                     !this.state.skipped && (
                                         <P>
-                                            Thank you for providing your email. You can also follow us on socials:
+                                            <FormattedMessage {...l10nMessages.TR_THANK_YOU_FOR_EMAIL} />
                                         </P>
                                     )
                                 }
                                 {
                                     this.state.skipped && (
                                         <P>
-                                            You chose not to provide your email. This is Ok. If you want, you might still follow us on socials:
+                                            <FormattedMessage {...l10nMessages.TR_EMAIL_SKIPPED} />
                                         </P>
                                     )
                                 }
@@ -169,7 +175,9 @@ class NewsleterStep extends React.Component {
                                     </Link>
                                 </SocialWrapper>
                                 <ControlsWrapper>
-                                    <Button onClick={() => this.goToNextStep()}>Continue</Button>
+                                    <Button onClick={() => this.goToNextStep()}>
+                                        <FormattedMessage {...l10nCommonMessages.TR_CONTINUE} />
+                                    </Button>
                                 </ControlsWrapper>
                             </React.Fragment>
                         )
@@ -187,4 +195,4 @@ NewsleterStep.propTypes = {
     device: types.device,
 };
 
-export default NewsleterStep;
+export default injectIntl(NewsleterStep);

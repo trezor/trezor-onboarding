@@ -1,0 +1,114 @@
+[
+  {
+    "id": "TR_CONTINUE",
+    "description": "Continue button",
+    "defaultMessage": "Continue",
+    "file": "src/support/commonMessages.js",
+    "start": {
+      "line": 4,
+      "column": 17
+    },
+    "end": {
+      "line": 8,
+      "column": 5
+    }
+  },
+  {
+    "id": "TR_BACK",
+    "description": "Back button",
+    "defaultMessage": "Back",
+    "file": "src/support/commonMessages.js",
+    "start": {
+      "line": 9,
+      "column": 13
+    },
+    "end": {
+      "line": 13,
+      "column": 5
+    }
+  },
+  {
+    "id": "TR_SKIP_ALL",
+    "description": "Button. Skip the entire onboarding process.",
+    "defaultMessage": "Skip",
+    "file": "src/support/commonMessages.js",
+    "start": {
+      "line": 14,
+      "column": 17
+    },
+    "end": {
+      "line": 18,
+      "column": 5
+    }
+  },
+  {
+    "id": "TR_SKIP",
+    "description": "Button. Skip one step",
+    "defaultMessage": "Skip",
+    "file": "src/support/commonMessages.js",
+    "start": {
+      "line": 19,
+      "column": 13
+    },
+    "end": {
+      "line": 23,
+      "column": 5
+    }
+  },
+  {
+    "id": "TR_CONTACT_SUPPORT",
+    "description": "Button to click to contact support",
+    "defaultMessage": "Contact support",
+    "file": "src/support/commonMessages.js",
+    "start": {
+      "line": 24,
+      "column": 24
+    },
+    "end": {
+      "line": 28,
+      "column": 5
+    }
+  },
+  {
+    "id": "TR_RETRY",
+    "description": "Retry button",
+    "defaultMessage": "Retry",
+    "file": "src/support/commonMessages.js",
+    "start": {
+      "line": 29,
+      "column": 14
+    },
+    "end": {
+      "line": 33,
+      "column": 5
+    }
+  },
+  {
+    "id": "TR_CONNECT_YOUR_DEVICE",
+    "description": "Prompt to user to connect his device.",
+    "defaultMessage": "Connect your device",
+    "file": "src/support/commonMessages.js",
+    "start": {
+      "line": 34,
+      "column": 28
+    },
+    "end": {
+      "line": 38,
+      "column": 5
+    }
+  },
+  {
+    "id": "TR_SUBMIT",
+    "description": "Button text",
+    "defaultMessage": "Submit",
+    "file": "src/support/commonMessages.js",
+    "start": {
+      "line": 39,
+      "column": 15
+    },
+    "end": {
+      "line": 43,
+      "column": 5
+    }
+  }
+]

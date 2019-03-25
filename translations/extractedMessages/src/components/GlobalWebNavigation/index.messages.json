@@ -1,0 +1,72 @@
+[
+  {
+    "id": "TR_MENU",
+    "description": "Mobile sidebar toggler",
+    "defaultMessage": "Menu",
+    "file": "src/components/GlobalWebNavigation/index.messages.js",
+    "start": {
+      "line": 4,
+      "column": 13
+    },
+    "end": {
+      "line": 8,
+      "column": 5
+    }
+  },
+  {
+    "id": "TR_TREZOR",
+    "description": "Link in header navigation",
+    "defaultMessage": "Trezor",
+    "file": "src/components/GlobalWebNavigation/index.messages.js",
+    "start": {
+      "line": 10,
+      "column": 15
+    },
+    "end": {
+      "line": 14,
+      "column": 5
+    }
+  },
+  {
+    "id": "TR_WIKI",
+    "description": "Link in header navigation",
+    "defaultMessage": "Wiki",
+    "file": "src/components/GlobalWebNavigation/index.messages.js",
+    "start": {
+      "line": 15,
+      "column": 13
+    },
+    "end": {
+      "line": 19,
+      "column": 5
+    }
+  },
+  {
+    "id": "TR_BLOG",
+    "description": "Link in header navigation",
+    "defaultMessage": "Blog",
+    "file": "src/components/GlobalWebNavigation/index.messages.js",
+    "start": {
+      "line": 20,
+      "column": 13
+    },
+    "end": {
+      "line": 24,
+      "column": 5
+    }
+  },
+  {
+    "id": "TR_SUPPORT",
+    "description": "Link in header navigation",
+    "defaultMessage": "Support",
+    "file": "src/components/GlobalWebNavigation/index.messages.js",
+    "start": {
+      "line": 25,
+      "column": 16
+    },
+    "end": {
+      "line": 29,
+      "column": 5
+    }
+  }
+]

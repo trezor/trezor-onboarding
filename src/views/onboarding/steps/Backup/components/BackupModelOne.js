@@ -1,9 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Button, P } from 'trezor-ui-components';
+import { FormattedMessage } from 'react-intl';
 
 import types from 'config/types';
 
+import l10nMessages from './BackupModelOne.messages';
 import {
     StepWrapper, StepBodyWrapper, StepHeadingWrapper, ControlsWrapper,
 } from '../../../components/Wrapper';
@@ -16,7 +18,6 @@ const Wrapper = styled.div`
 
 class BackupProgressModelOne extends React.Component {
     startBackup = () => {
-        console.warn('start backup here');
         this.props.connectActions.backupDevice();
     }
 
@@ -34,15 +35,14 @@ class BackupProgressModelOne extends React.Component {
                         (device && device.features.needs_backup === true && deviceInteraction.counter === 0) && (
                             <React.Fragment>
                                 <P>
-                                    Now your device is going to show you 24 words to backup your wallet.
-                                    Write them down. Do not disconnect device.
+                                    <FormattedMessage {...l10nMessages.TR_BACKUP_INSTRUCTION} />
                                 </P>
                                 <ControlsWrapper>
                                     <Button
                                         isDisabled={deviceCall.isProgress}
                                         onClick={() => this.startBackup()}
                                     >
-                                        Okey
+                                        <FormattedMessage {...l10nMessages.TR_BACKUP_OK} />
                                     </Button>
                                 </ControlsWrapper>
                             </React.Fragment>
@@ -53,8 +53,7 @@ class BackupProgressModelOne extends React.Component {
                     {
                         (device && device.features.needs_backup === true && deviceInteraction.counter > 0 && this.isCheckingWords()) && (
                             <Wrapper>
-                                Check <br />
-                                <NthWord number={deviceInteraction.counter - 24} /> <br />
+                                <FormattedMessage {...l10nMessages.TR_CHECK_NTH_WORD} values={{ NthWord: <NthWord number={deviceInteraction.counter - 24} /> }} />
                             </Wrapper>
                         )
                     }
@@ -62,9 +61,7 @@ class BackupProgressModelOne extends React.Component {
                     {
                         (device && device.features.needs_backup === true && !this.isCheckingWords() && deviceInteraction.counter > 0) && (
                             <Wrapper>
-                                Write down <br />
-                                <NthWord number={deviceInteraction.counter} /> <br />
-                                From your device to your recovery seed card.
+                                <FormattedMessage {...l10nMessages.TR_WRITE_DOWN_NTH_WORD} values={{ NthWord: <NthWord number={deviceInteraction.counter} /> }} />
                             </Wrapper>
                         )
                     }

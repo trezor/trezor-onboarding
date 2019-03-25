@@ -5,16 +5,23 @@ import ReactTimeout from 'react-timeout';
 import {
     P, H4, Button, Icon, icons,
 } from 'trezor-ui-components';
+import { FormattedMessage } from 'react-intl';
+
 
 import types from 'config/types';
 import { TrezorConnect } from 'components/Prompts';
 import { Dots } from 'components/Loaders';
+
+import l10nCommonMessages from 'support/commonMessages';
+import l10nMessages from './index.messages';
+
 import {
     StepWrapper, StepHeadingWrapper, StepBodyWrapper, ControlsWrapper,
 } from '../../components/Wrapper';
 import TroubleshootBootloader from './components/TroubleshootBootloader';
 import TroubleshootInitialized from './components/TroubleshootInitialized';
 import TroubleshootSearchingTooLong from './components/TroubleshootTooLong';
+
 
 const TroubleShootWrapper = styled.div`
     max-width: 600px; /* todo: constant or refactor somehow */
@@ -23,7 +30,7 @@ const TroubleShootWrapper = styled.div`
 class ConnectStep extends React.PureComponent {
     static IS_SEARCHING_TIMEOUT = 5 * 1000;
 
-    static IS_SEARCHING_TOO_LONG_TIMEOUT = 15 * 1000;
+    static IS_SEARCHING_TOO_LONG_TIMEOUT = 1 * 1000;
 
     constructor(props) {
         super(props);
@@ -33,9 +40,9 @@ class ConnectStep extends React.PureComponent {
         };
     }
 
-    async componentDidMount() {
+    componentDidMount() {
         // refresh device
-        await this.props.connectActions.getFeatures();
+        this.props.connectActions.getFeatures();
         this.props.setTimeout(() => this.setState({ isSearching: true }), ConnectStep.IS_SEARCHING_TIMEOUT);
         this.props.setTimeout(() => this.setState({ isSearchingTooLong: true }), ConnectStep.IS_SEARCHING_TOO_LONG_TIMEOUT);
     }
@@ -66,35 +73,26 @@ class ConnectStep extends React.PureComponent {
         return (
             <StepWrapper>
                 <StepHeadingWrapper>
-                    { !isSearching && 'Time to connect your device' }
-                    { !deviceIsConnected && isSearching && !isSearchingTooLong && (
-                        <React.Fragment>
-                            Searching for your device<Dots />
-                        </React.Fragment>
-                    )}
-                    {
-                        deviceIsConnected && isSearching && 'Detected device'
-                    }
-                    {
-                        !deviceIsConnected && isSearching && isSearchingTooLong && (
-                            <React.Fragment>
-                                    Searching takes too long<Dots />
-                            </React.Fragment>
-                        )
-                    }
+                    <FormattedMessage {...l10nMessages.TR_CONNECT_HEADING} />
                 </StepHeadingWrapper>
                 <StepBodyWrapper>
+
                     {
-                        deviceIsConnected && isSearching
-                            ? <Icon icon={model === 1 ? icons.T1 : icons.T2} size={64} />
-                            : <TrezorConnect model={this.props.model} height={180} />
+                        !deviceIsConnected && <TrezorConnect model={this.props.model} height={180} />
                     }
 
                     {
-                        !isSearching && (
-                            <React.Fragment>
-                                <P>Make sure its well connected to avoid communication failures</P>
-                            </React.Fragment>
+                        deviceIsConnected && <Icon icon={model === 1 ? icons.T1 : icons.T2} size={64} />
+                    }
+
+                    {
+                        !deviceIsConnected
+                        && (
+                            <P>
+                                <FormattedMessage {...l10nMessages.TR_MAKE_SURE_IT_IS_WELL_CONNECTED} />
+                                <FormattedMessage {...l10nMessages.TR_SEARCHING_FOR_YOUR_DEVICE} />
+                                <Dots />
+                            </P>
                         )
                     }
 
@@ -104,21 +102,23 @@ class ConnectStep extends React.PureComponent {
                         )
                     }
 
-                    {/* todo: rename TroubleshootWrapper */}
-
                     {
-                        this.state.isSearching && deviceIsConnected && !deviceCall.isProgress && (
+                        deviceIsConnected && !deviceCall.isProgress && (
                             <TroubleShootWrapper>
                                 {
                                     !device.features.initialized && this.isInBlWithFwPresent() === false && (
                                         <React.Fragment>
-                                            <H4>Device detected</H4>
-                                            <P>Found an empty device, yay! You can continue now.</P>
+                                            <H4>
+                                                <FormattedMessage {...l10nMessages.TR_DEVICE_DETECTED} />
+                                            </H4>
+                                            <P>
+                                                <FormattedMessage {...l10nMessages.TR_FOUND_OK_DEVICE} />
+                                            </P>
                                             <ControlsWrapper>
                                                 <Button
                                                     onClick={() => this.props.onboardingActions.goToNextStep()}
                                                 >
-                                                Continue
+                                                    <FormattedMessage {...l10nCommonMessages.TR_CONTINUE} />
                                                 </Button>
                                             </ControlsWrapper>
                                         </React.Fragment>

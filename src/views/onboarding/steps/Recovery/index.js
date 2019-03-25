@@ -1,8 +1,12 @@
 import React from 'react';
 import styled, { keyframes } from 'styled-components';
 import {
-    P, Button, Select,
+    P, Button,
 } from 'trezor-ui-components';
+import { FormattedMessage, injectIntl } from 'react-intl';
+
+import Select, { createFilter } from 'react-select';
+
 import { UI } from 'trezor-connect';
 
 import bip39List from 'utils/bip39'; // todo: its not utils but constants I guess.
@@ -10,6 +14,8 @@ import types from 'config/types';
 import colors from 'config/colors';
 import { OptionsList } from 'components/Options';
 
+import l10nCommonMessages from 'support/commonMessages';
+import l10nMessages from './index.messages';
 import {
     StepWrapper, StepBodyWrapper, StepHeadingWrapper, ControlsWrapper,
 } from '../../components/Wrapper';
@@ -45,19 +51,6 @@ class RecoveryStep extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            options: [{
-                content: <P>12 words</P>,
-                value: 12,
-                key: 1,
-            }, {
-                content: <P>18 words</P>,
-                value: 18,
-                key: 2,
-            }, {
-                content: <P>24 words</P>,
-                value: 24,
-                key: 3,
-            }],
             status: 'select-words-count',
             wordsCount: null,
             advancedRecovery: false,
@@ -84,8 +77,10 @@ class RecoveryStep extends React.Component {
     }
 
     onSubmit = () => {
-        this.props.connectActions.submitWord({ word: this.state.word.value });
-        this.setState({ word: null });
+        if (this.state.word) {
+            this.props.connectActions.submitWord({ word: this.state.word.value });
+            this.setState({ word: null });
+        }
     }
 
     setStatus = (status) => {
@@ -134,14 +129,13 @@ class RecoveryStep extends React.Component {
         return (
             <StepWrapper>
                 <StepHeadingWrapper>
-                    Recover your device
+                    <FormattedMessage {...l10nMessages.TR_RECOVER_HEADING} />
                 </StepHeadingWrapper>
                 <StepBodyWrapper>
                     { this.getStatus() === 'select-words-count' && (
                         <React.Fragment>
                             <P>
-                            It is possible to re-create device from bip39 backup. First of all, chose number of words of your
-                            backup.
+                                <FormattedMessage {...l10nMessages.TR_RECOVER_SUBHEADING} />
                             </P>
 
                             {
@@ -149,25 +143,35 @@ class RecoveryStep extends React.Component {
                                     <React.Fragment>
 
                                         <ControlsWrapper>
-
                                             <OptionsList
-                                                options={this.state.options}
+                                                options={[{
+                                                    content: <div><P><FormattedMessage {...l10nMessages.TR_WORDS} values={{ count: '12' }} /></P></div>,
+                                                    value: 12,
+                                                    key: 1,
+                                                }, {
+                                                    content: <div><P><FormattedMessage {...l10nMessages.TR_WORDS} values={{ count: '18' }} /></P></div>,
+                                                    value: 18,
+                                                    key: 2,
+                                                }, {
+                                                    content: <div><P><FormattedMessage {...l10nMessages.TR_WORDS} values={{ count: '24' }} /></P></div>,
+                                                    value: 24,
+                                                    key: 3,
+                                                }]}
                                                 selected={this.state.wordsCount}
                                                 selectedAccessor="value"
                                                 onSelect={(value) => { this.setState({ wordsCount: value }); }}
                                             />
-
                                         </ControlsWrapper>
+
                                         <ControlsWrapper>
                                             <Button onClick={() => { this.setStatus('select-advanced-recovery'); }}>
-                                            Continue
+                                                <FormattedMessage {...l10nCommonMessages.TR_CONTINUE} />
                                             </Button>
                                             <Button isWhite onClick={() => { this.props.onboardingActions.goToPreviousStep(); }}>
-                                            Back
+                                                <FormattedMessage {...l10nCommonMessages.TR_BACK} />
                                             </Button>
                                         </ControlsWrapper>
                                     </React.Fragment>
-
                                 )
                             }
 
@@ -175,12 +179,11 @@ class RecoveryStep extends React.Component {
                                 device.features.major_version === 2 && (
                                     <ControlsWrapper>
                                         <Button onClick={() => { this.props.connectActions.recoveryDevice(); }}>
-                                            Start recovery
+                                            <FormattedMessage {...l10nMessages.TR_START_RECOVERY} />
                                         </Button>
                                     </ControlsWrapper>
                                 )
                             }
-
 
                         </React.Fragment>
                     )}
@@ -188,17 +191,16 @@ class RecoveryStep extends React.Component {
                     { this.getStatus() === 'select-advanced-recovery' && (
                         <React.Fragment>
                             <P>
-                            Both methods are safe. Basic recovery uses on computer input of words in randomized order.
-                            Advanced recovery uses on-screen input to load your recovery seed. Learn more
+                                <FormattedMessage {...l10nMessages.TR_RECOVERY_TYPES_DESCRIPTION} />
                             </P>
                             <ControlsWrapper>
                                 <OptionsList
                                     options={[{
-                                        content: <P>Basic recovery (2 minutes)</P>,
+                                        content: <P><FormattedMessage {...l10nMessages.TR_BASIC_RECOVERY_OPTION} /></P>,
                                         value: false,
                                         key: 1,
                                     }, {
-                                        content: <P>Advanced recovery (5 minutes)</P>,
+                                        content: <P><FormattedMessage {...l10nMessages.TR_ADVANCED_RECOVERY_OPTION} /></P>,
                                         value: true,
                                         key: 2,
                                     }]}
@@ -210,10 +212,10 @@ class RecoveryStep extends React.Component {
 
                             <ControlsWrapper>
                                 <Button onClick={() => { this.recoveryDevice(); }}>
-                                    Start recovery
+                                    <FormattedMessage {...l10nMessages.TR_START_RECOVERY} />
                                 </Button>
                                 <Button isWhite onClick={() => { this.setStatus('select-words-count'); }}>
-                                    Back
+                                    <FormattedMessage {...l10nCommonMessages.TR_BACK} />
                                 </Button>
                             </ControlsWrapper>
                         </React.Fragment>
@@ -222,8 +224,10 @@ class RecoveryStep extends React.Component {
                     {
                         this.getStatus() === 'recovering' && (
                             <React.Fragment>
-                                <P>Enter words from your seed in order displayed on your device.
-                                    { this.state.wordsCount < 24 ? ` Please note, that your device will ask you to enter ${24 - this.state.wordsCount} fake words.` : null}
+                                <P>
+                                    <FormattedMessage {...l10nMessages.TR_ENTER_SEED_WORDS_INSTRUCTION} />
+                                    {' '}
+                                    { this.state.wordsCount < 24 && <FormattedMessage {...l10nMessages.TR_RANDOM_SEED_WORDS_DISCLAIMER} values={{ count: 24 - this.state.wordsCount }} /> }
                                 </P>
                                 <SelectWrapper>
                                     <Select
@@ -232,14 +236,21 @@ class RecoveryStep extends React.Component {
                                         isClearable={false}
                                         value={this.state.word}
                                         onChange={this.onWordChange}
-                                        placeholder="check your device"
+                                        placeholder={this.props.intl.formatMessage(l10nMessages.TR_CHECK_YOUR_DEVICE)}
                                         options={sortedBip39}
+                                        filterOption={createFilter({
+                                            ignoreCase: true,
+                                            ignoreAccents: true,
+                                            trim: true,
+                                            matchFrom: 'start',
+                                        })}
+
                                     />
                                 </SelectWrapper>
                                 {
                                     uiInteraction.counter > 1 && (
                                         <P size="small">
-                                            {25 - uiInteraction.counter} more words to go.
+                                            <FormattedMessage {...l10nMessages.TR_MORE_WORDS_TO_ENTER} values={{ count: 25 - uiInteraction.counter }} />
                                         </P>
                                     )
                                 }
@@ -250,8 +261,13 @@ class RecoveryStep extends React.Component {
                     {
                         this.getStatus() === 'error' && (
                             <React.Fragment>
-                                <P style={{ color: colors.error }}>Device recovery failed with error: {deviceCall.error}</P>
-                                <Button onClick={() => { this.props.connectActions.resetCall(); this.setState({ status: 'select-words-count' }); }}>Retry</Button>
+                                <P style={{ color: colors.error }}>
+                                    <FormattedMessage {...l10nMessages.TR_RECOVERY_ERROR} values={{ error: deviceCall.error }} />
+                                </P>
+
+                                <Button onClick={() => { this.props.connectActions.resetCall(); this.setState({ status: 'select-words-count' }); }}>
+                                    <FormattedMessage {...l10nCommonMessages.TR_RETRY} />
+                                </Button>
 
                             </React.Fragment>
                         )
@@ -260,8 +276,12 @@ class RecoveryStep extends React.Component {
                     {
                         this.getStatus() === 'success' && (
                             <React.Fragment>
-                                <P>Excellent, you recovered device from seed</P>
-                                <Button onClick={() => this.props.onboardingActions.goToNextStep()}>Continue</Button>
+                                <P>
+                                    <FormattedMessage {...l10nMessages.TR_RECOVERY_SUCCESS} />
+                                </P>
+                                <Button onClick={() => this.props.onboardingActions.goToNextStep()}>
+                                    <FormattedMessage {...l10nCommonMessages.TR_CONTINUE} />
+                                </Button>
                             </React.Fragment>
                         )
                     }
@@ -279,4 +299,4 @@ RecoveryStep.propTypes = {
     device: types.device,
 };
 
-export default RecoveryStep;
+export default injectIntl(RecoveryStep);

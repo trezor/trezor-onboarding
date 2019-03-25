@@ -4,9 +4,13 @@ import { UI } from 'trezor-connect';
 import {
     P, Button, Link,
 } from 'trezor-ui-components';
+import { FormattedMessage } from 'react-intl';
 
 import { PIN_MANUAL_URL } from 'config/urls';
 import types from 'config/types';
+
+import l10nCommonMessages from 'support/commonMessages';
+import l10nMessages from './index.messages';
 
 import PinMatrix from './components/PinMatrix';
 import HowToSetPinGif from './videos/pin.gif';
@@ -53,19 +57,21 @@ class SetPinStep extends React.Component {
             <StepWrapper>
                 <StepHeadingWrapper>
                     { this.getStatus() === 'initial' && 'PIN' }
-                    { this.getStatus() === 'first' && 'Set new PIN' }
-                    { this.getStatus() === 'second' && 'Repeat PIN' }
-                    { this.getStatus() === 'success' && 'PIN enabled' }
-                    { this.getStatus() === 'mismatched' && 'PIN mismatch' }
+                    { this.getStatus() === 'first' && <FormattedMessage {...l10nMessages.TR_PIN_HEADING_FIRST} /> }
+                    { this.getStatus() === 'second' && <FormattedMessage {...l10nMessages.TR_PIN_HEADING_REPEAT} /> }
+                    { this.getStatus() === 'success' && <FormattedMessage {...l10nMessages.TR_PIN_HEADING_SUCCESS} /> }
+                    { this.getStatus() === 'mismatch' && <FormattedMessage {...l10nMessages.TR_PIN_HEADING_MISMATCH} /> }
                 </StepHeadingWrapper>
                 <StepBodyWrapper>
                     {
                         this.getStatus() === 'initial' && (
                             <React.Fragment>
-                                <P>Protect device from unauthorized access by using a strong pin.</P>
+                                <P>
+                                    <FormattedMessage {...l10nMessages.TR_PIN_SUBHEADING} />
+                                </P>
                                 <ControlsWrapper>
                                     <Button onClick={() => { this.props.connectActions.changePin(); }}>
-                                    Set pin
+                                        <FormattedMessage {...l10nMessages.TR_SET_PIN} />
                                     </Button>
                                 </ControlsWrapper>
                             </React.Fragment>
@@ -77,8 +83,7 @@ class SetPinStep extends React.Component {
                             <NewPinWrapper>
                                 <ImgWrapper>
                                     <P style={{ textAlign: 'justify' }}>
-                                        In order to secure maximum security, we do not display pin on your computer. We will just show
-                                        a &#34;blind matrix&#34;, real layout is displayed on your device.
+                                        <FormattedMessage {...l10nMessages.TR_PIN_ENTERING_DESCRIPTION} />
                                     </P>
                                     <img src={HowToSetPinGif} alt="How to enter pin" width="200px" />
                                 </ImgWrapper>
@@ -100,8 +105,7 @@ class SetPinStep extends React.Component {
                         this.getStatus() === 'second' && (
                             <React.Fragment>
                                 <P>
-                                Good. You entered a new pin. But to make sure you did not make mistake, please enter it again. Look
-                                at your device now, numbers are now different.
+                                    <FormattedMessage {...l10nMessages.TR_FIRST_PIN_ENTERED} />
                                 </P>
                                 <PinMatrix
                                     onPinSubmit={
@@ -117,9 +121,13 @@ class SetPinStep extends React.Component {
                     {
                         this.getStatus() === 'success' && (
                             <React.Fragment>
-                                <P>Purfect! Your device is now secured by pin.</P>
+                                <P>
+                                    <FormattedMessage {...l10nMessages.TR_PIN_SET_SUCCESS} />
+                                </P>
                                 <ControlsWrapper>
-                                    <Button onClick={() => this.props.onboardingActions.goToNextStep()}>Continue</Button>
+                                    <Button onClick={() => this.props.onboardingActions.goToNextStep()}>
+                                        <FormattedMessage {...l10nCommonMessages.TR_CONTINUE} />
+                                    </Button>
                                 </ControlsWrapper>
                             </React.Fragment>
                         )
@@ -128,11 +136,22 @@ class SetPinStep extends React.Component {
                     {
                         this.getStatus() === 'mismatch' && (
                             <React.Fragment>
-                                <P>Pin mismatch.</P>
-                                <P>Are you confused, how PIN works? You can always refer to our</P>
-                                <Link href={PIN_MANUAL_URL}>documentation</Link>
+                                <P>
+                                    <FormattedMessage
+                                        {...l10nMessages.TR_PIN_ERROR_TROUBLESHOOT}
+                                        values={{
+                                            TR_DOCUMENTATION: (
+                                                <Link href={PIN_MANUAL_URL}>
+                                                    <FormattedMessage {...l10nMessages.TR_DOCUMENTATION} />
+                                                </Link>),
+                                        }}
+                                    />
+                                </P>
+
                                 <ControlsWrapper>
-                                    <Button onClick={() => { this.props.connectActions.changePin(); }}>Start again</Button>
+                                    <Button onClick={() => { this.props.connectActions.changePin(); }}>
+                                        <FormattedMessage {...l10nMessages.TR_START_AGAIN} />
+                                    </Button>
                                 </ControlsWrapper>
                             </React.Fragment>
                         )

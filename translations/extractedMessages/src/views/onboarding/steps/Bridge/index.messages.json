@@ -1,0 +1,128 @@
+[
+  {
+    "id": "TR_BRIDGE_HEADING",
+    "description": "Heading on bridge page",
+    "defaultMessage": "Trezor Bridge",
+    "file": "src/views/onboarding/steps/Bridge/index.messages.js",
+    "start": {
+      "line": 4,
+      "column": 23
+    },
+    "end": {
+      "line": 8,
+      "column": 5
+    }
+  },
+  {
+    "id": "TR_BRIDGE_SUBHEADING",
+    "description": "Description what Trezor Bridge is",
+    "defaultMessage": "Trezor Bridge is a communication tool to facilitate the connection between your Trezor and your internet browser.",
+    "file": "src/views/onboarding/steps/Bridge/index.messages.js",
+    "start": {
+      "line": 9,
+      "column": 26
+    },
+    "end": {
+      "line": 13,
+      "column": 5
+    }
+  },
+  {
+    "id": "TR_DOWNLOAD",
+    "description": "Download button",
+    "defaultMessage": "Download",
+    "file": "src/views/onboarding/steps/Bridge/index.messages.js",
+    "start": {
+      "line": 14,
+      "column": 17
+    },
+    "end": {
+      "line": 18,
+      "column": 5
+    }
+  },
+  {
+    "id": "TR_BRIDGE_IS_RUNNING",
+    "description": "Text that indicates that browser can communicate with Trezor Bridge.",
+    "defaultMessage": "Trezor bridge is up and running",
+    "file": "src/views/onboarding/steps/Bridge/index.messages.js",
+    "start": {
+      "line": 19,
+      "column": 26
+    },
+    "end": {
+      "line": 23,
+      "column": 5
+    }
+  },
+  {
+    "id": "TR_DETECTING_BRIDGE",
+    "description": "Message to show after user clicks download bridge.",
+    "defaultMessage": "Detecting Trezor Bridge instalation",
+    "file": "src/views/onboarding/steps/Bridge/index.messages.js",
+    "start": {
+      "line": 24,
+      "column": 25
+    },
+    "end": {
+      "line": 28,
+      "column": 5
+    }
+  },
+  {
+    "id": "TR_NOT_RUNNING",
+    "description": "Bridge status in box next to heading",
+    "defaultMessage": "not running",
+    "file": "src/views/onboarding/steps/Bridge/index.messages.js",
+    "start": {
+      "line": 29,
+      "column": 20
+    },
+    "end": {
+      "line": 33,
+      "column": 5
+    }
+  },
+  {
+    "id": "TR_WAIT_FOR_FILE_TO_DOWNLOAD",
+    "description": "Instruction for installing Trezor Bridge",
+    "defaultMessage": "Wait for file to download",
+    "file": "src/views/onboarding/steps/Bridge/index.messages.js",
+    "start": {
+      "line": 34,
+      "column": 34
+    },
+    "end": {
+      "line": 38,
+      "column": 5
+    }
+  },
+  {
+    "id": "TR_DOUBLE_CLICK_IT_TO_RUN_INSTALLER",
+    "description": "Instruction for installing Trezor Bridge",
+    "defaultMessage": "Double click it to run installer",
+    "file": "src/views/onboarding/steps/Bridge/index.messages.js",
+    "start": {
+      "line": 39,
+      "column": 41
+    },
+    "end": {
+      "line": 43,
+      "column": 5
+    }
+  },
+  {
+    "id": "TR_CHECK_PGP_SIGNATURE",
+    "description": "Instruction for installing Trezor Bridge",
+    "defaultMessage": "Optional. Check PGP signature",
+    "file": "src/views/onboarding/steps/Bridge/index.messages.js",
+    "start": {
+      "line": 44,
+      "column": 28
+    },
+    "end": {
+      "line": 48,
+      "column": 5
+    }
+  }
+]

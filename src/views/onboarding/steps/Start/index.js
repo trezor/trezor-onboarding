@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactSVG from 'react-svg';
 import { P } from 'trezor-ui-components';
+import { FormattedMessage } from 'react-intl';
 
 import types from 'config/types';
 import { Dots } from 'components/Loaders';
@@ -14,16 +15,18 @@ import {
 import CreateImg from './images/create-2.svg';
 import RecoverImg from './images/recover-2.svg';
 
+import l10nMessages from './index.messages';
+
 const StartOption = () => (
     <React.Fragment>
-        <P>Start from scratch</P>
+        <P><FormattedMessage {...l10nMessages.TR_START_FROM_SCRATCH} /></P>
         <ReactSVG svgStyle={{ width: '100%' }} src={CreateImg} alt="create new wallet" />
     </React.Fragment>
 );
 
 const RecoverOption = () => (
     <React.Fragment>
-        <P>Recover</P>
+        <P><FormattedMessage {...l10nMessages.TR_RECOVER} /></P>
         <ReactSVG svgStyle={{ width: '100%' }} src={RecoverImg} alt="recover wallet from seed" />
     </React.Fragment>
 );
@@ -34,12 +37,12 @@ class StartStep extends React.Component {
         this.state = {
             options: [{
                 content: <StartOption />,
-                value: ID.SECURITY_STEP, // todo
+                value: ID.SECURITY_STEP,
                 key: 1,
                 onClick: () => this.props.connectActions.callActionAndGoToNextStep(RESET_DEVICE, null, ID.SECURITY_STEP, true, false),
             }, {
                 content: <RecoverOption />,
-                value: ID.RECOVERY_STEP, // todo
+                value: ID.RECOVERY_STEP,
                 key: 2,
                 onClick: () => this.props.onboardingActions.goToNextStep(ID.RECOVERY_STEP),
             }],
@@ -51,9 +54,12 @@ class StartStep extends React.Component {
             <StepWrapper>
                 <StepHeadingWrapper>
                     { this.props.deviceCall.isProgress && (
-                        <span>Creating...<Dots /></span>
+                        <React.Fragment>
+                            <FormattedMessage {...l10nMessages.TR_START_CREATING} />
+                            <Dots />
+                        </React.Fragment>
                     )}
-                    { !this.props.deviceCall.isProgress && 'Create or recover'}
+                    { !this.props.deviceCall.isProgress && <FormattedMessage {...l10nMessages.TR_START_HEADING} />}
                 </StepHeadingWrapper>
                 <StepBodyWrapper>
                     <OptionsList
@@ -61,7 +67,6 @@ class StartStep extends React.Component {
                         selected={null}
                         selectedAccessor="value" // todo: maybe not needed
                     />
-
                 </StepBodyWrapper>
             </StepWrapper>
         );

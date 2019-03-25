@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import {
     Select, Link, Button, P,
 } from 'trezor-ui-components';
+import { FormattedMessage, injectIntl } from 'react-intl';
 
 import colors from 'config/colors';
 import { FONT_SIZE, FONT_WEIGHT } from 'config/constants';
@@ -12,6 +13,9 @@ import types from 'config/types';
 
 import { UnorderedList } from 'components/Lists';
 import { Dots } from 'components/Loaders';
+
+import l10nCommonMessages from 'support/commonMessages';
+import l10nMessages from './index.messages';
 
 import {
     StepWrapper, StepHeadingWrapper, StepBodyWrapper, ControlsWrapper,
@@ -90,10 +94,10 @@ class InstallBridge extends PureComponent {
         const { target, uri, installers } = this.state;
         const status = this.getStatus();
         const installInstructions = [{
-            component: <P>Wait for file to download</P>,
+            component: <P><FormattedMessage {...l10nMessages.TR_WAIT_FOR_FILE_TO_DOWNLOAD} /></P>,
             key: '1',
         }, {
-            component: <P>Double click it to run installer</P>,
+            component: <P><FormattedMessage {...l10nMessages.TR_DOUBLE_CLICK_IT_TO_RUN_INSTALLER} /></P>,
             key: '2',
         }];
         if (target.signature) {
@@ -102,7 +106,8 @@ class InstallBridge extends PureComponent {
                     <Link
                         href={uri + target.signature}
                         isGreen
-                    > Optional. Check PGP signature
+                    >
+                        <FormattedMessage {...l10nMessages.TR_CHECK_PGP_SIGNATURE} />
                     </Link>),
                 key: '3',
             });
@@ -110,9 +115,9 @@ class InstallBridge extends PureComponent {
         return (
             <StepWrapper>
                 <StepHeadingWrapper>
-                    Trezor Bridge
+                    <FormattedMessage {...l10nMessages.TR_BRIDGE_HEADING} />
                     <Version>
-                        { status === 'installed' ? this.props.transport.version : 'not installed' }
+                        { status === 'installed' ? this.props.transport.version : this.props.intl.formatMessage(l10nMessages.TR_NOT_RUNNING) }
                     </Version>
                 </StepHeadingWrapper>
                 <StepBodyWrapper>
@@ -120,7 +125,9 @@ class InstallBridge extends PureComponent {
                     {
                         status === 'initial' && (
                             <React.Fragment>
-                                <P>Trezor Bridge is a communication tool to facilitate the connection between your Trezor and your internet browser.</P>
+                                <P>
+                                    <FormattedMessage {...l10nMessages.TR_BRIDGE_SUBHEADING} />
+                                </P>
                                 <Download>
                                     <SelectWrapper
                                         isSearchable={false}
@@ -131,7 +138,7 @@ class InstallBridge extends PureComponent {
                                     />
                                     <Link href={`${uri}${target.value}`}>
                                         <DownloadBridgeButton onClick={() => this.setState({ status: 'downloading' })}>
-                                            Download
+                                            <FormattedMessage {...l10nMessages.TR_DOWNLOAD} />
                                         </DownloadBridgeButton>
                                     </Link>
                                 </Download>
@@ -145,7 +152,7 @@ class InstallBridge extends PureComponent {
                                 <UnorderedList items={installInstructions} />
                                 <DetectingWrapper>
                                     <P>
-                                        Detecting Trezor Bridge instalation
+                                        <FormattedMessage {...l10nMessages.TR_DETECTING_BRIDGE} />
                                         <Dots maxCount={3} />
                                     </P>
                                 </DetectingWrapper>
@@ -156,15 +163,17 @@ class InstallBridge extends PureComponent {
                     {
                         status === 'installed' && (
                             <React.Fragment>
-                                <P>Trezor bridge is up and running</P>
+                                <P>
+                                    <FormattedMessage {...l10nMessages.TR_BRIDGE_IS_RUNNING} />
+                                </P>
                                 <ControlsWrapper>
-                                    <Button onClick={() => this.props.onboardingActions.goToNextStep()}>Continue</Button>
+                                    <Button onClick={() => this.props.onboardingActions.goToNextStep()}>
+                                        <FormattedMessage {...l10nCommonMessages.TR_CONTINUE} />
+                                    </Button>
                                 </ControlsWrapper>
                             </React.Fragment>
                         )
                     }
-
-
                 </StepBodyWrapper>
             </StepWrapper>
         );
@@ -176,4 +185,4 @@ InstallBridge.propTypes = {
     transport: types.transport,
 };
 
-export default InstallBridge;
+export default injectIntl(InstallBridge);

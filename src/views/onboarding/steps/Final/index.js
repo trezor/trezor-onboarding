@@ -3,8 +3,11 @@ import styled from 'styled-components';
 import {
     H1, H4, P, H6,
 } from 'trezor-ui-components';
+import { FormattedMessage } from 'react-intl';
+
 import { OptionsList } from 'components/Options';
 
+import l10nMessages from './index.messages';
 import {
     StepWrapper, ControlsWrapper,
 } from '../../components/Wrapper';
@@ -19,31 +22,46 @@ const OptionDesc = styled(P)`
 
 const WalletOption = () => (
     <OptionBody>
-        <H6>Trezor stable wallet</H6>
-        <OptionDesc>Web wallet with support of Bitcoin, Dash, Zcash and other coins.</OptionDesc>
+        <H6>
+            <FormattedMessage {...l10nMessages.TR_TREZOR_STABLE_WALLET} />
+        </H6>
+        <OptionDesc>
+            <FormattedMessage {...l10nMessages.TR_TREZOR_STABLE_WALLET} />
+        </OptionDesc>
     </OptionBody>
 );
 
 const PasswordManagerOption = () => (
     <OptionBody>
-        <H6>Trezor Password Manager</H6>
-        <OptionDesc>A safe way how to manage your credentials with Trezor.</OptionDesc>
+        <H6>
+            <FormattedMessage {...l10nMessages.TR_TREZOR_PASSWORD_MANAGER} />
+        </H6>
+        <OptionDesc>
+            <FormattedMessage {...l10nMessages.TR_TREZOR_PASSWORD_MANAGER_DESCRIPTION} />
+        </OptionDesc>
     </OptionBody>
 );
 
 const EthereumBetaWalletOption = () => (
     <OptionBody>
-        <H6>Ethereum beta wallet</H6>
-        <OptionDesc>New wallet with support of Ethereum and Ripple</OptionDesc>
+        <H6>
+            <FormattedMessage {...l10nMessages.TR_TREZOR_ETHEREUM_WALLET} />
+        </H6>
+        <OptionDesc>
+            <FormattedMessage {...l10nMessages.TR_TREZOR_ETHEREUM_WALLET_DESCRIPTION} />
+        </OptionDesc>
     </OptionBody>
-
-
 );
 
 const FinalStep = () => (
     <StepWrapper>
-        <H1>Good job! All done</H1>
-        <H4>Now you are ready to enjoy bleeding edge security with Trezor.</H4>
+        <H1>
+            <FormattedMessage {...l10nMessages.TR_FINAL_HEADING} />
+        </H1>
+
+        <H4>
+            <FormattedMessage {...l10nMessages.TR_FINAL_SUBHEADING} />
+        </H4>
 
         <ControlsWrapper>
             <OptionsList

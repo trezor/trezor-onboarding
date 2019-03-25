@@ -1,14 +1,20 @@
 import React from 'react';
-import styled from 'styled-components';
-import Proptypes from 'prop-types';
+import styled, { css } from 'styled-components';
 import ReactTimeout from 'react-timeout';
 import { Button, H1, P } from 'trezor-ui-components';
+import { FormattedMessage } from 'react-intl';
 
 import types from 'config/types';
 import { Dots } from 'components/Loaders';
 import { ControlsWrapper } from 'views/onboarding/components/Wrapper';
 
-const ANIMATION_DURATION = 4;
+import l10nMessages from './index.messages';
+
+const ANIMATION_DURATION = 2.5;
+
+const Wrapper = styled.div`
+    min-height: 600px;
+`;
 
 const Logo = styled.svg`
     display: block;
@@ -16,14 +22,18 @@ const Logo = styled.svg`
     width: 200px;
     height: 200px;
     opacity: 1;
-    & .path {
-        animation: animation ${ANIMATION_DURATION}s ease-in;
-    }
+    
+    /* prevent animation on lang change */
+    ${({ isConnectLoaded }) => (!isConnectLoaded ? css`
+        & .path {
+            animation: animation ${ANIMATION_DURATION}s ease-in;
+        }    
+    ` : null)}
     
     @keyframes animation {
         from { stroke-dasharray: 30 30}
         to { stroke-dasharray: 30 0}
-    } 
+    }
 `;
 
 const Loader = styled(P)`
@@ -36,7 +46,7 @@ const FadeInWrapper = styled.div`
     justify-content: center;
     animation: fadeIn 0.5s linear;
     text-align: center;
-    & * {
+    & > * {
         margin: 20px;
     }
     
@@ -46,26 +56,11 @@ const FadeInWrapper = styled.div`
     }
 `;
 
-class WelcomeStep extends React.Component {
-    constructor() {
-        super();
-        this.state = {
-            status: 'initial',
-        };
-    }
-
-
-    componentDidMount() {
-        this.props.setTimeout(() => {
-            this.setState({ status: 'animation-finished' });
-        }, ANIMATION_DURATION * 1000);
-    }
-
+class WelcomeStep extends React.PureComponent {
     render() {
-        const { status } = this.state;
         return (
-            <React.Fragment>
-                <Logo viewBox="30 8 60 30" enableBackground="new 0 0 340 333">
+            <Wrapper>
+                <Logo viewBox="30 8 60 30" enableBackground="new 0 0 340 333" isConnectLoaded={this.props.transport !== null}>
                     <path
                         className="path"
                         fill="#FFFFFF"
@@ -76,38 +71,32 @@ class WelcomeStep extends React.Component {
                     />
                 </Logo>
 
-
                 {
-                    status !== 'animation-finished' && <Loader>Loading<Dots maxCount={3} /></Loader>
+                    this.props.transport == null && <Loader>Loading<Dots maxCount={3} /></Loader>
                 }
 
                 {
-                    status === 'animation-finished' && this.props.transport === null && (
-                        <Loader>Setting up communication<Dots maxCount={3} /></Loader>
-                    )
-                }
+                    this.props.transport !== null && (
+                        <FadeInWrapper isConnectLoaded={this.props.transport !== null}>
+                            <H1>
+                                <FormattedMessage {...l10nMessages.TR_WELCOME_TO_TREZOR} />
+                            </H1>
 
-                {
-                    status === 'animation-finished' && this.props.transport !== null && (
-                        <FadeInWrapper>
-                            <H1>Welcome to Trezor</H1>
                             <ControlsWrapper>
                                 <Button onClick={() => this.props.onboardingActions.goToNextStep()}>
-                                Get started (5 minutes)
+                                    <FormattedMessage {...l10nMessages.TR_GET_STARTED} />
                                 </Button>
                             </ControlsWrapper>
-
                         </FadeInWrapper>
                     )
                 }
-            </React.Fragment>
+            </Wrapper>
         );
     }
 }
 
 WelcomeStep.propTypes = {
     onboardingActions: types.onboardingActions.isRequired,
-    setTimeout: Proptypes.func.isRequired,
     transport: types.transport,
 };
 
