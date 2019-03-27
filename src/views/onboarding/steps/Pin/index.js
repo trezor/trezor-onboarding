@@ -8,7 +8,7 @@ import { FormattedMessage } from 'react-intl';
 
 import { PIN_MANUAL_URL } from 'config/urls';
 import types from 'config/types';
-
+import * as BREAKPOINTS from 'config/breakpoints';
 import l10nCommonMessages from 'support/commonMessages';
 import l10nMessages from './index.messages';
 
@@ -21,6 +21,11 @@ import {
 
 const NewPinWrapper = styled.div`
     display: flex;
+    flex-direction: column-reverse;
+
+    @media only screen and (min-width: ${BREAKPOINTS.SM}px) {
+        flex-direction: row;
+    } 
 `;
 
 const ImgWrapper = styled.div`
@@ -49,6 +54,7 @@ class SetPinStep extends React.Component {
         } if (device && !device.features.pin_protection && !deviceCall.isProgress) {
             return 'initial';
         }
+        // todo: what if device disconnects?
         return null;
     }
 

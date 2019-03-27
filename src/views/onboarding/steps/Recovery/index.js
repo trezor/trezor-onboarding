@@ -1,11 +1,11 @@
 import React from 'react';
 import styled, { keyframes } from 'styled-components';
 import {
-    P, Button,
+    P, Button, Select,
 } from 'trezor-ui-components';
 import { FormattedMessage, injectIntl } from 'react-intl';
 
-import Select, { createFilter } from 'react-select';
+import { createFilter } from 'react-select';
 
 import { UI } from 'trezor-connect';
 

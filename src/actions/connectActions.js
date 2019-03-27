@@ -252,13 +252,18 @@ const updateFirmware = () => async (dispatch, getState) => {
             dispatch(firmwareErase({ keepSession: true, skipFinalReload: true, length: fw.byteLength }))
                 .then((callResponse) => {
                     if (callResponse.success) {
-                        dispatch(firmwareUpload({
+                        const payload = {
                             payload: fw,
                             keepSession: false,
                             skipFinalReload: true,
-                            offset: callResponse.payload.offset,
-                            length: callResponse.payload.length,
-                        }));
+                        };
+                        if (callResponse.offset) {
+                            payload.offset = callResponse.offset;
+                        }
+                        if (callResponse.length) {
+                            payload.length = callResponse.lenght;
+                        }
+                        dispatch(firmwareUpload(payload));
                     }
                 });
         });

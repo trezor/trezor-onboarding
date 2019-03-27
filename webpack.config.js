@@ -3,7 +3,6 @@ const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const GitRevisionPlugin = require('git-revision-webpack-plugin');
 const { DefinePlugin } = require('webpack');
-const Dotenv = require('dotenv-webpack');
 
 const gitRevisionPlugin = new GitRevisionPlugin({ branch: true });
 
@@ -78,7 +77,6 @@ module.exports = env => ({
             BRANCH: JSON.stringify(gitRevisionPlugin.branch()),
             BUILD: JSON.stringify(env.BUILD),
         }),
-        // new Dotenv(),
     ],
 
 });

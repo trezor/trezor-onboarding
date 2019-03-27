@@ -14,5 +14,5 @@ export default {
             appUrl: 'http://localhost:8080',
         },
     },
-    endpoint: !isDevelopment() ? LOCAL_ENDPOINT : PRODUCTION_ENDPOINT, // todo: change to proper one
+    endpoint: isDevelopment() ? LOCAL_ENDPOINT : PRODUCTION_ENDPOINT, // todo: change to proper one
 };

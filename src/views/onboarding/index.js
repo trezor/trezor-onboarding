@@ -53,7 +53,6 @@ const Wrapper = styled.div`
         margin: auto;
         min-height: ${WRAPPER_HEIGHT}vh;
         grid-template-rows: 80px ${MAIN_HEIGHT}% ${FOOTER_HEIGHT}%;    
-    
     } 
 `;
 
@@ -205,8 +204,6 @@ class Onboarding extends React.PureComponent {
             TrezorActionText = () => <P>Complete action on your device.</P>;
         }
 
-        console.warn('onboarding render');
-
         return (
             <Wrapper>
                 {
@@ -353,8 +350,7 @@ class Onboarding extends React.PureComponent {
                     )}
 
                 </ComponentWrapper>
-
-                {
+                {/* {
                     (this.shouldDisplayGoBack() || this.shouldDisplaySkipSecurity()) && (
                         <FooterWrapper>
                             <FooterDivider />
@@ -381,7 +377,7 @@ class Onboarding extends React.PureComponent {
                             </FooterLinks>
                         </FooterWrapper>
                     )
-                }
+                } */}
 
 
             </Wrapper>

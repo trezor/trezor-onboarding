@@ -41,7 +41,7 @@
     "styled-reset": "^1.6.4",
     "trezor-connect": "../connect/npm/",
     "trezor-flags": "^1.0.2",
-    "trezor-ui-components": "1.0.0-beta.8"
+    "trezor-ui-components": "^1.0.0-beta.10"
   },
   "devDependencies": {
     "@babel/cli": "^7.2.3",

@@ -42,7 +42,7 @@ class ConnectStep extends React.PureComponent {
 
     componentDidMount() {
         // refresh device
-        this.props.connectActions.getFeatures();
+        // this.props.connectActions.getFeatures();
         this.props.setTimeout(() => this.setState({ isSearching: true }), ConnectStep.IS_SEARCHING_TIMEOUT);
         this.props.setTimeout(() => this.setState({ isSearchingTooLong: true }), ConnectStep.IS_SEARCHING_TOO_LONG_TIMEOUT);
     }
@@ -90,6 +90,7 @@ class ConnectStep extends React.PureComponent {
                         && (
                             <P>
                                 <FormattedMessage {...l10nMessages.TR_MAKE_SURE_IT_IS_WELL_CONNECTED} />
+                                {' '}
                                 <FormattedMessage {...l10nMessages.TR_SEARCHING_FOR_YOUR_DEVICE} />
                                 <Dots />
                             </P>
