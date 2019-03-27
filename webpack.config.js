@@ -2,6 +2,7 @@ const path = require('path');
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const GitRevisionPlugin = require('git-revision-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const { DefinePlugin } = require('webpack');
 
 const gitRevisionPlugin = new GitRevisionPlugin({ branch: true });
@@ -77,6 +78,12 @@ module.exports = env => ({
             BRANCH: JSON.stringify(gitRevisionPlugin.branch()),
             BUILD: JSON.stringify(env.BUILD),
         }),
+        new CopyWebpackPlugin([
+            // { from: './translations/locales', to: './l10n/locales' },
+            { from: 'public/l10n', to: 'l10n' },
+            // { from: './public/locales', to: './l10n/locales' },
+
+        ]),
     ],
 
 });
