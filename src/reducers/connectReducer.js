@@ -10,6 +10,7 @@ import {
     DEVICE_INTERACTION_EVENT,
     UI_INTERACTION_EVENT,
     SET_DEVICE_FEATURES,
+    SET_CONNECT_ERROR,
 } from 'actions/constants/connect';
 
 const initialState = {
@@ -29,6 +30,7 @@ const initialState = {
         name: null,
         counter: 0,
     },
+    connectError: null,
 };
 
 const connect = (state = initialState, action) => {
@@ -130,6 +132,11 @@ const connect = (state = initialState, action) => {
                     ...state.device,
                     features: action.features,
                 },
+            };
+        case SET_CONNECT_ERROR:
+            return {
+                ...state,
+                connectError: action.error,
             };
         default:
             return state;

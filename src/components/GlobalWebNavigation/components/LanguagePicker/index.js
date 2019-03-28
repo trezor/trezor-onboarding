@@ -2,7 +2,6 @@ import * as React from 'react';
 import styled from 'styled-components';
 import colors from 'config/colors';
 import ReactSelect from 'react-select';
-import { FormattedMessage } from 'react-intl';
 
 import LANGUAGE from 'config/languages';
 
@@ -98,7 +97,7 @@ const LanguagePicker = ({ language, setLocale }) => (
     <SelectWrapper>
         <SelectIcon role="img" aria-label="Select language">
             <svg width="21" height="15">
-                <image href={`public/l10n/flags/${language}.svg`} width="21" height="15" />
+                <image href={`l10n/flags/${language}.svg`} width="21" height="15" />
             </svg>
         </SelectIcon>
         <ReactSelect

@@ -18,6 +18,11 @@ const goToNextStep = stepId => (dispatch, getState) => {
     });
 };
 
+const goToSubStep = subStepId => ({
+    type: ONBOARDING.GO_TO_SUBSTEP,
+    subStepId,
+});
+
 const goToPreviousStep = stepId => (dispatch, getState) => {
     const { activeStep } = getState().onboarding;
     const prevStep = stepId || findPrevStepId(activeStep, getState().onboarding.steps);
@@ -91,6 +96,7 @@ const setLocale = locale => (dispatch) => {
 
 export {
     goToNextStep,
+    goToSubStep,
     goToPreviousStep,
     selectTrezorModel,
     setApplicationError,

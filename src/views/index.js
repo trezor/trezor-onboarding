@@ -5,7 +5,6 @@ import { hot } from 'react-hot-loader/root';
 
 import colors from 'config/colors';
 import Onboarding from 'views/onboarding/Container';
-// todo [vladimir]: really support? Used trezor-wallet approach here
 import ErrorBoundary from 'support/ErrorBoundary';
 import IntlProvider from 'support/ConnectedIntlProvider';
 
@@ -37,7 +36,6 @@ class App extends React.PureComponent {
     }
 
     render() {
-        console.warn('App render');
         const { error, activeStep, init } = this.props;
         return (
             <Wrapper animate={!exludedStepsForWrapper.includes(activeStep)} show={!exludedStepsForWrapper.includes(activeStep)}>

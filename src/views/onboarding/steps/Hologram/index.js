@@ -18,6 +18,7 @@ import Hologram from './components/Hologram';
 
 const HologramWrapper = styled.div`
     width: 70%;
+    margin: 10px;
 `;
 
 class HologramStep extends React.Component {

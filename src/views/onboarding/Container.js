@@ -10,7 +10,7 @@ import Onboarding from './index';
 const mapStateToProps = state => ({
     // connect reducer
     device: state.connect.device,
-    connectError: state.connect.connectError, // todo: is it used?
+    connectError: state.connect.connectError,
     transport: state.connect.transport,
     deviceCall: state.connect.deviceCall,
     deviceInteraction: state.connect.deviceInteraction,
@@ -19,6 +19,7 @@ const mapStateToProps = state => ({
     // onboarding reducer
     selectedModel: state.onboarding.selectedModel,
     activeStep: state.onboarding.activeStep,
+    activeSubStep: state.onboarding.activeSubStep,
     steps: state.onboarding.steps,
 
     // fetch reducer

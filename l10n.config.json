@@ -1,6 +1,6 @@
 {
     "extractedMessagesFilePattern": "translations/extractedMessages/**/*.json",
-    "localesOutputDir": "public/l10n/locales/",
+    "localesOutputDir": "l10n/locales/",
     "outputDir": "translations/",
     "project": {
         "identifier": "trotro",

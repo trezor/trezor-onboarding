@@ -10,3 +10,4 @@ export const TRANSPORT_ERROR = 'connect__transport__error';
 export const TRANSPORT_START = 'connect__transport__start';
 
 export const SET_DEVICE_FEATURES = 'connect__set__device__features';
+export const SET_CONNECT_ERROR = 'connect__set__error';

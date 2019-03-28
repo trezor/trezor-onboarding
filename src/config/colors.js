@@ -9,6 +9,6 @@ export default {
     grayDark: '#757575',
     grayLight: '#F9F9F9',
     white: '#FFF',
-    danger: '#F8D7DA',
+    warning: '#EB8A00',
     error: '#FF0000',
 };

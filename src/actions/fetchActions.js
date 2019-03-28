@@ -11,7 +11,7 @@ const getParams = (name) => {
         case SUBMIT_EMAIL:
             return { baseUrl: MAILCHIMP_URL, options: { method: 'GET', mode: 'no-cors' } };
         case GET_LOCALIZATION:
-            return { baseUrl: 'public/l10n/locales', options: { method: 'GET' } };
+            return { baseUrl: 'l10n/locales', options: { method: 'GET' } };
         default:
             throw new Error(`fetchCall ${name} is not defined`);
     }

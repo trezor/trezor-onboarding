@@ -65,11 +65,8 @@ const init = () => async (dispatch) => {
     try {
         await TrezorConnect.init(connectConfig.init);
     } catch (error) {
-        console.warn('error', error);
-        // todo [szymon]: does connect.init throw when for example timeout error?
         dispatch({
-            // todo: type probably missing in reducer
-            type: 'connect-error',
+            type: CONNECT.SET_CONNECT_ERROR,
             error,
         });
     }

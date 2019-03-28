@@ -67,7 +67,7 @@ class ConnectStep extends React.PureComponent {
     render() {
         const deviceIsConnected = Boolean(this.props.device && this.props.device.connected);
         const {
-            device, deviceCall, connectActions, model,
+            device, deviceCall, connectActions, model, onboardingActions, activeSubStep,
         } = this.props;
         const { isSearching, isSearchingTooLong } = this.state;
         return (
@@ -131,7 +131,14 @@ class ConnectStep extends React.PureComponent {
                                 }
 
                                 {
-                                    device.features.initialized && (<TroubleshootInitialized device={device} connectActions={connectActions} />)
+                                    device.features.initialized && (
+                                        <TroubleshootInitialized
+                                            device={device}
+                                            connectActions={connectActions}
+                                            onboardingActions={onboardingActions}
+                                            activeSubStep={activeSubStep}
+                                        />
+                                    )
                                 }
                             </TroubleShootWrapper>
                         )
@@ -149,6 +156,7 @@ ConnectStep.propTypes = {
     onboardingActions: types.onboardingActions.isRequired,
     model: types.model,
     setTimeout: PropTypes.func.isRequired,
+    // activeSubStep: types.activeSubStep,
 };
 
 export default ReactTimeout(ConnectStep);

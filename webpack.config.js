@@ -79,10 +79,7 @@ module.exports = env => ({
             BUILD: JSON.stringify(env.BUILD),
         }),
         new CopyWebpackPlugin([
-            // { from: './translations/locales', to: './l10n/locales' },
-            { from: 'public/l10n', to: 'l10n' },
-            // { from: './public/locales', to: './l10n/locales' },
-
+            { from: 'l10n', to: 'l10n' },
         ]),
     ],
 

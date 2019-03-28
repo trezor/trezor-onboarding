@@ -47,7 +47,7 @@ const UnexpectedState = ({ caseType, model }) => {
 
 UnexpectedState.propTypes = {
     caseType: PropTypes.string.isRequired,
-    model: PropTypes.string.isRequired,
+    model: PropTypes.number.isRequired,
 };
 
 export default UnexpectedState;

@@ -181,6 +181,7 @@ class Onboarding extends React.PureComponent {
             selectedModel,
             transport,
             activeStep,
+            activeSubStep,
             device,
             deviceCall,
             deviceInteraction,
@@ -268,6 +269,7 @@ class Onboarding extends React.PureComponent {
                             model={model}
                             device={device}
                             deviceCall={deviceCall}
+                            activeSubStep={activeSubStep}
                         />
                     )}
                     {this.getScreen() === ID.FIRMWARE_STEP && (

@@ -1,5 +1,6 @@
 import {
     GO_TO_NEXT_STEP,
+    GO_TO_SUBSTEP,
     GO_TO_PREVIOUS_STEP,
     SELECT_TREZOR_MODEL,
     SET_STEPS,
@@ -12,6 +13,7 @@ import steps from 'views/onboarding/config/steps';
 const initialState = {
     selectedModel: 1,
     activeStep: ID.WELCOME_STEP,
+    activeSubStep: null,
     steps, // todo: move here directly probably for better readability
     language: 'en',
     messages: {},
@@ -23,11 +25,18 @@ const onboarding = (state = initialState, action) => {
             return {
                 ...state,
                 activeStep: action.stepId,
+                activeSubStep: null,
+            };
+        case GO_TO_SUBSTEP:
+            return {
+                ...state,
+                activeSubStep: action.subStepId,
             };
         case GO_TO_PREVIOUS_STEP:
             return {
                 ...state,
                 activeStep: action.stepId,
+                activeSubStep: null,
             };
         case SELECT_TREZOR_MODEL:
             return {
