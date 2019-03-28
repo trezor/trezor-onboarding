@@ -7,7 +7,7 @@ import { FormattedMessage } from 'react-intl';
 
 import colors from 'config/colors';
 import types from 'config/types';
-import { WIPE_DEVICE } from 'actions/constants/calls';
+import { WIPE_DEVICE, BACKUP_DEVICE } from 'actions/constants/calls';
 
 import { UnorderedList } from 'components/Lists';
 import { ID } from 'views/onboarding/constants/steps';
@@ -28,18 +28,18 @@ const Panel = styled.div`
 `;
 
 class BackupStep extends React.Component {
-    static INITIAL_STATUS = 'initial';
-
     static STARTED_STATUS = 'started';
 
     static FAILED_STATUS = 'failed';
 
+    static INITIAL_STATUS = 'initial';
+
+    static SUCCESS_STATUS = 'success';
 
     constructor(props) {
         super(props);
         this.state = {
             userUnderstands: false,
-            status: BackupStep.INITIAL_STATUS,
         };
     }
 
@@ -48,23 +48,26 @@ class BackupStep extends React.Component {
     }
 
     getStatus() {
-        const { status } = this.state;
-        const { device, deviceCall } = this.props;
-        if (deviceCall.name === 'backupDevice' && deviceCall.error) {
+        const {
+            device, deviceCall, deviceInteraction,
+        } = this.props;
+        if ((deviceCall.name === BACKUP_DEVICE && deviceCall.error) || device.features.no_backup === true || device.features.initialized === false) {
             return BackupStep.FAILED_STATUS;
         }
-        // todo: hmm started? somehow better?
-        if (status === BackupStep.STARTED_STATUS && device) {
+        if (device && device.features.needs_backup === true && deviceInteraction.counter > 0) {
             return BackupStep.STARTED_STATUS;
         }
         if (device && device.features.needs_backup && !deviceCall.isProgress) {
             return BackupStep.INITIAL_STATUS;
         }
+        if (device && device.features.needs_backup === false) {
+            return BackupStep.SUCCESS_STATUS;
+        }
         return null;
     }
 
     async wipeDeviceAndStartAgain() {
-        this.props.connectActions.callActionAndGoToNextStep(WIPE_DEVICE, null, ID.BACKUP_STEP);
+        this.props.connectActions.callActionAndGoToNextStep(WIPE_DEVICE, null, ID.START_STEP);
     }
 
     render() {
@@ -89,7 +92,6 @@ class BackupStep extends React.Component {
             <StepWrapper>
                 <StepHeadingWrapper>
                     <FormattedMessage {...l10nMessages.TR_SEED_IS_MORE_IMPORTANT_THAN_YOUR_DEVICE} />
-
                 </StepHeadingWrapper>
                 <StepBodyWrapper>
                     {
@@ -121,7 +123,7 @@ class BackupStep extends React.Component {
 
                                 <ControlsWrapper>
                                     <Button
-                                        onClick={() => { this.setState({ status: 'started' }); }}
+                                        onClick={() => { this.props.connectActions.backupDevice(); }}
                                         isDisabled={!device || !this.state.userUnderstands}
                                     >
                                         <FormattedMessage {...l10nMessages.TR_START_BACKUP} />
@@ -153,18 +155,52 @@ class BackupStep extends React.Component {
                                     <FormattedMessage {...l10nMessages.TR_DEVICE_DISCONNECTED_DURING_ACTION_DESCRIPTION} />
                                 </P>
                                 <ControlsWrapper>
-                                    <Button
-                                        onClick={() => { this.wipeDeviceAndStartAgain(); }}
-                                        isDisabled={!device || !device.connected}
-                                    >
-                                        <FormattedMessage {...l10nMessages.TR_WIPE_DEVICE_AND_START_AGAIN} />
-                                    </Button>
+                                    {
+                                        device.features.initialized === true && (
+                                            <Button
+                                                onClick={() => { this.props.connectActions.wipeDevice(); }}
+                                                isDisabled={!device || !device.connected}
+                                            >
+                                                wipe device
+                                                {/* <FormattedMessage {...l10nMessages.TR_WIPE_DEVICE_AND_START_AGAIN} /> */}
+                                            </Button>
+                                        )
+                                    }
+
+                                    {
+                                        device.features.initialized === false && (
+                                            <Button
+                                                onClick={() => { this.props.connectActions.resetDevice(); }}
+                                                isDisabled={!device || !device.connected}
+                                            >
+                                                reset device
+                                                {/* <FormattedMessage {...l10nMessages.TR_WIPE_DEVICE_AND_START_AGAIN} /> */}
+                                            </Button>
+                                        )
+                                    }
+
                                 </ControlsWrapper>
                                 {
                                     (!device || !device.connected) && (
                                         <P><FormattedMessage {...l10nCommonMessages.TR_CONNECT_YOUR_DEVICE} /></P>
                                     )
                                 }
+                            </React.Fragment>
+                        )
+                    }
+
+                    {
+                        this.getStatus() === BackupStep.SUCCESS_STATUS && (
+                            <React.Fragment>
+                                <H4>
+                                Good job.
+                                </H4>
+                                <P>
+                                Backup is now on your recovery seed card. Once again dont lose it and keep it private!
+                                </P>
+                                <ControlsWrapper>
+                                    <Button onClick={() => onboardingActions.goToNextStep()}>My recovery card is safe</Button>
+                                </ControlsWrapper>
                             </React.Fragment>
                         )
                     }

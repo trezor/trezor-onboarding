@@ -40,12 +40,14 @@ export default [{
     id: ID.SECURITY_STEP,
     entryConditions: [conditions.DEVICE_IS_CONNECTED],
     reconnectConditions: [conditions.IS_SAME_DEVICE],
-}, {
+},
+{
     id: ID.BACKUP_STEP,
     title: ID.SECURITY_STEP,
     // entryConditions: [conditions.DEVICE_IS_CONNECTED],
     // reconnectConditions: [conditions.IS_SAME_DEVICE],
 },
+
 {
     id: ID.SET_PIN_STEP,
     title: ID.SECURITY_STEP,

@@ -232,7 +232,7 @@ class Onboarding extends React.PureComponent {
                 >
 
                     <TrezorActionOverlay style={{ display: !this.isGlobalInteraction() ? 'none' : 'flex' }}>
-                        <Prompt model={model}>
+                        <Prompt model={model} size={112}>
                             <TrezorActionText />
                         </Prompt>
                     </TrezorActionOverlay>
@@ -304,6 +304,16 @@ class Onboarding extends React.PureComponent {
                     )}
                     {this.getScreen() === ID.BACKUP_STEP && (
                         <BackupStep
+                            onboardingActions={onboardingActions}
+                            connectActions={connectActions}
+                            device={device}
+                            deviceCall={deviceCall}
+                            deviceInteraction={deviceInteraction}
+                            activeSubStep={activeSubStep}
+                        />
+                    )}
+                    {this.getScreen() === ID.BACKUP_FAILED_STEP && (
+                        <BackupFailedStep
                             onboardingActions={onboardingActions}
                             connectActions={connectActions}
                             device={device}

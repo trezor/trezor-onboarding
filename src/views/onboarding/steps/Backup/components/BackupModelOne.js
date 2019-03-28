@@ -31,7 +31,8 @@ class BackupProgressModelOne extends React.Component {
             <StepWrapper>
                 <StepHeadingWrapper />
                 <StepBodyWrapper>
-                    {
+                    {/* todo: remove */}
+                    {/* {
                         (device && device.features.needs_backup === true && deviceInteraction.counter === 0) && (
                             <React.Fragment>
                                 <P>
@@ -48,7 +49,7 @@ class BackupProgressModelOne extends React.Component {
                             </React.Fragment>
 
                         )
-                    }
+                    } */}
 
                     {
                         (device && device.features.needs_backup === true && deviceInteraction.counter > 0 && this.isCheckingWords()) && (
@@ -66,21 +67,7 @@ class BackupProgressModelOne extends React.Component {
                         )
                     }
 
-                    {
-                        device && device.features.needs_backup === false && (
-                            <React.Fragment>
-                                <P>
-                                Good job.
-                                </P>
-                                <P>
-                                Backup is now on your recovery seed card. Once again dont lose it and keep it private!
-                                </P>
-                                <ControlsWrapper>
-                                    <Button onClick={() => onboardingActions.goToNextStep()}>My recovery card is safe</Button>
-                                </ControlsWrapper>
-                            </React.Fragment>
-                        )
-                    }
+
                 </StepBodyWrapper>
             </StepWrapper>
         );
