@@ -109,7 +109,7 @@ const TrezorActionOverlay = styled.div`
     display: flex;
     justify-content: center;
     background-color: ${colors.white};
-    z-index: 1000;
+    z-index: 1;
     border-radius: ${BORDER_RADIUS}px;
 `;
 

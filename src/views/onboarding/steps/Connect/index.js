@@ -27,7 +27,7 @@ const DeviceIconWrapper = styled.div`
 `;
 
 const TroubleShootWrapper = styled.div`
-    max-width: 600px; /* todo: constant or refactor somehow */
+    /* max-width: 600px; todo: constant or refactor somehow */
 `;
 
 class ConnectStep extends React.PureComponent {
@@ -110,7 +110,7 @@ class ConnectStep extends React.PureComponent {
 
                     {
                         deviceIsConnected && !deviceCall.isProgress && (
-                            <TroubleShootWrapper>
+                            <React.Fragment>
                                 {
                                     !device.features.initialized && this.isInBlWithFwPresent() === false && (
                                         <React.Fragment>
@@ -145,7 +145,7 @@ class ConnectStep extends React.PureComponent {
                                         />
                                     )
                                 }
-                            </TroubleShootWrapper>
+                            </React.Fragment>
                         )
                     }
                 </StepBodyWrapper>
@@ -161,7 +161,7 @@ ConnectStep.propTypes = {
     onboardingActions: types.onboardingActions.isRequired,
     model: types.model,
     setTimeout: PropTypes.func.isRequired,
-    // activeSubStep: types.activeSubStep,
+    activeSubStep: types.activeSubStep,
 };
 
 export default ReactTimeout(ConnectStep);

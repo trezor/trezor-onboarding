@@ -5,7 +5,6 @@ import ReactSelect from 'react-select';
 
 import LANGUAGE from 'config/languages';
 
-console.warn(LANGUAGE);
 // todo: refactor
 const SCREEN_SIZE = {
     XS: '480px',
