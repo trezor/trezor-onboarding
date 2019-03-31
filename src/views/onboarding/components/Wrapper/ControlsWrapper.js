@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import * as BREAKPOINTS from 'config/breakpoints';
 
 const ControlsWrapper = styled.div`
     display: flex;
@@ -10,9 +11,9 @@ const ControlsWrapper = styled.div`
         margin: 3px 10px 3px 10px;
     }
 
-    /* todo: breakpoint as constant */
+    width: 100%;
 
-    @media (max-width: 600px) {
+    @media (max-width: ${BREAKPOINTS.SM}px) {
         flex-direction: column;
     }
 `;

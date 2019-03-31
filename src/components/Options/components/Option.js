@@ -4,7 +4,6 @@ import styled from 'styled-components';
 import colors from 'config/colors';
 
 const OptionWrapper = styled.div`
-    height: 200px;
     flex-grow: 1;
     width: 100%;
     min-width: 120px;
@@ -17,6 +16,12 @@ const OptionWrapper = styled.div`
     justify-content: space-between;
     align-items: center;
     cursor: pointer;
+
+    /* todo: breakpoint as constant  */
+   
+    @media (min-width: 600px) {
+        height: 200px;    
+    }
 `;
 
 const Circle = styled.div`

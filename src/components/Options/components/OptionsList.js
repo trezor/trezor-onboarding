@@ -2,6 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
+import * as BREAKPOINT from 'config/breakpoints';
+
 import Option from './Option';
 
 const OptionsWrapper = styled.div`
@@ -10,9 +12,7 @@ const OptionsWrapper = styled.div`
     width: 100%;
     max-width: ${props => props.count * 200}px;
 
-    /* todo: breakpoint as constant */
-
-    @media (max-width: 600px) {
+    @media (max-width: ${BREAKPOINT.SM}px) {
         flex-direction: column
     }
 `;

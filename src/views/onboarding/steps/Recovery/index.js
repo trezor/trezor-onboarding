@@ -122,29 +122,30 @@ class RecoveryStep extends React.Component {
                                 device.features.major_version === 1 && (
                                     <React.Fragment>
 
-                                        <ControlsWrapper>
-                                            <OptionsList
-                                                options={[{
-                                                    content: <div><P><FormattedMessage {...l10nMessages.TR_WORDS} values={{ count: '12' }} /></P></div>,
-                                                    value: 12,
-                                                    key: 1,
-                                                }, {
-                                                    content: <div><P><FormattedMessage {...l10nMessages.TR_WORDS} values={{ count: '18' }} /></P></div>,
-                                                    value: 18,
-                                                    key: 2,
-                                                }, {
-                                                    content: <div><P><FormattedMessage {...l10nMessages.TR_WORDS} values={{ count: '24' }} /></P></div>,
-                                                    value: 24,
-                                                    key: 3,
-                                                }]}
-                                                selected={this.props.recovery.wordsCount}
-                                                selectedAccessor="value"
-                                                onSelect={(value) => { this.props.recoveryActions.setWordsCount(value); }}
-                                            />
-                                        </ControlsWrapper>
+                                        <OptionsList
+                                            options={[{
+                                                content: <div><P><FormattedMessage {...l10nMessages.TR_WORDS} values={{ count: '12' }} /></P></div>,
+                                                value: 12,
+                                                key: 1,
+                                            }, {
+                                                content: <div><P><FormattedMessage {...l10nMessages.TR_WORDS} values={{ count: '18' }} /></P></div>,
+                                                value: 18,
+                                                key: 2,
+                                            }, {
+                                                content: <div><P><FormattedMessage {...l10nMessages.TR_WORDS} values={{ count: '24' }} /></P></div>,
+                                                value: 24,
+                                                key: 3,
+                                            }]}
+                                            selected={this.props.recovery.wordsCount}
+                                            selectedAccessor="value"
+                                            onSelect={(value) => { this.props.recoveryActions.setWordsCount(value); }}
+                                        />
 
                                         <ControlsWrapper>
-                                            <Button onClick={() => { this.props.onboardingActions.goToSubStep('select-advanced-recovery'); }}>
+                                            <Button
+                                                isDisabled={this.props.recovery.wordsCount === null}
+                                                onClick={() => { this.props.onboardingActions.goToSubStep('select-advanced-recovery'); }}
+                                            >
                                                 <FormattedMessage {...l10nCommonMessages.TR_CONTINUE} />
                                             </Button>
                                             <Button isWhite onClick={() => { this.props.onboardingActions.goToPreviousStep(); }}>
@@ -177,23 +178,21 @@ class RecoveryStep extends React.Component {
                             <P>
                                 <FormattedMessage {...l10nMessages.TR_RECOVERY_TYPES_DESCRIPTION} />
                             </P>
-                            <ControlsWrapper>
-                                <OptionsList
-                                    options={[{
-                                        content: <P><FormattedMessage {...l10nMessages.TR_BASIC_RECOVERY_OPTION} /></P>,
-                                        value: false,
-                                        key: 1,
-                                    }, {
-                                        content: <P><FormattedMessage {...l10nMessages.TR_ADVANCED_RECOVERY_OPTION} /></P>,
-                                        value: true,
-                                        key: 2,
-                                    }]}
-                                    selected={this.props.recovery.advancedRecovery}
-                                    selectedAccessor="value"
-                                    // todo: probably move to reducer, this wont work with changing translations.
-                                    onSelect={(value) => { this.setState({ advancedRecovery: value }); }}
-                                />
-                            </ControlsWrapper>
+                            <OptionsList
+                                options={[{
+                                    content: <P><FormattedMessage {...l10nMessages.TR_BASIC_RECOVERY_OPTION} /></P>,
+                                    value: false,
+                                    key: 1,
+                                }, {
+                                    content: <P><FormattedMessage {...l10nMessages.TR_ADVANCED_RECOVERY_OPTION} /></P>,
+                                    value: true,
+                                    key: 2,
+                                }]}
+                                selected={this.props.recovery.advancedRecovery}
+                                selectedAccessor="value"
+                                // todo: probably move to reducer, this wont work with changing translations.
+                                onSelect={(value) => { this.props.recoveryActions.setAdvancedRecovery(value); }}
+                            />
 
                             <ControlsWrapper>
                                 <Button onClick={() => { this.recoveryDevice(); }}>
