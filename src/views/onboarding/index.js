@@ -47,11 +47,12 @@ const Wrapper = styled.div`
     border-radius: ${BORDER_RADIUS}px;
     width: 95vw;
     margin: 20px auto 0 auto;
+    min-height: ${WRAPPER_HEIGHT}vh;
 
     @media only screen and (min-width: 600px) {
         width: 80vw;
         margin: auto;
-        min-height: ${WRAPPER_HEIGHT}vh;
+        /* min-height: ${WRAPPER_HEIGHT}vh; */
         grid-template-rows: 80px ${MAIN_HEIGHT}% ${FOOTER_HEIGHT}%;    
     } 
 `;
@@ -70,6 +71,7 @@ const ComponentWrapper = styled(CSSTransitionGroup)`
     flex-direction: column;
 `;
 
+// todo: resolve footer / navigation
 const FooterWrapper = styled.div`
     padding: 3px 3% 3px 3%;
 `;
