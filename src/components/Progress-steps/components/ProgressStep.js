@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { Icon, icons } from 'trezor-ui-components';
+// import { Icon, icons } from 'trezor-ui-components';
 
 import colors from 'config/colors';
 
@@ -20,14 +20,15 @@ const ProgressStepWrapper = styled.div`
 
 const Circle = styled.div` 
     border: 1.2px solid; 
-    height: 25px;
-    width: 25px;
+    /* height: 25px; */
+    /* width: 25px; */
+    height: 12px;
+    width: 12px;
     border-radius: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
     font-size: 0.82rem;
-
 `;
 
 const Text = styled.div`
@@ -66,7 +67,7 @@ const ProgressStep = (props) => {
                 transition,
             }}
             >
-                { props.isFinished ? <Icon icon={icons.SUCCESS} color={colors.white} size={10} /> : props.index + 1}
+                {/* { props.isFinished ? <Icon icon={icons.SUCCESS} color={colors.white} size={10} /> : props.index + 1} */}
             </Circle>
 
 
