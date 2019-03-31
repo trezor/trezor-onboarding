@@ -11,6 +11,7 @@ import { FormattedMessage } from 'react-intl';
 import colors from 'config/colors';
 import { PHISHING_URL } from 'config/urls';
 import types from 'config/types';
+import { APPLY_FLAGS } from 'actions/constants/calls';
 
 import l10nCommonMessages from 'support/commonMessages';
 import l10nMessages from './index.messages';
@@ -49,17 +50,9 @@ class BookmarkStep extends React.Component {
         window.removeEventListener('keyup', this.keyboardHandler, false);
     }
 
-    async setBookmarkFlagAndContinue() {
-        // todo: there is already special action for this 'callActionAndGoToNextStep'
+    setBookmarkFlagAndContinue() {
         const flags = Flags.setFlag(BookmarkStep.TARGET_FLAG, this.props.device.features.flags);
-        await this.props.connectActions.applyFlags({ flags });
-        // check if flags were set correctly
-        if (Flags.isFlagPresent(BookmarkStep.TARGET_FLAG, this.props.device.features.flags)) {
-            this.props.onboardingActions.goToNextStep();
-        } else {
-            // todo: what if not? how to handle this in UI.
-            console.warn('Flag not present');
-        }
+        this.props.connectActions.callActionAndGoToNextStep(APPLY_FLAGS, { flags });
     }
 
     keyboardHandler(e) {
@@ -130,7 +123,6 @@ class BookmarkStep extends React.Component {
 
                     <ControlsWrapper>
                         {/*  todo: for mobile add to homescreen */}
-
                         {
                             !Platform.getInfo().isMobile && (
                                 <React.Fragment>
@@ -143,7 +135,6 @@ class BookmarkStep extends React.Component {
                                 </React.Fragment>
                             )
                         }
-
                     </ControlsWrapper>
                 </StepBodyWrapper>
             </StepWrapper>
