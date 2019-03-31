@@ -22,6 +22,9 @@ import TroubleshootBootloader from './components/TroubleshootBootloader';
 import TroubleshootInitialized from './components/TroubleshootInitialized';
 import TroubleshootSearchingTooLong from './components/TroubleshootTooLong';
 
+const DeviceIconWrapper = styled.div`
+    margin-bottom: 30px;
+`;
 
 const TroubleShootWrapper = styled.div`
     max-width: 600px; /* todo: constant or refactor somehow */
@@ -41,8 +44,6 @@ class ConnectStep extends React.PureComponent {
     }
 
     componentDidMount() {
-        // refresh device
-        // this.props.connectActions.getFeatures();
         this.props.setTimeout(() => this.setState({ isSearching: true }), ConnectStep.IS_SEARCHING_TIMEOUT);
         this.props.setTimeout(() => this.setState({ isSearchingTooLong: true }), ConnectStep.IS_SEARCHING_TOO_LONG_TIMEOUT);
     }
@@ -82,7 +83,11 @@ class ConnectStep extends React.PureComponent {
                     }
 
                     {
-                        deviceIsConnected && <Icon icon={model === 1 ? icons.T1 : icons.T2} size={64} />
+                        deviceIsConnected && (
+                            <DeviceIconWrapper>
+                                <Icon icon={model === 1 ? icons.T1 : icons.T2} size={64} />
+                            </DeviceIconWrapper>
+                        )
                     }
 
                     {

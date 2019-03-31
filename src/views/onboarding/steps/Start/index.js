@@ -53,13 +53,7 @@ class StartStep extends React.Component {
         return (
             <StepWrapper>
                 <StepHeadingWrapper>
-                    { this.props.deviceCall.isProgress && (
-                        <React.Fragment>
-                            <FormattedMessage {...l10nMessages.TR_START_CREATING} />
-                            <Dots />
-                        </React.Fragment>
-                    )}
-                    { !this.props.deviceCall.isProgress && <FormattedMessage {...l10nMessages.TR_START_HEADING} />}
+                    <FormattedMessage {...l10nMessages.TR_START_HEADING} />
                 </StepHeadingWrapper>
                 <StepBodyWrapper>
                     <OptionsList

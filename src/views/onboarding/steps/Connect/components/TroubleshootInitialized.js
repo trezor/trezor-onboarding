@@ -23,10 +23,15 @@ const TroubleshootInitialized = ({
                         <FormattedMessage {...l10nMessages.TR_DEVICE_IS_INITIALIZED} />
                     </H4>
                     <P>
-                        <FormattedMessage
-                            {...l10nMessages.TR_DEVICE_LABEL}
-                            values={{ label: device.features.label }}
-                        />
+                        {
+                            device.features.label && (
+                                <FormattedMessage
+                                    {...l10nMessages.TR_DEVICE_LABEL}
+                                    values={{ label: device.features.label }}
+                                />
+                            )
+                        }
+
                         <FormattedMessage
                             {...l10nMessages.TR_DEVICE_FIRMWARE_VERSION}
                             values={{

@@ -12,6 +12,7 @@ import { UI } from 'trezor-connect';
 import bip39List from 'utils/bip39'; // todo: its not utils but constants I guess.
 import types from 'config/types';
 import colors from 'config/colors';
+import { RECOVER_DEVICE } from 'actions/constants/calls';
 import { OptionsList } from 'components/Options';
 
 import l10nCommonMessages from 'support/commonMessages';
@@ -48,39 +49,17 @@ const SelectWrapper = styled.div`
 `;
 
 class RecoveryStep extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            status: 'select-words-count',
-            wordsCount: null,
-            advancedRecovery: false,
-            word: null,
-        };
-    }
-
     componentWillMount() {
         this.keyboardHandler = this.keyboardHandler.bind(this);
         window.addEventListener('keydown', this.keyboardHandler, false);
-    }
-
-    componentDidMount() {
-        this.props.connectActions.resetCall();
     }
 
     componentWillUnmount() {
         window.removeEventListener('keydown', this.keyboardHandler, false);
     }
 
-
-    onWordChange = (item) => {
-        this.setState({ word: item });
-    }
-
     onSubmit = () => {
-        if (this.state.word) {
-            this.props.connectActions.submitWord({ word: this.state.word.value });
-            this.setState({ word: null });
-        }
+        this.props.recoveryActions.submit();
     }
 
     setStatus = (status) => {
@@ -93,26 +72,26 @@ class RecoveryStep extends React.Component {
     getStatus = () => {
         const { deviceCall, uiInteraction } = this.props;
         // todo: better detection of success call;
-        if (deviceCall.result && deviceCall.result.message === 'Device recovered') {
+        if (deviceCall.result && deviceCall.name === RECOVER_DEVICE) {
             return 'success';
         }
-        if (deviceCall.name === 'recoveryDevice' && deviceCall.isProgress && uiInteraction.counter && uiInteraction.name === UI.REQUEST_WORD) {
+        if (deviceCall.name === RECOVER_DEVICE && deviceCall.isProgress && uiInteraction.counter && uiInteraction.name === UI.REQUEST_WORD) {
             return 'recovering';
         }
-        if (deviceCall.error) {
+        if (deviceCall.error && deviceCall.name === RECOVER_DEVICE) {
             return 'error';
         }
-        return this.state.status;
+        return this.props.activeSubStep;
     }
 
     recoveryDevice() {
         this.props.connectActions.recoveryDevice({
-            word_count: this.state.wordsCount,
+            word_count: this.props.recovery.wordsCount,
             // todo: enable passphraseProtection when problem with invoking passphrase request solved
             // todo: decide on case passhpraseProtection or passphrase_protection?
             // passhpraseProtection: true,
             pin_protection: false,
-            type: this.state.advancedRecovery ? 1 : 0,
+            type: this.props.recovery.advancedRecovery ? 1 : 0,
         });
     }
 
@@ -131,8 +110,9 @@ class RecoveryStep extends React.Component {
                 <StepHeadingWrapper>
                     <FormattedMessage {...l10nMessages.TR_RECOVER_HEADING} />
                 </StepHeadingWrapper>
+
                 <StepBodyWrapper>
-                    { this.getStatus() === 'select-words-count' && (
+                    { this.getStatus() === null && (
                         <React.Fragment>
                             <P>
                                 <FormattedMessage {...l10nMessages.TR_RECOVER_SUBHEADING} />
@@ -157,14 +137,14 @@ class RecoveryStep extends React.Component {
                                                     value: 24,
                                                     key: 3,
                                                 }]}
-                                                selected={this.state.wordsCount}
+                                                selected={this.props.recovery.wordsCount}
                                                 selectedAccessor="value"
-                                                onSelect={(value) => { this.setState({ wordsCount: value }); }}
+                                                onSelect={(value) => { this.props.recoveryActions.setWordsCount(value); }}
                                             />
                                         </ControlsWrapper>
 
                                         <ControlsWrapper>
-                                            <Button onClick={() => { this.setStatus('select-advanced-recovery'); }}>
+                                            <Button onClick={() => { this.props.onboardingActions.goToSubStep('select-advanced-recovery'); }}>
                                                 <FormattedMessage {...l10nCommonMessages.TR_CONTINUE} />
                                             </Button>
                                             <Button isWhite onClick={() => { this.props.onboardingActions.goToPreviousStep(); }}>
@@ -177,11 +157,15 @@ class RecoveryStep extends React.Component {
 
                             {
                                 device.features.major_version === 2 && (
-                                    <ControlsWrapper>
-                                        <Button onClick={() => { this.props.connectActions.recoveryDevice(); }}>
-                                            <FormattedMessage {...l10nMessages.TR_START_RECOVERY} />
-                                        </Button>
-                                    </ControlsWrapper>
+                                    <React.Fragment>
+                                        <P>On model T the entire recovery process is doable on device.</P>
+                                        <ControlsWrapper>
+                                            <Button onClick={() => { this.props.connectActions.recoveryDevice(); }}>
+                                                <FormattedMessage {...l10nMessages.TR_START_RECOVERY} />
+                                            </Button>
+                                        </ControlsWrapper>
+                                    </React.Fragment>
+
                                 )
                             }
 
@@ -204,8 +188,9 @@ class RecoveryStep extends React.Component {
                                         value: true,
                                         key: 2,
                                     }]}
-                                    selected={this.state.advancedRecovery}
+                                    selected={this.props.recovery.advancedRecovery}
                                     selectedAccessor="value"
+                                    // todo: probably move to reducer, this wont work with changing translations.
                                     onSelect={(value) => { this.setState({ advancedRecovery: value }); }}
                                 />
                             </ControlsWrapper>
@@ -214,7 +199,7 @@ class RecoveryStep extends React.Component {
                                 <Button onClick={() => { this.recoveryDevice(); }}>
                                     <FormattedMessage {...l10nMessages.TR_START_RECOVERY} />
                                 </Button>
-                                <Button isWhite onClick={() => { this.setStatus('select-words-count'); }}>
+                                <Button isWhite onClick={() => { this.props.onboardingActions.goToSubStep(null); }}>
                                     <FormattedMessage {...l10nCommonMessages.TR_BACK} />
                                 </Button>
                             </ControlsWrapper>
@@ -227,15 +212,15 @@ class RecoveryStep extends React.Component {
                                 <P>
                                     <FormattedMessage {...l10nMessages.TR_ENTER_SEED_WORDS_INSTRUCTION} />
                                     {' '}
-                                    { this.state.wordsCount < 24 && <FormattedMessage {...l10nMessages.TR_RANDOM_SEED_WORDS_DISCLAIMER} values={{ count: 24 - this.state.wordsCount }} /> }
+                                    { this.props.recovery.wordsCount < 24 && <FormattedMessage {...l10nMessages.TR_RANDOM_SEED_WORDS_DISCLAIMER} values={{ count: 24 - this.props.recovery.wordsCount }} /> }
                                 </P>
                                 <SelectWrapper>
                                     <Select
                                         autoFocus
                                         isSearchable
                                         isClearable={false}
-                                        value={this.state.word}
-                                        onChange={this.onWordChange}
+                                        value={this.props.recovery.word}
+                                        onChange={item => this.props.recoveryActions.setWord(item.value)}
                                         placeholder={this.props.intl.formatMessage(l10nMessages.TR_CHECK_YOUR_DEVICE)}
                                         options={sortedBip39}
                                         filterOption={createFilter({
@@ -265,7 +250,7 @@ class RecoveryStep extends React.Component {
                                     <FormattedMessage {...l10nMessages.TR_RECOVERY_ERROR} values={{ error: deviceCall.error }} />
                                 </P>
 
-                                <Button onClick={() => { this.props.connectActions.resetCall(); this.setState({ status: 'select-words-count' }); }}>
+                                <Button onClick={() => { this.props.connectActions.resetCall(); this.props.onboardingActions.goToSubStep(null); }}>
                                     <FormattedMessage {...l10nCommonMessages.TR_RETRY} />
                                 </Button>
 
@@ -297,6 +282,7 @@ RecoveryStep.propTypes = {
     deviceCall: types.deviceCall,
     uiInteraction: types.uiInteraction,
     device: types.device,
+    activeSubStep: types.activeSubStep,
 };
 
 export default injectIntl(RecoveryStep);

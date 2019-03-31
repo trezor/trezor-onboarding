@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import * as OnboardingActions from 'actions/onboardingActions';
 import * as ConnectActions from 'actions/connectActions';
 import * as FetchActions from 'actions/fetchActions';
+import * as RecoveryActions from 'actions/recoveryActions';
 
 import Onboarding from './index';
 
@@ -24,12 +25,16 @@ const mapStateToProps = state => ({
 
     // fetch reducer
     fetchCall: state.fetch,
+
+    // recovery reducer
+    recovery: state.recovery,
 });
 
 const mapDispatchToProps = dispatch => ({
     onboardingActions: bindActionCreators(OnboardingActions, dispatch),
     connectActions: bindActionCreators(ConnectActions, dispatch),
     fetchActions: bindActionCreators(FetchActions, dispatch),
+    recoveryActions: bindActionCreators(RecoveryActions, dispatch),
 });
 
 export default connect(

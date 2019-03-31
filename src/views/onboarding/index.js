@@ -178,6 +178,7 @@ class Onboarding extends React.PureComponent {
             onboardingActions,
             connectActions,
             fetchActions,
+            recoveryActions,
             selectedModel,
             transport,
             activeStep,
@@ -188,6 +189,7 @@ class Onboarding extends React.PureComponent {
             uiInteraction,
             steps,
             fetchCall,
+            recovery,
         } = this.props;
         // model is either selected by user or later overrided by connected device
         // todo: this belongs to reducer;
@@ -259,6 +261,7 @@ class Onboarding extends React.PureComponent {
                     {this.getScreen() === ID.BRIDGE_STEP && (
                         <BridgeStep
                             onboardingActions={onboardingActions}
+                            activeSubStep={activeSubStep}
                             transport={transport}
                         />
                     )}
@@ -291,10 +294,13 @@ class Onboarding extends React.PureComponent {
                     {this.getScreen() === ID.RECOVERY_STEP && (
                         <RecoveryStep
                             onboardingActions={onboardingActions}
+                            recoveryActions={recoveryActions}
                             connectActions={connectActions}
+                            recovery={recovery}
                             device={device}
                             uiInteraction={uiInteraction}
                             deviceCall={deviceCall}
+                            activeSubStep={activeSubStep}
                         />
                     )}
                     {this.getScreen() === ID.SECURITY_STEP && (
@@ -310,15 +316,6 @@ class Onboarding extends React.PureComponent {
                             deviceCall={deviceCall}
                             deviceInteraction={deviceInteraction}
                             activeSubStep={activeSubStep}
-                        />
-                    )}
-                    {this.getScreen() === ID.BACKUP_FAILED_STEP && (
-                        <BackupFailedStep
-                            onboardingActions={onboardingActions}
-                            connectActions={connectActions}
-                            device={device}
-                            deviceCall={deviceCall}
-                            deviceInteraction={deviceInteraction}
                         />
                     )}
                     {this.getScreen() === ID.SET_PIN_STEP && (
