@@ -69,7 +69,10 @@ module.exports = env => ({
             template: 'index.html',
             filename: 'index.html',
             inject: true,
+            favicon: './favicon.ico',
+
         }),
+
         new UglifyJSPlugin(),
         gitRevisionPlugin,
         new DefinePlugin({
