@@ -32,7 +32,6 @@ const updateFirmware = () => async (dispatch, getState) => {
         });
     };
     let maxProgress = 0;
-    console.warn(getState());
     const interval = setInterval(() => {
         if (getState().connect.deviceCall.error || getState().fetch.error) {
             dispatch({

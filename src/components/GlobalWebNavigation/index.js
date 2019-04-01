@@ -130,7 +130,7 @@ const GlobalWebNavigation = () => (
             <MenuLinks>
                 <Projects>
                     <A href="https://trezor.io/" target="_blank" rel="noreferrer noopener">
-                        <FormattedMessage {...l10nMessages.TR_TREZOR} />
+                        Trezor
                     </A>
                     <A href="https://wiki.trezor.io/" target="_blank" rel="noreferrer noopener">
                         <FormattedMessage {...l10nMessages.TR_WIKI} />

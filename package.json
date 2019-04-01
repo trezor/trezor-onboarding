@@ -11,7 +11,8 @@
     "lint:css": "npx stylelint './src/**/*.js'",
     "build:beta": "rimraf dist && npx webpack --progress --bail --env.BUILD=beta",
     "build:production": "rimraf dist && npx webpack --progress --bail --env.BUILD=production",
-    "test": "jest",
+    "test-all": "jest",
+    "test-health": "jest --testPathPattern=tests/health",
     "translations:extract": "rimraf translations/extractedMessages && cross-env NODE_ENV=translations babel src",
     "translations:upload": "yarn translations:extract && yarn ttm merge-msgs && yarn ttm build-csv && yarn ttm upload",
     "translations:download": "yarn ttm build-translations && sleep 1 && yarn ttm export-translations"
@@ -56,6 +57,7 @@
     "babel-loader": "^8.0.5",
     "babel-plugin-react-intl": "^3.0.1",
     "cross-env": "^5.2.0",
+    "dotenv-webpack": "^1.7.0",
     "eslint": "^5.12.0",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-import-resolver-babel-module": "5.0.0-beta.1",

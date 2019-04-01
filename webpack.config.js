@@ -4,6 +4,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const GitRevisionPlugin = require('git-revision-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const { DefinePlugin } = require('webpack');
+const Dotenv = require('dotenv-webpack');
 
 const gitRevisionPlugin = new GitRevisionPlugin({ branch: true });
 
@@ -82,6 +83,13 @@ module.exports = env => ({
         new CopyWebpackPlugin([
             { from: 'l10n', to: 'l10n' },
         ]),
+        new Dotenv({
+            path: `.env.${env.BUILD}`,
+            safe: true, // load '.env.example' to verify the '.env' variables are all set. Can also be a string to a different file.
+            systemvars: true, // load all the predefined 'process.env' variables which will trump anything local per dotenv specs.
+            // silent: true, // hide any errors
+            defaults: true, // load '.env.defaults' as the default values if empty.
+        }),
     ],
 
 });

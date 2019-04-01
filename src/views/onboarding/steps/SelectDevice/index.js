@@ -42,7 +42,6 @@ class SelectDeviceStep extends React.Component {
     }
 
     render() {
-        console.warn('render');
         return (
             <StepWrapper>
                 <StepHeadingWrapper>

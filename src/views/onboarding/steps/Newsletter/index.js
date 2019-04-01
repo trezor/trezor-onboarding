@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import {
-    P, Button, Link, Input,
+    P, Button, Link, Input, Checkbox,
 } from 'trezor-ui-components';
 import { Flags } from 'trezor-flags';
 import { FormattedMessage, injectIntl } from 'react-intl';
@@ -17,7 +17,7 @@ import l10nCommonMessages from 'support/commonMessages';
 import l10nMessages from './index.messages';
 
 import {
-    StepWrapper, StepBodyWrapper, StepHeadingWrapper, ControlsWrapper,
+    StepWrapper, StepBodyWrapper, StepHeadingWrapper, ControlsWrapper, CheckboxWrapper,
 } from '../../components/Wrapper';
 
 const SocialWrapper = styled.div`
@@ -38,31 +38,16 @@ const InputWrapper = styled.div`
 `;
 
 class NewsleterStep extends React.Component {
-    constructor() {
-        super();
-        this.state = {
-            email: '',
-            skipped: null,
-        };
-    }
-
     getBottomText() {
-        const { emailSendStatus } = this.state;
-        if (emailSendStatus === 'sending') {
-            return this.props.intl.formatMessage(l10nMessages.TR_SENDING);
-        }
-        if (emailSendStatus === 'error') {
-            return this.props.intl.formatMessage(l10nMessages.TR_SENDING_ERROR);
-        }
         return this.validateInput().bottomText;
     }
 
     getEmailStatus() {
-        const { fetchCall } = this.props;
+        const { fetchCall, newsletter } = this.props;
         if (fetchCall.name === SUBMIT_EMAIL && fetchCall.isProgress) {
             return 'sending';
         }
-        if ((fetchCall.name === SUBMIT_EMAIL && fetchCall.result) || this.state.skipped) {
+        if ((fetchCall.name === SUBMIT_EMAIL && fetchCall.result) || newsletter.skipped) {
             return 'success';
         }
         if (fetch.name === SUBMIT_EMAIL && fetch.error) {
@@ -72,25 +57,26 @@ class NewsleterStep extends React.Component {
     }
 
     getStatus() {
-        const { fetchCall } = this.props;
-        if ((fetchCall.name === SUBMIT_EMAIL && fetchCall.result) || this.state.skipped) {
+        const { fetchCall, newsletter } = this.props;
+        if ((fetchCall.name === SUBMIT_EMAIL && fetchCall.result) || newsletter.skipped) {
             return 'socials';
         }
         return 'initial';
     }
 
     validateInput = () => {
-        if (!this.state.email) {
+        const { email } = this.props.newsletter;
+        if (!email) {
             return { state: null };
         }
-        if (!validateEmail(this.state.email)) {
+        if (!validateEmail(email)) {
             return { state: 'error', bottomText: this.props.intl.formatMessage(l10nMessages.TR_WRONG_EMAIL_FORMAT) };
         }
         return { state: 'success' };
     }
 
     handleInputChange = (event) => {
-        this.setState({ email: event.target.value });
+        this.props.newsletterActions.setEmail(event.target.value);
     }
 
     goToNextStep = () => {
@@ -100,15 +86,16 @@ class NewsleterStep extends React.Component {
     }
 
     submitEmail = () => {
-        this.props.fetchActions.submitEmail(this.state.email);
+        this.props.newsletterActions.submitEmail();
     }
 
     skipEmail() {
-        this.setState({ skipped: true });
+        this.props.newsletterActions.setSkipped();
     }
 
     render() {
         const status = this.getStatus();
+        const { newsletter, newsletterActions } = this.props;
         return (
             <StepWrapper>
                 <StepHeadingWrapper>
@@ -123,7 +110,7 @@ class NewsleterStep extends React.Component {
                                 </P>
                                 <InputWrapper>
                                     <Input
-                                        value={this.state.email}
+                                        value={newsletter.email}
                                         placeholder="Email"
                                         state={this.validateInput().state}
                                         bottomText={this.getBottomText()}
@@ -131,6 +118,24 @@ class NewsleterStep extends React.Component {
                                         isDisabled={this.getEmailStatus() === 'sending'}
                                     />
                                 </InputWrapper>
+                                <CheckboxWrapper>
+                                    <Checkbox
+                                        isChecked={newsletter.checkboxes.security}
+                                        onClick={() => newsletterActions.toggleCheckbox('security')}
+                                    />
+                                    <P>
+                                        Guvno
+                                    </P>
+                                </CheckboxWrapper>
+                                <CheckboxWrapper>
+                                    <Checkbox
+                                        isChecked={newsletter.checkboxes.promo}
+                                        onClick={() => newsletterActions.toggleCheckbox('promo')}
+                                    />
+                                    <P>
+                                        Promo
+                                    </P>
+                                </CheckboxWrapper>
                                 <ControlsWrapper>
                                     <Button
                                         isDisabled={this.validateInput().state !== 'success' || this.getEmailStatus() === 'sending'}
@@ -150,14 +155,14 @@ class NewsleterStep extends React.Component {
                         status === 'socials' && (
                             <React.Fragment>
                                 {
-                                    !this.state.skipped && (
+                                    !newsletter.skipped && (
                                         <P>
                                             <FormattedMessage {...l10nMessages.TR_THANK_YOU_FOR_EMAIL} />
                                         </P>
                                     )
                                 }
                                 {
-                                    this.state.skipped && (
+                                    newsletter.skipped && (
                                         <P>
                                             <FormattedMessage {...l10nMessages.TR_EMAIL_SKIPPED} />
                                         </P>
@@ -190,7 +195,6 @@ class NewsleterStep extends React.Component {
 
 NewsleterStep.propTypes = {
     connectActions: types.connectActions.isRequired,
-    fetchActions: types.fetchActions.isRequired,
     fetchCall: types.fetchCall,
     device: types.device,
 };

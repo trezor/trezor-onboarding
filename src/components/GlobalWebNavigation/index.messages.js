@@ -6,12 +6,6 @@ const definedMessages = defineMessages({
         defaultMessage: 'Menu',
         description: 'Mobile sidebar toggler',
     },
-    // todo: maybe do not translate
-    TR_TREZOR: {
-        id: 'TR_TREZOR',
-        defaultMessage: 'Trezor',
-        description: 'Link in header navigation',
-    },
     TR_WIKI: {
         id: 'TR_WIKI',
         defaultMessage: 'Wiki',

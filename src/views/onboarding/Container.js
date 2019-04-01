@@ -6,6 +6,7 @@ import * as ConnectActions from 'actions/connectActions';
 import * as FetchActions from 'actions/fetchActions';
 import * as RecoveryActions from 'actions/recoveryActions';
 import * as FirmwareUpdateActions from 'actions/firmwareUpdateActions';
+import * as NewsletterActions from 'actions/newsletterActions';
 
 import Onboarding from './index';
 
@@ -32,6 +33,9 @@ const mapStateToProps = state => ({
 
     // firmwareUpdate reducer
     firmwareUpdate: state.firmwareUpdate,
+
+    // newsletter reducer
+    newsletter: state.newsletter,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -40,6 +44,7 @@ const mapDispatchToProps = dispatch => ({
     fetchActions: bindActionCreators(FetchActions, dispatch),
     recoveryActions: bindActionCreators(RecoveryActions, dispatch),
     firmwareUpdateActions: bindActionCreators(FirmwareUpdateActions, dispatch),
+    newsletterActions: bindActionCreators(NewsletterActions, dispatch),
 });
 
 export default connect(

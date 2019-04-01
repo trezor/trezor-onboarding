@@ -182,6 +182,7 @@ class Onboarding extends React.PureComponent {
             fetchActions,
             recoveryActions,
             firmwareUpdateActions,
+            newsletterActions,
             selectedModel,
             transport,
             activeStep,
@@ -194,6 +195,7 @@ class Onboarding extends React.PureComponent {
             fetchCall,
             recovery,
             firmwareUpdate,
+            newsletter,
 
         } = this.props;
         // model is either selected by user or later overrided by connected device
@@ -346,10 +348,11 @@ class Onboarding extends React.PureComponent {
                         <NewsletterStep
                             onboardingActions={onboardingActions}
                             connectActions={connectActions}
+                            newsletterActions={newsletterActions}
+                            newsletter={newsletter}
                             device={device}
                             deviceCall={deviceCall}
                             fetchCall={fetchCall}
-                            fetchActions={fetchActions}
                         />
                     )}
                     {this.getScreen() === ID.BOOKMARK_STEP && (
