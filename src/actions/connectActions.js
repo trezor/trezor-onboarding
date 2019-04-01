@@ -6,71 +6,8 @@ import connectConfig from 'config/connect';
 import * as CONNECT from 'actions/constants/connect';
 import * as ONBOARDING from 'actions/constants/onboarding';
 import * as CALLS from 'actions/constants/calls';
-import arrayBufferToBuffer from 'utils/arrayBufferToBuffer';
 
 import { goToNextStep } from './onboardingActions';
-import { getFirmware } from './fetchActions';
-
-const init = () => async (dispatch) => {
-    TrezorConnect.on(DEVICE_EVENT, (event) => {
-        if (event.type === DEVICE.CONNECT || event.type === DEVICE.CHANGED || event.type === DEVICE.DISCONNECT) {
-            dispatch({
-                type: event.type,
-                device: event.payload,
-            });
-        }
-    });
-
-    TrezorConnect.on(UI_EVENT, (event) => {
-        if (event.type === UI.REQUEST_BUTTON) {
-            dispatch({
-                type: CONNECT.DEVICE_INTERACTION_EVENT,
-                name: event.payload.code,
-            });
-        } else if (event.type === UI.REQUEST_PIN) {
-            dispatch({
-                type: CONNECT.UI_INTERACTION_EVENT,
-                name: UI.REQUEST_PIN,
-            });
-        } else if (event.type === UI.REQUEST_WORD) {
-            dispatch({
-                type: CONNECT.UI_INTERACTION_EVENT,
-                name: UI.REQUEST_WORD,
-            });
-        }
-    });
-
-    TrezorConnect.on(TRANSPORT_EVENT, (event) => {
-        const { type } = event;
-        // this transport-error case is not error from application view.
-        // It just means that we dont have bridge started
-        if (type === TRANSPORT.ERROR) {
-            // but we still need to dispatch bridge installers provided by Connect;
-            dispatch({
-                type: CONNECT.TRANSPORT_ERROR,
-                transport: event.payload,
-            });
-        } else if (type === TRANSPORT.START) {
-            dispatch({
-                type: CONNECT.TRANSPORT_START,
-                transport: event.payload,
-            });
-        }
-    });
-
-    if (connectConfig.endpoint) {
-        window.__TREZOR_CONNECT_SRC = connectConfig.endpoint; // eslint-disable-line no-underscore-dangle
-    }
-
-    try {
-        await TrezorConnect.init(connectConfig.init);
-    } catch (error) {
-        dispatch({
-            type: CONNECT.SET_CONNECT_ERROR,
-            error,
-        });
-    }
-};
 
 const getFeatures = () => call(CALLS.GET_FEATURES);
 const firmwareErase = params => call(CALLS.FIRMWARE_ERASE, params);
@@ -140,7 +77,6 @@ const call = (name, params) => async (dispatch, getState) => {
         };
         Object.assign(callParams, getDefaultParams(name, params), params);
         callParams.device = device;
-
 
         let fn;
 
@@ -214,7 +150,6 @@ const uiResponseCall = (name, params) => async (dispatch) => {
                 break;
             default: throw new Error(`call ${name} does not exist`);
         }
-        // todo: listen to response success here? probably not
         await fn(params);
     } catch (err) {
         dispatch({
@@ -226,49 +161,67 @@ const uiResponseCall = (name, params) => async (dispatch) => {
 
 const resetCall = () => ({ type: CONNECT.DEVICE_CALL_RESET });
 
-const updateFirmware = () => async (dispatch, getState) => {
-    const model = getState().connect.device.features.major_version;
-    const versions = {
-        1: 'trezor-1.8.0.bin',
-        2: 'trezor-2.1.0.bin',
-    };
-    let fw;
+const init = () => async (dispatch) => {
+    TrezorConnect.on(DEVICE_EVENT, (event) => {
+        if (event.type === DEVICE.CONNECT || event.type === DEVICE.CHANGED || event.type === DEVICE.DISCONNECT) {
+            dispatch({
+                type: event.type,
+                device: event.payload,
+            });
+        }
+    });
+
+    TrezorConnect.on(UI_EVENT, (event) => {
+        if (event.type === UI.REQUEST_BUTTON) {
+            dispatch({
+                type: CONNECT.DEVICE_INTERACTION_EVENT,
+                name: event.payload.code,
+            });
+        } else if (event.type === UI.REQUEST_PIN) {
+            dispatch({
+                type: CONNECT.UI_INTERACTION_EVENT,
+                name: UI.REQUEST_PIN,
+            });
+        } else if (event.type === UI.REQUEST_WORD) {
+            dispatch({
+                type: CONNECT.UI_INTERACTION_EVENT,
+                name: UI.REQUEST_WORD,
+            });
+        }
+    });
+
+    TrezorConnect.on(TRANSPORT_EVENT, (event) => {
+        const { type } = event;
+        // this transport-error case is not error from application view.
+        // It just means that we dont have bridge started
+        if (type === TRANSPORT.ERROR) {
+            // but we still need to dispatch bridge installers provided by Connect;
+            dispatch({
+                type: CONNECT.TRANSPORT_ERROR,
+                transport: event.payload,
+            });
+        } else if (type === TRANSPORT.START) {
+            dispatch({
+                type: CONNECT.TRANSPORT_START,
+                transport: event.payload,
+            });
+        }
+    });
+
+    if (connectConfig.endpoint) {
+        window.__TREZOR_CONNECT_SRC = connectConfig.endpoint; // eslint-disable-line no-underscore-dangle
+    }
+
     try {
-        // todo [stick]: use special updating firware
-        dispatch(getFirmware(`/${model}/${versions[model]}`)).then(async (response) => {
-            if (!response.ok) {
-                return;
-            }
-            const ab = await response.arrayBuffer();
-            if (model === 1) {
-                fw = ab.slice(256);
-            } else {
-                fw = ab.slice(0);
-            }
-            fw = arrayBufferToBuffer(fw);
-            dispatch(firmwareErase({ keepSession: true, skipFinalReload: true, length: fw.byteLength }))
-                .then((callResponse) => {
-                    if (callResponse.success) {
-                        const payload = {
-                            payload: fw,
-                            keepSession: false,
-                            skipFinalReload: true,
-                        };
-                        if (callResponse.offset) {
-                            payload.offset = callResponse.offset;
-                        }
-                        if (callResponse.length) {
-                            payload.length = callResponse.lenght;
-                        }
-                        dispatch(firmwareUpload(payload));
-                    }
-                });
-        });
+        await TrezorConnect.init(connectConfig.init);
     } catch (error) {
-        // todo: ?
-        console.warn('error', error);
+        dispatch({
+            type: CONNECT.SET_CONNECT_ERROR,
+            error,
+        });
     }
 };
+
 
 export {
     init,
@@ -289,6 +242,4 @@ export {
     // responses to device events
     submitNewPin,
     submitWord,
-    // compound calls
-    updateFirmware,
 };

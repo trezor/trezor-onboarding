@@ -19,13 +19,6 @@ import {
 
 //todo: handle case when already has firmware, but it is outdated
 class FirmwareStep extends React.Component {
-    constructor() {
-        super();
-        this.state = {
-            progress: null,
-        };
-    }
-
     getStatus() {
         const {
             device, fetchCall, deviceCall,
@@ -84,32 +77,8 @@ class FirmwareStep extends React.Component {
         return status;
     }
 
-    // a little more visual logic in component, I didnt want to bloat actions with this.
     install = async () => {
-        this.props.connectActions.updateFirmware();
-        this.setState({ progress: 0 });
-        const progressFn = () => {
-            this.setState(prevState => ({ progress: prevState.progress + 1 }));
-        };
-        const tresholds = {
-            downloading: 10,
-            preparing: 40,
-            uploading: 100,
-        };
-        const interval = setInterval(() => {
-            if (this.props.deviceCall.error || this.props.fetchCall.error) {
-                this.setState({ progress: 100 });
-                clearInterval(interval);
-                return;
-            }
-            if (this.state.progress >= tresholds[this.getStatus()] || this.state.progress >= 100) {
-                if (this.getStatus() === 'success') {
-                    clearInterval(interval);
-                }
-                return;
-            }
-            progressFn();
-        }, this.props.device.features.major_version === 1 ? 170 : 561);
+        this.props.firmwareUpdateActions.updateFirmware();
     }
 
     isProgress() {
@@ -120,7 +89,7 @@ class FirmwareStep extends React.Component {
 
     render() {
         const {
-            device, deviceCall, fetchCall,
+            device, deviceCall, fetchCall, firmwareUpdate,
         } = this.props;
         const isConnected = device && device.connected;
 
@@ -149,7 +118,7 @@ class FirmwareStep extends React.Component {
                         this.isProgress() && (
                             <React.Fragment>
                                 <Donut
-                                    progress={this.state.progress}
+                                    progress={firmwareUpdate.progress}
                                     radius={DONUT_RADIUS}
                                     stroke={DONUT_STROKE}
                                     isSuccess={this.getStatus() === 'success'}

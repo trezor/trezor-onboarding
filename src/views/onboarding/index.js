@@ -181,6 +181,7 @@ class Onboarding extends React.PureComponent {
             connectActions,
             fetchActions,
             recoveryActions,
+            firmwareUpdateActions,
             selectedModel,
             transport,
             activeStep,
@@ -192,6 +193,8 @@ class Onboarding extends React.PureComponent {
             steps,
             fetchCall,
             recovery,
+            firmwareUpdate,
+
         } = this.props;
         // model is either selected by user or later overrided by connected device
         // todo: this belongs to reducer;
@@ -281,9 +284,11 @@ class Onboarding extends React.PureComponent {
                         <FirmwareStep
                             onboardingActions={onboardingActions}
                             connectActions={connectActions}
+                            firmwareUpdateActions={firmwareUpdateActions}
                             device={device}
                             fetchCall={fetchCall}
                             deviceCall={deviceCall}
+                            firmwareUpdate={firmwareUpdate}
                         />
                     )}
                     {this.getScreen() === ID.START_STEP && (
