@@ -223,6 +223,7 @@ class Onboarding extends React.PureComponent {
                         <ProgressSteps
                             steps={[...new Set(steps.filter(s => s.title).map(s => s.title))]}
                             activeStep={this.getStep(activeStep)}
+                            onboardingActions={onboardingActions}
                         />
                     )}
                 </ProgressStepsWrapper>

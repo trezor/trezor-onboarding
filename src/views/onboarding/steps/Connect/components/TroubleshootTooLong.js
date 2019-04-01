@@ -20,9 +20,6 @@ const TroubleshootSearchingTooLong = () => (
         </P>
         <UnorderedList
             items={[{
-                component: <P><FormattedMessage {...l10nMessages.TR_SEARCHING_TAKES_TOO_LONG} /></P>,
-                key: '1',
-            }, {
                 component: <P><FormattedMessage {...l10nMessages.TR_REFRESH_INSTRUCTION} /></P>,
                 key: '2',
             }, {

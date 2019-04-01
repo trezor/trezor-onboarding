@@ -6,7 +6,7 @@ const PRODUCTION_ENDPOINT = 'https://sisyfos.trezor.io/blyat/';
 export default {
     init: {
         transportReconnect: true,
-        debug: true,
+        debug: false,
         popup: false,
         webusb: false,
         manifest: {

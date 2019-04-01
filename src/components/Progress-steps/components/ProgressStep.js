@@ -39,55 +39,69 @@ const Text = styled.div`
 
 const LINE_TRANSITION_DURATION = 0.25;
 
-const ProgressStep = (props) => {
-    const color = props.isActive ? colors.brandPrimary : colors.gray;
-    const transition = props.isActive ? `background-color 0.2s ${LINE_TRANSITION_DURATION * 2}s linear, color 0.2s ${LINE_TRANSITION_DURATION * 2}s linear, border-color 0.2s ${LINE_TRANSITION_DURATION * 2}s linear` : '';
-
-    const borderColor = props.isActive || props.isFinished ? colors.brandPrimary : colors.gray;
-    let backgroundColor;
-    if (props.isActive) {
-        backgroundColor = 'transparent';
-    } else if (props.isFinished) {
-        backgroundColor = colors.brandPrimary;
+class ProgressStep extends React.Component {
+    componentDidUpdate(prevProps) {
+        // console.warn(prevProps);
     }
 
-    return (
-        <ProgressStepWrapper>
-            <Line
-                transitionDuration={LINE_TRANSITION_DURATION}
-                isActive={((!props.isFinished && !props.isActive) || props.index === 0)}
-                order={1}
-                isFirst={props.index === 0}
-            />
+    render() {
+        const { props } = this;
+        const color = props.isActive ? colors.brandPrimary : colors.gray;
+        const transition = props.isActive ? `background-color 0.2s ${LINE_TRANSITION_DURATION * 2}s linear, color 0.2s ${LINE_TRANSITION_DURATION * 2}s linear, border-color 0.2s ${LINE_TRANSITION_DURATION * 2}s linear` : '';
 
-            <Circle style={{
-                borderColor,
-                color,
-                backgroundColor,
-                transition,
-            }}
-            >
-                {/* { props.isFinished ? <Icon icon={icons.SUCCESS} color={colors.white} size={10} /> : props.index + 1} */}
-            </Circle>
+        const borderColor = props.isActive || props.isFinished ? colors.brandPrimary : colors.gray;
+        let backgroundColor;
+        if (props.isActive) {
+            backgroundColor = 'transparent';
+        } else if (props.isFinished) {
+            backgroundColor = colors.brandPrimary;
+        }
+        return (
+            <ProgressStepWrapper>
+                <Line
+                    transitionDuration={LINE_TRANSITION_DURATION}
+                    isActive={((!props.isFinished && !props.isActive) || props.index === 0)}
+                    order={1}
+                    isFirst={props.index === 0}
+                />
+
+                <Circle
+                    style={{
+                        borderColor,
+                        color,
+                        backgroundColor,
+                        transition,
+                        cursor: props.isFinished ? 'pointer' : 'initial',
+                    }}
+                    onClick={props.isFinished ? () => { props.onboardingActions.goToNextStep(props.step); } : null}
+                >
+                    {/* { props.isFinished ? <Icon icon={icons.SUCCESS} color={colors.white} size={10} /> : props.index + 1} */}
+                </Circle>
 
 
-            <Line
-                transitionDuration={LINE_TRANSITION_DURATION}
-                isActive={!props.isFinished}
-                order={0}
-                isLast={props.isLast}
-            />
+                <Line
+                    transitionDuration={LINE_TRANSITION_DURATION}
+                    isActive={!props.isFinished}
+                    order={0}
+                    isLast={props.isLast}
+                />
 
 
-            <Text style={{
-                color: props.isFinished || props.isActive ? colors.brandPrimary : colors.gray,
-                transition: props.isActive ? `color 0.2s ${LINE_TRANSITION_DURATION * 2}s linear` : '',
-            }}
-            >{props.step}
-            </Text>
-        </ProgressStepWrapper>
-    );
-};
+                <Text
+                    style={{
+                        color: props.isFinished || props.isActive ? colors.brandPrimary : colors.gray,
+                        transition: props.isActive ? `color 0.2s ${LINE_TRANSITION_DURATION * 2}s linear` : '',
+                        cursor: props.isFinished ? 'pointer' : 'initial',
+
+                    }}
+                    onClick={props.isFinished ? () => { props.onboardingActions.goToNextStep(props.step); } : null}
+                >
+                    {props.step}
+                </Text>
+            </ProgressStepWrapper>
+        );
+    }
+}
 
 ProgressStep.propTypes = {
     isActive: PropTypes.bool,

@@ -24,6 +24,7 @@ const ProgressSteps = props => (
                         isActive={props.activeStep.title === step}
                         isFinished={isStepFinished(props.steps, index, props.activeStep)}
                         isLast={props.steps.length - 1 === index}
+                        onboardingActions={props.onboardingActions}
                     />
                 </React.Fragment>
             ))}
