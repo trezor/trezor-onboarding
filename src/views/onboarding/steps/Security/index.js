@@ -5,6 +5,7 @@ import {
 import { FormattedMessage } from 'react-intl';
 import types from 'config/types';
 
+import { ID } from 'views/onboarding/constants/steps';
 import l10nMessages from './index.messages';
 import {
     StepWrapper, StepBodyWrapper, StepHeadingWrapper, ControlsWrapper,
@@ -23,7 +24,7 @@ const SecurityStep = ({ onboardingActions }) => (
                 <Button onClick={() => onboardingActions.goToNextStep()}>
                     <FormattedMessage {...l10nMessages.TR_GO_TO_SECURITY} />
                 </Button>
-                <Button isWhite>
+                <Button isWhite onClick={() => onboardingActions.goToNextStep(ID.FINAL_STEP)}>
                     <FormattedMessage {...l10nMessages.TR_SKIP_SECURITY} />
                 </Button>
             </ControlsWrapper>

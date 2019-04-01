@@ -4,14 +4,7 @@ import colors from 'config/colors';
 import ReactSelect from 'react-select';
 
 import LANGUAGE from 'config/languages';
-
-// todo: refactor
-const SCREEN_SIZE = {
-    XS: '480px',
-    SM: '768px',
-    MD: '992px',
-    LG: '1170px',
-};
+import * as BREAKPOINTS from 'config/breakpoints';
 
 const SelectWrapper = styled.div`
     display: flex;
@@ -19,11 +12,11 @@ const SelectWrapper = styled.div`
     align-items: center;
     width: 180px;
     
-    @media screen and (max-width: ${SCREEN_SIZE.MD}) {
+    @media screen and (max-width: ${BREAKPOINTS.MD}) {
         width: 140px;
     }
     
-    @media screen and (max-width: ${SCREEN_SIZE.XS}) {
+    @media screen and (max-width: ${BREAKPOINTS.XS}) {
         width: 100px;
     }
 `;

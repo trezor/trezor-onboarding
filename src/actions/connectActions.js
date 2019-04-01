@@ -102,8 +102,7 @@ const getDefaultParams = (name) => {
         return {
             label: 'My Trezor',
             skipBackup: true,
-            // todo: enable passphraseProtection when problem with invoking passphrase request solved
-            // passhpraseProtection: true, )
+            passhpraseProtection: true,
         };
     }
     return {};
@@ -120,7 +119,6 @@ const call = (name, params) => async (dispatch, getState) => {
             return;
         }
 
-        // todo: maybe useles to have RESET and START right after?
         dispatch({ type: CONNECT.DEVICE_CALL_RESET });
 
         dispatch({
@@ -137,7 +135,9 @@ const call = (name, params) => async (dispatch, getState) => {
             return;
         }
 
-        const callParams = {};
+        const callParams = {
+            useEmptyPassphrase: true,
+        };
         Object.assign(callParams, getDefaultParams(name, params), params);
         callParams.device = device;
 

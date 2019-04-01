@@ -62,7 +62,6 @@ const sortSteps = (steps, features) => {
         sortedSteps = steps.filter(step => step.id !== ID.BACKUP_STEP);
     }
 
-    // todo: move to actions;
     sortedSteps = sortedSteps.map((step) => {
         if (step.title !== ID.SECURITY_STEP) {
             return {

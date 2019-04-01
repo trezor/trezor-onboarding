@@ -228,10 +228,9 @@ class Onboarding extends React.PureComponent {
                     )}
                 </ProgressStepsWrapper>
 
-                {/* todo: transitionName example, needs to change css as well */}
                 <ComponentWrapper
                     component="div"
-                    transitionName="example"
+                    transitionName="step-transition"
                     transitionEnterTimeout={300}
                     transitionLeave={false}
                 >

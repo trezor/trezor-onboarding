@@ -112,6 +112,7 @@ class RecoveryStep extends React.Component {
                 </StepHeadingWrapper>
 
                 <StepBodyWrapper>
+                    { this.getStatus() }
                     { this.getStatus() === null && (
                         <React.Fragment>
                             <P>

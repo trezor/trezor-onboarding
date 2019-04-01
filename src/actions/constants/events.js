@@ -1,4 +1,3 @@
-// todo: maybe use from connect?
 export const BUTTON_REQUEST__PROTECT_CALL = 'ButtonRequest_ProtectCall';
 export const BUTTON_REQUEST__CONFIRM_WORD = 'ButtonRequest_ConfirmWord';
 export const BUTTON_REQUEST__WIPE_DEVICE = 'ButtonRequest_WipeDevice';

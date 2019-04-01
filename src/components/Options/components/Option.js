@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import colors from 'config/colors';
+import * as BREAKPOINTS from 'config/breakpoints';
 
 const OptionWrapper = styled.div`
     flex-grow: 1;
@@ -16,10 +17,8 @@ const OptionWrapper = styled.div`
     justify-content: space-between;
     align-items: center;
     cursor: pointer;
-
-    /* todo: breakpoint as constant  */
    
-    @media (min-width: 600px) {
+    @media (min-width: ${BREAKPOINTS.SM}px) {
         height: 200px;    
     }
 `;

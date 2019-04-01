@@ -7,6 +7,7 @@ import { Link } from 'trezor-ui-components';
 
 import colors from 'config/colors';
 import { TREZOR_URL } from 'config/urls';
+import * as BREAKPOINTS from 'config/breakpoints';
 
 import l10nMessages from './index.messages';
 import LanguagePicker from './components/LanguagePicker/Container';
@@ -16,8 +17,6 @@ const Wrapper = styled.header`
     height: 52px;
     background: ${colors.black};
     z-index: 200;
-    /* max-width: 100vw; */
-    /* overflow-x: hidden; */
 `;
 
 const LayoutWrapper = styled.div`
@@ -29,7 +28,7 @@ const LayoutWrapper = styled.div`
     align-items: center;
     justify-content: space-between;   
     
-    @media screen and (max-width: 1170px) { /* todo: constant */
+    @media screen and (max-width: ${BREAKPOINTS.LG}px) {
         padding: 0 25px;
     }
 `;

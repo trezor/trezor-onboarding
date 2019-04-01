@@ -132,14 +132,14 @@ class NewsleterStep extends React.Component {
                                     />
                                 </InputWrapper>
                                 <ControlsWrapper>
-                                    <Button isWhite onClick={() => this.skipEmail()}>
-                                        <FormattedMessage {...l10nCommonMessages.TR_SKIP} />
-                                    </Button>
                                     <Button
                                         isDisabled={this.validateInput().state !== 'success' || this.getEmailStatus() === 'sending'}
                                         onClick={this.submitEmail}
                                     >
                                         <FormattedMessage {...l10nCommonMessages.TR_SUBMIT} />
+                                    </Button>
+                                    <Button isWhite onClick={() => this.skipEmail()}>
+                                        <FormattedMessage {...l10nCommonMessages.TR_SKIP} />
                                     </Button>
                                 </ControlsWrapper>
                             </React.Fragment>

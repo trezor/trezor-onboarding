@@ -40,11 +40,11 @@ const baseStyles = createGlobalStyle`
     }
 
     /* classes required by react transitions https://github.com/reactjs/react-transition-group */
-    .example-enter {
+    .step-transition-enter {
         opacity: 0.01;
     }
 
-    .example-enter.example-enter-active {
+    .step-transition-enter.step-transition-enter-active {
         opacity: 1;
         transition: opacity 300ms ease-in;
     }
