@@ -185,7 +185,8 @@ const init = () => async (dispatch) => {
         } else if (event.type === UI.REQUEST_WORD) {
             dispatch({
                 type: CONNECT.UI_INTERACTION_EVENT,
-                name: UI.REQUEST_WORD,
+                // name: UI.REQUEST_WORD,
+                name: event.payload.type,
             });
         }
     });

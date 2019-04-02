@@ -5,12 +5,13 @@ import {
 } from 'trezor-ui-components';
 import { FormattedMessage, injectIntl } from 'react-intl';
 import { createFilter } from 'react-select';
-import { UI } from 'trezor-connect';
 
+import BlindMatrix from 'components/BlindMatrix';
 import bip39List from 'utils/bip39'; // todo: its not utils but constants I guess.
 import types from 'config/types';
 import colors from 'config/colors';
 import { RECOVER_DEVICE } from 'actions/constants/calls';
+import { WORD_REQUEST_PLAIN, WORD_REQUEST_MATRIX9 } from 'actions/constants/events';
 import { OptionsList } from 'components/Options';
 
 import l10nCommonMessages from 'support/commonMessages';
@@ -73,8 +74,11 @@ class RecoveryStep extends React.Component {
         if (deviceCall.result && deviceCall.name === RECOVER_DEVICE) {
             return 'success';
         }
-        if (deviceCall.name === RECOVER_DEVICE && deviceCall.isProgress && uiInteraction.counter && uiInteraction.name === UI.REQUEST_WORD) {
-            return 'recovering';
+        if (deviceCall.name === RECOVER_DEVICE && deviceCall.isProgress && uiInteraction.counter) {
+            if (uiInteraction.name === WORD_REQUEST_PLAIN) {
+                return 'recovering';
+            }
+            return 'recovering-advanced';
         }
         if (deviceCall.error && deviceCall.name === RECOVER_DEVICE) {
             return 'error';
@@ -252,6 +256,17 @@ class RecoveryStep extends React.Component {
                                         </P>
                                     )
                                 }
+                            </React.Fragment>
+                        )
+                    }
+
+                    {
+                        this.getStatus() === 'recovering-advanced' && (
+                            <React.Fragment>
+                                <BlindMatrix
+                                    count={uiInteraction.name === WORD_REQUEST_MATRIX9 ? 9 : 6}
+                                    onSubmit={this.props.recoveryActions.submit}
+                                />
                             </React.Fragment>
                         )
                     }

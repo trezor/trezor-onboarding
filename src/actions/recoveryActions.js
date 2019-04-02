@@ -16,9 +16,10 @@ const setAdvancedRecovery = value => ({
     value,
 });
 
-const submit = () => (dispatch, getState) => {
-    if (getState().recovery.word) {
-        dispatch(submitWord({ word: getState().recovery.word })).then(() => {
+const submit = word => (dispatch, getState) => {
+    const normalizedWord = word || getState().recovery.word;
+    if (word) {
+        dispatch(submitWord({ word: `${normalizedWord}` })).then(() => {
             dispatch({
                 type: RECOVERY.SET_WORD,
                 word: null,

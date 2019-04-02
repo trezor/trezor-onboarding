@@ -5,3 +5,7 @@ export const BUTTON_REQUEST__RESET_DEVICE = 'ButtonRequest_ResetDevice';
 export const BUTTON_REQUEST__MNEMONIC_WORD_COUNT = 'ButtonRequest_MnemonicWordCount';
 export const BUTTON_REQUEST__MNEMONIC_INPUT = 'ButtonRequest_MnemonicInput';
 export const BUTTON_REQUEST__OTHER = 'ButtonRequest_Other';
+
+export const WORD_REQUEST_PLAIN = 'WordRequestType_Plain';
+export const WORD_REQUEST_MATRIX9 = 'WordRequestType_Matrix9';
+export const WORD_REQUEST_MATRIX6 = 'WordRequestType_Matrix6';
