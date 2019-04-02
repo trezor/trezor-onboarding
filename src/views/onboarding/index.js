@@ -45,7 +45,7 @@ const Wrapper = styled.div`
     margin: 20px auto 0 auto;
     min-height: ${WRAPPER_HEIGHT}vh;
 
-/* todo: use breakpoints */
+    /* todo: use breakpoints */
 
     @media only screen and (min-width: 600px) {
         width: 80vw;
@@ -59,7 +59,6 @@ const ProgressStepsWrapper = styled.div`
     justify-content: center;
     align-items: center;
     border-bottom: 1px solid ${colors.grayLight};
-
 `;
 
 const ProgressStepsSlot = styled.div`

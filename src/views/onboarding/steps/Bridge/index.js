@@ -42,7 +42,7 @@ const DownloadBridgeButton = styled(Button)`
 
 const DetectingWrapper = styled.div`
     margin-top: 50px;
-    text-align: center;
+    /* text-align: center; */
 `;
 class InstallBridge extends PureComponent {
     constructor(props) {

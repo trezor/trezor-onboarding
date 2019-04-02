@@ -31,7 +31,7 @@ const TroubleshootInitialized = ({
                                 />
                             )
                         }
-
+                        {' '}
                         <FormattedMessage
                             {...l10nMessages.TR_DEVICE_FIRMWARE_VERSION}
                             values={{
