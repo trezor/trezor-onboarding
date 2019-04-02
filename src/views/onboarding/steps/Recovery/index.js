@@ -4,9 +4,7 @@ import {
     P, Button, Select,
 } from 'trezor-ui-components';
 import { FormattedMessage, injectIntl } from 'react-intl';
-
 import { createFilter } from 'react-select';
-
 import { UI } from 'trezor-connect';
 
 import bip39List from 'utils/bip39'; // todo: its not utils but constants I guess.
@@ -112,7 +110,6 @@ class RecoveryStep extends React.Component {
                 </StepHeadingWrapper>
 
                 <StepBodyWrapper>
-                    { this.getStatus() }
                     { this.getStatus() === null && (
                         <React.Fragment>
                             <P>
@@ -216,6 +213,22 @@ class RecoveryStep extends React.Component {
                                 </P>
                                 <SelectWrapper>
                                     <Select
+                                        styles={{
+                                            option: (provided, state) => ({
+                                                ...provided,
+                                                backgroundColor: state.isFocused ? colors.brandPrimary : provided.backgroundColor,
+                                                color: colors.grayDark,
+                                                textAlign: 'initial',
+                                            }),
+                                            control: (provided, state) => ({
+                                                ...provided,
+                                                boxShadow: `0 0 0 1px ${colors.brandPrimary}`,
+                                                '&:hover': {
+                                                    borderColor: colors.brandPrimary,
+                                                },
+                                                borderColor: state.isFocused ? colors.brandPrimary : 'transparent',
+                                            }),
+                                        }}
                                         autoFocus
                                         isSearchable
                                         isClearable={false}

@@ -17,12 +17,14 @@ const setAdvancedRecovery = value => ({
 });
 
 const submit = () => (dispatch, getState) => {
-    dispatch(submitWord({ word: getState().recovery.word })).then(() => {
-        dispatch({
-            type: RECOVERY.SET_WORD,
-            word: null,
+    if (getState().recovery.word) {
+        dispatch(submitWord({ word: getState().recovery.word })).then(() => {
+            dispatch({
+                type: RECOVERY.SET_WORD,
+                word: null,
+            });
         });
-    });
+    }
 };
 
 export {
