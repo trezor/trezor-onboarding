@@ -69,12 +69,12 @@ class HologramStep extends React.Component {
                                 Please <Link href={SUPPORT_URL}>contact our support</Link>
                                 </P>
                                 <ControlsWrapper>
-                                    <Button isWhite onClick={() => this.setState({ status: 'initial' })}>Back</Button>
                                     <Link href={SUPPORT_URL}>
-                                        <Button>
+                                        <Button style={{ width: '100%' }}>
                                             <FormattedMessage {...l10nCommonMessages.TR_CONTACT_SUPPORT} />
                                         </Button>
                                     </Link>
+                                    <Button isWhite onClick={() => this.setState({ status: 'initial' })}>Back</Button>
                                 </ControlsWrapper>
                             </React.Fragment>
                         )
