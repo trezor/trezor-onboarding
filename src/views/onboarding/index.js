@@ -37,36 +37,36 @@ const BORDER_RADIUS = 12;
 
 const Wrapper = styled.div`
     position: relative;
-    display: grid;
-    grid-template-areas: 
-        'steps'
-        'main';
-    grid-template-rows: 50px;    
-    grid-template-columns: 1fr;
+    display: flex;
+    flex-direction: column;
     background-color: ${colors.white};
     border-radius: ${BORDER_RADIUS}px;
     width: 95vw;
     margin: 20px auto 0 auto;
     min-height: ${WRAPPER_HEIGHT}vh;
 
+/* todo: use breakpoints */
+
     @media only screen and (min-width: 600px) {
         width: 80vw;
         margin: auto;
-        /* min-height: ${WRAPPER_HEIGHT}vh; */
-        grid-template-rows: 80px ${MAIN_HEIGHT}% ${FOOTER_HEIGHT}%;    
     } 
 `;
 
 const ProgressStepsWrapper = styled.div`
-    grid-area: steps;
-    
-    @media only screen and (min-width: 600px) {
-        margin: auto 0 auto 0;
-    } 
+    display: flex;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 1px solid ${colors.grayLight};
+
+`;
+
+const ProgressStepsSlot = styled.div`
+    height: 70px;
 `;
 
 const ComponentWrapper = styled(CSSTransitionGroup)`
-    grid-area: main;
     display: flex;
     flex-direction: column;
 `;
@@ -179,7 +179,6 @@ class Onboarding extends React.PureComponent {
         const {
             onboardingActions,
             connectActions,
-            fetchActions,
             recoveryActions,
             firmwareUpdateActions,
             newsletterActions,
@@ -223,15 +222,18 @@ class Onboarding extends React.PureComponent {
                         </UnexpectedStateOverlay>
                     )
                 }
-                <ProgressStepsWrapper>
+
+                <ProgressStepsSlot>
                     { this.getStep(activeStep).title && this.getStep(activeStep).title !== 'Basic setup' && (
-                        <ProgressSteps
-                            steps={[...new Set(steps.filter(s => s.title).map(s => s.title))]}
-                            activeStep={this.getStep(activeStep)}
-                            onboardingActions={onboardingActions}
-                        />
+                        <ProgressStepsWrapper>
+                            <ProgressSteps
+                                steps={[...new Set(steps.filter(s => s.title).map(s => s.title))]}
+                                activeStep={this.getStep(activeStep)}
+                                onboardingActions={onboardingActions}
+                            />
+                        </ProgressStepsWrapper>
                     )}
-                </ProgressStepsWrapper>
+                </ProgressStepsSlot>
 
                 <ComponentWrapper
                     component="div"

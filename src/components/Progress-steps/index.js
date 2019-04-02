@@ -6,6 +6,7 @@ import ProgressStep from './components/ProgressStep';
 
 const Wrapper = styled.div`
     display: flex;
+    width: 100%;
 `;
 
 const isStepFinished = (steps, index, activeStep) => {
