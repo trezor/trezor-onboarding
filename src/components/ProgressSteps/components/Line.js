@@ -9,7 +9,7 @@ const Line = styled.div`
     transition: all ${props => (props.transitionDuration)}s linear;
     transition-delay: ${props => (props.transitionDuration * props.order)}s;
     background: linear-gradient(to right, ${colors.brandPrimary} 50%, ${colors.gray} 50%);
-    background-size: 200% 100%;
+    background-size: 220% 100%;
     background-position: ${props => (props.isActive ? 'right bottom' : 'left bottom')};
 `;
 

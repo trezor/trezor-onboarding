@@ -41,7 +41,6 @@ const LINE_TRANSITION_DURATION = 0.25;
 const ProgressStep = (props) => {
     const color = props.isActive ? colors.brandPrimary : colors.gray;
     const transition = props.isActive ? `background-color 0.2s ${LINE_TRANSITION_DURATION * 2}s linear, color 0.2s ${LINE_TRANSITION_DURATION * 2}s linear, border-color 0.2s ${LINE_TRANSITION_DURATION * 2}s linear` : '';
-
     const borderColor = props.isActive || props.isFinished ? colors.brandPrimary : colors.gray;
     let backgroundColor;
     if (props.isActive) {
@@ -71,7 +70,7 @@ const ProgressStep = (props) => {
                     transition,
                     cursor: isClickable ? 'pointer' : 'initial',
                 }}
-                onClick={props.isFinished ? () => { props.onboardingActions.goToNextStep(props.step); } : null}
+                onClick={isClickable ? () => { props.onboardingActions.goToNextStep(props.step); } : null}
             />
 
             <Line

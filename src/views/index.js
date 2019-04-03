@@ -23,6 +23,8 @@ const Wrapper = styled.div`
     min-height: 100vh;
     background-color: ${colors.white};
 
+    /*  todo: add constant  */
+    
     @media only screen and (min-width: 600px) {
         ${props => (props.animate && css`animation: ${backgroundAnimation} 1s linear`)};
         background-color: ${props => (props.show ? colors.gray : colors.white)};
