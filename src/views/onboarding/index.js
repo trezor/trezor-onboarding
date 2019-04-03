@@ -10,7 +10,7 @@ import * as EVENTS from 'actions/constants/events';
 import ProgressSteps from 'components/ProgressSteps';
 
 import { ID } from 'views/onboarding/constants/steps';
-import * as conditions from 'views/onboarding/utils/conditions';
+import { getFnForRule } from 'utils/rules';
 
 import UnexpectedState from 'views/onboarding/components/UnexpectedState';
 
@@ -50,6 +50,7 @@ const Wrapper = styled.div`
     @media only screen and (min-width: 600px) {
         width: 80vw;
         margin: auto;
+        overflow: hidden;
     } 
 `;
 
@@ -118,7 +119,7 @@ const UnexpectedStateOverlay = styled.div`
     width: 100%;
     height: 100%;
     background-color: ${colors.white};
-    opacity: 0.95;
+    /* opacity: 1; */
     z-index: 1000;
 `;
 
@@ -133,17 +134,27 @@ class Onboarding extends React.PureComponent {
 
     handleErrors() {
         const {
-            device, activeStep, deviceCall, connectError,
+            device,
+            prevDeviceId,
+            activeStep,
+            connectError,
         } = this.props;
-        const errorStates = conditions.evaluate(device, this.getStep(activeStep).entryConditions);
 
+        if (!this.getStep(activeStep).allowedDeviceStates) {
+            return [];
+        }
+
+        const errorStates = [];
+        this.getStep(activeStep).allowedDeviceStates.forEach((state) => {
+            console.warn('state', state);
+            const fn = getFnForRule(state);
+            console.warn('fn({ device, prevDeviceId })', fn({ device, prevDeviceId }));
+            if (fn({ device, prevDeviceId }) === false) {
+                errorStates.push(state);
+            }
+        });
         // we can also have error from deviceCall
         // todo: maybe distinguish between deviceCall unexpected state errors (which go here) and other errors;
-        // todo: move logic to reducer;
-        const globalErrors = [];
-        if (deviceCall.error && globalErrors.includes(deviceCall.error)) {
-            errorStates.push(deviceCall.error);
-        }
         if (connectError) {
             errorStates.push(`Failed to establish connection with Trezor servers. Please check your internet connection. [Error: ${connectError}]`);
         }
@@ -194,14 +205,14 @@ class Onboarding extends React.PureComponent {
             recovery,
             firmwareUpdate,
             newsletter,
-
         } = this.props;
+
         // model is either selected by user or later overrided by connected device
-        // todo: this belongs to reducer;
         const model = Number(device && device.features ? device.features.major_version : selectedModel) || 1;
 
         // todo: solve how to handle cases we fail to init connect;
         const errorStates = this.handleErrors();
+        console.warn('errorStates', errorStates);
 
         // todo: wrap this up to separete component probably
         let TrezorActionText;

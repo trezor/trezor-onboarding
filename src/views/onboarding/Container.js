@@ -13,6 +13,7 @@ import Onboarding from './index';
 const mapStateToProps = state => ({
     // connect reducer
     device: state.connect.device,
+    prevDeviceId: state.connect.prevDeviceId,
     connectError: state.connect.connectError,
     transport: state.connect.transport,
     deviceCall: state.connect.deviceCall,

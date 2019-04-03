@@ -47,8 +47,6 @@ const getDefaultParams = (name) => {
 
 const call = (name, params) => async (dispatch, getState) => {
     const { device } = getState().connect;
-    // eslint-disable-next-line no-param-reassign
-
     try {
         const currentCall = getState().connect.deviceCall;
         if (currentCall.isProgress) {

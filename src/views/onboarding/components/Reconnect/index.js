@@ -1,17 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { H1, P } from 'trezor-ui-components';
+import { P } from 'trezor-ui-components';
 
 import { UnorderedList } from 'components/Lists';
 import { TrezorConnect } from 'components/Prompts';
 
-const ReconnectWrapper = styled.div`
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-`;
+import { StepWrapper, StepHeadingWrapper, StepBodyWrapper } from '../Wrapper';
 
 const items = [{
     component: <P>Device is not well connected to the cable</P>,
@@ -25,18 +20,22 @@ const items = [{
 }];
 
 const Reconnect = ({ model }) => (
-    <ReconnectWrapper>
-        <H1>Reconnect your device</H1>
-        <TrezorConnect model={model} />
-        <P>
+    <StepWrapper>
+        <StepHeadingWrapper>
+        Reconnect your device
+        </StepHeadingWrapper>
+        <StepBodyWrapper>
+            <TrezorConnect model={model} />
+            <P>
             We lost connection with your device. This might mean:
-        </P>
-        <UnorderedList items={items} />
-    </ReconnectWrapper>
+            </P>
+            <UnorderedList items={items} />
+        </StepBodyWrapper>
+    </StepWrapper>
 );
 
 Reconnect.propTypes = {
-    model: PropTypes.string.isRequired,
+    model: PropTypes.number.isRequired,
 };
 
 export default Reconnect;

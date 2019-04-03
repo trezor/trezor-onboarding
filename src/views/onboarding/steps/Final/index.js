@@ -67,22 +67,24 @@ const FinalStep = () => (
             <OptionsList
                 options={[{
                     content: <WalletOption />,
-                    // value: '1',
                     key: 1,
-                    onClick: () => {},
+                    onClick: () => {
+                        window.location.href = 'https://wallet.trezor.io';
+                    },
                 }, {
                     content: <PasswordManagerOption />,
-                    // value: '2',
                     key: 2,
-                    onClick: () => {},
+                    onClick: () => {
+                        window.location.href = 'https://trezor.io/passwords';
+                    },
                 }, {
                     content: <EthereumBetaWalletOption />,
-                    // value: '3',
                     key: 3,
-                    onClick: () => {},
+                    onClick: () => {
+                        window.location.href = 'https://beta-wallet.trezor.io/next';
+                    },
                 }]}
                 selected={null}
-                // selectedAccessor="value" // todo: maybe not needed
             />
         </ControlsWrapper>
     </StepWrapper>
