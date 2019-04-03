@@ -18,7 +18,7 @@ const setAdvancedRecovery = value => ({
 
 const submit = word => (dispatch, getState) => {
     const normalizedWord = word || getState().recovery.word;
-    if (word) {
+    if (normalizedWord) {
         dispatch(submitWord({ word: `${normalizedWord}` })).then(() => {
             dispatch({
                 type: RECOVERY.SET_WORD,

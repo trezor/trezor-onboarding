@@ -192,7 +192,6 @@ class RecoveryStep extends React.Component {
                                 }]}
                                 selected={this.props.recovery.advancedRecovery}
                                 selectedAccessor="value"
-                                // todo: probably move to reducer, this wont work with changing translations.
                                 onSelect={(value) => { this.props.recoveryActions.setAdvancedRecovery(value); }}
                             />
 
@@ -242,7 +241,6 @@ class RecoveryStep extends React.Component {
                                         options={sortedBip39}
                                         filterOption={createFilter({
                                             ignoreCase: true,
-                                            ignoreAccents: true,
                                             trim: true,
                                             matchFrom: 'start',
                                         })}
