@@ -5,6 +5,7 @@ import { CSSTransitionGroup } from 'react-transition-group';
 
 import types from 'config/types';
 import colors from 'config/colors';
+import { SM } from 'config/breakpoints';
 import { TOS_URL } from 'config/urls';
 import * as EVENTS from 'actions/constants/events';
 import ProgressSteps from 'components/ProgressSteps';
@@ -45,9 +46,7 @@ const Wrapper = styled.div`
     margin: 20px auto 0 auto;
     min-height: ${WRAPPER_HEIGHT}vh;
 
-    /* todo: use breakpoints */
-
-    @media only screen and (min-width: 600px) {
+    @media only screen and (min-width: ${SM}px) {
         width: 80vw;
         margin: auto;
         overflow: hidden;

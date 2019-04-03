@@ -3,6 +3,7 @@ import Proptypes from 'prop-types';
 import styled, { keyframes, css } from 'styled-components';
 import { hot } from 'react-hot-loader/root';
 
+import { SM } from 'config/breakpoints';
 import types from 'config/types';
 import colors from 'config/colors';
 import Onboarding from 'views/onboarding/Container';
@@ -24,8 +25,8 @@ const Wrapper = styled.div`
     background-color: ${colors.white};
 
     /*  todo: add constant  */
-    
-    @media only screen and (min-width: 600px) {
+
+    @media only screen and (min-width: ${SM}px) {
         ${props => (props.animate && css`animation: ${backgroundAnimation} 1s linear`)};
         background-color: ${props => (props.show ? colors.gray : colors.white)};
     }
