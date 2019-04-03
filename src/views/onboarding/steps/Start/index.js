@@ -4,7 +4,6 @@ import { P } from 'trezor-ui-components';
 import { FormattedMessage } from 'react-intl';
 
 import types from 'config/types';
-import { Dots } from 'components/Loaders';
 import { RESET_DEVICE } from 'actions/constants/calls';
 import { OptionsList } from 'components/Options';
 import { ID } from 'views/onboarding/constants/steps';

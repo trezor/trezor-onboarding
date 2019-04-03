@@ -7,7 +7,7 @@ import types from 'config/types';
 import colors from 'config/colors';
 import { TOS_URL } from 'config/urls';
 import * as EVENTS from 'actions/constants/events';
-import ProgressSteps from 'components/Progress-steps';
+import ProgressSteps from 'components/ProgressSteps';
 
 import { ID } from 'views/onboarding/constants/steps';
 import * as conditions from 'views/onboarding/utils/conditions';
