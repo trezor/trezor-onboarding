@@ -4,7 +4,9 @@ import styled from 'styled-components';
 
 import colors from 'config/colors';
 import types from 'config/types';
+import { ID } from 'views/onboarding/constants/steps';
 import Line from './Line';
+
 
 const ProgressStepWrapper = styled.div`
     display: flex;
@@ -48,6 +50,10 @@ const ProgressStep = (props) => {
         backgroundColor = colors.brandPrimary;
     }
 
+    const notClickableDots = [ID.INIT_DEVICE];
+
+    const isClickable = !notClickableDots.includes(props.step) && props.isFinished;
+
     return (
         <ProgressStepWrapper>
             <Line
@@ -63,7 +69,7 @@ const ProgressStep = (props) => {
                     color,
                     backgroundColor,
                     transition,
-                    cursor: props.isFinished ? 'pointer' : 'initial',
+                    cursor: isClickable ? 'pointer' : 'initial',
                 }}
                 onClick={props.isFinished ? () => { props.onboardingActions.goToNextStep(props.step); } : null}
             />
@@ -81,7 +87,7 @@ const ProgressStep = (props) => {
                     transition: props.isActive ? `color 0.2s ${LINE_TRANSITION_DURATION * 2}s linear` : '',
                     cursor: props.isFinished ? 'pointer' : 'initial',
                 }}
-                onClick={props.isFinished ? () => { props.onboardingActions.goToNextStep(props.step); } : null}
+                onClick={isClickable ? () => { props.onboardingActions.goToNextStep(props.step); } : null}
             >
                 {props.step}
             </Text>
