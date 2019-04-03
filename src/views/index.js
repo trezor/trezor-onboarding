@@ -3,6 +3,7 @@ import Proptypes from 'prop-types';
 import styled, { keyframes, css } from 'styled-components';
 import { hot } from 'react-hot-loader/root';
 
+import types from 'config/types';
 import colors from 'config/colors';
 import Onboarding from 'views/onboarding/Container';
 import ErrorBoundary from 'support/ErrorBoundary';
@@ -36,9 +37,9 @@ class App extends React.PureComponent {
     }
 
     render() {
-        const { error, activeStep, init } = this.props;
+        const { error, activeStepId, init } = this.props;
         return (
-            <Wrapper animate={!exludedStepsForWrapper.includes(activeStep)} show={!exludedStepsForWrapper.includes(activeStep)}>
+            <Wrapper animate={!exludedStepsForWrapper.includes(activeStepId)} show={!exludedStepsForWrapper.includes(activeStepId)}>
                 <IntlProvider>
                     {/* here we pass error possibly caught outside render that would not be caught by ErrorBoundary otherwise */}
                     <React.Fragment>
@@ -47,9 +48,7 @@ class App extends React.PureComponent {
                             <Onboarding />
                         </ErrorBoundary>
                     </React.Fragment>
-
                 </IntlProvider>
-
             </Wrapper>
         );
     }
@@ -57,7 +56,7 @@ class App extends React.PureComponent {
 
 App.propTypes = {
     error: Proptypes.object,
-    activeStep: Proptypes.string.isRequired,
+    activeStepId: types.activeStepId,
 };
 
 export default hot(App);

@@ -10,6 +10,7 @@ export default {
             message: PropTypes.string,
         }),
     }),
+    activeStepId: PropTypes.string,
     activeSubStep: PropTypes.string,
     deviceInteraction: PropTypes.shape({
         name: PropTypes.string,
@@ -24,7 +25,6 @@ export default {
     fetchActions: PropTypes.objectOf(PropTypes.func),
     transport: PropTypes.object, // todo: improve ?? not sure if needed.
     model: PropTypes.oneOf([1, 2]),
-
     fetchCall: PropTypes.shape({
         name: PropTypes.string,
         isProgress: PropTypes.bool,

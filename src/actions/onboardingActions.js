@@ -4,8 +4,8 @@ import { getLocalization } from './fetchActions';
 
 const goToNextStep = stepId => (dispatch, getState) => {
     const { device } = getState().connect;
-    const { activeStep, steps } = getState().onboarding;
-    const nextStep = stepId || findNextStepId(activeStep, steps);
+    const { activeStepId, steps } = getState().onboarding;
+    const nextStep = stepId || findNextStepId(activeStepId, steps);
     if (nextStep === ID.SECURITY_STEP) {
         dispatch({
             type: ONBOARDING.SET_STEPS,
@@ -24,8 +24,8 @@ const goToSubStep = subStepId => ({
 });
 
 const goToPreviousStep = stepId => (dispatch, getState) => {
-    const { activeStep } = getState().onboarding;
-    const prevStep = stepId || findPrevStepId(activeStep, getState().onboarding.steps);
+    const { activeStepId } = getState().onboarding;
+    const prevStep = stepId || findPrevStepId(activeStepId, getState().onboarding.steps);
     dispatch({
         type: ONBOARDING.GO_TO_PREVIOUS_STEP,
         stepId: prevStep,

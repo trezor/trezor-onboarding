@@ -119,7 +119,6 @@ const UnexpectedStateOverlay = styled.div`
     width: 100%;
     height: 100%;
     background-color: ${colors.white};
-    /* opacity: 1; */
     z-index: 1000;
 `;
 
@@ -129,26 +128,24 @@ class Onboarding extends React.PureComponent {
     }
 
     getScreen() {
-        return this.props.activeStep;
+        return this.props.activeStepId;
     }
 
     handleErrors() {
         const {
             device,
             prevDeviceId,
-            activeStep,
+            activeStepId,
             connectError,
         } = this.props;
 
-        if (!this.getStep(activeStep).allowedDeviceStates) {
+        if (!this.getStep(activeStepId).allowedDeviceStates) {
             return [];
         }
 
         const errorStates = [];
-        this.getStep(activeStep).allowedDeviceStates.forEach((state) => {
-            console.warn('state', state);
+        this.getStep(activeStepId).allowedDeviceStates.forEach((state) => {
             const fn = getFnForRule(state);
-            console.warn('fn({ device, prevDeviceId })', fn({ device, prevDeviceId }));
             if (fn({ device, prevDeviceId }) === false) {
                 errorStates.push(state);
             }
@@ -176,16 +173,15 @@ class Onboarding extends React.PureComponent {
 
     shouldDisplaySkipSecurity() {
         const displayOn = [ID.BACKUP_STEP, ID.SET_PIN_STEP, ID.NAME_STEP, ID.BOOKMARK_STEP, ID.NEWSLETTER_STEP];
-        return displayOn.includes(this.props.activeStep);
+        return displayOn.includes(this.props.activeStepId);
     }
 
     shouldDisplayGoBack() {
         const doNotDisplayOn = [ID.WELCOME_STEP, ID.FINAL_STEP];
-        return !doNotDisplayOn.includes(this.props.activeStep);
+        return !doNotDisplayOn.includes(this.props.activeStepId);
     }
 
     render() {
-        // todo: rename activeStep to activeStepId
         const {
             onboardingActions,
             connectActions,
@@ -194,7 +190,7 @@ class Onboarding extends React.PureComponent {
             newsletterActions,
             selectedModel,
             transport,
-            activeStep,
+            activeStepId,
             activeSubStep,
             device,
             deviceCall,
@@ -212,11 +208,9 @@ class Onboarding extends React.PureComponent {
 
         // todo: solve how to handle cases we fail to init connect;
         const errorStates = this.handleErrors();
-        console.warn('errorStates', errorStates);
-
         // todo: wrap this up to separete component probably
         let TrezorActionText;
-        if (activeStep === ID.START_STEP) {
+        if (activeStepId === ID.START_STEP) {
             // StartStep call require custom text
             TrezorActionText = () => <P>Complete action on your device. By clicking continue you agree with <Link href={TOS_URL}>Terms of services</Link></P>;
         } else {
@@ -234,11 +228,11 @@ class Onboarding extends React.PureComponent {
                 }
 
                 <ProgressStepsSlot>
-                    { this.getStep(activeStep).title && this.getStep(activeStep).title !== 'Basic setup' && (
+                    { this.getStep(activeStepId).title && this.getStep(activeStepId).title !== 'Basic setup' && (
                         <ProgressStepsWrapper>
                             <ProgressSteps
                                 steps={[...new Set(steps.filter(s => s.title).map(s => s.title))]}
-                                activeStep={this.getStep(activeStep)}
+                                activeStep={this.getStep(activeStepId)}
                                 onboardingActions={onboardingActions}
                             />
                         </ProgressStepsWrapper>

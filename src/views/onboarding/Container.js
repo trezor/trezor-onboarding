@@ -22,7 +22,7 @@ const mapStateToProps = state => ({
 
     // onboarding reducer
     selectedModel: state.onboarding.selectedModel,
-    activeStep: state.onboarding.activeStep,
+    activeStepId: state.onboarding.activeStepId,
     activeSubStep: state.onboarding.activeSubStep,
     steps: state.onboarding.steps,
 

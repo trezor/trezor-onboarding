@@ -7,7 +7,7 @@ import App from './index';
 
 const mapStateToProps = state => ({
     error: state.onboarding.error,
-    activeStep: state.onboarding.activeStep,
+    activeStepId: state.onboarding.activeStepId,
 });
 
 const mapDispatchToProps = dispatch => ({

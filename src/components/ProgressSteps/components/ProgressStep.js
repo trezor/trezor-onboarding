@@ -85,7 +85,7 @@ const ProgressStep = (props) => {
                 style={{
                     color: props.isFinished || props.isActive ? colors.brandPrimary : colors.gray,
                     transition: props.isActive ? `color 0.2s ${LINE_TRANSITION_DURATION * 2}s linear` : '',
-                    cursor: props.isFinished ? 'pointer' : 'initial',
+                    cursor: isClickable ? 'pointer' : 'initial',
                 }}
                 onClick={isClickable ? () => { props.onboardingActions.goToNextStep(props.step); } : null}
             >
