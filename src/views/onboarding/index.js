@@ -136,6 +136,7 @@ class Onboarding extends React.PureComponent {
             prevDeviceId,
             activeStepId,
             connectError,
+            uiInteraction,
         } = this.props;
 
         if (!this.getStep(activeStepId).allowedDeviceStates) {
@@ -145,7 +146,7 @@ class Onboarding extends React.PureComponent {
         const errorStates = [];
         this.getStep(activeStepId).allowedDeviceStates.forEach((state) => {
             const fn = getFnForRule(state);
-            if (fn({ device, prevDeviceId }) === false) {
+            if (fn({ device, prevDeviceId, uiInteraction }) === true) {
                 errorStates.push(state);
             }
         });

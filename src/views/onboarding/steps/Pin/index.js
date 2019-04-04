@@ -10,9 +10,9 @@ import { PIN_MANUAL_URL } from 'config/urls';
 import types from 'config/types';
 import * as BREAKPOINTS from 'config/breakpoints';
 import l10nCommonMessages from 'support/commonMessages';
-import l10nMessages from './index.messages';
+import PinMatrix from 'views/onboarding/components/PinMatrix';
 
-import PinMatrix from './components/PinMatrix';
+import l10nMessages from './index.messages';
 import HowToSetPinGif from './videos/pin.gif';
 
 import {

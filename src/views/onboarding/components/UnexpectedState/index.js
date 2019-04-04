@@ -2,9 +2,12 @@ import React from 'react';
 import { P, H2, Button } from 'trezor-ui-components';
 import PropTypes from 'prop-types';
 import {
-    IS_SAME_DEVICE, DEVICE_IS_CONNECTED, DEVICE_IS_USED_HERE, DEVICE_IS_NOT_IN_BOOTLOADER,
+    IS_NOT_SAME_DEVICE, DEVICE_IS_NOT_CONNECTED, DEVICE_IS_NOT_USED_HERE, DEVICE_IS_IN_BOOTLOADER, DEVICE_IS_REQUESTING_PIN,
 } from 'utils/rules';
 
+import PinMatrix from 'views/onboarding/components/PinMatrix';
+
+import Pin from 'trezor-ui-components/lib/components/inputs/Pin';
 import Reconnect from '../Reconnect';
 import { StepWrapper, StepBodyWrapper } from '../Wrapper';
 
@@ -33,6 +36,20 @@ const IsNotInBootloader = () => (
     </P>
 );
 
+const IsDeviceRequestingPin = ({ connectActions }) => (
+    <React.Fragment>
+        <H2>Enter PIN</H2>
+        <PinMatrix onPinSubmit={
+            (pin) => {
+                console.warn('pin', pin, connectActions);
+                connectActions.submitNewPin({ pin });
+            }
+        }
+        />
+    </React.Fragment>
+
+);
+
 const DeviceIsUsedHere = ({ connectActions }) => (
     <React.Fragment>
         <H2>Device is used in other window</H2>
@@ -47,13 +64,15 @@ const DeviceIsUsedHere = ({ connectActions }) => (
 
 const UnexpectedState = ({ caseType, model, connectActions }) => {
     switch (caseType) {
-        case DEVICE_IS_CONNECTED:
+        case DEVICE_IS_NOT_CONNECTED:
             return <UnexpectedStateCommon><Reconnect model={model} /></UnexpectedStateCommon>;
-        case IS_SAME_DEVICE:
+        case IS_NOT_SAME_DEVICE:
             return <UnexpectedStateCommon><IsSameDevice /></UnexpectedStateCommon>;
-        case DEVICE_IS_NOT_IN_BOOTLOADER:
+        case DEVICE_IS_IN_BOOTLOADER:
             return <UnexpectedStateCommon><IsNotInBootloader /></UnexpectedStateCommon>;
-        case DEVICE_IS_USED_HERE:
+        case DEVICE_IS_REQUESTING_PIN:
+            return <UnexpectedStateCommon><IsDeviceRequestingPin connectActions={connectActions} /></UnexpectedStateCommon>;
+        case DEVICE_IS_NOT_USED_HERE:
             return <UnexpectedStateCommon><DeviceIsUsedHere connectActions={connectActions} /></UnexpectedStateCommon>;
         default:
             return <UnexpectedStateCommon>Error: {caseType}</UnexpectedStateCommon>;
