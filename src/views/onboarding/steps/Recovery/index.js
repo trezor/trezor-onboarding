@@ -54,10 +54,13 @@ class RecoveryStep extends React.Component {
     }
 
     componentWillUnmount() {
+        console.warn('componentWillUnMount');
+
         window.removeEventListener('keydown', this.keyboardHandler, false);
     }
 
     onSubmit = () => {
+        console.warn('on submit caa');
         this.props.recoveryActions.submit();
     }
 
@@ -98,6 +101,7 @@ class RecoveryStep extends React.Component {
     }
 
     keyboardHandler(event) {
+        console.warn('keyboardh', event.keyCode);
         // 13 enter, 9 tab
         if (event.keyCode === 13 || event.keyCode === 9) {
             this.onSubmit();

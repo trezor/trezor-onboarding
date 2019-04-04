@@ -221,7 +221,7 @@ class Onboarding extends React.PureComponent {
                 {
                     errorStates.length > 0 && (
                         <UnexpectedStateOverlay>
-                            <UnexpectedState caseType={errorStates[0]} model={model} />
+                            <UnexpectedState caseType={errorStates[0]} model={model} connectActions={connectActions} />
                         </UnexpectedStateOverlay>
                     )
                 }

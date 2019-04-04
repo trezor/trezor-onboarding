@@ -47,11 +47,13 @@ const connect = (state = initialState, action) => {
                 ...state,
                 transport: action.transport,
             };
+        case DEVICE.CONNECT_UNACQUIRED:
         case DEVICE.CONNECT:
             return {
                 ...state,
                 device: {
                     connected: true,
+                    features: {},
                     ...action.device,
                 },
             };

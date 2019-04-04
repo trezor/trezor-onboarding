@@ -1,7 +1,9 @@
 import React from 'react';
-import { P } from 'trezor-ui-components';
+import { P, H2, Button } from 'trezor-ui-components';
 import PropTypes from 'prop-types';
-import { IS_SAME_DEVICE, DEVICE_IS_CONNECTED } from 'utils/rules';
+import {
+    IS_SAME_DEVICE, DEVICE_IS_CONNECTED, DEVICE_IS_USED_HERE,
+} from 'utils/rules';
 
 import Reconnect from '../Reconnect';
 import { StepWrapper, StepBodyWrapper } from '../Wrapper';
@@ -25,12 +27,26 @@ const IsSameDevice = () => (
     </P>
 );
 
-const UnexpectedState = ({ caseType, model }) => {
+const DeviceIsUsedHere = ({ connectActions }) => (
+    <React.Fragment>
+        <H2>Device is used in other window</H2>
+        <P>
+        This is a big no no. Please dont use device in other window. Close all other windows or tabs that might
+        be using your Trezor device.
+        </P>
+        <Button onClick={connectActions.getFeatures}>Ok, I wont do it again</Button>
+    </React.Fragment>
+
+);
+
+const UnexpectedState = ({ caseType, model, connectActions }) => {
     switch (caseType) {
         case DEVICE_IS_CONNECTED:
             return <UnexpectedStateCommon><Reconnect model={model} /></UnexpectedStateCommon>;
         case IS_SAME_DEVICE:
             return <UnexpectedStateCommon><IsSameDevice /></UnexpectedStateCommon>;
+        case DEVICE_IS_USED_HERE:
+            return <UnexpectedStateCommon><DeviceIsUsedHere connectActions={connectActions} /></UnexpectedStateCommon>;
         default:
             return <UnexpectedStateCommon>Error: {caseType}</UnexpectedStateCommon>;
     }
