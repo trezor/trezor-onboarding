@@ -2,7 +2,7 @@ import React from 'react';
 import { P, H2, Button } from 'trezor-ui-components';
 import PropTypes from 'prop-types';
 import {
-    IS_SAME_DEVICE, DEVICE_IS_CONNECTED, DEVICE_IS_USED_HERE,
+    IS_SAME_DEVICE, DEVICE_IS_CONNECTED, DEVICE_IS_USED_HERE, DEVICE_IS_NOT_IN_BOOTLOADER,
 } from 'utils/rules';
 
 import Reconnect from '../Reconnect';
@@ -27,6 +27,12 @@ const IsSameDevice = () => (
     </P>
 );
 
+const IsNotInBootloader = () => (
+    <P>
+        Connected device is in bootloader mode. Reconnect it to continue;
+    </P>
+);
+
 const DeviceIsUsedHere = ({ connectActions }) => (
     <React.Fragment>
         <H2>Device is used in other window</H2>
@@ -45,6 +51,8 @@ const UnexpectedState = ({ caseType, model, connectActions }) => {
             return <UnexpectedStateCommon><Reconnect model={model} /></UnexpectedStateCommon>;
         case IS_SAME_DEVICE:
             return <UnexpectedStateCommon><IsSameDevice /></UnexpectedStateCommon>;
+        case DEVICE_IS_NOT_IN_BOOTLOADER:
+            return <UnexpectedStateCommon><IsNotInBootloader /></UnexpectedStateCommon>;
         case DEVICE_IS_USED_HERE:
             return <UnexpectedStateCommon><DeviceIsUsedHere connectActions={connectActions} /></UnexpectedStateCommon>;
         default:

@@ -12,7 +12,6 @@ import {
     SET_DEVICE_FEATURES,
     SET_CONNECT_ERROR,
 } from 'actions/constants/connect';
-import { nullLiteral, arrowFunctionExpression } from '@babel/types';
 
 const initialState = {
     device: null,
@@ -33,6 +32,24 @@ const initialState = {
         counter: 0,
     },
     connectError: null,
+};
+
+
+const setPrevDeviceId = (state, device) => {
+    // unacquired device
+    if (!device.features) {
+        return null;
+    }
+    if (!device.features.device_id) {
+        return state.prevDeviceId;
+    }
+    if (state.prevDeviceId === null) {
+        return device.features.device_id;
+    }
+    if (state.prevDeviceId !== device.features.device_id) {
+        return state.prevDeviceId;
+    }
+    return device.features.device_id;
 };
 
 const connect = (state = initialState, action) => {
@@ -74,7 +91,7 @@ const connect = (state = initialState, action) => {
                     connected: false,
                     ...action.device,
                 },
-                prevDeviceId: !state.prevDeviceId || state.prevDeviceId === action.device.features.device_id ? action.device.features.device_id : state.prevDeviceId,
+                prevDeviceId: setPrevDeviceId(state, action.device),
             };
         case DEVICE_CALL_RESET: {
             return {
