@@ -62,6 +62,7 @@ const connect = (state = initialState, action) => {
                 ...state,
                 device: {
                     connected: true,
+                    features: {},
                     ...action.device,
                 },
             };
