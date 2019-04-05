@@ -58,7 +58,7 @@ const ProgressStep = (props) => {
             <Line
                 transitionDuration={LINE_TRANSITION_DURATION}
                 isActive={((!props.isFinished && !props.isActive) || props.index === 0)}
-                order={1}
+                order={props.isGoingForward ? 1 : 0}
                 isFirst={props.index === 0}
             />
 
@@ -76,7 +76,7 @@ const ProgressStep = (props) => {
             <Line
                 transitionDuration={LINE_TRANSITION_DURATION}
                 isActive={!props.isFinished}
-                order={0}
+                order={!props.isGoingForward ? 1 : 0}
                 isLast={props.isLast}
             />
 
