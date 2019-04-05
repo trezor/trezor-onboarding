@@ -54,13 +54,10 @@ class RecoveryStep extends React.Component {
     }
 
     componentWillUnmount() {
-        console.warn('componentWillUnMount');
-
         window.removeEventListener('keydown', this.keyboardHandler, false);
     }
 
     onSubmit = () => {
-        console.warn('on submit caa');
         this.props.recoveryActions.submit();
     }
 
@@ -73,7 +70,6 @@ class RecoveryStep extends React.Component {
 
     getStatus = () => {
         const { deviceCall, uiInteraction } = this.props;
-        // todo: better detection of success call;
         if (deviceCall.result && deviceCall.name === RECOVER_DEVICE) {
             return 'success';
         }
@@ -90,18 +86,10 @@ class RecoveryStep extends React.Component {
     }
 
     recoveryDevice() {
-        this.props.connectActions.recoveryDevice({
-            word_count: this.props.recovery.wordsCount,
-            // todo: enable passphraseProtection when problem with invoking passphrase request solved
-            // todo: decide on case passhpraseProtection or passphrase_protection?
-            // passhpraseProtection: true,
-            pin_protection: false,
-            type: this.props.recovery.advancedRecovery ? 1 : 0,
-        });
+        this.props.connectActions.recoveryDevice();
     }
 
     keyboardHandler(event) {
-        console.warn('keyboardh', event.keyCode);
         // 13 enter, 9 tab
         if (event.keyCode === 13 || event.keyCode === 9) {
             this.onSubmit();
@@ -240,7 +228,10 @@ class RecoveryStep extends React.Component {
                                         isSearchable
                                         isClearable={false}
                                         value={this.props.recovery.word}
-                                        onChange={item => this.props.recoveryActions.setWord(item.value)}
+                                        onChange={(item) => {
+                                            this.props.recoveryActions.setWord(item.value);
+                                            this.props.recoveryActions.submit();
+                                        }}
                                         placeholder={this.props.intl.formatMessage(l10nMessages.TR_CHECK_YOUR_DEVICE)}
                                         options={sortedBip39}
                                         filterOption={createFilter({

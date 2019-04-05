@@ -79,6 +79,9 @@ class SetPinStep extends React.Component {
                                     <Button onClick={() => { this.props.connectActions.changePin(); }}>
                                         <FormattedMessage {...l10nMessages.TR_SET_PIN} />
                                     </Button>
+                                    <Button isWhite onClick={() => this.props.onboardingActions.goToNextStep()}>
+                                        <FormattedMessage {...l10nCommonMessages.TR_SKIP} />
+                                    </Button>
                                 </ControlsWrapper>
                             </React.Fragment>
                         )

@@ -14,9 +14,8 @@ import {
     StepWrapper, StepBodyWrapper, StepHeadingWrapper, ControlsWrapper,
 } from '../../components/Wrapper';
 
-const InputWrapper = styled.div`
-    display: flex;
-    align-items: flex-start;
+const NameInput = styled(Input)`
+    max-width: 400px; 
 `;
 
 class NameStep extends React.Component {
@@ -70,19 +69,24 @@ class NameStep extends React.Component {
                                 <P>
                                     <FormattedMessage {...l10nMessages.TR_NAME_SUBHEADING} />
                                 </P>
-                                <InputWrapper>
-                                    <Input
-                                        value={this.state.label}
-                                        placeholder=""
-                                        state={this.validateInput().state ? this.validateInput().state : null}
-                                        bottomText={this.validateInput().bottomText ? this.validateInput().bottomText : ''}
-                                        onChange={this.handleInputChange}
-                                        isDisabled={this.props.deviceCall.isProgress}
-                                    />
+                                <NameInput
+                                    value={this.state.label}
+                                    placeholder=""
+                                    state={this.validateInput().state ? this.validateInput().state : null}
+                                    bottomText={this.validateInput().bottomText ? this.validateInput().bottomText : ''}
+                                    onChange={this.handleInputChange}
+                                    isDisabled={this.props.deviceCall.isProgress}
+                                />
+
+                                <ControlsWrapper>
                                     <Button isDisabled={this.validateInput().state !== 'success'} onClick={this.changeLabel}>
                                         <FormattedMessage {...l10nCommonMessages.TR_SUBMIT} />
                                     </Button>
-                                </InputWrapper>
+                                    <Button isWhite onClick={() => this.props.onboardingActions.goToNextStep()}>
+                                        <FormattedMessage {...l10nCommonMessages.TR_SKIP} />
+                                    </Button>
+                                </ControlsWrapper>
+
                             </React.Fragment>
                         )
                     }

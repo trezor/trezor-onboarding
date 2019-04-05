@@ -161,7 +161,6 @@ const resetCall = () => ({ type: CONNECT.DEVICE_CALL_RESET });
 
 const init = () => async (dispatch) => {
     TrezorConnect.on(DEVICE_EVENT, (event) => {
-        console.warn('event', event.type);
         if (event.type === DEVICE.CONNECT || DEVICE.CONNECT_UNACQUIRED || event.type === DEVICE.CHANGED || event.type === DEVICE.DISCONNECT) {
             dispatch({
                 type: event.type,

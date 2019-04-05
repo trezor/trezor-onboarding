@@ -103,7 +103,8 @@ export default [
             IS_NOT_SAME_DEVICE,
             DEVICE_IS_REQUESTING_PIN,
         ],
-    }, {
+    },
+    {
         id: ID.BOOKMARK_STEP,
         title: ID.SECURITY_STEP,
         allowedDeviceStates: [
@@ -113,7 +114,8 @@ export default [
             IS_NOT_SAME_DEVICE,
             DEVICE_IS_REQUESTING_PIN,
         ],
-    }, {
+    },
+    {
         id: ID.NEWSLETTER_STEP,
         title: ID.SECURITY_STEP,
         allowedDeviceStates: [
@@ -123,7 +125,8 @@ export default [
             IS_NOT_SAME_DEVICE,
             DEVICE_IS_REQUESTING_PIN,
         ],
-    }, {
+    },
+    {
         id: ID.FINAL_STEP,
     },
 ];

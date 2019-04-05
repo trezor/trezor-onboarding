@@ -18,6 +18,7 @@ import Hologram from './components/Hologram';
 
 const HologramWrapper = styled.div`
     width: 70%;
+    max-width: 500px;
     margin: 10px;
 `;
 
