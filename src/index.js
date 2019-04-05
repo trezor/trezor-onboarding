@@ -18,6 +18,7 @@ console.log(`[Trezor onboarding] version: ${VERSION}, branch: ${BRANCH}, build: 
 
 if (root) {
     render(
+        // <React.StrictMode>
         <Provider store={store}>
             <React.Fragment>
                 <Normalize />
@@ -25,6 +26,7 @@ if (root) {
                 <App />
             </React.Fragment>
         </Provider>,
+        // {/* </React.StrictMode>, */}
         root // eslint-disable-line
     );
 }
