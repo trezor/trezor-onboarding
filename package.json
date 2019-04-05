@@ -12,6 +12,7 @@
     "build:beta": "rimraf dist && npx webpack --progress --bail --env.BUILD=beta",
     "build:production": "rimraf dist && npx webpack --progress --bail --env.BUILD=production",
     "test-all": "jest",
+    "test-unit": "jest --testPathPattern=src",
     "test-health": "jest --testPathPattern=tests/health",
     "translations:extract": "rimraf translations/extractedMessages && cross-env NODE_ENV=translations babel src",
     "translations:upload": "yarn translations:extract && yarn ttm merge-msgs && yarn ttm build-csv && yarn ttm upload",

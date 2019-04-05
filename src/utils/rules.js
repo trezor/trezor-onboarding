@@ -4,9 +4,9 @@ export const DEVICE_IS_NOT_USED_HERE = 'device-is-not-used-here';
 export const DEVICE_IS_IN_BOOTLOADER = 'device-is-in-bootloader';
 export const DEVICE_IS_REQUESTING_PIN = 'device-is-not-requesting-pin';
 
-const isNotConnected = ({ device }) => device !== null && device.connected !== true;
+export const isNotConnected = ({ device }) => device !== null && device.connected !== true;
 
-const isNotSameDevice = ({ device, prevDeviceId }) => {
+export const isNotSameDevice = ({ device, prevDeviceId }) => {
     // if no device was connected before, assume it is same device
     if (!prevDeviceId || !device.features.device_id) {
         return null;
@@ -14,21 +14,21 @@ const isNotSameDevice = ({ device, prevDeviceId }) => {
     return device.features.device_id !== prevDeviceId;
 };
 
-const isNotUsedHere = ({ device }) => {
+export const isNotUsedHere = ({ device }) => {
     if (!device || !device.connected) {
         return null;
     }
     return device.status !== 'available' || device.type === 'unacquired';
 };
 
-const isInBootloader = ({ device }) => {
+export const isInBootloader = ({ device }) => {
     if (!device || !device.features) {
         return null;
     }
     return device.features.bootloader_mode === true;
 };
 
-const isRequestingPin = ({ device, uiInteraction }) => {
+export const isRequestingPin = ({ device, uiInteraction }) => {
     if (!device || !device.features) {
         return null;
     }
