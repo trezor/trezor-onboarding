@@ -17,7 +17,10 @@ const OptionWrapper = styled.div`
     justify-content: space-between;
     align-items: center;
     cursor: pointer;
-   
+    
+    /* todo: experimenting with box-shadow */
+    box-shadow: 0px 0px 6px 3px rgba(0,0,0,0.05);
+
     @media (min-width: ${BREAKPOINTS.SM}px) {
         height: 200px;    
     }
