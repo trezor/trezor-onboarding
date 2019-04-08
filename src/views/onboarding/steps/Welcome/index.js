@@ -2,7 +2,7 @@ import React from 'react';
 import styled, { css } from 'styled-components';
 import ReactTimeout from 'react-timeout';
 import { Button, H1, P } from 'trezor-ui-components';
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage } from '@dragonraider5/react-intl';
 
 import types from 'config/types';
 import { Dots } from 'components/Loaders';

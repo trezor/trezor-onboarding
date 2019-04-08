@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactSVG from 'react-svg';
 import { P } from 'trezor-ui-components';
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage } from '@dragonraider5/react-intl';
 
 import types from 'config/types';
 import { RESET_DEVICE } from 'actions/constants/calls';

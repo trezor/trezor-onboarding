@@ -4,7 +4,7 @@ import {
     P, Button, Link, Input, Checkbox,
 } from 'trezor-ui-components';
 import { Flags } from 'trezor-flags';
-import { FormattedMessage, injectIntl } from 'react-intl';
+import { FormattedMessage, injectIntl } from '@dragonraider5/react-intl';
 
 import types from 'config/types';
 import { SOCIAL_FACEBOOK_URL, SOCIAL_BLOG_URL, SOCIAL_TWITTER_URL } from 'config/urls';

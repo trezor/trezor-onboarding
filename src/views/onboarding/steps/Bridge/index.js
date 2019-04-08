@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import {
     Select, Link, Button, P,
 } from 'trezor-ui-components';
-import { FormattedMessage, injectIntl } from 'react-intl';
+import { FormattedMessage, injectIntl } from '@dragonraider5/react-intl';
 
 import types from 'config/types';
 

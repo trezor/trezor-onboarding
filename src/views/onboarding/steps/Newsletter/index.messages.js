@@ -1,4 +1,4 @@
-import { defineMessages } from 'react-intl';
+import { defineMessages } from '@dragonraider5/react-intl';
 
 const definedMessages = defineMessages({
     TR_NEWSLETTER_HEADING: {

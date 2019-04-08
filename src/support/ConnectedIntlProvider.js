@@ -2,7 +2,7 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 
-import { IntlProvider, addLocaleData } from 'react-intl';
+import { IntlProvider, addLocaleData } from '@dragonraider5/react-intl';
 
 import en from 'react-intl/locale-data/en';
 import cs from 'react-intl/locale-data/cs';
@@ -47,7 +47,7 @@ const mapStateToProps = state => ({
 
 const ReactIntlProvider = ({ children, locale, messages }) => (
     <IntlProvider
-        key={locale} // forces rerender IntlProvider when lang file is downloaded
+        // key={locale} // forces rerender IntlProvider when lang file is downloaded
         locale={locale}
         messages={messages}
     >

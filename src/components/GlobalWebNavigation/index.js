@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage } from '@dragonraider5/react-intl';
 
 // import { SCREEN_SIZE } from 'config/variables';
 import { Link } from 'trezor-ui-components';

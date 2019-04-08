@@ -2,7 +2,7 @@ import React from 'react';
 import {
     H4, P, Button, Link,
 } from 'trezor-ui-components';
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage } from '@dragonraider5/react-intl';
 
 import { SUPPORT_URL } from 'config/urls';
 import colors from 'config/colors';

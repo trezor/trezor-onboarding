@@ -3,7 +3,7 @@ import {
     P, Button, Input,
 } from 'trezor-ui-components';
 import styled from 'styled-components';
-import { FormattedMessage, injectIntl } from 'react-intl';
+import { FormattedMessage, injectIntl } from '@dragonraider5/react-intl';
 
 import types from 'config/types';
 import { validateASCII } from 'utils/validate';

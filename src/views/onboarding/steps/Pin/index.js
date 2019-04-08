@@ -4,7 +4,7 @@ import { UI } from 'trezor-connect';
 import {
     P, Button, Link,
 } from 'trezor-ui-components';
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage } from '@dragonraider5/react-intl';
 
 import { PIN_MANUAL_URL } from 'config/urls';
 import types from 'config/types';

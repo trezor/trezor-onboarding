@@ -6,7 +6,7 @@ import Platform from 'utils/Platform';
 import {
     P, Link, Button,
 } from 'trezor-ui-components';
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage } from '@dragonraider5/react-intl';
 
 import colors from 'config/colors';
 import { PHISHING_URL } from 'config/urls';

@@ -60,7 +60,7 @@ module.exports = (api) => {
     if (api.env('translations')) {
         plugins.push(
             [
-                'react-intl',
+                '@dragonraider5/react-intl',
                 {
                     messagesDir: './translations/extractedMessages/',
                     extractSourceLocation: true,

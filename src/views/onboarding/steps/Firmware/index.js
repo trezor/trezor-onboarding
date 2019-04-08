@@ -1,6 +1,6 @@
 import React from 'react';
 import { P, Button } from 'trezor-ui-components';
-import { FormattedMessage, injectIntl } from 'react-intl';
+import { FormattedMessage, injectIntl } from '@dragonraider5/react-intl';
 
 import types from 'config/types';
 import { DONUT_STROKE, DONUT_RADIUS } from 'config/constants';

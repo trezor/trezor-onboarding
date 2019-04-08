@@ -5,7 +5,7 @@ import ReactTimeout from 'react-timeout';
 import {
     P, H4, Button, Icon, icons,
 } from 'trezor-ui-components';
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage } from '@dragonraider5/react-intl';
 
 
 import types from 'config/types';

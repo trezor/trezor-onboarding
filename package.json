@@ -19,6 +19,7 @@
     "translations:download": "yarn ttm build-translations && sleep 1 && yarn ttm export-translations"
   },
   "dependencies": {
+    "@dragonraider5/react-intl": "^2.7.0",
     "@sentry/browser": "^4.6.4",
     "babel-plugin-module-resolver": "^3.1.1",
     "connected-react-router": "^6.3.1",
