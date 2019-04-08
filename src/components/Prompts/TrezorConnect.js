@@ -5,16 +5,28 @@ import PropTypes from 'prop-types';
 import t1video from 'components/Prompts/videos/trezor-click-1.mp4';
 import t2video from 'components/Prompts/videos/trezor-click-2.mp4';
 
-const TrezorConnect = ({ model, height }) => {
+const TrezorConnect = ({ model, height, loop }) => {
     const models = new Map([
         [1, t1video],
         [2, t2video],
     ]);
     return (
         <React.Fragment>
-            <video height={height} autoPlay loop>
-                <source src={models.get(model)} type="video/mp4" />
-            </video>
+            {/* just a hack to switch loop from true to false without need to forward ref to the video */}
+            {
+                loop && (
+                    <video height={height} autoPlay loop={loop}>
+                        <source src={models.get(model)} type="video/mp4" />
+                    </video>
+                )
+            }
+            {
+                !loop && (
+                    <video height={height} autoPlay loop={loop}>
+                        <source src={models.get(model)} type="video/mp4" />
+                    </video>
+                )
+            }
         </React.Fragment>
     );
 };
@@ -22,10 +34,12 @@ const TrezorConnect = ({ model, height }) => {
 TrezorConnect.propTypes = {
     model: PropTypes.number.isRequired,
     height: PropTypes.number,
+    loop: PropTypes.bool,
 };
 
 TrezorConnect.defaultProps = {
     height: 200,
+    loop: false,
 };
 
 export default TrezorConnect;

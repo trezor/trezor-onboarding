@@ -26,10 +26,6 @@ const DeviceIconWrapper = styled.div`
     margin-bottom: 30px;
 `;
 
-const TroubleShootWrapper = styled.div`
-    /* max-width: 600px; todo: constant or refactor somehow */
-`;
-
 class ConnectStep extends React.PureComponent {
     static IS_SEARCHING_TIMEOUT = 5 * 1000;
 
@@ -78,17 +74,7 @@ class ConnectStep extends React.PureComponent {
                 </StepHeadingWrapper>
                 <StepBodyWrapper>
 
-                    {
-                        !deviceIsConnected && <TrezorConnect model={this.props.model} height={180} />
-                    }
-
-                    {
-                        deviceIsConnected && (
-                            <DeviceIconWrapper>
-                                <Icon icon={model === 1 ? icons.T1 : icons.T2} size={64} />
-                            </DeviceIconWrapper>
-                        )
-                    }
+                    <TrezorConnect model={this.props.model} height={180} loop={!deviceIsConnected} />
 
                     {
                         !deviceIsConnected
