@@ -56,8 +56,10 @@ class FirmwareStep extends React.Component {
             return 'initial';
         }
 
-        // todo: ?? maybe throw error, there shouldt be unexpected state ever
-        return '?';
+        if (device.firmware === 'outdated') {
+            return 'outdated';
+        }
+        throw new Error('Unexpected state of firmware');
     }
 
     getMessageForStatus = () => {
@@ -115,6 +117,23 @@ class FirmwareStep extends React.Component {
                     }
 
                     {
+                        this.getStatus() === 'outdated' && (
+                            <React.Fragment>
+                                <P>
+                                    This device has already installed firmware version 
+                                    {' '}
+                                    {device.features.major_version}.{device.features.minor_version}.{device.features.patch_version}
+                                </P>
+                                <ControlsWrapper>
+                                    <Button isDisabled={!isConnected} onClick={() => this.props.onboardingActions.goToNextStep()}>
+                                        <FormattedMessage {...commonMessages.TR_CONTINUE} />
+                                    </Button>
+                                </ControlsWrapper>
+                            </React.Fragment>
+                        )
+                    }
+
+                    {
                         this.isProgress() && (
                             <React.Fragment>
                                 <Donut
@@ -144,9 +163,11 @@ class FirmwareStep extends React.Component {
                                                     </P>
                                                 )
                                             }
-                                            <Button onClick={() => this.install()}>
-                                                <FormattedMessage {...commonMessages.TR_RETRY} />
-                                            </Button>
+                                            <ControlsWrapper>
+                                                <Button onClick={() => this.install()}>
+                                                    <FormattedMessage {...commonMessages.TR_RETRY} />
+                                                </Button>
+                                            </ControlsWrapper>
                                         </React.Fragment>
                                     )
                                 }
