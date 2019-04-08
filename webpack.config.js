@@ -82,13 +82,14 @@ module.exports = env => ({
         }),
         new CopyWebpackPlugin([
             { from: 'l10n', to: 'l10n' },
+            { from: 'public/unsupported-browsers', to: 'unsupported-browsers' },
         ]),
         new Dotenv({
             path: `.env.${env.BUILD}`,
             safe: true, // load '.env.example' to verify the '.env' variables are all set. Can also be a string to a different file.
             systemvars: true, // load all the predefined 'process.env' variables which will trump anything local per dotenv specs.
             // silent: true, // hide any errors
-            defaults: true, // load '.env.defaults' as the default values if empty.
+            defaults: false, // load '.env.defaults' as the default values if empty.
         }),
     ],
 
