@@ -48,7 +48,7 @@ const Wrapper = styled.div`
     z-index: 1;
 
     @media only screen and (min-width: ${SM}px) {
-        width: 80vw;
+        width: calc(55vw + 150px) ;
         margin: auto;
         overflow: hidden;
     } 
@@ -270,6 +270,7 @@ class Onboarding extends React.PureComponent {
                         <HologramStep
                             onboardingActions={onboardingActions}
                             model={model}
+                            activeSubStep={activeSubStep}
                         />
                     )}
                     {this.getScreen() === ID.BRIDGE_STEP && (

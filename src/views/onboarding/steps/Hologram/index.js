@@ -31,7 +31,8 @@ class HologramStep extends React.Component {
     }
 
     render() {
-        const { status } = this.state;
+        const { onboardingActions, activeSubStep } = this.props;
+
         return (
             <StepWrapper>
                 <StepHeadingWrapper>
@@ -39,7 +40,7 @@ class HologramStep extends React.Component {
                 </StepHeadingWrapper>
                 <StepBodyWrapper>
                     {
-                        status !== 'hologram-different' && (
+                        activeSubStep !== 'hologram-different' && (
                             <React.Fragment>
                                 <P>
                                     <FormattedMessage {...l10nMessages.TR_HOLOGRAM_STEP_SUBHEADING} />
@@ -52,7 +53,7 @@ class HologramStep extends React.Component {
                                     <Button onClick={() => this.props.onboardingActions.goToNextStep()}>
                                         <FormattedMessage {...l10nMessages.TR_HOLOGRAM_STEP_ACTION_OK} />
                                     </Button>
-                                    <Button onClick={() => this.setState({ status: 'hologram-different' })} isWhite>
+                                    <Button onClick={() => onboardingActions.goToSubStep('hologram-different')} isWhite>
                                         <FormattedMessage {...l10nMessages.TR_HOLOGRAM_STEP_ACTION_NOT_OK} />
                                     </Button>
                                 </ControlsWrapper>
@@ -61,7 +62,7 @@ class HologramStep extends React.Component {
                     }
 
                     {
-                        status === 'hologram-different' && (
+                        activeSubStep === 'hologram-different' && (
                             <React.Fragment>
                                 <P>
                                     {/* todo: translation */}
@@ -75,7 +76,7 @@ class HologramStep extends React.Component {
                                             <FormattedMessage {...l10nCommonMessages.TR_CONTACT_SUPPORT} />
                                         </Button>
                                     </Link>
-                                    <Button isWhite onClick={() => this.setState({ status: 'initial' })}>Back</Button>
+                                    <Button isWhite onClick={() => onboardingActions.goToSubStep(null)}>Back</Button>
                                 </ControlsWrapper>
                             </React.Fragment>
                         )
