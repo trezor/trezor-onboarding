@@ -17,7 +17,6 @@ const isStepFinished = (steps, index, activeStep) => {
 class ProgressSteps extends React.Component {
     componentWillReceiveProps(nextProps) {
         if (nextProps.activeStep) {
-            console.warn('this.props.steps', this.props.steps);
             const nextStepIndex = this.props.steps.findIndex(step => step === nextProps.activeStep.title);
             const currentStepIndex = this.props.steps.findIndex(step => step === this.props.activeStep.title);
             this.isGoingForward = nextStepIndex > currentStepIndex;
@@ -29,7 +28,6 @@ class ProgressSteps extends React.Component {
         return (
             <React.Fragment>
                 <Wrapper>
-                    {`isGoingForward: ${this.isGoingForward}`}
                     { props.steps.map((step, index) => (
                         <React.Fragment key={step}>
                             <ProgressStep

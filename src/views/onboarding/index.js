@@ -139,12 +139,12 @@ class Onboarding extends React.PureComponent {
             uiInteraction,
         } = this.props;
 
-        if (!this.getStep(activeStepId).allowedDeviceStates) {
+        if (!this.getStep(activeStepId).disallowedDeviceStates) {
             return [];
         }
 
         const errorStates = [];
-        this.getStep(activeStepId).allowedDeviceStates.forEach((state) => {
+        this.getStep(activeStepId).disallowedDeviceStates.forEach((state) => {
             const fn = getFnForRule(state);
             if (fn({ device, prevDeviceId, uiInteraction }) === true) {
                 errorStates.push(state);

@@ -30,16 +30,14 @@ export default [
     {
         id: ID.CONNECT_STEP,
         title: ID.BRIDGE_STEP,
-        allowedDeviceStates: [
-            DEVICE_IS_IN_BOOTLOADER,
+        disdisallowedDeviceStates: [
             DEVICE_IS_NOT_USED_HERE,
         ],
     },
     {
         id: ID.FIRMWARE_STEP,
         title: ID.FIRMWARE_STEP,
-        allowedDeviceStates: [
-            DEVICE_IS_IN_BOOTLOADER,
+        disallowedDeviceStates: [
             DEVICE_IS_NOT_USED_HERE,
             IS_NOT_SAME_DEVICE,
         ],
@@ -47,7 +45,7 @@ export default [
     {
         id: ID.START_STEP,
         title: ID.START_STEP,
-        allowedDeviceStates: [
+        disallowedDeviceStates: [
             DEVICE_IS_NOT_CONNECTED,
             DEVICE_IS_IN_BOOTLOADER,
             IS_NOT_SAME_DEVICE,
@@ -57,7 +55,7 @@ export default [
     {
         id: ID.RECOVERY_STEP,
         title: ID.START_STEP,
-        allowedDeviceStates: [
+        disallowedDeviceStates: [
             DEVICE_IS_NOT_CONNECTED,
             DEVICE_IS_IN_BOOTLOADER,
             IS_NOT_SAME_DEVICE,
@@ -66,7 +64,7 @@ export default [
     },
     {
         id: ID.SECURITY_STEP,
-        allowedDeviceStates: [
+        disallowedDeviceStates: [
             DEVICE_IS_NOT_CONNECTED,
             DEVICE_IS_IN_BOOTLOADER,
             DEVICE_IS_NOT_USED_HERE,
@@ -76,7 +74,7 @@ export default [
     {
         id: ID.BACKUP_STEP,
         title: ID.SECURITY_STEP,
-        allowedDeviceStates: [
+        disallowedDeviceStates: [
             DEVICE_IS_NOT_CONNECTED,
             DEVICE_IS_IN_BOOTLOADER,
             DEVICE_IS_NOT_USED_HERE,
@@ -86,7 +84,7 @@ export default [
     {
         id: ID.SET_PIN_STEP,
         title: ID.SECURITY_STEP,
-        allowedDeviceStates: [
+        disallowedDeviceStates: [
             DEVICE_IS_NOT_CONNECTED,
             DEVICE_IS_IN_BOOTLOADER,
             DEVICE_IS_NOT_USED_HERE,
@@ -96,7 +94,7 @@ export default [
     {
         id: ID.NAME_STEP,
         title: ID.SECURITY_STEP,
-        allowedDeviceStates: [
+        disallowedDeviceStates: [
             DEVICE_IS_NOT_CONNECTED,
             DEVICE_IS_IN_BOOTLOADER,
             DEVICE_IS_NOT_USED_HERE,
@@ -107,7 +105,7 @@ export default [
     {
         id: ID.BOOKMARK_STEP,
         title: ID.SECURITY_STEP,
-        allowedDeviceStates: [
+        disallowedDeviceStates: [
             DEVICE_IS_NOT_CONNECTED,
             DEVICE_IS_IN_BOOTLOADER,
             DEVICE_IS_NOT_USED_HERE,
@@ -118,7 +116,7 @@ export default [
     {
         id: ID.NEWSLETTER_STEP,
         title: ID.SECURITY_STEP,
-        allowedDeviceStates: [
+        disallowedDeviceStates: [
             DEVICE_IS_NOT_CONNECTED,
             DEVICE_IS_IN_BOOTLOADER,
             DEVICE_IS_NOT_USED_HERE,
