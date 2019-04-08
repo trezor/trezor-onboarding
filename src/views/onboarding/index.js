@@ -45,6 +45,7 @@ const Wrapper = styled.div`
     width: 95vw;
     margin: 20px auto 0 auto;
     min-height: ${WRAPPER_HEIGHT}vh;
+    z-index: 1;
 
     @media only screen and (min-width: ${SM}px) {
         width: 80vw;
@@ -108,7 +109,7 @@ const TrezorActionOverlay = styled.div`
     display: flex;
     justify-content: center;
     background-color: ${colors.white};
-    z-index: 1;
+    z-index: 1000;
     border-radius: ${BORDER_RADIUS}px;
 `;
 

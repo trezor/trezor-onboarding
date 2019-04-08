@@ -77,6 +77,11 @@ class InstallBridge extends PureComponent {
         }));
     }
 
+    download() {
+        this.props.onboardingActions.goToSubStep('downloading');
+        this.props.onboardingActions.toggleDownloadClicked();
+    }
+
     render() {
         const { target, uri, installers } = this.state;
         const status = this.getStatus();
@@ -133,7 +138,7 @@ class InstallBridge extends PureComponent {
                                         options={installers}
                                     />
                                     <Link href={`${uri}${target.value}`}>
-                                        <DownloadBridgeButton onClick={() => this.props.onboardingActions.goToSubStep('downloading')}>
+                                        <DownloadBridgeButton onClick={() => this.download()}>
                                             <FormattedMessage {...l10nMessages.TR_DOWNLOAD} />
                                         </DownloadBridgeButton>
                                     </Link>

@@ -52,6 +52,7 @@ const FadeInWrapper = styled.div`
     }
 `;
 
+
 class WelcomeStep extends React.PureComponent {
     render() {
         return (

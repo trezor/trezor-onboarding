@@ -93,6 +93,10 @@ const setLocale = locale => (dispatch) => {
     });
 };
 
+const toggleDownloadClicked = () => ({
+    type: ONBOARDING.TOGGLE_DOWNLOAD_CLICKED,
+});
+
 export {
     goToNextStep,
     goToSubStep,
@@ -100,4 +104,5 @@ export {
     selectTrezorModel,
     setApplicationError,
     setLocale,
+    toggleDownloadClicked,
 };

@@ -6,6 +6,7 @@ import {
     SET_STEPS,
     SET_APPLICATION_ERROR,
     SET_LOCALIZATION,
+    TOGGLE_DOWNLOAD_CLICKED,
 } from 'actions/constants/onboarding';
 import { ID } from 'views/onboarding/constants/steps';
 import steps from 'views/onboarding/config/steps';
@@ -17,6 +18,7 @@ const initialState = {
     steps, // todo: move here directly probably for better readability
     language: 'en',
     messages: {},
+    downloadClicked: false,
 };
 
 const onboarding = (state = initialState, action) => {
@@ -26,6 +28,7 @@ const onboarding = (state = initialState, action) => {
                 ...state,
                 activeStepId: action.stepId,
                 activeSubStep: null,
+                downloadClicked: false,
             };
         case GO_TO_SUBSTEP:
             return {
@@ -37,6 +40,7 @@ const onboarding = (state = initialState, action) => {
                 ...state,
                 activeStepId: action.stepId,
                 activeSubStep: null,
+                downloadClicked: false,
             };
         case SELECT_TREZOR_MODEL:
             return {
@@ -59,6 +63,12 @@ const onboarding = (state = initialState, action) => {
                 ...state,
                 language: action.language,
                 messages: action.messages,
+            };
+        }
+        case TOGGLE_DOWNLOAD_CLICKED: {
+            return {
+                ...state,
+                downloadClicked: !state.downloadClicked,
             };
         }
         default:

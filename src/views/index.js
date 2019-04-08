@@ -9,7 +9,9 @@ import colors from 'config/colors';
 import Onboarding from 'views/onboarding/Container';
 import ErrorBoundary from 'support/ErrorBoundary';
 import IntlProvider from 'support/ConnectedIntlProvider';
+import isChrome from 'utils/isChrome';
 
+import DownloadArrow from 'components/DownloadArrow';
 import GlobalWebNavigation from 'components/GlobalWebNavigation';
 import { ID } from 'views/onboarding/constants/steps';
 
@@ -24,13 +26,27 @@ const Wrapper = styled.div`
     min-height: 100vh;
     background-color: ${colors.white};
 
-    /*  todo: add constant  */
-
     @media only screen and (min-width: ${SM}px) {
         ${props => (props.animate && css`animation: ${backgroundAnimation} 1s linear`)};
         background-color: ${props => (props.show ? colors.gray : colors.white)};
     }
 `;
+
+const DownloadArrowWrapper = styled.div`
+    width: calc(21vw - 55px);
+    height: calc(30vh - 81px);
+    bottom: 20px;
+    left: 17px;
+    overflow: hidden;
+    position: absolute;
+    z-index: 0;
+    display: none;
+
+    @media only screen and (min-width: ${SM}px) {
+        display: block;
+    }
+`;
+
 
 const exludedStepsForWrapper = [ID.WELCOME_STEP, ID.FINAL_STEP];
 
@@ -40,19 +56,26 @@ class App extends React.PureComponent {
     }
 
     render() {
-        const { error, activeStepId, init } = this.props;
+        const { error, activeStepId, downloadClicked } = this.props;
         return (
-            <Wrapper animate={!exludedStepsForWrapper.includes(activeStepId)} show={!exludedStepsForWrapper.includes(activeStepId)}>
-                <IntlProvider>
-                    {/* here we pass error possibly caught outside render that would not be caught by ErrorBoundary otherwise */}
-                    <React.Fragment>
-                        <GlobalWebNavigation />
-                        <ErrorBoundary error={error}>
-                            <Onboarding />
-                        </ErrorBoundary>
-                    </React.Fragment>
-                </IntlProvider>
-            </Wrapper>
+            <React.Fragment>
+                <Wrapper animate={!exludedStepsForWrapper.includes(activeStepId)} show={!exludedStepsForWrapper.includes(activeStepId)}>
+                    <IntlProvider>
+                        {/* here we pass error possibly caught outside render that would not be caught by ErrorBoundary otherwise */}
+                        <React.Fragment>
+                            <GlobalWebNavigation />
+                            <ErrorBoundary error={error}>
+                                <Onboarding />
+                                {
+                                    downloadClicked && isChrome(navigator) && <DownloadArrowWrapper><DownloadArrow /></DownloadArrowWrapper>
+                                }
+                            </ErrorBoundary>
+                        </React.Fragment>
+                    </IntlProvider>
+                </Wrapper>
+
+
+            </React.Fragment>
         );
     }
 }

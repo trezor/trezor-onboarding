@@ -8,6 +8,7 @@ import App from './index';
 const mapStateToProps = state => ({
     error: state.onboarding.error,
     activeStepId: state.onboarding.activeStepId,
+    downloadClicked: state.onboarding.downloadClicked,
 });
 
 const mapDispatchToProps = dispatch => ({
