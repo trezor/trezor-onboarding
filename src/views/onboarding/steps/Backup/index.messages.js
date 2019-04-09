@@ -11,7 +11,6 @@ const definedMessages = defineMessages({
         defaultMessage: 'Your recovery seed is the backup key to all your cryptocurrencies and applications.',
         description: 'Explanation what recovery seed is',
     },
-
     TR_BACKUP_SUBHEADING_2: {
         id: 'TR_BACKUP_SUBHEADING_2',
         defaultMessage: 'Your recovery seed can only be displayed once. Never make a digital copy of your recovery seed and never upload it online. Keep your recovery seed in a safe place.',
@@ -72,8 +71,16 @@ const definedMessages = defineMessages({
         defaultMessage: 'Wipe device and start again',
         description: 'Button text',
     },
-
-
+    TR_BACKUP_FINISHED_TEXT: {
+        id: 'TR_BACKUP_FINISHED_TEXT',
+        defaultMessage: 'Backup is now on your recovery seed card. Once again dont lose it and keep it private!',
+        description: 'Text that appears after backup is finished',
+    },
+    TR_BACKUP_FINISHED_BUTTON: {
+        id: 'TR_BACKUP_FINISHED_BUTTON',
+        defaultMessage: 'My recovery card is safe',
+        description: 'Exit button after backup is finished',
+    },
 });
 
 export default definedMessages;

@@ -21,6 +21,21 @@ const definedMessages = defineMessages({
         defaultMessage: 'My hologram looks different',
         description: 'Button to click when hologram looks different',
     },
+    TR_RESELLERS_LINK: {
+        id: 'TR_RESELLERS_LINK',
+        defaultMessage: 'a trusted reseller',
+        description: 'Part of sentence. Link to page with trusted resellers list',
+    },
+    TR_CONTACT_OUR_SUPPORT_LINK: {
+        id: 'TR_CONTACT_OUR_SUPPORT_LINK',
+        defaultMessage: 'contact our support',
+        description: 'Part of sentence. Link to support',
+    },
+    TR_DID_YOU_PURCHASE: {
+        id: 'TR_DID_YOU_PURCHASE',
+        defaultMessage: 'Did you purchase your device from {TR_RESELLERS_LINK}? If no, device you are holding in hands might be a counterfeit. Please {TR_CONTACT_OUR_SUPPORT_LINK}',
+        description: 'Text to display when user is unhappy with his hologram.',
+    },
 });
 
 

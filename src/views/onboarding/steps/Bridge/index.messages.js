@@ -43,8 +43,18 @@ const definedMessages = defineMessages({
     },
     TR_CHECK_PGP_SIGNATURE: {
         id: 'TR_CHECK_PGP_SIGNATURE',
-        defaultMessage: 'Optional. Check PGP signature',
+        defaultMessage: 'Check PGP signature (optional)',
         description: 'Instruction for installing Trezor Bridge',
+    },
+    TR_TREZOR_BRIDGE_IS_NOT_RUNNING: {
+        id: 'TR_TREZOR_BRIDGE_IS_NOT_RUNNING',
+        defaultMessage: 'Trezor Bridge is not running',
+        description: '',
+    },
+    TR_TREZOR_BRIDGE_IS_RUNNING_VERSION: {
+        id: 'TR_TREZOR_BRIDGE_IS_RUNNING_VERSION',
+        defaultMessage: 'Trezor Bridge is running. Version: {version}',
+        description: '',
     },
 });
 

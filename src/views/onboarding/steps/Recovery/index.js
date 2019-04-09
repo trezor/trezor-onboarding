@@ -1,7 +1,7 @@
 import React from 'react';
 import styled, { keyframes } from 'styled-components';
 import {
-    P, Button, Select,
+    P, Button, Select, Link,
 } from 'trezor-ui-components';
 import { FormattedMessage, injectIntl } from '@dragonraider5/react-intl';
 import { createFilter } from 'react-select';
@@ -10,10 +10,11 @@ import BlindMatrix from 'components/BlindMatrix';
 import bip39List from 'utils/bip39'; // todo: its not utils but constants I guess.
 import types from 'config/types';
 import colors from 'config/colors';
+import { RECOVERY_MODEL_ONE_URL } from 'config/urls';
 import { RECOVER_DEVICE } from 'actions/constants/calls';
 import { WORD_REQUEST_PLAIN, WORD_REQUEST_MATRIX9 } from 'actions/constants/events';
 import { OptionsList } from 'components/Options';
-
+import Text from 'views/onboarding/components/Text';
 import l10nCommonMessages from 'support/commonMessages';
 import l10nMessages from './index.messages';
 import {
@@ -108,14 +109,13 @@ class RecoveryStep extends React.Component {
                 <StepBodyWrapper>
                     { this.getStatus() === null && (
                         <React.Fragment>
-                            <P>
-                                <FormattedMessage {...l10nMessages.TR_RECOVER_SUBHEADING} />
-                            </P>
-
+                            
                             {
                                 device.features.major_version === 1 && (
                                     <React.Fragment>
-
+                                        <Text>
+                                            <FormattedMessage {...l10nMessages.TR_RECOVER_SUBHEADING} />
+                                        </Text>
                                         <OptionsList
                                             options={[{
                                                 content: <div><P><FormattedMessage {...l10nMessages.TR_WORDS} values={{ count: '12' }} /></P></div>,
@@ -153,7 +153,9 @@ class RecoveryStep extends React.Component {
                             {
                                 device.features.major_version === 2 && (
                                     <React.Fragment>
-                                        <P>On model T the entire recovery process is doable on device.</P>
+                                        <Text>
+                                            <FormattedMessage {...l10nMessages.TR_RECOVER_SUBHEADING } />
+                                        </Text>
                                         <ControlsWrapper>
                                             <Button onClick={() => { this.props.connectActions.recoveryDevice(); }}>
                                                 <FormattedMessage {...l10nMessages.TR_START_RECOVERY} />
@@ -169,9 +171,14 @@ class RecoveryStep extends React.Component {
 
                     { this.getStatus() === 'select-advanced-recovery' && (
                         <React.Fragment>
-                            <P>
-                                <FormattedMessage {...l10nMessages.TR_RECOVERY_TYPES_DESCRIPTION} />
-                            </P>
+                            <Text>
+                                <FormattedMessage
+                                    {...l10nMessages.TR_RECOVERY_TYPES_DESCRIPTION}
+                                    values={{
+                                        TR_LEARN_MORE_LINK: <Link href={RECOVERY_MODEL_ONE_URL}><FormattedMessage {...l10nCommonMessages.TR_LEARN_MORE_LINK} /></Link>
+                                    }}
+                                />
+                            </Text>
                             <OptionsList
                                 options={[{
                                     content: <P><FormattedMessage {...l10nMessages.TR_BASIC_RECOVERY_OPTION} /></P>,
@@ -201,11 +208,11 @@ class RecoveryStep extends React.Component {
                     {
                         this.getStatus() === 'recovering' && (
                             <React.Fragment>
-                                <P>
+                                <Text>
                                     <FormattedMessage {...l10nMessages.TR_ENTER_SEED_WORDS_INSTRUCTION} />
                                     {' '}
                                     { this.props.recovery.wordsCount < 24 && <FormattedMessage {...l10nMessages.TR_RANDOM_SEED_WORDS_DISCLAIMER} values={{ count: 24 - this.props.recovery.wordsCount }} /> }
-                                </P>
+                                </Text>
                                 <SelectWrapper>
                                     <Select
                                         styles={{
@@ -267,9 +274,9 @@ class RecoveryStep extends React.Component {
                     {
                         this.getStatus() === 'error' && (
                             <React.Fragment>
-                                <P style={{ color: colors.error }}>
+                                <Text style={{ color: colors.error }}>
                                     <FormattedMessage {...l10nMessages.TR_RECOVERY_ERROR} values={{ error: deviceCall.error }} />
-                                </P>
+                                </Text>
 
                                 <Button onClick={() => { this.props.connectActions.resetCall(); this.props.onboardingActions.goToSubStep(null); }}>
                                     <FormattedMessage {...l10nCommonMessages.TR_RETRY} />
@@ -282,9 +289,9 @@ class RecoveryStep extends React.Component {
                     {
                         this.getStatus() === 'success' && (
                             <React.Fragment>
-                                <P>
+                                <Text>
                                     <FormattedMessage {...l10nMessages.TR_RECOVERY_SUCCESS} />
-                                </P>
+                                </Text>
                                 <Button onClick={() => this.props.onboardingActions.goToNextStep()}>
                                     <FormattedMessage {...l10nCommonMessages.TR_CONTINUE} />
                                 </Button>

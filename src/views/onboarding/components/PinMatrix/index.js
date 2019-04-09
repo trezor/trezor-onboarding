@@ -4,8 +4,10 @@ import PropTypes from 'prop-types';
 import {
     P, Button, Link, ButtonPin, InputPin,
 } from 'trezor-ui-components';
+import { FormattedMessage } from 'react-intl';
 
 import { PIN_MANUAL_URL } from 'config/urls';
+import l10nMessages from './index.messages'; 
 
 const Wrapper = styled.div`
     max-width: 260px;
@@ -150,10 +152,15 @@ class PinMatrix extends React.Component {
 
                 <PinFooter>
                     <Button type="button" onClick={() => onPinSubmit(pin)}>
-                        Enter PIN
+                        <FormattedMessage {...l10nMessages.TR_ENTER_PIN} />
                     </Button>
                     <P isSmaller>
-                        Not sure how PIN works? <Link isGreen href={PIN_MANUAL_URL}>Learn more</Link>
+                        <FormattedMessage
+                            {...l10nMessages.TR_NOT_SURE_HOW_PIN_WORKS}
+                            values={{
+                                TR_PIN_MANUAL_LINK: <Link isGreen href={PIN_MANUAL_URL}><FormattedMessage {...l10nMessages.TR_PIN_MANUAL_LINK} /></Link>,
+                            }}
+                        />
                     </P>
                 </PinFooter>
             </Wrapper>

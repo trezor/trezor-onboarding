@@ -36,11 +36,6 @@ const definedMessages = defineMessages({
         defaultMessage: 'Danger zone here, wiping device erases all data and can not be reverted',
         description: 'Wipe device action warning.',
     },
-    TR_WIPE_DEVICE: {
-        id: 'TR_WIPE_DEVICE',
-        defaultMessage: 'Wipe device',
-        description: 'Button',
-    },
     TR_USER_HAS_NOT_WORKED_WITH_THIS_DEVICE_INSTRUCTIONS: {
         id: 'TR_USER_HAS_NOT_WORKED_WITH_THIS_DEVICE_INSTRUCTIONS',
         defaultMessage: 'In that case you should immediately contact Trezor support with detailed information on your purchase and refrain from using this device.',

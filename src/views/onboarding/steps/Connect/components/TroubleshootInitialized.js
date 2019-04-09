@@ -81,7 +81,7 @@ const TroubleshootInitialized = ({
                             onClick={() => connectActions.wipeDevice()}
                             isWhite
                         >
-                            <FormattedMessage {...l10nMessages.TR_WIPE_DEVICE} />
+                            <FormattedMessage {...l10nCommonMessages.TR_WIPE_DEVICE} />
                         </Button>
                         <Button isWhite onClick={() => onboardingActions.goToNextStep(ID.FINAL_STEP)}>
                             <FormattedMessage {...l10nCommonMessages.TR_SKIP_ALL} />

@@ -12,7 +12,7 @@ import { IconSocial } from 'components/Icons';
 import { validateEmail } from 'utils/validate';
 import { SUBMIT_EMAIL } from 'actions/constants/fetchCalls';
 import { APPLY_FLAGS } from 'actions/constants/calls';
-
+import Text from 'views/onboarding/components/Text';
 import l10nCommonMessages from 'support/commonMessages';
 import l10nMessages from './index.messages';
 
@@ -110,9 +110,9 @@ class NewsleterStep extends React.Component {
                     {
                         status === 'initial' && (
                             <React.Fragment>
-                                <P>
+                                <Text>
                                     <FormattedMessage {...l10nMessages.TR_NEWSLETTER_SUBHEADING} />
-                                </P>
+                                </Text>
                                 <InputWrapper>
                                     <Input
                                         value={newsletter.email}
@@ -130,18 +130,18 @@ class NewsleterStep extends React.Component {
                                             isChecked={newsletter.checkboxes.security}
                                             onClick={() => newsletterActions.toggleCheckbox('security')}
                                         />
-                                        <P>
+                                        <Text>
                                             Security
-                                        </P>
+                                        </Text>
                                     </CheckboxWrapper>
                                     <CheckboxWrapper>
                                         <Checkbox
                                             isChecked={newsletter.checkboxes.promo}
                                             onClick={() => newsletterActions.toggleCheckbox('promo')}
                                         />
-                                        <P>
+                                        <Text>
                                             Promo
-                                        </P>
+                                        </Text>
                                     </CheckboxWrapper>
                                 </CheckboxexSection>
                                 
@@ -165,16 +165,16 @@ class NewsleterStep extends React.Component {
                             <React.Fragment>
                                 {
                                     !newsletter.skipped && (
-                                        <P>
+                                        <Text>
                                             <FormattedMessage {...l10nMessages.TR_THANK_YOU_FOR_EMAIL} />
-                                        </P>
+                                        </Text>
                                     )
                                 }
                                 {
                                     newsletter.skipped && (
-                                        <P>
+                                        <Text>
                                             <FormattedMessage {...l10nMessages.TR_EMAIL_SKIPPED} />
-                                        </P>
+                                        </Text>
                                     )
                                 }
                                 <SocialWrapper>

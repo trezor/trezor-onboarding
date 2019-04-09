@@ -7,6 +7,7 @@ import { DONUT_STROKE, DONUT_RADIUS } from 'config/constants';
 import colors from 'config/colors';
 import { GET_FIRMWARE } from 'actions/constants/fetchCalls';
 import { FIRMWARE_ERASE, FIRMWARE_UPLOAD } from 'actions/constants/calls';
+import Text from 'views/onboarding/components/Text';
 
 import { Donut, Dots } from 'components/Loaders';
 
@@ -104,9 +105,9 @@ class FirmwareStep extends React.Component {
                     {
                         this.getStatus() === 'initial' && (
                             <React.Fragment>
-                                <P>
+                                <Text>
                                     <FormattedMessage {...l10nMessages.TR_FIRMWARE_SUBHEADING} />
-                                </P>
+                                </Text>
                                 <ControlsWrapper>
                                     <Button onClick={() => this.install()}>
                                         <FormattedMessage {...l10nMessages.TR_INSTALL} />
@@ -119,11 +120,14 @@ class FirmwareStep extends React.Component {
                     {
                         this.getStatus() === 'outdated' && (
                             <React.Fragment>
-                                <P>
-                                    This device has already installed firmware version 
-                                    {' '}
-                                    {device.features.major_version}.{device.features.minor_version}.{device.features.patch_version}
-                                </P>
+                                <Text>
+                                    <FormattedMessage
+                                        {...l10nMessages.TR_FIRMWARE_INSTALLED_TEXT}
+                                        values={{
+                                            version: `${device.features.major_version}.${device.features.minor_version}.${device.features.patch_version}`,
+                                        }}
+                                    />
+                                </Text>
                                 <ControlsWrapper>
                                     <Button isDisabled={!isConnected} onClick={() => this.props.onboardingActions.goToNextStep()}>
                                         <FormattedMessage {...commonMessages.TR_CONTINUE} />
@@ -151,16 +155,16 @@ class FirmwareStep extends React.Component {
                                         <React.Fragment>
                                             {
                                                 deviceCall.error && (
-                                                    <P style={{ color: colors.error }}>
+                                                    <Text style={{ color: colors.error }}>
                                                         <FormattedMessage {...l10nMessages.TR_INSTALL_ERROR_OCCURRED} values={{ error: deviceCall.error }} />
-                                                    </P>
+                                                    </Text>
                                                 )
                                             }
                                             {
                                                 fetchCall.error && (
-                                                    <P style={{ color: colors.error }}>
+                                                    <Text style={{ color: colors.error }}>
                                                         <FormattedMessage {...l10nMessages.TR_FETCH_ERROR_OCCURRED} values={{ error: fetchCall.error }} />
-                                                    </P>
+                                                    </Text>
                                                 )
                                             }
                                             <ControlsWrapper>
@@ -179,9 +183,9 @@ class FirmwareStep extends React.Component {
                         this.getStatus() === 'success'
                         && (
                             <React.Fragment>
-                                <P>
+                                <Text>
                                     <FormattedMessage {...l10nMessages.TR_FIRMWARE_INSTALLED} />
-                                </P>
+                                </Text>
                                 <ControlsWrapper>
                                     <Button isDisabled={!isConnected} onClick={() => this.props.onboardingActions.goToNextStep()}>
                                         <FormattedMessage {...commonMessages.TR_CONTINUE} />

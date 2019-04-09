@@ -9,3 +9,4 @@ export const SOCIAL_FACEBOOK_URL = 'https://www.facebook.com/BitcoinTrezor/';
 export const TREZOR_RESELLERS_URL = 'https://trezor.io/resellers/';
 export const SKIP_URL = 'https://wallet.trezor.io';
 export const TREZOR_URL = 'https://trezor.io';
+export const RECOVERY_MODEL_ONE_URL = 'https://wiki.trezor.io/index.php?title=User+manual%3ARecovery&ModelType=1';

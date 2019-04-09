@@ -1,10 +1,9 @@
 import React from 'react';
-import {
-    Button, P,
-} from 'trezor-ui-components';
+import { Button } from 'trezor-ui-components';
 import { FormattedMessage } from '@dragonraider5/react-intl';
 import types from 'config/types';
 
+import Text from 'views/onboarding/components/Text';
 import { ID } from 'views/onboarding/constants/steps';
 import l10nMessages from './index.messages';
 import {
@@ -17,9 +16,9 @@ const SecurityStep = ({ onboardingActions }) => (
             <FormattedMessage {...l10nMessages.TR_SECURITY_HEADING} />
         </StepHeadingWrapper>
         <StepBodyWrapper>
-            <P>
+            <Text>
                 <FormattedMessage {...l10nMessages.TR_SECURITY_SUBHEADING} />
-            </P>
+            </Text>
             <ControlsWrapper>
                 <Button onClick={() => onboardingActions.goToNextStep()}>
                     <FormattedMessage {...l10nMessages.TR_GO_TO_SECURITY} />

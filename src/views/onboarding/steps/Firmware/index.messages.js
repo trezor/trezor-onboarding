@@ -46,8 +46,11 @@ const definedMessages = defineMessages({
         defaultMessage: 'Wait for your device to reboot',
         description: 'Info what is happening with users device.',
     },
-
-
+    TR_FIRMWARE_INSTALLED_TEXT: {
+        id: 'TR_FIRMWARE_INSTALLED_TEXT',
+        defaultMessage: 'This device has already installed firmware version: {version}',
+        description: 'Text to display in case device has firmware installed but it is outdated',
+    },
 });
 
 export default definedMessages;

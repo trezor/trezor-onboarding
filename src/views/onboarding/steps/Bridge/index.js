@@ -9,7 +9,6 @@ import { FormattedMessage, injectIntl } from '@dragonraider5/react-intl';
 
 import types from 'config/types';
 
-import { OrderedList } from 'components/Lists';
 import { Dots } from 'components/Loaders';
 import Text from 'views/onboarding/components/Text';
 
@@ -42,10 +41,6 @@ const DownloadBridgeButton = styled(Button)`
     margin-bottom: 5px;
 `;
 
-const DetectingWrapper = styled.div`
-    margin-top: 50px;
-    /* text-align: center; */
-`;
 class InstallBridge extends PureComponent {
     constructor(props) {
         super(props);
@@ -87,25 +82,6 @@ class InstallBridge extends PureComponent {
     render() {
         const { target, uri, installers } = this.state;
         const status = this.getStatus();
-        const installInstructions = [{
-            component: <P><FormattedMessage {...l10nMessages.TR_WAIT_FOR_FILE_TO_DOWNLOAD} /></P>,
-            key: '1',
-        }, {
-            component: <P><FormattedMessage {...l10nMessages.TR_DOUBLE_CLICK_IT_TO_RUN_INSTALLER} /></P>,
-            key: '2',
-        }];
-        if (target.signature) {
-            installInstructions.push({
-                component: (
-                    <Link
-                        href={uri + target.signature}
-                        isGreen
-                    >
-                        <FormattedMessage {...l10nMessages.TR_CHECK_PGP_SIGNATURE} />
-                    </Link>),
-                key: '3',
-            });
-        }
 
         return (
             <StepWrapper>
@@ -114,15 +90,16 @@ class InstallBridge extends PureComponent {
                 </StepHeadingWrapper>
                 <StepBodyWrapper>
 
-                    <P size="small">
+                    <Text size="small">
                         { status === 'installed' && (
-                            <span>Trezor Bridge is running. Version: {this.props.transport.version}</span>
+                            <FormattedMessage {...l10nMessages.TR_TREZOR_BRIDGE_IS_RUNNING_VERSION} values={{ version: this.props.transport.version }} />
+
                         )}
                         { status !== 'installed' && (
-                            <span>Trezor Bridge is not running</span>
+                            <FormattedMessage {...l10nMessages.TR_TREZOR_BRIDGE_IS_NOT_RUNNING} />
                         )}
-                    </P>
-                    <br />
+                    </Text>
+
                     <Text>
                         <FormattedMessage {...l10nMessages.TR_BRIDGE_SUBHEADING} />
                     </Text>
@@ -152,19 +129,26 @@ class InstallBridge extends PureComponent {
                     {
                         status === 'downloading' && (
                             <React.Fragment>
-                                {/* <OrderedList items={installInstructions} /> */}
 
-                                <DetectingWrapper>
-                                    <P>1.</P>
-                                    <P><FormattedMessage {...l10nMessages.TR_WAIT_FOR_FILE_TO_DOWNLOAD} /></P>
-                                    <P>2.</P>
-                                    <P><FormattedMessage {...l10nMessages.TR_DOUBLE_CLICK_IT_TO_RUN_INSTALLER} /></P>
-                                    <P>3.</P>
-                                    <P>
-                                        <FormattedMessage {...l10nMessages.TR_DETECTING_BRIDGE} />
-                                        <Dots maxCount={3} />
-                                    </P>
-                                </DetectingWrapper>
+                                <Text>1.</Text>
+                                <Text><FormattedMessage {...l10nMessages.TR_WAIT_FOR_FILE_TO_DOWNLOAD} /></Text>
+                                {
+                                    target.signature && (
+                                        <Text>
+                                            <Link href={uri + target.signature} isGreen>
+                                                <FormattedMessage {...l10nMessages.TR_CHECK_PGP_SIGNATURE} />
+                                            </Link>
+                                        </Text>
+                                    )
+                                }
+                                
+                                <Text>2.</Text>
+                                <Text><FormattedMessage {...l10nMessages.TR_DOUBLE_CLICK_IT_TO_RUN_INSTALLER} /></Text>
+                                <Text>3.</Text>
+                                <Text>
+                                    <FormattedMessage {...l10nMessages.TR_DETECTING_BRIDGE} />
+                                    <Dots maxCount={3} />
+                                </Text>
                             </React.Fragment>
                         )
                     }

@@ -12,6 +12,7 @@ import colors from 'config/colors';
 import { PHISHING_URL } from 'config/urls';
 import types from 'config/types';
 import { APPLY_FLAGS } from 'actions/constants/calls';
+import Text from 'views/onboarding/components/Text';
 
 import l10nCommonMessages from 'support/commonMessages';
 import l10nMessages from './index.messages';
@@ -78,7 +79,7 @@ class BookmarkStep extends React.Component {
                     <FormattedMessage {...l10nMessages.TR_BOOKMARK_HEADING} />
                 </StepHeadingWrapper>
                 <StepBodyWrapper>
-                    <P>
+                    <Text>
                         <FormattedMessage
                             {...l10nMessages.TR_BOOKMARK_SUBHEADING}
                             values={{
@@ -89,31 +90,31 @@ class BookmarkStep extends React.Component {
                                 ),
                             }}
                         />
-                    </P>
+                    </Text>
 
                     {
                         !Platform.getInfo().isMobile && (
                             <React.Fragment>
-                                <P>
+                                <Text>
                                     <FormattedMessage {...l10nMessages.TR_USE_THE_KEYBOARD_SHORTCUT} />
-                                </P>
+                                </Text>
                                 {
                                     Platform.getInfo().os === Platform.MAC && (
-                                        <P>
+                                        <Text>
                                             <Key isPressed={keys[BookmarkStep.CTRL_KEY] === true}>⌘</Key>
                                             +
-                                            <Key isPressed={keys[BookmarkStep.D_KEY] === true}>D</Key>
-                                        </P>
+                                            <Key isPressed={keys[BookmarkStep.D_KEY] === true}>d</Key>
+                                        </Text>
                                     )
                                 }
                                 {/* todo: if mac has same key codes, simplify  */}
                                 {
                                     Platform.getInfo().os !== Platform.MAC && (
-                                        <P>
+                                        <Text>
                                             <Key isPressed={keys[BookmarkStep.CTRL_KEY] === true}>Ctrl</Key>
                                             +
-                                            <Key isPressed={keys[BookmarkStep.D_KEY] === true}>D</Key>
-                                        </P>
+                                            <Key isPressed={keys[BookmarkStep.D_KEY] === true}>d</Key>
+                                        </Text>
                                     )
                                 }
 

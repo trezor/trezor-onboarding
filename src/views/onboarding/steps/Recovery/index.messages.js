@@ -11,6 +11,11 @@ const definedMessages = defineMessages({
         defaultMessage: 'It is possible to re-create device from bip39 backup. First of all, chose number of words of your backup.',
         description: 'Subheading in recover page. Basic info about recovery',
     },
+    TR_RECOVER_SUBHEADING_MODEL_T: {
+        id: 'TR_RECOVER_SUBHEADING_MODEL_T',
+        defaultMessage: 'On model T the entire recovery process is doable on device.',
+        description: 'Subheading in recover page. Basic info about recovery',
+    },
     TR_WORDS: {
         id: 'TR_WORDS',
         defaultMessage: '{count} words',
@@ -23,7 +28,7 @@ const definedMessages = defineMessages({
     },
     TR_RECOVERY_TYPES_DESCRIPTION: {
         id: 'TR_RECOVERY_TYPES_DESCRIPTION',
-        defaultMessage: 'Both methods are safe. Basic recovery uses on computer input of words in randomized order. Advanced recovery uses on-screen input to load your recovery seed. Learn more',
+        defaultMessage: 'Both methods are safe. Basic recovery uses on computer input of words in randomized order. Advanced recovery uses on-screen input to load your recovery seed. {TR_LEARN_MORE_LINK}',
         description: 'There are two methods of recovery for T1. This is a short explanation text.',
     },
     TR_BASIC_RECOVERY_OPTION: {

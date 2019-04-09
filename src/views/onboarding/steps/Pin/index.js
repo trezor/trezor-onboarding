@@ -11,7 +11,7 @@ import types from 'config/types';
 import * as BREAKPOINTS from 'config/breakpoints';
 import l10nCommonMessages from 'support/commonMessages';
 import PinMatrix from 'views/onboarding/components/PinMatrix';
-
+import Text from 'views/onboarding/components/Text';
 import l10nMessages from './index.messages';
 import HowToSetPinGif from './videos/pin.gif';
 
@@ -72,9 +72,9 @@ class SetPinStep extends React.Component {
                     {
                         this.getStatus() === 'initial' && (
                             <React.Fragment>
-                                <P>
+                                <Text>
                                     <FormattedMessage {...l10nMessages.TR_PIN_SUBHEADING} />
-                                </P>
+                                </Text>
                                 <ControlsWrapper>
                                     <Button onClick={() => { this.props.connectActions.changePin(); }}>
                                         <FormattedMessage {...l10nMessages.TR_SET_PIN} />
@@ -113,9 +113,9 @@ class SetPinStep extends React.Component {
                     {
                         this.getStatus() === 'second' && (
                             <React.Fragment>
-                                <P>
+                                <Text>
                                     <FormattedMessage {...l10nMessages.TR_FIRST_PIN_ENTERED} />
-                                </P>
+                                </Text>
                                 <PinMatrix
                                     onPinSubmit={
                                         (pin) => {
@@ -130,9 +130,9 @@ class SetPinStep extends React.Component {
                     {
                         this.getStatus() === 'success' && (
                             <React.Fragment>
-                                <P>
+                                <Text>
                                     <FormattedMessage {...l10nMessages.TR_PIN_SET_SUCCESS} />
-                                </P>
+                                </Text>
                                 <ControlsWrapper>
                                     <Button onClick={() => this.props.onboardingActions.goToNextStep()}>
                                         <FormattedMessage {...l10nCommonMessages.TR_CONTINUE} />
@@ -145,7 +145,7 @@ class SetPinStep extends React.Component {
                     {
                         this.getStatus() === 'mismatch' && (
                             <React.Fragment>
-                                <P>
+                                <Text>
                                     <FormattedMessage
                                         {...l10nMessages.TR_PIN_ERROR_TROUBLESHOOT}
                                         values={{
@@ -155,7 +155,7 @@ class SetPinStep extends React.Component {
                                                 </Link>),
                                         }}
                                     />
-                                </P>
+                                </Text>
 
                                 <ControlsWrapper>
                                     <Button onClick={() => { this.props.connectActions.changePin(); }}>

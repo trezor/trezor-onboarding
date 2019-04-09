@@ -1,13 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Button, P } from 'trezor-ui-components';
 import { FormattedMessage } from '@dragonraider5/react-intl';
 
 import types from 'config/types';
 
 import l10nMessages from './BackupModelOne.messages';
 import {
-    StepWrapper, StepBodyWrapper, StepHeadingWrapper, ControlsWrapper,
+    StepWrapper, StepBodyWrapper, StepHeadingWrapper,
 } from '../../../components/Wrapper';
 
 import NthWord from './NthWord';
@@ -25,32 +24,12 @@ class BackupProgressModelOne extends React.Component {
 
     render() {
         const {
-            device, deviceCall, deviceInteraction, onboardingActions,
+            device, deviceInteraction,
         } = this.props;
         return (
             <StepWrapper>
                 <StepHeadingWrapper />
                 <StepBodyWrapper>
-                    {/* todo: remove */}
-                    {/* {
-                        (device && device.features.needs_backup === true && deviceInteraction.counter === 0) && (
-                            <React.Fragment>
-                                <P>
-                                    <FormattedMessage {...l10nMessages.TR_BACKUP_INSTRUCTION} />
-                                </P>
-                                <ControlsWrapper>
-                                    <Button
-                                        isDisabled={deviceCall.isProgress}
-                                        onClick={() => this.startBackup()}
-                                    >
-                                        <FormattedMessage {...l10nMessages.TR_BACKUP_OK} />
-                                    </Button>
-                                </ControlsWrapper>
-                            </React.Fragment>
-
-                        )
-                    } */}
-
                     {
                         (device && device.features.needs_backup === true && deviceInteraction.counter > 0 && this.isCheckingWords()) && (
                             <Wrapper>
@@ -75,9 +54,7 @@ class BackupProgressModelOne extends React.Component {
 }
 
 BackupProgressModelOne.propTypes = {
-    onboardingActions: types.onboardingActions,
     connectActions: types.connectActions,
-    deviceCall: types.deviceCall,
     device: types.device,
     deviceInteraction: types.deviceInteraction,
 };

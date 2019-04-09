@@ -60,7 +60,7 @@ class ConnectStep extends React.PureComponent {
     render() {
         const deviceIsConnected = Boolean(this.props.device && this.props.device.connected);
         const {
-            device, deviceCall, connectActions, model, onboardingActions, activeSubStep,
+            device, deviceCall, connectActions, onboardingActions, activeSubStep,
         } = this.props;
         const { isSearching, isSearchingTooLong } = this.state;
         return (

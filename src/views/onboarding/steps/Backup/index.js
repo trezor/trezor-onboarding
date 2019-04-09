@@ -11,6 +11,7 @@ import { WIPE_DEVICE, BACKUP_DEVICE } from 'actions/constants/calls';
 
 import { UnorderedList } from 'components/Lists';
 import { ID } from 'views/onboarding/constants/steps';
+import Text from 'views/onboarding/components/Text';
 
 import l10nCommonMessages from 'support/commonMessages';
 import l10nMessages from './index.messages';
@@ -161,8 +162,7 @@ class BackupStep extends React.Component {
                                                 onClick={() => { this.props.connectActions.wipeDevice(); }}
                                                 isDisabled={!device || !device.connected}
                                             >
-                                                wipe device
-                                                {/* <FormattedMessage {...l10nMessages.TR_WIPE_DEVICE_AND_START_AGAIN} /> */}
+                                                <FormattedMessage {...l10nCommonMessages.TR_WIPE_DEVICE} />
                                             </Button>
                                         )
                                     }
@@ -173,8 +173,7 @@ class BackupStep extends React.Component {
                                                 onClick={() => { this.props.connectActions.resetDevice(); }}
                                                 isDisabled={!device || !device.connected}
                                             >
-                                                reset device
-                                                {/* <FormattedMessage {...l10nMessages.TR_WIPE_DEVICE_AND_START_AGAIN} /> */}
+                                                <FormattedMessage {...l10nCommonMessages.TR_RESET_DEVICE} />
                                             </Button>
                                         )
                                     }
@@ -182,7 +181,9 @@ class BackupStep extends React.Component {
                                 </ControlsWrapper>
                                 {
                                     (!device || !device.connected) && (
-                                        <P><FormattedMessage {...l10nCommonMessages.TR_CONNECT_YOUR_DEVICE} /></P>
+                                        <Text>
+                                            <FormattedMessage {...l10nCommonMessages.TR_CONNECT_YOUR_DEVICE} />
+                                        </Text>
                                     )
                                 }
                             </React.Fragment>
@@ -192,19 +193,17 @@ class BackupStep extends React.Component {
                     {
                         this.getStatus() === BackupStep.SUCCESS_STATUS && (
                             <React.Fragment>
-                                <H4>
-                                Good job.
-                                </H4>
-                                <P>
-                                Backup is now on your recovery seed card. Once again dont lose it and keep it private!
-                                </P>
+                                <Text>
+                                    <FormattedMessage {...l10nMessages.TR_BACKUP_FINISHED_TEXT} />
+                                </Text>
                                 <ControlsWrapper>
-                                    <Button onClick={() => onboardingActions.goToNextStep()}>My recovery card is safe</Button>
+                                    <Button onClick={() => onboardingActions.goToNextStep()}>
+                                        <FormattedMessage {...l10nMessages.TR_BACKUP_FINISHED_BUTTON} />
+                                    </Button>
                                 </ControlsWrapper>
                             </React.Fragment>
                         )
                     }
-
                 </StepBodyWrapper>
             </StepWrapper>
         );

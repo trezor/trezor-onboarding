@@ -7,7 +7,7 @@ import { FormattedMessage, injectIntl } from '@dragonraider5/react-intl';
 
 import types from 'config/types';
 import { validateASCII } from 'utils/validate';
-
+import Text from 'views/onboarding/components/Text';
 import l10nCommonMessages from 'support/commonMessages';
 import l10nMessages from './index.messages';
 import {
@@ -16,6 +16,7 @@ import {
 
 const NameInput = styled(Input)`
     max-width: 400px; 
+    min-height: 65px;
 `;
 
 class NameStep extends React.Component {
@@ -60,15 +61,14 @@ class NameStep extends React.Component {
                 <StepHeadingWrapper>
                     { !this.state.labelChanged && <FormattedMessage {...l10nMessages.TR_NAME_HEADING} /> }
                     { this.state.labelChanged && <FormattedMessage {...l10nMessages.TR_NAME_HEADING_CHANGED} values={{ label: device.features.label }} /> }
-
                 </StepHeadingWrapper>
                 <StepBodyWrapper>
                     {
                         !this.state.labelChanged && (
                             <React.Fragment>
-                                <P>
+                                <Text>
                                     <FormattedMessage {...l10nMessages.TR_NAME_SUBHEADING} />
-                                </P>
+                                </Text>
                                 <NameInput
                                     value={this.state.label}
                                     placeholder=""
@@ -94,9 +94,9 @@ class NameStep extends React.Component {
                     {
                         this.state.labelChanged && (
                             <React.Fragment>
-                                <P>
+                                <Text>
                                     <FormattedMessage {...l10nMessages.TR_NAME_CHANGED_TEXT} />
-                                </P>
+                                </Text>
                                 <ControlsWrapper>
                                     <Button onClick={() => this.props.onboardingActions.goToNextStep()}>
                                         <FormattedMessage {...l10nCommonMessages.TR_CONTINUE} />

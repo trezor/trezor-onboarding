@@ -53,10 +53,13 @@ const HologramStep = ({ onboardingActions, activeSubStep, model }) => (
                 activeSubStep === 'hologram-different' && (
                     <React.Fragment>
                         <Text>
-                            {/* todo: translation */}
-                        Did you purchase your device from <Link href={TREZOR_RESELLERS_URL}>a trusted reseller</Link>?
-                        If no, device you are holding in hands might be a counterfeit.
-                        Please <Link href={SUPPORT_URL}>contact our support</Link>
+                            <FormattedMessage
+                                {...l10nMessages.TR_DID_YOU_PURCHASE}
+                                values={{
+                                    TR_RESELLERS_LINK: <Link href={TREZOR_RESELLERS_URL}><FormattedMessage {...l10nMessages.TR_RESELLERS_LINK} /></Link>,
+                                    TR_CONTACT_OUR_SUPPORT_LINK: <Link href={SUPPORT_URL}><FormattedMessage {...l10nMessages.TR_CONTACT_OUR_SUPPORT_LINK} /></Link>,
+                                }}
+                            />
                         </Text>
                         <ControlsWrapper>
                             <Link href={SUPPORT_URL}>

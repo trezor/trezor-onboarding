@@ -41,6 +41,21 @@ const definedMessages = defineMessages({
         defaultMessage: 'Submit',
         description: 'Button text',
     },
+    TR_WIPE_DEVICE: {
+        id: 'TR_WIPE_DEVICE',
+        defaultMessage: 'Wipe device',
+        description: 'Button',
+    },
+    TR_RESET_DEVICE: {
+        id: 'TR_RESET_DEVICE',
+        defaultMessage: 'Reset device',
+        description: 'Button.',
+    },
+    TR_LEARN_MORE_LINK: {
+        id: 'TR_LEARN_MORE_LINK',
+        defaultMessage: 'Learn more.',
+        description: 'Link to Trezor wiki.',
+    },
 });
 
 export default definedMessages;
