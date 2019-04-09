@@ -9,7 +9,9 @@ import { FormattedMessage, injectIntl } from '@dragonraider5/react-intl';
 
 import types from 'config/types';
 
+import { OrderedList } from 'components/Lists';
 import { Dots } from 'components/Loaders';
+import Text from 'views/onboarding/components/Text';
 
 import l10nCommonMessages from 'support/commonMessages';
 import l10nMessages from './index.messages';
@@ -121,9 +123,9 @@ class InstallBridge extends PureComponent {
                         )}
                     </P>
                     <br />
-                    <P style={{ textAlign: 'center' }}>
+                    <Text>
                         <FormattedMessage {...l10nMessages.TR_BRIDGE_SUBHEADING} />
-                    </P>
+                    </Text>
 
                     {
                         status === null && (
@@ -150,7 +152,7 @@ class InstallBridge extends PureComponent {
                     {
                         status === 'downloading' && (
                             <React.Fragment>
-                                {/* <UnorderedList items={installInstructions} /> */}
+                                {/* <OrderedList items={installInstructions} /> */}
 
                                 <DetectingWrapper>
                                     <P>1.</P>

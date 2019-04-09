@@ -3,14 +3,14 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import ReactTimeout from 'react-timeout';
 import {
-    P, H4, Button, Icon, icons,
+    P, H4, Button,
 } from 'trezor-ui-components';
 import { FormattedMessage } from '@dragonraider5/react-intl';
-
 
 import types from 'config/types';
 import { TrezorConnect } from 'components/Prompts';
 import { Dots } from 'components/Loaders';
+import Text from 'views/onboarding/components/Text';
 
 import l10nCommonMessages from 'support/commonMessages';
 import l10nMessages from './index.messages';
@@ -21,10 +21,6 @@ import {
 import TroubleshootBootloader from './components/TroubleshootBootloader';
 import TroubleshootInitialized from './components/TroubleshootInitialized';
 import TroubleshootSearchingTooLong from './components/TroubleshootTooLong';
-
-const DeviceIconWrapper = styled.div`
-    margin-bottom: 30px;
-`;
 
 class ConnectStep extends React.PureComponent {
     static IS_SEARCHING_TIMEOUT = 5 * 1000;
@@ -79,12 +75,12 @@ class ConnectStep extends React.PureComponent {
                     {
                         !deviceIsConnected
                         && (
-                            <P>
+                            <Text>
                                 <FormattedMessage {...l10nMessages.TR_MAKE_SURE_IT_IS_WELL_CONNECTED} />
                                 {' '}
                                 <FormattedMessage {...l10nMessages.TR_SEARCHING_FOR_YOUR_DEVICE} />
                                 <Dots />
-                            </P>
+                            </Text>
                         )
                     }
 
@@ -103,9 +99,9 @@ class ConnectStep extends React.PureComponent {
                                             <H4>
                                                 <FormattedMessage {...l10nMessages.TR_DEVICE_DETECTED} />
                                             </H4>
-                                            <P>
+                                            <Text>
                                                 <FormattedMessage {...l10nMessages.TR_FOUND_OK_DEVICE} />
-                                            </P>
+                                            </Text>
                                             <ControlsWrapper>
                                                 <Button
                                                     onClick={() => this.props.onboardingActions.goToNextStep()}

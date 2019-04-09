@@ -6,10 +6,12 @@ import colors from 'config/colors';
 
 const ListItem = styled.li`
     /* margin-bottom: 14px; */
+    text-align: justify;
+    
     &:before {
         content: "●";
         padding-right: 7px;
-        color: ${colors.grayDark}
+        color: ${colors.grayDark};
     }
     & > * {
         display: inline;

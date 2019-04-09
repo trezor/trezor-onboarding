@@ -1,13 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
 import {
-    Button, P, Link,
+    Button, Link,
 } from 'trezor-ui-components';
 import { FormattedMessage } from '@dragonraider5/react-intl';
 
 import { TREZOR_RESELLERS_URL, SUPPORT_URL } from 'config/urls';
 import types from 'config/types';
 
+import Text from 'views/onboarding/components/Text';
 import l10nCommonMessages from 'support/commonMessages';
 import l10nMessages from './index.messages';
 
@@ -22,74 +23,60 @@ const HologramWrapper = styled.div`
     margin: 10px;
 `;
 
-class HologramStep extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            status: 'initial',
-        };
-    }
-
-    render() {
-        const { onboardingActions, activeSubStep } = this.props;
-
-        return (
-            <StepWrapper>
-                <StepHeadingWrapper>
-                    <FormattedMessage {...l10nMessages.TR_HOLOGRAM_STEP_HEADING} />
-                </StepHeadingWrapper>
-                <StepBodyWrapper>
-                    {
-                        activeSubStep !== 'hologram-different' && (
-                            <React.Fragment>
-                                <P>
-                                    <FormattedMessage {...l10nMessages.TR_HOLOGRAM_STEP_SUBHEADING} />
-                                </P>
-                                <HologramWrapper>
-                                    <Hologram model={this.props.model} />
-                                </HologramWrapper>
-
-                                <ControlsWrapper>
-                                    <Button onClick={() => this.props.onboardingActions.goToNextStep()}>
-                                        <FormattedMessage {...l10nMessages.TR_HOLOGRAM_STEP_ACTION_OK} />
-                                    </Button>
-                                    <Button onClick={() => onboardingActions.goToSubStep('hologram-different')} isWhite>
-                                        <FormattedMessage {...l10nMessages.TR_HOLOGRAM_STEP_ACTION_NOT_OK} />
-                                    </Button>
-                                </ControlsWrapper>
-                            </React.Fragment>
-                        )
-                    }
-
-                    {
-                        activeSubStep === 'hologram-different' && (
-                            <React.Fragment>
-                                <P>
-                                    {/* todo: translation */}
-                                Did you purchase your device from <Link href={TREZOR_RESELLERS_URL}>a trusted reseller</Link>?
-                                If no, device you are holding in hands might be a counterfeit.
-                                Please <Link href={SUPPORT_URL}>contact our support</Link>
-                                </P>
-                                <ControlsWrapper>
-                                    <Link href={SUPPORT_URL}>
-                                        <Button style={{ width: '100%' }}>
-                                            <FormattedMessage {...l10nCommonMessages.TR_CONTACT_SUPPORT} />
-                                        </Button>
-                                    </Link>
-                                    <Button isWhite onClick={() => onboardingActions.goToSubStep(null)}>Back</Button>
-                                </ControlsWrapper>
-                            </React.Fragment>
-                        )
-                    }
-                </StepBodyWrapper>
-            </StepWrapper>
-        );
-    }
-}
+const HologramStep = ({ onboardingActions, activeSubStep, model }) => (
+    <StepWrapper>
+        <StepHeadingWrapper>
+            <FormattedMessage {...l10nMessages.TR_HOLOGRAM_STEP_HEADING} />
+        </StepHeadingWrapper>
+        <StepBodyWrapper>
+            {
+                activeSubStep !== 'hologram-different' && (
+                    <React.Fragment>
+                        <Text>
+                            <FormattedMessage {...l10nMessages.TR_HOLOGRAM_STEP_SUBHEADING} />
+                        </Text>
+                        <HologramWrapper>
+                            <Hologram model={model} />
+                        </HologramWrapper>
+                        <ControlsWrapper>
+                            <Button onClick={() => onboardingActions.goToNextStep()}>
+                                <FormattedMessage {...l10nMessages.TR_HOLOGRAM_STEP_ACTION_OK} />
+                            </Button>
+                            <Button onClick={() => onboardingActions.goToSubStep('hologram-different')} isWhite>
+                                <FormattedMessage {...l10nMessages.TR_HOLOGRAM_STEP_ACTION_NOT_OK} />
+                            </Button>
+                        </ControlsWrapper>
+                    </React.Fragment>
+                )
+            }
+            {
+                activeSubStep === 'hologram-different' && (
+                    <React.Fragment>
+                        <Text>
+                            {/* todo: translation */}
+                        Did you purchase your device from <Link href={TREZOR_RESELLERS_URL}>a trusted reseller</Link>?
+                        If no, device you are holding in hands might be a counterfeit.
+                        Please <Link href={SUPPORT_URL}>contact our support</Link>
+                        </Text>
+                        <ControlsWrapper>
+                            <Link href={SUPPORT_URL}>
+                                <Button style={{ width: '100%' }}>
+                                    <FormattedMessage {...l10nCommonMessages.TR_CONTACT_SUPPORT} />
+                                </Button>
+                            </Link>
+                            <Button isWhite onClick={() => onboardingActions.goToSubStep(null)}>Back</Button>
+                        </ControlsWrapper>
+                    </React.Fragment>
+                )
+            }
+        </StepBodyWrapper>
+    </StepWrapper>
+);
 
 HologramStep.propTypes = {
     onboardingActions: types.onboardingActions,
     model: types.model,
+    activeSubStep: types.activeSubStep,
 };
 
 

@@ -7,6 +7,7 @@ import l10nMessages from './NthWord.messages';
 
 const Word = styled.div`
     font-size: 3em;
+    white-space: nowrap;
 `;
 
 const NthWord = ({ number }) => {

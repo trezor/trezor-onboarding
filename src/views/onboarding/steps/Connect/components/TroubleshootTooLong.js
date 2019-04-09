@@ -4,6 +4,7 @@ import { FormattedMessage } from '@dragonraider5/react-intl';
 
 import { UnorderedList } from 'components/Lists';
 import { SUPPORT_URL } from 'config/urls';
+import Text from 'views/onboarding/components/Text';
 
 import l10nMessages from './TroubleshootTooLong.messages';
 
@@ -15,9 +16,9 @@ const ContactSupportLink = (
 
 const TroubleshootSearchingTooLong = () => (
     <React.Fragment>
-        <P>
+        <Text>
             <FormattedMessage {...l10nMessages.TR_SEARCHING_TAKES_TOO_LONG} />
-        </P>
+        </Text>
         <UnorderedList
             items={[{
                 component: <P><FormattedMessage {...l10nMessages.TR_REFRESH_INSTRUCTION} /></P>,

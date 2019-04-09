@@ -20,6 +20,11 @@ import {
     StepWrapper, StepBodyWrapper, StepHeadingWrapper, ControlsWrapper, CheckboxWrapper,
 } from '../../components/Wrapper';
 
+const CheckboxexSection = styled.div`
+    display: flex;
+    flex-direction: column;
+`;
+
 const SocialWrapper = styled.div`
     display: flex;
     justify-content: space-around;
@@ -118,24 +123,28 @@ class NewsleterStep extends React.Component {
                                         isDisabled={this.getEmailStatus() === 'sending'}
                                     />
                                 </InputWrapper>
-                                <CheckboxWrapper>
-                                    <Checkbox
-                                        isChecked={newsletter.checkboxes.security}
-                                        onClick={() => newsletterActions.toggleCheckbox('security')}
-                                    />
-                                    <P>
-                                        Guvno
-                                    </P>
-                                </CheckboxWrapper>
-                                <CheckboxWrapper>
-                                    <Checkbox
-                                        isChecked={newsletter.checkboxes.promo}
-                                        onClick={() => newsletterActions.toggleCheckbox('promo')}
-                                    />
-                                    <P>
-                                        Promo
-                                    </P>
-                                </CheckboxWrapper>
+
+                                <CheckboxexSection>
+                                    <CheckboxWrapper>
+                                        <Checkbox
+                                            isChecked={newsletter.checkboxes.security}
+                                            onClick={() => newsletterActions.toggleCheckbox('security')}
+                                        />
+                                        <P>
+                                            Security
+                                        </P>
+                                    </CheckboxWrapper>
+                                    <CheckboxWrapper>
+                                        <Checkbox
+                                            isChecked={newsletter.checkboxes.promo}
+                                            onClick={() => newsletterActions.toggleCheckbox('promo')}
+                                        />
+                                        <P>
+                                            Promo
+                                        </P>
+                                    </CheckboxWrapper>
+                                </CheckboxexSection>
+                                
                                 <ControlsWrapper>
                                     <Button
                                         isDisabled={this.validateInput().state !== 'success' || this.getEmailStatus() === 'sending'}

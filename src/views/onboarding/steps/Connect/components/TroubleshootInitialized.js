@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-    H4, P, Button, Link,
+    H4, Button, Link,
 } from 'trezor-ui-components';
 import { FormattedMessage } from '@dragonraider5/react-intl';
 
@@ -9,6 +9,7 @@ import colors from 'config/colors';
 import types from 'config/types';
 import { ID } from 'views/onboarding/constants/steps';
 import { ControlsWrapper } from 'views/onboarding/components/Wrapper';
+import Text from 'views/onboarding/components/Text';
 import l10nCommonMessages from 'support/commonMessages';
 import l10nMessages from './TroubleshootInitialized.messages';
 
@@ -22,7 +23,7 @@ const TroubleshootInitialized = ({
                     <H4>
                         <FormattedMessage {...l10nMessages.TR_DEVICE_IS_INITIALIZED} />
                     </H4>
-                    <P>
+                    <Text>
                         {
                             device.features.label && (
                                 <FormattedMessage
@@ -38,7 +39,7 @@ const TroubleshootInitialized = ({
                                 firmware: `${device.features.major_version}.${device.features.minor_version}.${device.features.patch_version}`,
                             }}
                         />
-                    </P>
+                    </Text>
                     <ControlsWrapper>
                         <Button
                             onClick={() => onboardingActions.goToSubStep('user-worked-before')}
@@ -63,12 +64,12 @@ const TroubleshootInitialized = ({
                     <H4>
                         <FormattedMessage {...l10nMessages.TR_USER_HAS_WORKED_WITH_THIS_DEVICE} />
                     </H4>
-                    <P>
+                    <Text>
                         <FormattedMessage {...l10nMessages.TR_INSTRUCTION_TO_SKIP_OR_WIPE} />
-                    </P>
-                    <P style={{ color: colors.warning }}>
+                    </Text>
+                    <Text style={{ color: colors.warning }}>
                         <FormattedMessage {...l10nMessages.TR_WIPE_WARNING} />
-                    </P>
+                    </Text>
                     <ControlsWrapper>
                         <Button
                             onClick={() => onboardingActions.goToSubStep(null)}
@@ -96,9 +97,9 @@ const TroubleshootInitialized = ({
                     <H4>
                         <FormattedMessage {...l10nMessages.TR_USER_HAS_NOT_WORKED_WITH_THIS_DEVICE} />
                     </H4>
-                    <P>
+                    <Text>
                         <FormattedMessage {...l10nMessages.TR_USER_HAS_NOT_WORKED_WITH_THIS_DEVICE_INSTRUCTIONS} />
-                    </P>
+                    </Text>
                     <ControlsWrapper>
                         <Button
                             onClick={() => onboardingActions.goToSubStep(null)}
@@ -107,7 +108,7 @@ const TroubleshootInitialized = ({
                             <FormattedMessage {...l10nCommonMessages.TR_BACK} />
                         </Button>
                         <Link href={SUPPORT_URL}>
-                            <Button>
+                            <Button style={{ width: '100%' }}>
                                 <FormattedMessage {...l10nCommonMessages.TR_CONTACT_SUPPORT} />
                             </Button>
                         </Link>
