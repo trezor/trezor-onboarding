@@ -28,6 +28,7 @@ const Circle = styled.div`
     justify-content: center;
     align-items: center;
     font-size: 0.82rem;
+    
 `;
 
 const Text = styled.div`
@@ -40,7 +41,6 @@ const LINE_TRANSITION_DURATION = 0.25;
 
 const ProgressStep = (props) => {
     const color = props.isActive ? colors.brandPrimary : colors.gray;
-    const transition = props.isActive ? `background-color 0.2s ${LINE_TRANSITION_DURATION * 2}s linear, color 0.2s ${LINE_TRANSITION_DURATION * 2}s linear, border-color 0.2s ${LINE_TRANSITION_DURATION * 2}s linear` : '';
     const borderColor = props.isActive || props.isFinished ? colors.brandPrimary : colors.gray;
     let backgroundColor;
     if (props.isActive) {
@@ -53,12 +53,19 @@ const ProgressStep = (props) => {
 
     const isClickable = !notClickableDots.includes(props.step) && props.isFinished;
 
+    let order;
+    if (props.isGoingForward) {
+        order = props.changeOverHowManySteps;
+    } else {
+        order = 2 * props.changeOverHowManySteps;
+    }
+
     return (
         <ProgressStepWrapper>
             <Line
                 transitionDuration={LINE_TRANSITION_DURATION}
                 isActive={((!props.isFinished && !props.isActive) || props.index === 0)}
-                order={props.isGoingForward ? 1 : 0}
+                order={props.isGoingForward ? order + 1 : order - (props.index * 2)}
                 isFirst={props.index === 0}
             />
 
@@ -67,8 +74,9 @@ const ProgressStep = (props) => {
                     borderColor,
                     color,
                     backgroundColor,
-                    transition,
                     cursor: isClickable ? 'pointer' : 'initial',
+                    transition: `all ${LINE_TRANSITION_DURATION}s linear`,
+                    transitionDelay: props.isGoingForward ? `${LINE_TRANSITION_DURATION * 2}s` : `${LINE_TRANSITION_DURATION * (order - (props.index * 2))}s`,
                 }}
                 onClick={isClickable ? () => { props.onboardingActions.goToNextStep(props.step); } : null}
             />
@@ -76,7 +84,7 @@ const ProgressStep = (props) => {
             <Line
                 transitionDuration={LINE_TRANSITION_DURATION}
                 isActive={!props.isFinished}
-                order={!props.isGoingForward ? 1 : 0}
+                order={props.isGoingForward ? order : order - (props.index * 2) - 1}
                 isLast={props.isLast}
             />
 

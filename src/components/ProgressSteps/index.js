@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
+import types from 'config/types';
 import ProgressStep from './components/ProgressStep';
 
 const Wrapper = styled.div`
@@ -15,11 +16,17 @@ const isStepFinished = (steps, index, activeStep) => {
 };
 
 class ProgressSteps extends React.Component {
+    constructor() {
+        super();
+        this.changeOverHowManySteps = 0;
+    }
+
     componentWillReceiveProps(nextProps) {
         if (nextProps.activeStep) {
             const nextStepIndex = this.props.steps.findIndex(step => step === nextProps.activeStep.title);
             const currentStepIndex = this.props.steps.findIndex(step => step === this.props.activeStep.title);
             this.isGoingForward = nextStepIndex > currentStepIndex;
+            this.changeOverHowManySteps = Math.abs(nextStepIndex - currentStepIndex);
         }
     }
 
@@ -34,10 +41,13 @@ class ProgressSteps extends React.Component {
                                 isGoingForward={this.isGoingForward}
                                 step={step}
                                 index={index}
+                                length={props.steps.length}
                                 isActive={props.activeStep.title === step}
                                 isFinished={isStepFinished(props.steps, index, props.activeStep)}
                                 isLast={props.steps.length - 1 === index}
                                 onboardingActions={props.onboardingActions}
+                                changeOverHowManySteps={this.changeOverHowManySteps}
+
                             />
                         </React.Fragment>
                     ))}
@@ -49,7 +59,7 @@ class ProgressSteps extends React.Component {
 
 ProgressSteps.propTypes = {
     activeStep: PropTypes.object.isRequired, // todo: better
-    steps: PropTypes.array.isRequired, // todo: better types string
+    steps: types.steps,
 };
 
 export default ProgressSteps;

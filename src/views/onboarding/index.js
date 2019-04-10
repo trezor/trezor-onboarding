@@ -413,6 +413,8 @@ class Onboarding extends React.PureComponent {
     }
 }
 
-Onboarding.propTypes = types;
+Onboarding.propTypes = {
+    
+};
 
 export default Onboarding;

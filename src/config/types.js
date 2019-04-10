@@ -31,4 +31,5 @@ export default {
         error: PropTypes.any,
         result: PropTypes.object,
     }),
+    steps: PropTypes.arrayOf(PropTypes.string), // todo: better
 };
