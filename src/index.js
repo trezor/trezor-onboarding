@@ -16,6 +16,9 @@ const root = document.getElementById('root');
 // eslint-disable-next-line no-undef
 console.log(`[Trezor onboarding] version: ${VERSION}, branch: ${BRANCH}, build: ${BUILD}`);
 
+// todo: consider for blocking back or reload button;
+// window.onbeforeunload = function () { return 'Your work will be lost.'; };
+
 if (root) {
     render(
         // <React.StrictMode>

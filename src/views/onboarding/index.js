@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Link, P, Prompt } from 'trezor-ui-components';
-import { CSSTransitionGroup } from 'react-transition-group';
+import { CSSTransition } from 'react-transition-group';
 
 import types from 'config/types';
 import colors from 'config/colors';
@@ -33,7 +33,6 @@ import RecoveryStep from 'views/onboarding/steps/Recovery';
 
 const WRAPPER_HEIGHT = 80;
 const MAIN_HEIGHT = 80;
-const FOOTER_HEIGHT = 5;
 const BORDER_RADIUS = 12;
 
 const Wrapper = styled.div`
@@ -43,13 +42,12 @@ const Wrapper = styled.div`
     background-color: ${colors.white};
     border-radius: ${BORDER_RADIUS}px;
     width: 95vw;
-    margin: 20px auto 0 auto;
     min-height: ${WRAPPER_HEIGHT}vh;
     z-index: 1;
 
     @media only screen and (min-width: ${SM}px) {
         width: calc(55vw + 150px) ;
-        margin: auto;
+        margin: 20px auto;
         overflow: hidden;
     } 
 `;
@@ -66,9 +64,10 @@ const ProgressStepsSlot = styled.div`
     height: 70px;
 `;
 
-const ComponentWrapper = styled(CSSTransitionGroup)`
+const ComponentWrapper = styled.div`
     display: flex;
-    flex-direction: column;
+    margin-top: 5%;
+    margin-bottom: 5%;
 `;
 
 const TrezorActionOverlay = styled.div`
@@ -76,7 +75,7 @@ const TrezorActionOverlay = styled.div`
     margin-top: auto;
     margin-bottom: auto;
     width: 100%;
-    height: ${FOOTER_HEIGHT + MAIN_HEIGHT}%;
+    height: ${MAIN_HEIGHT}%;
     display: flex;
     justify-content: center;
     background-color: ${colors.white};
@@ -211,47 +210,81 @@ class Onboarding extends React.PureComponent {
                     )}
                 </ProgressStepsSlot>
 
-                <ComponentWrapper
-                    component="div"
-                    transitionName="step-transition"
-                    transitionEnterTimeout={300}
-                    transitionLeave={false}
-                >
-
+                <ComponentWrapper>
                     <TrezorActionOverlay style={{ display: !this.isGlobalInteraction() ? 'none' : 'flex' }}>
-                        <Prompt model={model} size={112}>
+                        <Prompt model={model} size={100}>
                             <TrezorActionText />
                         </Prompt>
                     </TrezorActionOverlay>
 
                     {/* todo [vladimir]: how to find that I pass props and dont use them in component? any tooling? */}
-                    {this.getScreen() === ID.WELCOME_STEP && (
+                    {/* {this.getScreen() === ID.WELCOME_STEP && ( */}
+                    <CSSTransition
+                        in={activeStepId === ID.WELCOME_STEP}
+                        timeout={1000}
+                        classNames="step-transition"
+                        unmountOnExit
+                        // onEnter={() => setShowButton(false)}
+                        // onExited={() => setShowButton(true)}
+                    >
                         <WelcomeStep
                             onboardingActions={onboardingActions}
                             transport={transport}
                         />
-                    )}
-                    {this.getScreen() === ID.SELECT_DEVICE_STEP && (
+                    </CSSTransition>
+
+                    <CSSTransition
+                        in={activeStepId === ID.SELECT_DEVICE_STEP}
+                        timeout={1000}
+                        classNames="step-transition"
+                        unmountOnExit
+                        // onEnter={() => setShowButton(false)}
+                        // onExited={() => setShowButton(true)}
+                    >
                         <SelectDeviceStep
                             deviceCall={deviceCall}
                             onboardingActions={onboardingActions}
                         />
-                    )}
-                    {this.getScreen() === ID.UNBOXING_STEP && (
+                    </CSSTransition>
+
+                    <CSSTransition
+                        in={activeStepId === ID.UNBOXING_STEP}
+                        timeout={1000}
+                        classNames="step-transition"
+                        unmountOnExit
+                        // onEnter={() => setShowButton(false)}
+                        // onExited={() => setShowButton(true)}
+                    >
                         <HologramStep
                             onboardingActions={onboardingActions}
                             model={model}
                             activeSubStep={activeSubStep}
                         />
-                    )}
-                    {this.getScreen() === ID.BRIDGE_STEP && (
+                    </CSSTransition>
+
+                    <CSSTransition
+                        in={activeStepId === ID.BRIDGE_STEP}
+                        timeout={1000}
+                        classNames="step-transition"
+                        unmountOnExit
+                        // onEnter={() => setShowButton(false)}
+                        // onExited={() => setShowButton(true)}
+                    >
                         <BridgeStep
                             onboardingActions={onboardingActions}
                             activeSubStep={activeSubStep}
                             transport={transport}
                         />
-                    )}
-                    {this.getScreen() === ID.CONNECT_STEP && (
+                    </CSSTransition>
+
+                    <CSSTransition
+                        in={activeStepId === ID.CONNECT_STEP}
+                        timeout={1000}
+                        classNames="step-transition"
+                        unmountOnExit
+                        // onEnter={() => setShowButton(false)}
+                        // onExited={() => setShowButton(true)}
+                    >
                         <ConnectStep
                             onboardingActions={onboardingActions}
                             connectActions={connectActions}
@@ -260,7 +293,8 @@ class Onboarding extends React.PureComponent {
                             deviceCall={deviceCall}
                             activeSubStep={activeSubStep}
                         />
-                    )}
+                    </CSSTransition>
+
                     {this.getScreen() === ID.FIRMWARE_STEP && (
                         <FirmwareStep
                             onboardingActions={onboardingActions}
@@ -354,7 +388,7 @@ class Onboarding extends React.PureComponent {
 }
 
 Onboarding.propTypes = {
-    
+
 };
 
 export default Onboarding;

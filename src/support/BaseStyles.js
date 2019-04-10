@@ -9,8 +9,6 @@ const baseStyles = createGlobalStyle`
         position: relative;
         font-family: 'Roboto', sans-serif;
         font-size: 14px;
-        ${'' /* font-size: calc(14px + (26 - 14) * ((100vw - 300px) / (1600 - 300)));
-        line-height: calc(1.3em + (1.5 - 1.2) * ((100vw - 300px)/(1600 - 300))); */}
     }
 
     * , *:before , *:after {
@@ -41,12 +39,26 @@ const baseStyles = createGlobalStyle`
 
     /* classes required by react transitions https://github.com/reactjs/react-transition-group */
     .step-transition-enter {
-        opacity: 0.01;
+        opacity: 0;
+        transform: translateX(+100%);
+        position: absolute;
     }
 
-    .step-transition-enter.step-transition-enter-active {
+    .step-transition-enter-active {
         opacity: 1;
-        transition: opacity 300ms ease-in;
+        transform: translateX(0);
+        transition: opacity 400ms ease-in, transform 400ms ease-out;
+    }
+
+    .step-transition-exit {
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+    .step-transition-exit-active {
+        opacity: 0;
+        transform: translateX(-100%);
+        transition: opacity 400ms ease-out, transform 400ms ease-in;
     }
 `;
 

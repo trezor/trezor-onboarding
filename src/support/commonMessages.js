@@ -13,7 +13,7 @@ const definedMessages = defineMessages({
     },
     TR_SKIP_ALL: {
         id: 'TR_SKIP_ALL',
-        defaultMessage: 'Skip',
+        defaultMessage: 'Skip onboarding',
         description: 'Button. Skip the entire onboarding process.',
     },
     TR_SKIP: {
