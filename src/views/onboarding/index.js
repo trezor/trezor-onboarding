@@ -71,35 +71,6 @@ const ComponentWrapper = styled(CSSTransitionGroup)`
     flex-direction: column;
 `;
 
-// todo: resolve footer / navigation
-const FooterWrapper = styled.div`
-    padding: 3px 3% 3px 3%;
-`;
-
-const FooterDivider = styled.div`
-    height: .4px;
-    background-color: ${colors.gray};
-    width: 100%;
-    margin-top: 3px;
-    margin-bottom: 3px;
-`;
-
-const FooterLinks = styled.div`
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between; 
-`;
-
-const FooterLink = styled.a`
-    display: inline;
-    white-space: nowrap;
-    color: ${colors.gray};
-    &:hover,
-    &:active {
-        color: ${colors.grayDark};
-    }
-`;
-
 const TrezorActionOverlay = styled.div`
     position: absolute;
     margin-top: auto;
@@ -375,38 +346,7 @@ class Onboarding extends React.PureComponent {
                             onboardingActions={onboardingActions}
                         />
                     )}
-
                 </ComponentWrapper>
-                {/* {
-                    (this.shouldDisplayGoBack() || this.shouldDisplaySkipSecurity()) && (
-                        <FooterWrapper>
-                            <FooterDivider />
-                            <FooterLinks>
-                                {
-                                    this.shouldDisplayGoBack() && (
-                                        <FooterLink
-                                            style={{ justifySelf: 'flex-start' }}
-                                            onClick={() => onboardingActions.goToPreviousStep()}
-                                        >
-                                    Go back
-                                        </FooterLink>
-                                    )
-                                }
-
-                                {
-                                    this.shouldDisplaySkipSecurity() && (
-                                        <FooterLink
-                                            style={{ justifySelf: 'flex-end' }}
-                                        >Skip security
-                                        </FooterLink>
-                                    )
-                                }
-                            </FooterLinks>
-                        </FooterWrapper>
-                    )
-                } */}
-
-
             </Wrapper>
 
         );
