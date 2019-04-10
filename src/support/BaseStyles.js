@@ -47,7 +47,7 @@ const baseStyles = createGlobalStyle`
     .step-transition-enter-active {
         opacity: 1;
         transform: translateX(0);
-        transition: opacity 400ms ease-in, transform 400ms ease-out;
+        transition: opacity 200ms ease-out, transform 400ms ease-out;
     }
 
     .step-transition-exit {
@@ -58,7 +58,7 @@ const baseStyles = createGlobalStyle`
     .step-transition-exit-active {
         opacity: 0;
         transform: translateX(-100%);
-        transition: opacity 400ms ease-out, transform 400ms ease-in;
+        transition: opacity 200ms ease-in, transform 400ms ease-in;
     }
 `;
 
