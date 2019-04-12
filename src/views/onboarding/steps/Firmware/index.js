@@ -8,6 +8,7 @@ import colors from 'config/colors';
 import { GET_FIRMWARE } from 'actions/constants/fetchCalls';
 import { FIRMWARE_ERASE, FIRMWARE_UPLOAD } from 'actions/constants/calls';
 import Text from 'views/onboarding/components/Text';
+import { ConnectDeviceIcon } from 'components/Icons';
 
 import { Donut, Dots } from 'components/Loaders';
 
@@ -148,7 +149,12 @@ class FirmwareStep extends React.Component {
                                     isError={deviceCall.error !== null || fetchCall.error !== null}
                                 />
                                 {
-                                    !deviceCall.error && !fetchCall.error && <P>{this.getMessageForStatus()}<Dots /></P>
+                                    !deviceCall.error && !fetchCall.error && (
+                                        <React.Fragment>
+                                            <P>{this.getMessageForStatus()}<Dots /></P>
+                                            { this.getStatus() === 'reconnect' && <ConnectDeviceIcon model={device.features.major_version} /> }
+                                        </React.Fragment>
+                                    )
                                 }
                                 {
                                     (deviceCall.error || fetchCall.error) && (

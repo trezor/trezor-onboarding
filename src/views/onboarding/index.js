@@ -79,7 +79,7 @@ const TrezorActionOverlay = styled.div`
     display: flex;
     justify-content: center;
     background-color: ${colors.white};
-    z-index: 1000;
+    z-index: 405;
     border-radius: ${BORDER_RADIUS}px;
 `;
 
@@ -89,7 +89,8 @@ const UnexpectedStateOverlay = styled.div`
     width: 100%;
     height: 100%;
     background-color: ${colors.white};
-    z-index: 1000;
+    z-index: 405;
+    display: flex
 `;
 
 class Onboarding extends React.PureComponent {
@@ -218,14 +219,11 @@ class Onboarding extends React.PureComponent {
                     </TrezorActionOverlay>
 
                     {/* todo [vladimir]: how to find that I pass props and dont use them in component? any tooling? */}
-                    {/* {this.getScreen() === ID.WELCOME_STEP && ( */}
                     <CSSTransition
                         in={activeStepId === ID.WELCOME_STEP}
-                        timeout={1000}
+                        timeout={405}
                         classNames="step-transition"
                         unmountOnExit
-                        // onEnter={() => setShowButton(false)}
-                        // onExited={() => setShowButton(true)}
                     >
                         <WelcomeStep
                             onboardingActions={onboardingActions}
@@ -235,11 +233,9 @@ class Onboarding extends React.PureComponent {
 
                     <CSSTransition
                         in={activeStepId === ID.SELECT_DEVICE_STEP}
-                        timeout={1000}
+                        timeout={405}
                         classNames="step-transition"
                         unmountOnExit
-                        // onEnter={() => setShowButton(false)}
-                        // onExited={() => setShowButton(true)}
                     >
                         <SelectDeviceStep
                             deviceCall={deviceCall}
@@ -249,11 +245,9 @@ class Onboarding extends React.PureComponent {
 
                     <CSSTransition
                         in={activeStepId === ID.UNBOXING_STEP}
-                        timeout={1000}
+                        timeout={405}
                         classNames="step-transition"
                         unmountOnExit
-                        // onEnter={() => setShowButton(false)}
-                        // onExited={() => setShowButton(true)}
                     >
                         <HologramStep
                             onboardingActions={onboardingActions}
@@ -264,11 +258,9 @@ class Onboarding extends React.PureComponent {
 
                     <CSSTransition
                         in={activeStepId === ID.BRIDGE_STEP}
-                        timeout={1000}
+                        timeout={405}
                         classNames="step-transition"
                         unmountOnExit
-                        // onEnter={() => setShowButton(false)}
-                        // onExited={() => setShowButton(true)}
                     >
                         <BridgeStep
                             onboardingActions={onboardingActions}
@@ -279,11 +271,9 @@ class Onboarding extends React.PureComponent {
 
                     <CSSTransition
                         in={activeStepId === ID.CONNECT_STEP}
-                        timeout={1000}
+                        timeout={405}
                         classNames="step-transition"
                         unmountOnExit
-                        // onEnter={() => setShowButton(false)}
-                        // onExited={() => setShowButton(true)}
                     >
                         <ConnectStep
                             onboardingActions={onboardingActions}

@@ -13,55 +13,41 @@ const OptionWrapper = styled.div`
     text-align: center
 `;
 
-class SelectDeviceStep extends React.Component {
-    static propTypes = types;
-
-    constructor(props) {
-        super(props);
-        this.state = {
-            options: [{
-                content: (
-                    <OptionWrapper>
-                        <TrezorImage model={1} height={150} />
-                        <P><FormattedMessage {...l10nMessages.TR_MODEL_ONE} /></P>
-                    </OptionWrapper>
-                ),
-                value: '1',
-                key: 1,
-            }, {
-                content: (
-                    <OptionWrapper>
-                        <TrezorImage model={2} height={150} />
-                        <P><FormattedMessage {...l10nMessages.TR_MODEL_T} /></P>
-                    </OptionWrapper>
-                ),
-                value: '2',
-                key: 2,
-            }],
-        };
-    }
-
-    render() {
-        return (
-            <StepWrapper>
-                <StepHeadingWrapper>
-                    <FormattedMessage {...l10nMessages.TR_SELECT_YOUR_DEVICE_HEADING} />
-                </StepHeadingWrapper>
-                <StepBodyWrapper>
-                    <OptionsList
-                        options={this.state.options}
-                        selected={this.props.model}
-                        selectedAccessor="value"
-                        onSelect={(model) => {
-                            this.props.onboardingActions.selectTrezorModel(model);
-                            this.props.onboardingActions.goToNextStep();
-                        }}
-                    />
-                </StepBodyWrapper>
-            </StepWrapper>
-        );
-    }
-}
+const SelectDeviceStep = ({ onboardingActions }) => (
+    <StepWrapper>
+        <StepHeadingWrapper>
+            <FormattedMessage {...l10nMessages.TR_SELECT_YOUR_DEVICE_HEADING} />
+        </StepHeadingWrapper>
+        <StepBodyWrapper>
+            <OptionsList
+                options={[{
+                    content: (
+                        <OptionWrapper>
+                            <TrezorImage model={1} height={140} />
+                            <P><FormattedMessage {...l10nMessages.TR_MODEL_ONE} /></P>
+                        </OptionWrapper>
+                    ),
+                    value: '1',
+                    key: 1,
+                }, {
+                    content: (
+                        <OptionWrapper>
+                            <TrezorImage model={2} height={140} />
+                            <P><FormattedMessage {...l10nMessages.TR_MODEL_T} /></P>
+                        </OptionWrapper>
+                    ),
+                    value: '2',
+                    key: 2,
+                }]}
+                selectedAccessor="value"
+                onSelect={(model) => {
+                    onboardingActions.selectTrezorModel(model);
+                    onboardingActions.goToNextStep();
+                }}
+            />
+        </StepBodyWrapper>
+    </StepWrapper>
+);
 
 SelectDeviceStep.propTypes = {
     onboardingActions: types.onboardingActions,

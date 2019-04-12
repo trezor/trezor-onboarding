@@ -7,7 +7,6 @@ import {
 
 import PinMatrix from 'views/onboarding/components/PinMatrix';
 
-import Pin from 'trezor-ui-components/lib/components/inputs/Pin';
 import Reconnect from '../Reconnect';
 import { StepWrapper, StepBodyWrapper } from '../Wrapper';
 

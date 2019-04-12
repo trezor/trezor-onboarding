@@ -10,7 +10,7 @@ const OptionWrapper = styled.div`
     min-width: 120px;
     padding: 10px;
     margin: 5px;
-    border: solid 1px ${colors.gray};
+    border: solid 0.2px ${colors.gray};
     border-radius: 4px;
     display: flex;
     flex-direction: column;
@@ -19,7 +19,7 @@ const OptionWrapper = styled.div`
     cursor: pointer;
     
     /* todo: experimenting with box-shadow */
-    box-shadow: 0px 0px 6px 3px rgba(0,0,0,0.05);
+    box-shadow: 0px 0px 6px 2px rgba(0,0,0,0.05);
 
     @media (min-width: ${BREAKPOINTS.SM}px) {
         height: 200px;    
