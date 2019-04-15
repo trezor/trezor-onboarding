@@ -109,7 +109,7 @@ class RecoveryStep extends React.Component {
                 <StepBodyWrapper>
                     { this.getStatus() === null && (
                         <React.Fragment>
-                            
+
                             {
                                 device.features.major_version === 1 && (
                                     <React.Fragment>
@@ -154,7 +154,7 @@ class RecoveryStep extends React.Component {
                                 device.features.major_version === 2 && (
                                     <React.Fragment>
                                         <Text>
-                                            <FormattedMessage {...l10nMessages.TR_RECOVER_SUBHEADING } />
+                                            <FormattedMessage {...l10nMessages.TR_RECOVER_SUBHEADING} />
                                         </Text>
                                         <ControlsWrapper>
                                             <Button onClick={() => { this.props.connectActions.recoveryDevice(); }}>
@@ -175,7 +175,7 @@ class RecoveryStep extends React.Component {
                                 <FormattedMessage
                                     {...l10nMessages.TR_RECOVERY_TYPES_DESCRIPTION}
                                     values={{
-                                        TR_LEARN_MORE_LINK: <Link href={RECOVERY_MODEL_ONE_URL}><FormattedMessage {...l10nCommonMessages.TR_LEARN_MORE_LINK} /></Link>
+                                        TR_LEARN_MORE_LINK: <Link href={RECOVERY_MODEL_ONE_URL}><FormattedMessage {...l10nCommonMessages.TR_LEARN_MORE_LINK} /></Link>,
                                     }}
                                 />
                             </Text>
@@ -230,11 +230,22 @@ class RecoveryStep extends React.Component {
                                                 },
                                                 borderColor: state.isFocused ? colors.brandPrimary : 'transparent',
                                             }),
+                                            dropdownIndicator: (provided, state) => ({
+                                                display: 'none',
+                                            }),
+                                            indicatorSeparator: () => ({ display: 'none' }),
+                                            menu: (provided, state) => {
+                                                if (!this.props.recovery.word) {
+                                                    return { display: 'none' };
+                                                }
+                                                return provided;
+                                            },
                                         }}
                                         autoFocus
                                         isSearchable
                                         isClearable={false}
                                         value={this.props.recovery.word}
+                                        noOptionsMessage={({ inputValue }) => `word "${inputValue}" does not exist in words list`}
                                         onChange={(item) => {
                                             this.props.recoveryActions.setWord(item.value);
                                             this.props.recoveryActions.submit();
@@ -246,7 +257,11 @@ class RecoveryStep extends React.Component {
                                             trim: true,
                                             matchFrom: 'start',
                                         })}
-
+                                        onInputChange={(input) => {
+                                            if (input) {
+                                                this.props.recoveryActions.setWord(input);
+                                            }
+                                        }}
                                     />
                                 </SelectWrapper>
                                 {
