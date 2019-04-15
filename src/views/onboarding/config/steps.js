@@ -16,6 +16,16 @@ export default [
         id: ID.WELCOME_STEP,
     },
     {
+        id: ID.RECOVERY_STEP,
+        title: ID.START_STEP,
+        disallowedDeviceStates: [
+            DEVICE_IS_NOT_CONNECTED,
+            DEVICE_IS_IN_BOOTLOADER,
+            IS_NOT_SAME_DEVICE,
+            DEVICE_IS_NOT_USED_HERE,
+        ],
+    },
+    {
         id: ID.SELECT_DEVICE_STEP,
         title: ID.SELECT_DEVICE_STEP,
     },

@@ -4,7 +4,7 @@ import { Flags } from 'trezor-flags';
 import Platform from 'utils/Platform';
 
 import {
-    P, Link, Button,
+    Link, Button,
 } from 'trezor-ui-components';
 import { FormattedMessage } from '@dragonraider5/react-intl';
 
@@ -12,6 +12,7 @@ import colors from 'config/colors';
 import { PHISHING_URL } from 'config/urls';
 import types from 'config/types';
 import { APPLY_FLAGS } from 'actions/constants/calls';
+import Key from 'components/Key';
 import Text from 'views/onboarding/components/Text';
 
 import l10nCommonMessages from 'support/commonMessages';
@@ -21,11 +22,10 @@ import {
     StepWrapper, StepBodyWrapper, StepHeadingWrapper, ControlsWrapper,
 } from '../../components/Wrapper';
 
-const Key = styled.span`
-    color: ${props => (props.isPressed ? colors.brandPrimary : 'inherit')};
-    font-size: 2em;
+const Keys = styled.div`
+    display: flex;
+    /* align-items: center; */
 `;
-
 class BookmarkStep extends React.Component {
     static TARGET_FLAG = 'hasBookmark';
 
@@ -98,36 +98,36 @@ class BookmarkStep extends React.Component {
                                 <Text>
                                     <FormattedMessage {...l10nMessages.TR_USE_THE_KEYBOARD_SHORTCUT} />
                                 </Text>
-                                {
-                                    Platform.getInfo().os === Platform.MAC && (
-                                        <Text>
-                                            <Key isPressed={keys[BookmarkStep.CTRL_KEY] === true}>⌘</Key>
-                                            +
-                                            <Key isPressed={keys[BookmarkStep.D_KEY] === true}>d</Key>
-                                        </Text>
-                                    )
-                                }
-                                {/* todo: if mac has same key codes, simplify  */}
-                                {
-                                    Platform.getInfo().os !== Platform.MAC && (
-                                        <Text>
-                                            <Key isPressed={keys[BookmarkStep.CTRL_KEY] === true}>Ctrl</Key>
-                                            +
-                                            <Key isPressed={keys[BookmarkStep.D_KEY] === true}>d</Key>
-                                        </Text>
-                                    )
-                                }
-
+                                <Keys>
+                                    <Key
+                                        isPressed={keys[BookmarkStep.CTRL_KEY] === true}
+                                        text={Platform.getInfo().os === Platform.MAC ? '⌘' : 'Ctrl'}
+                                    />
+                                    <div style={{ width: '10px' }} />
+                                    <Key isPressed={keys[BookmarkStep.D_KEY] === true} text="D" />
+                                </Keys>
                             </React.Fragment>
                         )
                     }
 
                     <ControlsWrapper>
-                        {/*  todo: for mobile add to homescreen */}
                         {
                             !Platform.getInfo().isMobile && (
                                 <React.Fragment>
                                     <Button isDisabled={this.nextDisabled()} onClick={() => this.setBookmarkFlagAndContinue()}>
+                                        <FormattedMessage {...l10nCommonMessages.TR_CONTINUE} />
+                                    </Button>
+                                    <Button isWhite onClick={() => this.setBookmarkFlagAndContinue()}>
+                                        <FormattedMessage {...l10nCommonMessages.TR_SKIP} />
+                                    </Button>
+                                </React.Fragment>
+                            )
+                        }
+                        {/*  todo: for mobile add to homescreen */}
+                        {
+                            Platform.getInfo().isMobile && (
+                                <React.Fragment>
+                                    <Button onClick={() => this.setBookmarkFlagAndContinue()}>
                                         <FormattedMessage {...l10nCommonMessages.TR_CONTINUE} />
                                     </Button>
                                     <Button isWhite onClick={() => this.setBookmarkFlagAndContinue()}>

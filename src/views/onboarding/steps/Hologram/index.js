@@ -7,6 +7,7 @@ import { FormattedMessage } from '@dragonraider5/react-intl';
 
 import { TREZOR_RESELLERS_URL, SUPPORT_URL } from 'config/urls';
 import types from 'config/types';
+import { MD } from 'config/breakpoints';
 
 import Text from 'views/onboarding/components/Text';
 import l10nCommonMessages from 'support/commonMessages';
@@ -18,9 +19,12 @@ import {
 import Hologram from './components/Hologram';
 
 const HologramWrapper = styled.div`
-    width: 70%;
     max-width: 500px;
     margin: 10px;
+
+    @media only screen and (min-width: ${MD}px) {
+        width: 70%;
+    } 
 `;
 
 const HologramStep = ({ onboardingActions, activeSubStep, model }) => (

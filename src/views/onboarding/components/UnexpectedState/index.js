@@ -1,4 +1,5 @@
 import React from 'react';
+import styled from 'styled-components';
 import { P, H2, Button } from 'trezor-ui-components';
 import PropTypes from 'prop-types';
 import {
@@ -8,14 +9,18 @@ import {
 import PinMatrix from 'views/onboarding/components/PinMatrix';
 
 import Reconnect from '../Reconnect';
-import { StepWrapper, StepBodyWrapper } from '../Wrapper';
+import { ControlsWrapper } from '../Wrapper';
+
+const Wrapper = styled.div`
+    margin: auto 30px auto 30px;
+    text-align: center;
+    width: 100%;
+`;
 
 const UnexpectedStateCommon = ({ children }) => (
-    <StepWrapper>
-        <StepBodyWrapper>
-            {children}
-        </StepBodyWrapper>
-    </StepWrapper>
+    <Wrapper>
+        {children}
+    </Wrapper>
 );
 
 UnexpectedStateCommon.propTypes = {
@@ -56,7 +61,9 @@ const DeviceIsUsedHere = ({ connectActions }) => (
         This is a big no no. Please dont use device in other window. Close all other windows or tabs that might
         be using your Trezor device.
         </P>
-        <Button onClick={connectActions.getFeatures}>Ok, I wont do it again</Button>
+        <ControlsWrapper>
+            <Button onClick={connectActions.getFeatures}>Ok, I wont do it again</Button>
+        </ControlsWrapper>
     </React.Fragment>
 
 );

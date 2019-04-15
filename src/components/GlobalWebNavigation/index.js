@@ -4,7 +4,7 @@ import { FormattedMessage } from '@dragonraider5/react-intl';
 
 // import { SCREEN_SIZE } from 'config/variables';
 import { Link } from 'trezor-ui-components';
-
+import { NAVBAR_HEIGHT, NAVBAR_HEIGHT_UNIT } from 'config/layout';
 import colors from 'config/colors';
 import { TREZOR_URL } from 'config/urls';
 import * as BREAKPOINTS from 'config/breakpoints';
@@ -14,7 +14,7 @@ import LanguagePicker from './components/LanguagePicker/Container';
 
 const Wrapper = styled.header`
     width: 100%;
-    height: 52px;
+    height: ${NAVBAR_HEIGHT}${NAVBAR_HEIGHT_UNIT};
     background: ${colors.black};
     z-index: 200;
 `;

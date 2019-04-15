@@ -7,6 +7,9 @@ import types from 'config/types';
 import colors from 'config/colors';
 import { SM } from 'config/breakpoints';
 import { TOS_URL } from 'config/urls';
+import {
+    PROGRESSBAR_HEIGHT, PROGRESSBAR_HEIGHT_UNIT, STEP_HEIGHT, STEP_HEIGHT_UNIT, NAVBAR_HEIGHT, NAVBAR_HEIGHT_UNIT,
+} from 'config/layout';
 import * as EVENTS from 'actions/constants/events';
 import ProgressSteps from 'components/ProgressSteps';
 
@@ -31,8 +34,6 @@ import NameStep from 'views/onboarding/steps/Name';
 import ConnectStep from 'views/onboarding/steps/Connect';
 import RecoveryStep from 'views/onboarding/steps/Recovery';
 
-const WRAPPER_HEIGHT = 80;
-const MAIN_HEIGHT = 80;
 const BORDER_RADIUS = 12;
 
 const Wrapper = styled.div`
@@ -41,8 +42,6 @@ const Wrapper = styled.div`
     flex-direction: column;
     background-color: ${colors.white};
     border-radius: ${BORDER_RADIUS}px;
-    width: 95vw;
-    min-height: ${WRAPPER_HEIGHT}vh;
     z-index: 1;
 
     @media only screen and (min-width: ${SM}px) {
@@ -61,13 +60,13 @@ const ProgressStepsWrapper = styled.div`
 `;
 
 const ProgressStepsSlot = styled.div`
-    height: 70px;
+    height: ${PROGRESSBAR_HEIGHT}${PROGRESSBAR_HEIGHT_UNIT};
 `;
 
 const ComponentWrapper = styled.div`
     display: flex;
-    margin-top: 5%;
     margin-bottom: 5%;
+    min-height: ${STEP_HEIGHT}${STEP_HEIGHT_UNIT}
 `;
 
 const TrezorActionOverlay = styled.div`
@@ -75,7 +74,7 @@ const TrezorActionOverlay = styled.div`
     margin-top: auto;
     margin-bottom: auto;
     width: 100%;
-    height: ${MAIN_HEIGHT}%;
+    height: calc(100vh - ${PROGRESSBAR_HEIGHT}${PROGRESSBAR_HEIGHT_UNIT} - ${NAVBAR_HEIGHT}${NAVBAR_HEIGHT_UNIT});
     display: flex;
     justify-content: center;
     background-color: ${colors.white};
