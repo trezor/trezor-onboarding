@@ -19,12 +19,12 @@ const ConnectDeviceIcon = ({ model }) => {
     if (model === 1) {
         return (
             <svg width="20px" height="57px" viewBox="0 0 20 57">
-                <g stroke="none" strokewidth="1" fill="none" transform="translate(1, 1)">
+                <g stroke="none" strokeWidth="1" fill="none" transform="translate(1, 1)">
                     <MovingCable>
                         <rect fill="#01B757" x="6" y="39" width="6" height="5" />
                         <rect
                             stroke="#01B757"
-                            strokewidth="1"
+                            strokeWidth="1"
                             x="8.5"
                             y="44.5"
                             width="1"

@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { Link, P, Prompt } from 'trezor-ui-components';
 import { CSSTransition } from 'react-transition-group';
 
@@ -43,6 +43,7 @@ const Wrapper = styled.div`
     background-color: ${colors.white};
     border-radius: ${BORDER_RADIUS}px;
     z-index: 1;
+    max-height: ${({ isGlobalInteraction }) => (isGlobalInteraction ? `calc(100vh - ${PROGRESSBAR_HEIGHT}${PROGRESSBAR_HEIGHT_UNIT} - ${NAVBAR_HEIGHT}${NAVBAR_HEIGHT_UNIT})` : 'none')};
 
     @media only screen and (min-width: ${SM}px) {
         width: calc(55vw + 150px) ;
@@ -189,7 +190,7 @@ class Onboarding extends React.PureComponent {
         }
 
         return (
-            <Wrapper>
+            <Wrapper isGlobalInteraction={this.isGlobalInteraction()}>
                 {
                     errorStates.length > 0 && (
                         <UnexpectedStateOverlay>
