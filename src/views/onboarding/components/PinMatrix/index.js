@@ -4,27 +4,36 @@ import PropTypes from 'prop-types';
 import {
     P, Button, Link, ButtonPin, InputPin,
 } from 'trezor-ui-components';
-import { FormattedMessage } from 'react-intl';
+
+import { FormattedMessage } from '@dragonraider5/react-intl';
 
 import { PIN_MANUAL_URL } from 'config/urls';
 import l10nMessages from './index.messages';
 
 const Wrapper = styled.div`
-    max-width: 260px;
+    max-width: 200px;
     margin-left: auto;
     margin-right: auto;
 `;
 
 const InputWrapper = styled.div`
-    margin-top: 24px;
-    max-width: 260px;
+    margin-top: 12px;
+    margin-bottom: 12px;
+    max-width: 200px;
 `;
 
 const PinRow = styled.div`
     display: flex;
     justify-content: space-between;
-    margin-top: 8px;
-    margin-bottom: 8px;
+    button {
+        width: 30%;
+        height: 0;
+        padding-bottom: 30%;
+    }
+
+    & + & {
+        margin-top: 10px;
+    }
 `;
 
 const PinFooter = styled.div`
@@ -133,19 +142,19 @@ class PinMatrix extends React.Component {
                     <InputPin value={pin} onDeleteClick={() => this.onPinBackspace()} />
                 </InputWrapper>
                 <PinRow>
-                    <ButtonPin type="button" data-value="7" onClick={() => this.onPinAdd(7)}>&#8226; </ButtonPin>
-                    <ButtonPin type="button" data-value="8" onClick={() => this.onPinAdd(8)}>&#8226;</ButtonPin>
-                    <ButtonPin type="button" data-value="9" onClick={() => this.onPinAdd(9)}>&#8226;</ButtonPin>
+                    <ButtonPin type="button" data-value="7" onClick={() => this.onPinAdd(7)} />
+                    <ButtonPin type="button" data-value="8" onClick={() => this.onPinAdd(8)} />
+                    <ButtonPin type="button" data-value="9" onClick={() => this.onPinAdd(9)} />
                 </PinRow>
                 <PinRow>
-                    <ButtonPin type="button" data-value="4" onClick={() => this.onPinAdd(4)}>&#8226; </ButtonPin>
-                    <ButtonPin type="button" data-value="5" onClick={() => this.onPinAdd(5)}>&#8226;</ButtonPin>
-                    <ButtonPin type="button" data-value="6" onClick={() => this.onPinAdd(6)}>&#8226;</ButtonPin>
+                    <ButtonPin type="button" data-value="4" onClick={() => this.onPinAdd(4)} />
+                    <ButtonPin type="button" data-value="5" onClick={() => this.onPinAdd(5)} />
+                    <ButtonPin type="button" data-value="6" onClick={() => this.onPinAdd(6)} />
                 </PinRow>
                 <PinRow>
-                    <ButtonPin type="button" data-value="1" onClick={() => this.onPinAdd(1)}>&#8226; </ButtonPin>
-                    <ButtonPin type="button" data-value="2" onClick={() => this.onPinAdd(2)}>&#8226;</ButtonPin>
-                    <ButtonPin type="button" data-value="3" onClick={() => this.onPinAdd(3)}>&#8226;</ButtonPin>
+                    <ButtonPin type="button" data-value="1" onClick={() => this.onPinAdd(1)} />
+                    <ButtonPin type="button" data-value="2" onClick={() => this.onPinAdd(2)} />
+                    <ButtonPin type="button" data-value="3" onClick={() => this.onPinAdd(3)} />
                 </PinRow>
 
                 <PinFooter>

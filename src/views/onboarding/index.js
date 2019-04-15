@@ -337,6 +337,7 @@ class Onboarding extends React.PureComponent {
                             connectActions={connectActions}
                             deviceCall={deviceCall}
                             uiInteraction={uiInteraction}
+                            activeSubStep={activeSubStep}
                         />
                     )}
                     {this.getScreen() === ID.NAME_STEP && (

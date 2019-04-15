@@ -29,8 +29,7 @@ const NewPinWrapper = styled.div`
 `;
 
 const ImgWrapper = styled.div`
-    margin: 20px 30px 0 30px;
-    text-align: justify;
+    margin: 10px 30px 30px 30px;
     max-width: 230px;
 `;
 
@@ -41,8 +40,12 @@ const PinMatrixWrapper = styled.div`
 
 class SetPinStep extends React.Component {
     getStatus() {
-        const { deviceCall, uiInteraction, device } = this.props;
-
+        const {
+            deviceCall, uiInteraction, device, activeSubStep,
+        } = this.props;
+        if (activeSubStep) {
+            return activeSubStep;
+        }
         if (deviceCall.error === 'PIN mismatch') {
             return 'mismatch';
         } if (uiInteraction.name === UI.REQUEST_PIN && uiInteraction.counter === 1) {
@@ -63,6 +66,7 @@ class SetPinStep extends React.Component {
             <StepWrapper>
                 <StepHeadingWrapper>
                     { this.getStatus() === 'initial' && 'PIN' }
+                    { this.getStatus() === 'tutorial' && 'PIN tutorial' }
                     { this.getStatus() === 'first' && <FormattedMessage {...l10nMessages.TR_PIN_HEADING_FIRST} /> }
                     { this.getStatus() === 'second' && <FormattedMessage {...l10nMessages.TR_PIN_HEADING_REPEAT} /> }
                     { this.getStatus() === 'success' && <FormattedMessage {...l10nMessages.TR_PIN_HEADING_SUCCESS} /> }
@@ -79,6 +83,32 @@ class SetPinStep extends React.Component {
                                     <Button onClick={() => { this.props.connectActions.changePin(); }}>
                                         <FormattedMessage {...l10nMessages.TR_SET_PIN} />
                                     </Button>
+                                    <Button isWhite onClick={() => this.props.onboardingActions.goToSubStep('tutorial')}>
+                                        PIN tutorial
+                                    </Button>
+                                    <Button isWhite onClick={() => this.props.onboardingActions.goToNextStep()}>
+                                        <FormattedMessage {...l10nCommonMessages.TR_SKIP} />
+                                    </Button>
+                                </ControlsWrapper>
+                            </React.Fragment>
+                        )
+                    }
+
+                    {
+                        this.getStatus() === 'tutorial' && (
+                            <React.Fragment>
+                                <Text>
+                                    <FormattedMessage {...l10nMessages.TR_PIN_ENTERING_DESCRIPTION} />
+                                </Text>
+
+                                <ImgWrapper>
+                                    <img src={HowToSetPinGif} alt="How to enter pin" width="200px" />
+                                </ImgWrapper>
+
+                                <ControlsWrapper>
+                                    <Button onClick={() => { this.props.onboardingActions.goToSubStep(null); this.props.connectActions.changePin(); }}>
+                                        I get it, set PIN now
+                                    </Button>
                                     <Button isWhite onClick={() => this.props.onboardingActions.goToNextStep()}>
                                         <FormattedMessage {...l10nCommonMessages.TR_SKIP} />
                                     </Button>
@@ -90,13 +120,6 @@ class SetPinStep extends React.Component {
                     {
                         this.getStatus() === 'first' && (
                             <NewPinWrapper>
-                                <ImgWrapper>
-                                    <P style={{ textAlign: 'justify' }}>
-                                        <FormattedMessage {...l10nMessages.TR_PIN_ENTERING_DESCRIPTION} />
-                                    </P>
-                                    <img src={HowToSetPinGif} alt="How to enter pin" width="200px" />
-                                </ImgWrapper>
-
                                 <PinMatrixWrapper>
                                     <PinMatrix
                                         onPinSubmit={
@@ -160,6 +183,9 @@ class SetPinStep extends React.Component {
                                 <ControlsWrapper>
                                     <Button onClick={() => { this.props.connectActions.changePin(); }}>
                                         <FormattedMessage {...l10nMessages.TR_START_AGAIN} />
+                                    </Button>
+                                    <Button isWhite onClick={() => this.props.onboardingActions.goToSubStep('tutorial')}>
+                                        PIN tutorial
                                     </Button>
                                 </ControlsWrapper>
                             </React.Fragment>
