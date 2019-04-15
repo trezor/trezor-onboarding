@@ -15,17 +15,17 @@ export default [
     {
         id: ID.WELCOME_STEP,
     },
-    {
-        id: ID.SET_PIN_STEP,
-        title: ID.SECURITY_STEP,
-        disallowedDeviceStates: [
-            DEVICE_IS_NOT_CONNECTED,
-            DEVICE_IS_IN_BOOTLOADER,
-            DEVICE_IS_NOT_USED_HERE,
-            IS_NOT_SAME_DEVICE,
-            DEVICE_IS_REQUESTING_PIN,
-        ],
-    },
+    // {
+    //     id: ID.SET_PIN_STEP,
+    //     title: ID.SECURITY_STEP,
+    //     disallowedDeviceStates: [
+    //         DEVICE_IS_NOT_CONNECTED,
+    //         DEVICE_IS_IN_BOOTLOADER,
+    //         DEVICE_IS_NOT_USED_HERE,
+    //         IS_NOT_SAME_DEVICE,
+    //         DEVICE_IS_REQUESTING_PIN,
+    //     ],
+    // },
     {
         id: ID.SELECT_DEVICE_STEP,
         title: ID.SELECT_DEVICE_STEP,

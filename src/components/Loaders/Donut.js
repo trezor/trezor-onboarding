@@ -42,10 +42,28 @@ class Donut extends React.Component {
         };
         return (
             <DonutWrapper>
-                <svg height={this.props.radius * 2} width={this.props.radius * 2}>
+                <svg height={this.props.radius * 2} width={this.props.radius * 2} style={{ position: 'absolute', zIndex: 1 }}>
                     <circle
-                        style={style}
+                        style={{
+                            ...style,
+                        }}
                         stroke={this.props.isError ? colors.error : colors.brandPrimary}
+                        strokeWidth={this.props.stroke}
+                        fill="transparent"
+                        r={this.props.radius - this.props.stroke}
+                        cx={this.props.radius}
+                        cy={this.props.radius}
+                    />
+                </svg>
+                <svg height={this.props.radius * 2} width={this.props.radius * 2} style={{ position: 'relative' }}>
+                    <circle
+                        style={{
+                            ...style,
+                            strokeDashoffset: `${this.progress(100)}`,
+                            strokeDasharray: `${this.circumference(this.normalizeRadius())}  ${this.circumference(this.normalizeRadius())}`,
+
+                        }}
+                        stroke={this.props.isError ? colors.error : colors.grayLight}
                         strokeWidth={this.props.stroke}
                         fill="transparent"
                         r={this.props.radius - this.props.stroke}
