@@ -16,10 +16,8 @@ const OptionWrapper = styled.div`
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    cursor: pointer;
-    
-    /* todo: experimenting with box-shadow */
-    box-shadow: 0px 0px 6px 2px rgba(0,0,0,0.05);
+    cursor: pointer;    
+    box-shadow: ${({ isSelected }) => (isSelected ? `0px 0px 2px 1px ${colors.brandPrimary}` : '0px 0px 6px 2px rgba(0,0,0,0.05)')};
 
     @media (min-width: ${BREAKPOINTS.SM}px) {
         height: 200px;    
