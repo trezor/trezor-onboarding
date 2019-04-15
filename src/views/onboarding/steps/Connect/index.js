@@ -25,7 +25,7 @@ import TroubleshootSearchingTooLong from './components/TroubleshootTooLong';
 class ConnectStep extends React.PureComponent {
     static IS_SEARCHING_TIMEOUT = 5 * 1000;
 
-    static IS_SEARCHING_TOO_LONG_TIMEOUT = 1 * 1000;
+    static IS_SEARCHING_TOO_LONG_TIMEOUT = 15 * 1000;
 
     constructor(props) {
         super(props);
@@ -36,12 +36,14 @@ class ConnectStep extends React.PureComponent {
     }
 
     componentDidMount() {
-        this.props.setTimeout(() => this.setState({ isSearching: true }), ConnectStep.IS_SEARCHING_TIMEOUT);
-        this.props.setTimeout(() => this.setState({ isSearchingTooLong: true }), ConnectStep.IS_SEARCHING_TOO_LONG_TIMEOUT);
+        if (this.props.device === null || (this.props.device && this.props.device.connected === false)) {
+            this.props.setTimeout(() => this.setState({ isSearching: true }), ConnectStep.IS_SEARCHING_TIMEOUT);
+            this.props.setTimeout(() => this.setState({ isSearchingTooLong: true }), ConnectStep.IS_SEARCHING_TOO_LONG_TIMEOUT);
+        }
     }
 
     componentWillReceiveProps(nextProps) {
-        if (this.props.device && nextProps.device === null) {
+        if (this.props.device && nextProps.device.connected === false) {
             this.setState({ isSearching: true });
             this.props.setTimeout(() => this.setState({ isSearchingTooLong: true }), 15 * 1000);
         } else {
