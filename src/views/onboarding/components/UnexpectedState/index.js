@@ -1,14 +1,15 @@
 import React from 'react';
 import styled from 'styled-components';
 import { P, H2, Button } from 'trezor-ui-components';
+import { FormattedMessage } from '@dragonraider5/react-intl';
 import PropTypes from 'prop-types';
 import {
     IS_NOT_SAME_DEVICE, DEVICE_IS_NOT_CONNECTED, DEVICE_IS_NOT_USED_HERE, DEVICE_IS_IN_BOOTLOADER, DEVICE_IS_REQUESTING_PIN,
 } from 'utils/rules';
 
 import PinMatrix from 'views/onboarding/components/PinMatrix';
-
-import Reconnect from '../Reconnect';
+import l10nMessages from './index.messages';
+import Reconnect from './Reconnect';
 import { ControlsWrapper } from '../Wrapper';
 
 const Wrapper = styled.div`
@@ -29,20 +30,24 @@ UnexpectedStateCommon.propTypes = {
 
 const IsSameDevice = () => (
     <P>
-    Device you reconnected is different from the previous device.
-    Connect the right one or refresh your internet browser and start again.
+        <FormattedMessage {...l10nMessages.TR_DEVICE_YOU_RECONNECTED_IS_DIFFERENT} />
     </P>
 );
 
 const IsNotInBootloader = () => (
     <P>
-        Connected device is in bootloader mode. Reconnect it to continue;
+        <FormattedMessage {...l10nMessages.TR_CONNECTED_DEVICE_IS_IN_BOOTLOADER} />
     </P>
 );
 
 const IsDeviceRequestingPin = ({ connectActions }) => (
     <React.Fragment>
-        <H2>Enter PIN</H2>
+        <H2>
+            <FormattedMessage {...l10nMessages.TR_ENTER_PIN_HEADING} />
+        </H2>
+        <P>
+            <FormattedMessage {...l10nMessages.TR_ENTER_PIN_TEXT} />
+        </P>
         <PinMatrix onPinSubmit={
             (pin) => {
                 console.warn('pin', pin, connectActions);
@@ -56,13 +61,16 @@ const IsDeviceRequestingPin = ({ connectActions }) => (
 
 const DeviceIsUsedHere = ({ connectActions }) => (
     <React.Fragment>
-        <H2>Device is used in other window</H2>
+        <H2>
+            <FormattedMessage {...l10nMessages.TR_DEVICE_IS_USED_IN_OTHER_WINDOW_HEADING} />
+        </H2>
         <P>
-        This is a big no no. Please dont use device in other window. Close all other windows or tabs that might
-        be using your Trezor device.
+            <FormattedMessage {...l10nMessages.TR_DEVICE_IS_USED_IN_OTHER_WINDOW_TEXT} />
         </P>
         <ControlsWrapper>
-            <Button onClick={connectActions.getFeatures}>Ok, I wont do it again</Button>
+            <Button onClick={connectActions.getFeatures}>
+                <FormattedMessage {...l10nMessages.TR_DEVICE_IS_USED_IN_OTHER_WINDOW_BUTTON} />
+            </Button>
         </ControlsWrapper>
     </React.Fragment>
 
@@ -71,7 +79,7 @@ const DeviceIsUsedHere = ({ connectActions }) => (
 const UnexpectedState = ({ caseType, model, connectActions }) => {
     switch (caseType) {
         case DEVICE_IS_NOT_CONNECTED:
-            return <UnexpectedStateCommon><Reconnect model={model} /></UnexpectedStateCommon>;
+            return <UnexpectedStateCommon><Reconnect model={model} loop /></UnexpectedStateCommon>;
         case IS_NOT_SAME_DEVICE:
             return <UnexpectedStateCommon><IsSameDevice /></UnexpectedStateCommon>;
         case DEVICE_IS_IN_BOOTLOADER:
