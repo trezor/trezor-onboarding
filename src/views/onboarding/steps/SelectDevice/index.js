@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
-import { P, TrezorImage } from 'trezor-ui-components';
+import {
+    H6, TrezorImage,
+} from 'trezor-ui-components';
 import { FormattedMessage } from '@dragonraider5/react-intl';
 
 import types from 'config/types';
@@ -13,6 +15,8 @@ const OptionWrapper = styled.div`
     text-align: center
 `;
 
+const DEVICE_HEIGHT = 130;
+
 const SelectDeviceStep = ({ onboardingActions }) => (
     <StepWrapper>
         <StepHeadingWrapper>
@@ -23,8 +27,8 @@ const SelectDeviceStep = ({ onboardingActions }) => (
                 options={[{
                     content: (
                         <OptionWrapper>
-                            <TrezorImage model={1} height={140} />
-                            <P><FormattedMessage {...l10nMessages.TR_MODEL_ONE} /></P>
+                            <TrezorImage style={{ margin: '15px' }} model={1} height={DEVICE_HEIGHT} />
+                            <H6><FormattedMessage {...l10nMessages.TR_MODEL_ONE} /></H6>
                         </OptionWrapper>
                     ),
                     value: '1',
@@ -32,8 +36,8 @@ const SelectDeviceStep = ({ onboardingActions }) => (
                 }, {
                     content: (
                         <OptionWrapper>
-                            <TrezorImage model={2} height={140} />
-                            <P><FormattedMessage {...l10nMessages.TR_MODEL_T} /></P>
+                            <TrezorImage style={{ margin: '15px' }} model={2} height={DEVICE_HEIGHT} />
+                            <H6><FormattedMessage {...l10nMessages.TR_MODEL_T} /></H6>
                         </OptionWrapper>
                     ),
                     value: '2',
