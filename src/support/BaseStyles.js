@@ -40,14 +40,14 @@ const baseStyles = createGlobalStyle`
     /* classes required by react transitions https://github.com/reactjs/react-transition-group */
     .step-transition-enter {
         opacity: 0;
-        transform: translateX(+100%);
+        transform: translateX(+20%);
         position: absolute;
     }
 
     .step-transition-enter-active {
         opacity: 1;
         transform: translateX(0);
-        transition: opacity 200ms ease-out, transform 400ms ease-out;
+        transition: opacity 400ms cubic-bezier(1,-0.01,1,-0.02), transform 400ms linear;
     }
 
     .step-transition-exit {
@@ -57,8 +57,8 @@ const baseStyles = createGlobalStyle`
 
     .step-transition-exit-active {
         opacity: 0;
-        transform: translateX(-100%);
-        transition: opacity 200ms ease-in, transform 400ms ease-in;
+        transform: translateX(-20%);
+        transition: opacity 400ms cubic-bezier(0,1.01,0,1), transform 400ms linear;
     }
 `;
 

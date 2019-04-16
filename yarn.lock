@@ -8784,8 +8784,10 @@ tr46@^1.0.1:
   dependencies:
     punycode "^2.1.0"
 
-trezor-connect@../trezor-connect/npm/:
-  version "7.0.3-management.1"
+trezor-connect@^7.0.3:
+  version "7.0.3"
+  resolved "https://registry.yarnpkg.com/trezor-connect/-/trezor-connect-7.0.3.tgz#70c4bc26c0966e794fc280a12c1acc9fef88864f"
+  integrity sha512-1Y1ajCDF8dC5d2yrCUmVkNqXeOlucamQ6j6Ko7kaqNdge3g9KZ+O48jUwP/eGzei8oUvPZUHd7o4OhDHTlpLCw==
   dependencies:
     "@babel/runtime" "^7.3.1"
     events "^3.0.0"

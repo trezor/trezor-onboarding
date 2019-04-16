@@ -35,6 +35,7 @@ import ConnectStep from 'views/onboarding/steps/Connect';
 import RecoveryStep from 'views/onboarding/steps/Recovery';
 
 const BORDER_RADIUS = 12;
+const ANIMATION_DURATION = 400;
 
 const Wrapper = styled.div`
     position: relative;
@@ -221,7 +222,7 @@ class Onboarding extends React.PureComponent {
                     {/* todo [vladimir]: how to find that I pass props and dont use them in component? any tooling? */}
                     <CSSTransition
                         in={activeStepId === ID.WELCOME_STEP}
-                        timeout={405}
+                        timeout={ANIMATION_DURATION}
                         classNames="step-transition"
                         unmountOnExit
                     >
@@ -233,7 +234,7 @@ class Onboarding extends React.PureComponent {
 
                     <CSSTransition
                         in={activeStepId === ID.SELECT_DEVICE_STEP}
-                        timeout={405}
+                        timeout={ANIMATION_DURATION}
                         classNames="step-transition"
                         unmountOnExit
                     >
@@ -245,7 +246,7 @@ class Onboarding extends React.PureComponent {
 
                     <CSSTransition
                         in={activeStepId === ID.UNBOXING_STEP}
-                        timeout={405}
+                        timeout={ANIMATION_DURATION}
                         classNames="step-transition"
                         unmountOnExit
                     >
@@ -258,7 +259,7 @@ class Onboarding extends React.PureComponent {
 
                     <CSSTransition
                         in={activeStepId === ID.BRIDGE_STEP}
-                        timeout={405}
+                        timeout={ANIMATION_DURATION}
                         classNames="step-transition"
                         unmountOnExit
                     >
@@ -271,7 +272,7 @@ class Onboarding extends React.PureComponent {
 
                     <CSSTransition
                         in={activeStepId === ID.CONNECT_STEP}
-                        timeout={405}
+                        timeout={ANIMATION_DURATION}
                         classNames="step-transition"
                         unmountOnExit
                     >
