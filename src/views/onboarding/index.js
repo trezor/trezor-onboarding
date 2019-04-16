@@ -286,7 +286,12 @@ class Onboarding extends React.PureComponent {
                         />
                     </CSSTransition>
 
-                    {this.getScreen() === ID.FIRMWARE_STEP && (
+                    <CSSTransition
+                        in={activeStepId === ID.FIRMWARE_STEP}
+                        timeout={ANIMATION_DURATION}
+                        classNames="step-transition"
+                        unmountOnExit
+                    >
                         <FirmwareStep
                             onboardingActions={onboardingActions}
                             connectActions={connectActions}
@@ -296,15 +301,27 @@ class Onboarding extends React.PureComponent {
                             deviceCall={deviceCall}
                             firmwareUpdate={firmwareUpdate}
                         />
-                    )}
-                    {this.getScreen() === ID.START_STEP && (
+                    </CSSTransition>
+
+                    <CSSTransition
+                        in={activeStepId === ID.START_STEP}
+                        timeout={ANIMATION_DURATION}
+                        classNames="step-transition"
+                        unmountOnExit
+                    >
                         <StartStep
                             onboardingActions={onboardingActions}
                             connectActions={connectActions}
                             deviceCall={deviceCall}
                         />
-                    )}
-                    {this.getScreen() === ID.RECOVERY_STEP && (
+                    </CSSTransition>
+
+                    <CSSTransition
+                        in={activeStepId === ID.RECOVERY_STEP}
+                        timeout={ANIMATION_DURATION}
+                        classNames="step-transition"
+                        unmountOnExit
+                    >
                         <RecoveryStep
                             onboardingActions={onboardingActions}
                             recoveryActions={recoveryActions}
@@ -315,13 +332,25 @@ class Onboarding extends React.PureComponent {
                             deviceCall={deviceCall}
                             activeSubStep={activeSubStep}
                         />
-                    )}
-                    {this.getScreen() === ID.SECURITY_STEP && (
+                    </CSSTransition>
+
+                    <CSSTransition
+                        in={activeStepId === ID.SECURITY_STEP}
+                        timeout={ANIMATION_DURATION}
+                        classNames="step-transition"
+                        unmountOnExit
+                    >
                         <SecurityStep
                             onboardingActions={onboardingActions}
                         />
-                    )}
-                    {this.getScreen() === ID.BACKUP_STEP && (
+                    </CSSTransition>
+
+                    <CSSTransition
+                        in={activeStepId === ID.BACKUP_STEP}
+                        timeout={ANIMATION_DURATION}
+                        classNames="step-transition"
+                        unmountOnExit
+                    >
                         <BackupStep
                             onboardingActions={onboardingActions}
                             connectActions={connectActions}
@@ -330,8 +359,14 @@ class Onboarding extends React.PureComponent {
                             deviceInteraction={deviceInteraction}
                             activeSubStep={activeSubStep}
                         />
-                    )}
-                    {this.getScreen() === ID.SET_PIN_STEP && (
+                    </CSSTransition>
+
+                    <CSSTransition
+                        in={activeStepId === ID.SET_PIN_STEP}
+                        timeout={ANIMATION_DURATION}
+                        classNames="step-transition"
+                        unmountOnExit
+                    >
                         <SetPinStep
                             device={device}
                             onboardingActions={onboardingActions}
@@ -340,16 +375,29 @@ class Onboarding extends React.PureComponent {
                             uiInteraction={uiInteraction}
                             activeSubStep={activeSubStep}
                         />
-                    )}
-                    {this.getScreen() === ID.NAME_STEP && (
+                    </CSSTransition>
+
+
+                    <CSSTransition
+                        in={activeStepId === ID.NAME_STEP}
+                        timeout={ANIMATION_DURATION}
+                        classNames="step-transition"
+                        unmountOnExit
+                    >
                         <NameStep
                             onboardingActions={onboardingActions}
                             connectActions={connectActions}
                             deviceCall={deviceCall}
                             device={device}
                         />
-                    )}
-                    {this.getScreen() === ID.NEWSLETTER_STEP && (
+                    </CSSTransition>
+
+                    <CSSTransition
+                        in={activeStepId === ID.NEWSLETTER_STEP}
+                        timeout={ANIMATION_DURATION}
+                        classNames="step-transition"
+                        unmountOnExit
+                    >
                         <NewsletterStep
                             onboardingActions={onboardingActions}
                             connectActions={connectActions}
@@ -359,19 +407,31 @@ class Onboarding extends React.PureComponent {
                             deviceCall={deviceCall}
                             fetchCall={fetchCall}
                         />
-                    )}
-                    {this.getScreen() === ID.BOOKMARK_STEP && (
+                    </CSSTransition>
+
+                    <CSSTransition
+                        in={activeStepId === ID.BOOKMARK_STEP}
+                        timeout={ANIMATION_DURATION}
+                        classNames="step-transition"
+                        unmountOnExit
+                    >
                         <BookmarkStep
                             onboardingActions={onboardingActions}
                             connectActions={connectActions}
                             device={device}
                         />
-                    )}
-                    {this.getScreen() === ID.FINAL_STEP && (
+                    </CSSTransition>
+
+                    <CSSTransition
+                        in={activeStepId === ID.FINAL_STEP}
+                        timeout={ANIMATION_DURATION}
+                        classNames="step-transition"
+                        unmountOnExit
+                    >
                         <FinalStep
                             onboardingActions={onboardingActions}
                         />
-                    )}
+                    </CSSTransition>
                 </ComponentWrapper>
             </Wrapper>
 
