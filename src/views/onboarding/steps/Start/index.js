@@ -43,7 +43,7 @@ class StartStep extends React.Component {
                 content: <RecoverOption />,
                 value: ID.RECOVERY_STEP,
                 key: 2,
-                onClick: () => this.props.onboardingActions.goToNextStep(ID.RECOVERY_STEP),
+                onClick: () => this.props.onboardingActions.goToStep(ID.RECOVERY_STEP),
             }],
         };
     }

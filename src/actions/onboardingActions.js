@@ -1,20 +1,21 @@
 import * as ONBOARDING from 'actions/constants/onboarding';
 import { ID } from 'views/onboarding/constants/steps';
+import history from 'support/history';
 import { getLocalization } from './fetchActions';
 
-const goToNextStep = stepId => (dispatch, getState) => {
-    const { device } = getState().connect;
-    const { activeStepId, steps } = getState().onboarding;
-    const nextStep = stepId || findNextStepId(activeStepId, steps);
-    if (nextStep === ID.SECURITY_STEP) {
-        dispatch({
-            type: ONBOARDING.SET_STEPS,
-            steps: sortSteps(steps, device.features),
-        });
-    }
+const goToStep = stepId => (dispatch, getState) => {
+    history.push(`#/${stepId}`, { stepId });
     dispatch({
-        type: ONBOARDING.GO_TO_NEXT_STEP,
-        stepId: nextStep,
+        type: ONBOARDING.SET_STEP,
+        stepId,
+    });
+};
+
+const setStep = stepId => (dispatch) => {
+    console.warn('set step');
+    dispatch({
+        type: ONBOARDING.SET_STEP,
+        stepId,
     });
 };
 
@@ -23,13 +24,25 @@ const goToSubStep = subStepId => ({
     subStepId,
 });
 
-const goToPreviousStep = stepId => (dispatch, getState) => {
+const goToNextStep = () => (dispatch, getState) => {
+    const { device } = getState().connect;
+    const { activeStepId, steps } = getState().onboarding;
+    const nextStep = findNextStepId(activeStepId, steps);
+    console.warn('nextStep', nextStep);
+    // todo: single responsibility principle violation probably.
+    if (nextStep === ID.SECURITY_STEP) {
+        dispatch({
+            type: ONBOARDING.SET_STEPS,
+            steps: sortSteps(steps, device.features),
+        });
+    }
+    dispatch(goToStep(nextStep));
+};
+
+const goToPreviousStep = () => (dispatch, getState) => {
     const { activeStepId } = getState().onboarding;
-    const prevStep = stepId || findPrevStepId(activeStepId, getState().onboarding.steps);
-    dispatch({
-        type: ONBOARDING.GO_TO_PREVIOUS_STEP,
-        stepId: prevStep,
-    });
+    const prevStep = findPrevStepId(activeStepId, getState().onboarding.steps);
+    dispatch(goToStep(prevStep));
 };
 
 const selectTrezorModel = model => ({
@@ -100,6 +113,8 @@ const toggleDownloadClicked = () => ({
 export {
     goToNextStep,
     goToSubStep,
+    goToStep,
+    setStep,
     goToPreviousStep,
     selectTrezorModel,
     setApplicationError,

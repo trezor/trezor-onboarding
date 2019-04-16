@@ -1,5 +1,5 @@
 import React from 'react';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import { Link, P, Prompt } from 'trezor-ui-components';
 import { CSSTransition } from 'react-transition-group';
 
@@ -35,7 +35,7 @@ import ConnectStep from 'views/onboarding/steps/Connect';
 import RecoveryStep from 'views/onboarding/steps/Recovery';
 
 const BORDER_RADIUS = 12;
-const ANIMATION_DURATION = 400;
+const ANIMATION_DURATION = 401;
 
 const Wrapper = styled.div`
     position: relative;
@@ -95,6 +95,19 @@ const UnexpectedStateOverlay = styled.div`
 `;
 
 class Onboarding extends React.PureComponent {
+    componentDidMount() {
+        // window.location.hash = '';
+        // window.onpopstate = ({ state }) => {
+        //     console.warn('popstate');
+        //     if (state) {
+        //         console.warn('GO_TO_STEP', state.stepId);
+        //         this.props.onboardingActions.setStep(state.stepId);
+        //     }
+        // };
+        // todo: better.
+        window.onbeforeunload = () => 'Are you sure want to close';
+    }
+
     getStep(activeStepId) {
         return this.props.steps.find(step => step.id === activeStepId);
     }
@@ -204,7 +217,12 @@ class Onboarding extends React.PureComponent {
                     { this.getStep(activeStepId).title && this.getStep(activeStepId).title !== 'Basic setup' && (
                         <ProgressStepsWrapper>
                             <ProgressSteps
-                                steps={[...new Set(steps.filter(s => s.title).map(s => s.title))]}
+                                steps={steps.reduce((accumulator, current) => {
+                                    if (!accumulator.find(item => item.title === current.title)) {
+                                        accumulator.push(current);
+                                    }
+                                    return accumulator;
+                                }, [])}
                                 activeStep={this.getStep(activeStepId)}
                                 onboardingActions={onboardingActions}
                             />
@@ -212,12 +230,14 @@ class Onboarding extends React.PureComponent {
                     )}
                 </ProgressStepsSlot>
 
+
                 <ComponentWrapper>
                     <TrezorActionOverlay style={{ display: !this.isGlobalInteraction() ? 'none' : 'flex' }}>
                         <Prompt model={model} size={100}>
                             <TrezorActionText />
                         </Prompt>
                     </TrezorActionOverlay>
+
 
                     {/* todo [vladimir]: how to find that I pass props and dont use them in component? any tooling? */}
                     <CSSTransition
@@ -434,7 +454,6 @@ class Onboarding extends React.PureComponent {
                     </CSSTransition>
                 </ComponentWrapper>
             </Wrapper>
-
         );
     }
 }

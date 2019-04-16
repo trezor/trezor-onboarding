@@ -23,7 +23,7 @@ const SecurityStep = ({ onboardingActions }) => (
                 <Button onClick={() => onboardingActions.goToNextStep()}>
                     <FormattedMessage {...l10nMessages.TR_GO_TO_SECURITY} />
                 </Button>
-                <Button isWhite onClick={() => onboardingActions.goToNextStep(ID.FINAL_STEP)}>
+                <Button isWhite onClick={() => onboardingActions.goToStep(ID.FINAL_STEP)}>
                     <FormattedMessage {...l10nMessages.TR_SKIP_SECURITY} />
                 </Button>
             </ControlsWrapper>

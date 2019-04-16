@@ -7,7 +7,7 @@ import * as CONNECT from 'actions/constants/connect';
 import * as ONBOARDING from 'actions/constants/onboarding';
 import * as CALLS from 'actions/constants/calls';
 
-import { goToNextStep } from './onboardingActions';
+import { goToStep } from './onboardingActions';
 
 const getFeatures = () => call(CALLS.GET_FEATURES);
 const firmwareErase = params => call(CALLS.FIRMWARE_ERASE, params);
@@ -27,9 +27,9 @@ const submitWord = params => uiResponseCall(UI.RECEIVE_WORD, params);
 const callActionAndGoToNextStep = (name, params, stepId, goOnSuccess = true, goOnError = false) => (dispatch) => {
     dispatch(call(name, params)).then((response) => {
         if (response.success && goOnSuccess) {
-            dispatch(goToNextStep(stepId));
+            dispatch(goToStep(stepId));
         } if (!response.success && goOnError) {
-            dispatch(goToNextStep(stepId));
+            dispatch(goToStep(stepId));
         }
     });
 };

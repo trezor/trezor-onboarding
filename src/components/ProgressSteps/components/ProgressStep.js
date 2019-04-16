@@ -7,7 +7,6 @@ import types from 'config/types';
 import { ID } from 'views/onboarding/constants/steps';
 import Line from './Line';
 
-
 const ProgressStepWrapper = styled.div`
     display: flex;
     flex-direction: row;
@@ -51,7 +50,7 @@ const ProgressStep = (props) => {
 
     const notClickableDots = [ID.INIT_DEVICE];
 
-    const isClickable = !notClickableDots.includes(props.step) && props.isFinished;
+    const isClickable = !notClickableDots.includes(props.step.id) && props.isFinished;
 
     let order;
     if (props.isGoingForward) {
@@ -68,6 +67,7 @@ const ProgressStep = (props) => {
                 order={props.isGoingForward ? order + 1 : order - (props.index * 2)}
                 isFirst={props.index === 0}
             />
+            {/* <Link to="/about">bla</Link> */}
 
             <Circle
                 style={{
@@ -78,7 +78,7 @@ const ProgressStep = (props) => {
                     transition: `all ${LINE_TRANSITION_DURATION}s linear`,
                     transitionDelay: props.isGoingForward ? `${LINE_TRANSITION_DURATION * 2}s` : `${LINE_TRANSITION_DURATION * (order - (props.index * 2))}s`,
                 }}
-                onClick={isClickable ? () => { props.onboardingActions.goToNextStep(props.step); } : null}
+                onClick={isClickable ? () => { props.onboardingActions.goToStep(props.step.id); } : null}
             />
 
             <Line
@@ -94,9 +94,9 @@ const ProgressStep = (props) => {
                     transition: props.isActive ? `color 0.2s ${LINE_TRANSITION_DURATION * 2}s linear` : '',
                     cursor: isClickable ? 'pointer' : 'initial',
                 }}
-                onClick={isClickable ? () => { props.onboardingActions.goToNextStep(props.step); } : null}
+                onClick={isClickable ? () => { props.onboardingActions.goToStep(props.step.id); } : null}
             >
-                {props.step}
+                {props.step.title}
             </Text>
         </ProgressStepWrapper>
     );
@@ -107,7 +107,7 @@ ProgressStep.propTypes = {
     isFinished: PropTypes.bool,
     isLast: PropTypes.bool,
     index: PropTypes.number.isRequired,
-    step: PropTypes.string,
+    step: PropTypes.object, // todo: better
     onboardingActions: types.onboardingActions,
 };
 

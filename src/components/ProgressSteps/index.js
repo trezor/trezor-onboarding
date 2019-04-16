@@ -10,10 +10,6 @@ const Wrapper = styled.div`
     width: 100%;
 `;
 
-const isStepFinished = (steps, index, activeStep) => {
-    const activeStepIndex = steps.findIndex(s => s === activeStep.title);
-    return activeStepIndex > index;
-};
 
 class ProgressSteps extends React.Component {
     constructor() {
@@ -23,28 +19,39 @@ class ProgressSteps extends React.Component {
 
     componentWillReceiveProps(nextProps) {
         if (nextProps.activeStep) {
-            const nextStepIndex = this.props.steps.findIndex(step => step === nextProps.activeStep.title);
-            const currentStepIndex = this.props.steps.findIndex(step => step === this.props.activeStep.title);
+            const nextStepIndex = this.props.steps.findIndex(step => step.title === nextProps.activeStep.title);
+            const currentStepIndex = this.props.steps.findIndex(step => step.title === this.props.activeStep.title);
             this.isGoingForward = nextStepIndex > currentStepIndex;
             this.changeOverHowManySteps = Math.abs(nextStepIndex - currentStepIndex);
         }
     }
 
+    getStepsWithDots() {
+        return this.props.steps.filter(step => step.title);
+    }
+
+    isStepFinished(index, activeStep) {
+        const activeStepIndex = this.getStepsWithDots().findIndex(s => s.title === activeStep.title);
+        return activeStepIndex > index;
+    }
+
     render() {
         const { props } = this;
+        console.warn(props);
+
         return (
             <React.Fragment>
                 <Wrapper>
-                    { props.steps.map((step, index) => (
-                        <React.Fragment key={step}>
+                    { this.getStepsWithDots().map((step, index) => (
+                        <React.Fragment key={step.id}>
                             <ProgressStep
                                 isGoingForward={this.isGoingForward}
                                 step={step}
                                 index={index}
                                 length={props.steps.length}
-                                isActive={props.activeStep.title === step}
-                                isFinished={isStepFinished(props.steps, index, props.activeStep)}
-                                isLast={props.steps.length - 1 === index}
+                                isActive={props.activeStep.title === step.title}
+                                isFinished={this.isStepFinished(index, props.activeStep)}
+                                isLast={this.getStepsWithDots().length - 1 === index}
                                 onboardingActions={props.onboardingActions}
                                 changeOverHowManySteps={this.changeOverHowManySteps}
 

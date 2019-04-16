@@ -83,7 +83,7 @@ const TroubleshootInitialized = ({
                         >
                             <FormattedMessage {...l10nCommonMessages.TR_WIPE_DEVICE} />
                         </Button>
-                        <Button isWhite onClick={() => onboardingActions.goToNextStep(ID.FINAL_STEP)}>
+                        <Button isWhite onClick={() => onboardingActions.goToStep(ID.FINAL_STEP)}>
                             <FormattedMessage {...l10nCommonMessages.TR_SKIP_ALL} />
                         </Button>
                     </ControlsWrapper>
