@@ -14,8 +14,9 @@ const StepHeadingWrapper = styled.div`
     font-size: 2rem;
     line-height: 2.3rem;
     width: 100%;
-    margin-bottom: 25px;
-    margin-top: 20px;
+    /* margin-bottom: 25px; */
+    /* margin-top: 20px; */
+    min-height: 10vh;
 `;
 
 export default StepHeadingWrapper;

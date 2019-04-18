@@ -3,9 +3,7 @@ import styled from 'styled-components';
 import { P, H2, Button } from 'trezor-ui-components';
 import { FormattedMessage } from '@dragonraider5/react-intl';
 import PropTypes from 'prop-types';
-import {
-    IS_NOT_SAME_DEVICE, DEVICE_IS_NOT_CONNECTED, DEVICE_IS_NOT_USED_HERE, DEVICE_IS_IN_BOOTLOADER, DEVICE_IS_REQUESTING_PIN,
-} from 'utils/rules';
+import { DISALLOWED_STATE } from 'constants/steps';
 
 import PinMatrix from 'views/onboarding/components/PinMatrix';
 import l10nMessages from './index.messages';
@@ -78,15 +76,15 @@ const DeviceIsUsedHere = ({ connectActions }) => (
 
 const UnexpectedState = ({ caseType, model, connectActions }) => {
     switch (caseType) {
-        case DEVICE_IS_NOT_CONNECTED:
+        case DISALLOWED_STATE.DEVICE_IS_NOT_CONNECTED:
             return <UnexpectedStateCommon><Reconnect model={model} loop /></UnexpectedStateCommon>;
-        case IS_NOT_SAME_DEVICE:
+        case DISALLOWED_STATE.IS_NOT_SAME_DEVICE:
             return <UnexpectedStateCommon><IsSameDevice /></UnexpectedStateCommon>;
-        case DEVICE_IS_IN_BOOTLOADER:
+        case DISALLOWED_STATE.DEVICE_IS_IN_BOOTLOADER:
             return <UnexpectedStateCommon><IsNotInBootloader /></UnexpectedStateCommon>;
-        case DEVICE_IS_REQUESTING_PIN:
+        case DISALLOWED_STATE.DEVICE_IS_REQUESTING_PIN:
             return <UnexpectedStateCommon><IsDeviceRequestingPin connectActions={connectActions} /></UnexpectedStateCommon>;
-        case DEVICE_IS_NOT_USED_HERE:
+        case DISALLOWED_STATE.DEVICE_IS_NOT_USED_HERE:
             return <UnexpectedStateCommon><DeviceIsUsedHere connectActions={connectActions} /></UnexpectedStateCommon>;
         default:
             return <UnexpectedStateCommon>Error: {caseType}</UnexpectedStateCommon>;
