@@ -7,7 +7,7 @@ import * as CONNECT from 'actions/constants/connect';
 import * as ONBOARDING from 'actions/constants/onboarding';
 import * as CALLS from 'actions/constants/calls';
 
-import { goToStep } from './onboardingActions';
+import { goToStep, goToNextStep } from './onboardingActions';
 
 const getFeatures = () => call(CALLS.GET_FEATURES);
 const firmwareErase = params => call(CALLS.FIRMWARE_ERASE, params);
@@ -27,9 +27,9 @@ const submitWord = params => uiResponseCall(UI.RECEIVE_WORD, params);
 const callActionAndGoToNextStep = (name, params, stepId, goOnSuccess = true, goOnError = false) => (dispatch) => {
     dispatch(call(name, params)).then((response) => {
         if (response.success && goOnSuccess) {
-            dispatch(goToStep(stepId));
+            dispatch(goToNextStep(stepId));
         } if (!response.success && goOnError) {
-            dispatch(goToStep(stepId));
+            dispatch(goToNextStep(stepId));
         }
     });
 };
@@ -41,12 +41,20 @@ const getDefaultParams = (name) => {
             skipBackup: true,
             passhpraseProtection: true,
         };
+    } if (name === CALLS.RECOVER_DEVICE) {
+        return {
+            word_count: 12,
+            passphrase_protection: true,
+            type: 0,
+        };
     }
     return {};
 };
 
 const call = (name, params) => async (dispatch, getState) => {
     const { device } = getState().connect;
+    const { recovery } = getState();
+
     try {
         const currentCall = getState().connect.deviceCall;
         if (currentCall.isProgress) {
@@ -75,7 +83,7 @@ const call = (name, params) => async (dispatch, getState) => {
         };
         Object.assign(callParams, getDefaultParams(name, params), params);
         callParams.device = device;
-
+        console.warn('callParams', callParams);
         let fn;
 
         switch (name) {
@@ -104,7 +112,7 @@ const call = (name, params) => async (dispatch, getState) => {
                 fn = () => TrezorConnect.changePin(callParams);
                 break;
             case CALLS.RECOVER_DEVICE:
-                fn = () => TrezorConnect.recoveryDevice(callParams);
+                fn = () => TrezorConnect.recoveryDevice({ ...callParams, type: recovery.advancedRecovery ? 1 : 0, word_count: recovery.wordsCount });
                 break;
             case CALLS.WIPE_DEVICE:
                 fn = () => TrezorConnect.wipeDevice(callParams);
@@ -206,9 +214,9 @@ const init = () => async (dispatch) => {
         }
     });
 
-    if (connectConfig.endpoint) {
-        window.__TREZOR_CONNECT_SRC = connectConfig.endpoint; // eslint-disable-line no-underscore-dangle
-    }
+    // if (connectConfig.endpoint) {
+    //     window.__TREZOR_CONNECT_SRC = connectConfig.endpoint; // eslint-disable-line no-underscore-dangle
+    // }
 
     try {
         await TrezorConnect.init(connectConfig.init);

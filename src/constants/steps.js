@@ -38,7 +38,16 @@ const TITLE = {
     RECOVERY_STEP: 'Recovery',
 };
 
+const DISALLOWED_STATE = {
+    IS_NOT_SAME_DEVICE: 'is-not-same-device',
+    DEVICE_IS_NOT_CONNECTED: 'device-is-not-connected',
+    DEVICE_IS_NOT_USED_HERE: 'device-is-not-used-here',
+    DEVICE_IS_IN_BOOTLOADER: 'device-is-in-bootloader',
+    DEVICE_IS_REQUESTING_PIN: 'device-is-not-requesting-pin',
+};
+
 export {
     ID,
     TITLE,
+    DISALLOWED_STATE,
 };

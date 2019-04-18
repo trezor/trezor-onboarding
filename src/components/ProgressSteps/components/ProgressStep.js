@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 import colors from 'config/colors';
 import types from 'config/types';
-import { ID } from 'views/onboarding/constants/steps';
+import { ID } from 'constants/steps';
 import Line from './Line';
 
 const ProgressStepWrapper = styled.div`

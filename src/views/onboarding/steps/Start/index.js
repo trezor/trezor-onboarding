@@ -6,7 +6,7 @@ import { FormattedMessage } from '@dragonraider5/react-intl';
 import types from 'config/types';
 import { RESET_DEVICE } from 'actions/constants/calls';
 import { OptionsList } from 'components/Options';
-import { ID } from 'views/onboarding/constants/steps';
+import { ID } from 'constants/steps';
 
 import {
     StepWrapper, StepBodyWrapper, StepHeadingWrapper,
@@ -43,7 +43,7 @@ class StartStep extends React.Component {
                 content: <RecoverOption />,
                 value: ID.RECOVERY_STEP,
                 key: 2,
-                onClick: () => this.props.onboardingActions.goToStep(ID.RECOVERY_STEP),
+                onClick: () => this.props.onboardingActions.goToNextStep(ID.RECOVERY_STEP),
             }],
         };
     }

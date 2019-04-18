@@ -7,7 +7,7 @@ import { FormattedMessage } from '@dragonraider5/react-intl';
 import { SUPPORT_URL } from 'config/urls';
 import colors from 'config/colors';
 import types from 'config/types';
-import { ID } from 'views/onboarding/constants/steps';
+import { ID } from 'constants/steps';
 import { ControlsWrapper } from 'views/onboarding/components/Wrapper';
 import Text from 'views/onboarding/components/Text';
 import l10nCommonMessages from 'support/commonMessages';
@@ -83,7 +83,7 @@ const TroubleshootInitialized = ({
                         >
                             <FormattedMessage {...l10nCommonMessages.TR_WIPE_DEVICE} />
                         </Button>
-                        <Button isWhite onClick={() => onboardingActions.goToStep(ID.FINAL_STEP)}>
+                        <Button isWhite onClick={() => onboardingActions.goToNextStep(ID.FINAL_STEP)}>
                             <FormattedMessage {...l10nCommonMessages.TR_SKIP_ALL} />
                         </Button>
                     </ControlsWrapper>

@@ -10,7 +10,6 @@ history.listen((location, action) => {
     // location is an object like window.location
     console.log(action, location.pathname, location.state);
     if (action === 'POP' && location.state && location.state.stepId) {
-        console.warn('j');
         store.dispatch(setStep(location.state.stepId));
     }
 });

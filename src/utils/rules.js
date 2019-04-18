@@ -1,8 +1,4 @@
-export const IS_NOT_SAME_DEVICE = 'is-not-same-device';
-export const DEVICE_IS_NOT_CONNECTED = 'device-is-not-connected';
-export const DEVICE_IS_NOT_USED_HERE = 'device-is-not-used-here';
-export const DEVICE_IS_IN_BOOTLOADER = 'device-is-in-bootloader';
-export const DEVICE_IS_REQUESTING_PIN = 'device-is-not-requesting-pin';
+import { DISALLOWED_STATE } from 'constants/steps';
 
 export const isNotConnected = ({ device }) => device !== null && device.connected !== true;
 
@@ -37,15 +33,15 @@ export const isRequestingPin = ({ device, uiInteraction }) => {
 
 export const getFnForRule = (rule) => {
     switch (rule) {
-        case IS_NOT_SAME_DEVICE:
+        case DISALLOWED_STATE.IS_NOT_SAME_DEVICE:
             return isNotSameDevice;
-        case DEVICE_IS_NOT_CONNECTED:
+        case DISALLOWED_STATE.DEVICE_IS_NOT_CONNECTED:
             return isNotConnected;
-        case DEVICE_IS_NOT_USED_HERE:
+        case DISALLOWED_STATE.DEVICE_IS_NOT_USED_HERE:
             return isNotUsedHere;
-        case DEVICE_IS_IN_BOOTLOADER:
+        case DISALLOWED_STATE.DEVICE_IS_IN_BOOTLOADER:
             return isInBootloader;
-        case DEVICE_IS_REQUESTING_PIN:
+        case DISALLOWED_STATE.DEVICE_IS_REQUESTING_PIN:
             return isRequestingPin;
         default:
             throw new Error(`Wrong rule passed: ${rule}`);

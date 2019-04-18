@@ -13,7 +13,7 @@ import isChrome from 'utils/isChrome';
 
 import DownloadArrow from 'components/DownloadArrow';
 import GlobalWebNavigation from 'components/GlobalWebNavigation';
-import { ID } from 'views/onboarding/constants/steps';
+import { ID } from 'constants/steps';
 
 const backgroundAnimation = keyframes`
     0% { background-color: ${colors.white} }

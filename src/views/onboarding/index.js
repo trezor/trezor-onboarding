@@ -13,7 +13,7 @@ import {
 import * as EVENTS from 'actions/constants/events';
 import ProgressSteps from 'components/ProgressSteps';
 
-import { ID } from 'views/onboarding/constants/steps';
+import { ID } from 'constants/steps';
 import { getFnForRule } from 'utils/rules';
 
 import UnexpectedState from 'views/onboarding/components/UnexpectedState';
@@ -96,15 +96,7 @@ const UnexpectedStateOverlay = styled.div`
 
 class Onboarding extends React.PureComponent {
     componentDidMount() {
-        // window.location.hash = '';
-        // window.onpopstate = ({ state }) => {
-        //     console.warn('popstate');
-        //     if (state) {
-        //         console.warn('GO_TO_STEP', state.stepId);
-        //         this.props.onboardingActions.setStep(state.stepId);
-        //     }
-        // };
-        // todo: better.
+        // todo: flatten application structure, move common logic like this to the top level.
         window.onbeforeunload = () => 'Are you sure want to close';
     }
 
@@ -177,6 +169,7 @@ class Onboarding extends React.PureComponent {
             selectedModel,
             transport,
             activeStepId,
+            activeClusterId,
             activeSubStep,
             device,
             deviceCall,
@@ -217,12 +210,14 @@ class Onboarding extends React.PureComponent {
                     { this.getStep(activeStepId).title && this.getStep(activeStepId).title !== 'Basic setup' && (
                         <ProgressStepsWrapper>
                             <ProgressSteps
-                                steps={steps.reduce((accumulator, current) => {
-                                    if (!accumulator.find(item => item.title === current.title)) {
-                                        accumulator.push(current);
-                                    }
-                                    return accumulator;
-                                }, [])}
+                                // steps={steps.reduce((accumulator, current) => {
+                                //     if (!accumulator.find(item => item.title === current.title)) {
+                                //         accumulator.push(current);
+                                //     }
+                                //     return accumulator;
+                                // }, [])}
+                                steps={steps}
+                                activeClusterId={activeClusterId}
                                 activeStep={this.getStep(activeStepId)}
                                 onboardingActions={onboardingActions}
                             />

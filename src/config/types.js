@@ -12,6 +12,7 @@ export default {
     }),
     activeStepId: PropTypes.string,
     activeSubStep: PropTypes.string,
+    activeClusterId: PropTypes.string,
     deviceInteraction: PropTypes.shape({
         name: PropTypes.string,
         counter: PropTypes.number,
