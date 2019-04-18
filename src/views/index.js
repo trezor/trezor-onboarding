@@ -14,6 +14,8 @@ import isChrome from 'utils/isChrome';
 import DownloadArrow from 'components/DownloadArrow';
 import GlobalWebNavigation from 'components/GlobalWebNavigation';
 import { ID } from 'constants/steps';
+import background from './background.jpg';
+import background2 from './background2.jpg';
 
 const backgroundAnimation = keyframes`
     0% { background-color: ${colors.white} }
@@ -24,8 +26,9 @@ const Wrapper = styled.div`
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    background-color: ${colors.white};
-
+    background-image: url(${background2});
+    background-size: cover;
+    
     @media only screen and (min-width: ${SM}px) {
         ${props => (props.animate && css`animation: ${backgroundAnimation} 1s linear`)};
         background-color: ${props => (props.show ? colors.gray : colors.white)};

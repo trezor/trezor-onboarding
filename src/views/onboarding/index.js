@@ -48,7 +48,7 @@ const Wrapper = styled.div`
 
     @media only screen and (min-width: ${SM}px) {
         width: calc(55vw + 150px) ;
-        margin: 20px auto;
+        margin: 50px auto;
         overflow: hidden;
     } 
 `;
