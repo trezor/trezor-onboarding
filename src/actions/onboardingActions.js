@@ -1,7 +1,4 @@
-import { clear } from 'redux-localstorage-simple';
-
 import * as ONBOARDING from 'actions/constants/onboarding';
-import { ID, TITLE, DISALLOWED_STATE } from 'constants/steps';
 import history from 'support/history';
 
 import { getLocalization } from './fetchActions';
@@ -87,32 +84,7 @@ const toggleDownloadClicked = () => ({
     type: ONBOARDING.TOGGLE_DOWNLOAD_CLICKED,
 });
 
-const considerAddingBackupStep = () => (dispatch, getState) => {
-    const { steps } = getState().onboarding;
-    const { needs_backup } = getState().connect.device.features;
-
-    if (needs_backup === false) {
-        const index = steps.findIndex(step => step.id === ID.SECURITY_STEP);
-        steps.splice(index, 0, {
-            id: ID.BACKUP_STEP,
-            title: TITLE.BACKUP_STEP,
-            cluster: TITLE.SECURITY_STEP,
-            disallowedDeviceStates: [
-                DISALLOWED_STATE.DEVICE_IS_NOT_CONNECTED,
-                DISALLOWED_STATE.DEVICE_IS_IN_BOOTLOADER,
-                DISALLOWED_STATE.DEVICE_IS_NOT_USED_HERE,
-                DISALLOWED_STATE.IS_NOT_SAME_DEVICE,
-            ],
-        });
-        dispatch({
-            type: ONBOARDING.SET_STEPS,
-            steps,
-        });
-    }
-};
-
 const startAgain = () => () => {
-    clear();
     window.location.reload();
 };
 
@@ -121,7 +93,6 @@ export {
     goToSubStep,
     goToStep,
     setStep,
-    considerAddingBackupStep,
     goToPreviousStep,
     selectTrezorModel,
     setApplicationError,

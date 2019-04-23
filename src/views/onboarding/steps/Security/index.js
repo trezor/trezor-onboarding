@@ -21,7 +21,6 @@ const SecurityStep = ({ onboardingActions }) => (
             </Text>
             <ControlsWrapper>
                 <Button onClick={() => {
-                    onboardingActions.considerAddingBackupStep();
                     onboardingActions.goToNextStep();
                 }}
                 >
