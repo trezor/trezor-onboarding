@@ -93,7 +93,6 @@ class StartStep extends React.Component {
                     {
                         isResolved && (
                             <React.Fragment>
-                                <H4>Step finished</H4>
                                 <Text>You have already created a new wallet from scratch or through recovery.</Text>
                                 <Button onClick={() => onboardingActions.goToNextStep()}>Continue</Button>
                             </React.Fragment>

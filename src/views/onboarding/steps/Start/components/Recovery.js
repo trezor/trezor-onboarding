@@ -108,10 +108,8 @@ class RecoveryStep extends React.Component {
                 </StepHeadingWrapper> */}
 
                 <StepBodyWrapper>
-                    { this.getStatus() || 'no recovery status'}
                     { this.getStatus() === null && (
                         <React.Fragment>
-
                             {
                                 device.features.major_version === 1 && (
                                     <React.Fragment>
@@ -159,12 +157,11 @@ class RecoveryStep extends React.Component {
                                             <FormattedMessage {...l10nMessages.TR_RECOVER_SUBHEADING} />
                                         </Text>
                                         <ControlsWrapper>
-                                            <Button onClick={() => { this.props.connectActions.recoveryDevice(); }}>
+                                            <Button onClick={() => { this.recoveryDevice(); }}>
                                                 <FormattedMessage {...l10nMessages.TR_START_RECOVERY} />
                                             </Button>
                                         </ControlsWrapper>
                                     </React.Fragment>
-
                                 )
                             }
 

@@ -7,7 +7,7 @@ import * as CONNECT from 'actions/constants/connect';
 import * as ONBOARDING from 'actions/constants/onboarding';
 import * as CALLS from 'actions/constants/calls';
 
-import { goToStep, goToNextStep } from './onboardingActions';
+import { goToNextStep } from './onboardingActions';
 
 const getFeatures = () => call(CALLS.GET_FEATURES);
 const firmwareErase = params => call(CALLS.FIRMWARE_ERASE, params);
@@ -34,7 +34,8 @@ const callActionAndGoToNextStep = (name, params, stepId, goOnSuccess = true, goO
     });
 };
 
-const getDefaultParams = (name) => {
+const getDefaultParams = (name, { device, recovery }) => {
+    console.warn(device);
     if (name === CALLS.RESET_DEVICE) {
         return {
             label: 'My Trezor',
@@ -42,10 +43,15 @@ const getDefaultParams = (name) => {
             passhpraseProtection: true,
         };
     } if (name === CALLS.RECOVER_DEVICE) {
+        if (device.features.major_version === 2) {
+            return {
+                passphrase_protection: true,
+            };
+        }
         return {
-            word_count: 12,
             passphrase_protection: true,
-            type: 0,
+            type: recovery.advancedRecovery ? 1 : 0,
+            word_count: recovery.wordsCount,
         };
     }
     return {};
@@ -81,11 +87,10 @@ const call = (name, params) => async (dispatch, getState) => {
         const callParams = {
             useEmptyPassphrase: true,
         };
-        Object.assign(callParams, getDefaultParams(name, params), params);
+        Object.assign(callParams, getDefaultParams(name, { device, recovery }), params);
         callParams.device = device;
         console.warn('callParams', callParams);
         let fn;
-
         switch (name) {
             case CALLS.FIRMWARE_ERASE:
                 fn = () => TrezorConnect.firmwareErase(callParams);
@@ -112,7 +117,7 @@ const call = (name, params) => async (dispatch, getState) => {
                 fn = () => TrezorConnect.changePin(callParams);
                 break;
             case CALLS.RECOVER_DEVICE:
-                fn = () => TrezorConnect.recoveryDevice({ ...callParams, type: recovery.advancedRecovery ? 1 : 0, word_count: recovery.wordsCount });
+                fn = () => TrezorConnect.recoveryDevice(callParams);
                 break;
             case CALLS.WIPE_DEVICE:
                 fn = () => TrezorConnect.wipeDevice(callParams);
