@@ -12,7 +12,7 @@ import {
 import { ID, TITLE, DISALLOWED_STATE } from 'constants/steps';
 
 const initialState = {
-    selectedModel: 1,
+    selectedModel: null,
     activeStepId: ID.WELCOME_STEP,
     activeClusterId: TITLE.INIT_DEVICE,
     activeSubStep: null,
@@ -22,6 +22,7 @@ const initialState = {
     steps: [
         {
             id: ID.WELCOME_STEP,
+            visited: true,
         },
         {
             id: ID.SELECT_DEVICE_STEP,
@@ -158,6 +159,15 @@ const onboarding = (state = initialState, action) => {
                 activeStepId: action.stepId,
                 activeSubStep: null,
                 downloadClicked: false,
+                steps: state.steps.map(((step) => {
+                    if (step.id === action.stepId) {
+                        return {
+                            ...step,
+                            ...{ visited: true },
+                        };
+                    }
+                    return step;
+                })),
             };
         case SET_STEP_RESOLVED:
             return {

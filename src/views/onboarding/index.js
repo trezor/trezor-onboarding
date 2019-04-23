@@ -97,7 +97,7 @@ const UnexpectedStateOverlay = styled.div`
 class Onboarding extends React.PureComponent {
     componentDidMount() {
         // todo: flatten application structure, move common logic like this to the top level.
-        window.onbeforeunload = () => 'Are you sure want to close';
+        // window.onbeforeunload = () => 'Are you sure want to close';
     }
 
     getStep(activeStepId) {
@@ -147,6 +147,10 @@ class Onboarding extends React.PureComponent {
             EVENTS.BUTTON_REQUEST__OTHER,
         ];
         return deviceInteraction && globals.includes(deviceInteraction.name) && deviceCall.isProgress;
+    }
+
+    isStepResolved(stepId) {
+        return Boolean(this.props.steps.find(step => step.id === stepId).resolved);
     }
 
     shouldDisplaySkipSecurity() {
@@ -201,7 +205,7 @@ class Onboarding extends React.PureComponent {
                 {
                     errorStates.length > 0 && (
                         <UnexpectedStateOverlay>
-                            <UnexpectedState caseType={errorStates[0]} model={model} connectActions={connectActions} />
+                            <UnexpectedState caseType={errorStates[0]} model={model} connectActions={connectActions} onboardingActions={onboardingActions} />
                         </UnexpectedStateOverlay>
                     )
                 }
@@ -232,7 +236,6 @@ class Onboarding extends React.PureComponent {
                             <TrezorActionText />
                         </Prompt>
                     </TrezorActionOverlay>
-
 
                     {/* todo [vladimir]: how to find that I pass props and dont use them in component? any tooling? */}
                     <CSSTransition
@@ -298,6 +301,7 @@ class Onboarding extends React.PureComponent {
                             device={device}
                             deviceCall={deviceCall}
                             activeSubStep={activeSubStep}
+                            isResolved={this.isStepResolved(ID.CONNECT_STEP)}
                         />
                     </CSSTransition>
 
@@ -328,6 +332,7 @@ class Onboarding extends React.PureComponent {
                             onboardingActions={onboardingActions}
                             connectActions={connectActions}
                             deviceCall={deviceCall}
+                            isResolved={this.isStepResolved(ID.START_STEP)}
                         />
                     </CSSTransition>
 
@@ -346,6 +351,7 @@ class Onboarding extends React.PureComponent {
                             uiInteraction={uiInteraction}
                             deviceCall={deviceCall}
                             activeSubStep={activeSubStep}
+                            isResolved={this.isStepResolved(ID.START_STEP)}
                         />
                     </CSSTransition>
 

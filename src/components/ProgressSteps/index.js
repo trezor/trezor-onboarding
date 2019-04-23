@@ -3,12 +3,32 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
 import types from 'config/types';
+import { ID } from 'constants/steps';
 import ProgressStep from './components/ProgressStep';
 
 const Wrapper = styled.div`
     display: flex;
     width: 100%;
 `;
+
+// todo: move clustering logic here.
+const INIT_DEVICE_CLUSTER = [
+    ID.WELCOME_STEP,
+    ID.SELECT_DEVICE_STEP,
+    ID.UNBOXING_STEP,
+    ID.BRIDGE_STEP,
+    ID.FIRMWARE_STEP,
+    ID.START_STEP,
+    ID.RECOVERY_STEP,
+];
+
+const SECURITY_CLUSTER = [
+    ID.BACKUP_STEP,
+    ID.SET_PIN_STEP,
+    ID.NAME_STEP,
+    ID.BOOKMARK_STEP,
+    ID.NEWSLETTER_STEP,
+];
 
 class ProgressSteps extends React.Component {
     constructor() {
@@ -26,21 +46,30 @@ class ProgressSteps extends React.Component {
     }
 
     getStepsWithDots() {
-        const steps = this.props.steps.reduce((accumulator, current) => {
-            if (!accumulator.find(item => item.title === current.title)) {
-                if (this.props.activeClusterId === current.cluster) {
+        const isSecurityActive = SECURITY_CLUSTER.includes(this.props.activeStep.id);
+        let steps = [];
+        if (isSecurityActive) {
+            steps = this.props.steps.reduce((accumulator, current) => {
+                if (SECURITY_CLUSTER.includes(current.id) && !accumulator.find(item => item.title === current.title)) {
                     accumulator.push(current);
-                } else if (!accumulator.find(item => item.cluster === current.cluster)) {
-                    accumulator.push({
-                        title: current.cluster,
-                        id: current.id,
-                        cluster: current.cluster,
-                    });
                 }
-            }
-            return accumulator;
-        }, []);
-
+                return accumulator;
+            }, [{
+                title: 'Basic setup',
+                id: 'select-device',
+            }]);
+        } else {
+            steps = this.props.steps.reduce((accumulator, current) => {
+                if (!SECURITY_CLUSTER.includes(current.id) && !accumulator.find(item => item.title === current.title)) {
+                    accumulator.push(current);
+                }
+                return accumulator;
+            }, []);
+            steps.push({
+                title: 'Security',
+                id: 'security',
+            });
+        }
         return steps.filter(step => step.title);
     }
 

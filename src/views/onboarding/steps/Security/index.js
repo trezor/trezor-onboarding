@@ -21,7 +21,7 @@ const SecurityStep = ({ onboardingActions }) => (
             </Text>
             <ControlsWrapper>
                 <Button onClick={() => {
-                    // onboardingActions.setActiveClusterId(TITLE.SECURITY_STEP);
+                    onboardingActions.considerAddingBackupStep();
                     onboardingActions.goToNextStep();
                 }}
                 >

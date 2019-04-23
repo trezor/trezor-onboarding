@@ -11,7 +11,7 @@ const ID = {
     SET_PIN_STEP: 'set-pin',
     START_STEP: 'start',
     SECURITY_STEP: 'security',
-    WELCOME_STEP: 'welcome',
+    WELCOME_STEP: '',
     NAME_STEP: 'name',
     CONNECT_STEP: 'connect',
     UNBOXING_STEP: 'unboxing',

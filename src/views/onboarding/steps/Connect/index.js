@@ -61,7 +61,7 @@ class ConnectStep extends React.PureComponent {
     render() {
         const deviceIsConnected = Boolean(this.props.device && this.props.device.connected);
         const {
-            device, deviceCall, connectActions, onboardingActions, activeSubStep,
+            device, deviceCall, connectActions, onboardingActions, activeSubStep, isResolved,
         } = this.props;
         const { isSearching, isSearchingTooLong } = this.state;
         return (
@@ -70,7 +70,6 @@ class ConnectStep extends React.PureComponent {
                     <FormattedMessage {...l10nMessages.TR_CONNECT_HEADING} />
                 </StepHeadingWrapper>
                 <StepBodyWrapper>
-
                     <TrezorConnect model={this.props.model} height={180} loop={!deviceIsConnected} />
 
                     {
@@ -119,13 +118,33 @@ class ConnectStep extends React.PureComponent {
                                 }
 
                                 {
-                                    device.features.initialized && (
+                                    device.features.initialized && !isResolved && (
                                         <TroubleshootInitialized
                                             device={device}
                                             connectActions={connectActions}
                                             onboardingActions={onboardingActions}
                                             activeSubStep={activeSubStep}
                                         />
+                                    )
+                                }
+
+                                {
+                                    device.features.initialized && isResolved && (
+                                        <React.Fragment>
+                                            <H4>
+                                                <FormattedMessage {...l10nMessages.TR_DEVICE_DETECTED} />
+                                            </H4>
+                                            <Text>
+                                                Found a device you have previously initialized
+                                            </Text>
+                                            <ControlsWrapper>
+                                                <Button
+                                                    onClick={() => this.props.onboardingActions.goToNextStep()}
+                                                >
+                                                    <FormattedMessage {...l10nCommonMessages.TR_CONTINUE} />
+                                                </Button>
+                                            </ControlsWrapper>
+                                        </React.Fragment>
                                     )
                                 }
                             </React.Fragment>

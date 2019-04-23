@@ -16,9 +16,12 @@ const Wrapper = styled.div`
     width: 100%;
 `;
 
-const UnexpectedStateCommon = ({ children }) => (
+const UnexpectedStateCommon = ({ children, onboardingActions }) => (
     <Wrapper>
         {children}
+        <ControlsWrapper>
+            <Button isWhite onClick={onboardingActions.startAgain}>Restart</Button>
+        </ControlsWrapper>
     </Wrapper>
 );
 
@@ -74,20 +77,22 @@ const DeviceIsUsedHere = ({ connectActions }) => (
 
 );
 
-const UnexpectedState = ({ caseType, model, connectActions }) => {
+const UnexpectedState = ({
+    caseType, model, connectActions, onboardingActions,
+}) => {
     switch (caseType) {
         case DISALLOWED_STATE.DEVICE_IS_NOT_CONNECTED:
-            return <UnexpectedStateCommon><Reconnect model={model} loop /></UnexpectedStateCommon>;
+            return <UnexpectedStateCommon onboardingActions={onboardingActions}><Reconnect model={model} loop /></UnexpectedStateCommon>;
         case DISALLOWED_STATE.IS_NOT_SAME_DEVICE:
-            return <UnexpectedStateCommon><IsSameDevice /></UnexpectedStateCommon>;
+            return <UnexpectedStateCommon onboardingActions={onboardingActions}><IsSameDevice /></UnexpectedStateCommon>;
         case DISALLOWED_STATE.DEVICE_IS_IN_BOOTLOADER:
-            return <UnexpectedStateCommon><IsNotInBootloader /></UnexpectedStateCommon>;
+            return <UnexpectedStateCommon onboardingActions={onboardingActions}><IsNotInBootloader /></UnexpectedStateCommon>;
         case DISALLOWED_STATE.DEVICE_IS_REQUESTING_PIN:
-            return <UnexpectedStateCommon><IsDeviceRequestingPin connectActions={connectActions} /></UnexpectedStateCommon>;
+            return <UnexpectedStateCommon onboardingActions={onboardingActions}><IsDeviceRequestingPin connectActions={connectActions} /></UnexpectedStateCommon>;
         case DISALLOWED_STATE.DEVICE_IS_NOT_USED_HERE:
-            return <UnexpectedStateCommon><DeviceIsUsedHere connectActions={connectActions} /></UnexpectedStateCommon>;
+            return <UnexpectedStateCommon onboardingActions={onboardingActions}><DeviceIsUsedHere connectActions={connectActions} /></UnexpectedStateCommon>;
         default:
-            return <UnexpectedStateCommon>Error: {caseType}</UnexpectedStateCommon>;
+            return <UnexpectedStateCommon onboardingActions={onboardingActions}>Error: {caseType}</UnexpectedStateCommon>;
     }
 };
 

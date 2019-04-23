@@ -70,7 +70,10 @@ class RecoveryStep extends React.Component {
     }
 
     getStatus = () => {
-        const { deviceCall, uiInteraction } = this.props;
+        const { deviceCall, uiInteraction, isResolved } = this.props;
+        if (isResolved) {
+            return 'resolved';
+        }
         if (deviceCall.result && deviceCall.name === RECOVER_DEVICE) {
             return 'success';
         }
@@ -313,6 +316,18 @@ class RecoveryStep extends React.Component {
                             </React.Fragment>
                         )
                     }
+
+                    { this.getStatus() === 'resolved' && (
+                        <React.Fragment>
+                            <Text>
+                                    You have already carried out recovery process.
+                                {/* <FormattedMessage {...l10nMessages.TR_RECOVERY_SUCCESS} /> */}
+                            </Text>
+                            <Button onClick={() => this.props.onboardingActions.goToNextStep()}>
+                                <FormattedMessage {...l10nCommonMessages.TR_CONTINUE} />
+                            </Button>
+                        </React.Fragment>
+                    )}
                 </StepBodyWrapper>
             </StepWrapper>
         );

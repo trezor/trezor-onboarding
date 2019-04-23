@@ -7,7 +7,9 @@ import { UnorderedList } from 'components/Lists';
 import { TrezorConnect } from 'components/Prompts';
 
 import l10nMessages from './Reconnect.messages';
-import { StepWrapper, StepHeadingWrapper, StepBodyWrapper } from '../Wrapper';
+import {
+    StepWrapper, StepHeadingWrapper, StepBodyWrapper,
+} from '../Wrapper';
 
 const items = [{
     component: <P><FormattedMessage {...l10nMessages.TR_RECONNECT_TROUBLESHOOT_CONNECTION} /></P>,

@@ -1,26 +1,20 @@
+import { clear } from 'redux-localstorage-simple';
+
 import * as ONBOARDING from 'actions/constants/onboarding';
-import { ID, TITLE } from 'constants/steps';
+import { ID, TITLE, DISALLOWED_STATE } from 'constants/steps';
 import history from 'support/history';
+
 import { getLocalization } from './fetchActions';
 
 const goToStep = stepId => (dispatch, getState) => {
-    history.push(`#/${stepId}`, { stepId });
+    history.push(stepId);
     dispatch(setStep(stepId));
 };
 
-const setStep = stepId => (dispatch, getState) => {
-    const { activeStepId, steps } = getState().onboarding;
-    const activeStep = steps.find(step => step.id === activeStepId);
-    const nextStep = steps.find(step => step.id === stepId);
-
-
-    if (nextStep.cluster && nextStep.cluster !== activeStep.cluster) {
-        dispatch(setActiveClusterId(nextStep.cluster));
-    }
-
+const setStep = stepId => (dispatch) => {
     dispatch({
         type: ONBOARDING.SET_STEP_ACTIVE,
-        stepId: nextStep.id,
+        stepId,
     });
 };
 
@@ -29,14 +23,10 @@ const goToSubStep = subStepId => ({
     subStepId,
 });
 
-
 const goToNextStep = stepId => (dispatch, getState) => {
     const { activeStepId, steps } = getState().onboarding;
     const nextStep = findNextStep(activeStepId, steps);
     const activeStep = steps.find(step => step.id === activeStepId);
-
-    console.warn('nextStep', nextStep);
-    console.warn('activeStep', activeStep);
 
     // only nextStep
     if (!activeStep.resolved) {
@@ -77,36 +67,6 @@ const findPrevStep = (currentStep, onboardingSteps) => {
     return onboardingSteps[currentIndex - 1];
 };
 
-// after basic initialization is done, we want to already passed steps into one 'initialize device' step and
-// expand security steps that were hidden under one dot until this moment;
-const setActiveClusterId = id => (dispatch, getState) => {
-    const { needs_backup } = getState().connect.device.features;
-    const { steps } = getState().onboarding;
-    console.warn(steps);
-    console.warn('steps.findIndex((step => step.id === ID.BACKUP_STEP))', steps.findIndex((step => step.id === ID.BACKUP_STEP)));
-    if (id === TITLE.SECURITY_STEP) {
-        if (needs_backup === false) {
-            steps.splice(
-                steps.findIndex((step => step.id === ID.BACKUP_STEP)),
-                1,
-            );
-
-            dispatch({
-                type: ONBOARDING.SET_STEPS,
-                steps,
-            });
-        }
-    } else if (id === TITLE.INIT_DEVICE) {
-
-    } else {
-        throw new Error('unsupported cluster');
-    }
-    dispatch({
-        type: ONBOARDING.SET_ACTIVE_CLUSTER_ID,
-        id,
-    });
-};
-
 const setApplicationError = error => ({
     type: ONBOARDING.SET_APPLICATION_ERROR,
     error,
@@ -127,15 +87,45 @@ const toggleDownloadClicked = () => ({
     type: ONBOARDING.TOGGLE_DOWNLOAD_CLICKED,
 });
 
+const considerAddingBackupStep = () => (dispatch, getState) => {
+    const { steps } = getState().onboarding;
+    const { needs_backup } = getState().connect.device.features;
+
+    if (needs_backup === false) {
+        const index = steps.findIndex(step => step.id === ID.SECURITY_STEP);
+        steps.splice(index, 0, {
+            id: ID.BACKUP_STEP,
+            title: TITLE.BACKUP_STEP,
+            cluster: TITLE.SECURITY_STEP,
+            disallowedDeviceStates: [
+                DISALLOWED_STATE.DEVICE_IS_NOT_CONNECTED,
+                DISALLOWED_STATE.DEVICE_IS_IN_BOOTLOADER,
+                DISALLOWED_STATE.DEVICE_IS_NOT_USED_HERE,
+                DISALLOWED_STATE.IS_NOT_SAME_DEVICE,
+            ],
+        });
+        dispatch({
+            type: ONBOARDING.SET_STEPS,
+            steps,
+        });
+    }
+};
+
+const startAgain = () => () => {
+    clear();
+    window.location.reload();
+};
+
 export {
     goToNextStep,
     goToSubStep,
     goToStep,
     setStep,
-    setActiveClusterId,
+    considerAddingBackupStep,
     goToPreviousStep,
     selectTrezorModel,
     setApplicationError,
     setLocale,
     toggleDownloadClicked,
+    startAgain,
 };

@@ -66,7 +66,7 @@ class FirmwareStep extends React.Component {
             // todo: this state is not used
             return 'connect-device';
         }
-        throw new Error('Unexpected state of firmware');
+        // throw new Error('Unexpected state of firmware');
     }
 
     getMessageForStatus = () => {

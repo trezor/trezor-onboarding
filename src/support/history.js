@@ -1,23 +1,24 @@
-import { createBrowserHistory } from 'history';
+import { createHashHistory } from 'history';
 import { setStep } from 'actions/onboardingActions';
 import store from 'configureStore';
+import { ID } from 'constants/steps';
 
-console.warn('store', store);
-const history = createBrowserHistory();
+const history = createHashHistory({
+    hashType: 'noslash',
+    getUserConfirmation(message, callback) {
+        console.warn('message', message);
+        // Show some custom dialog to the user and call
+        // callback(true) to continue the transiton, or
+        // callback(false) to abort it.
+    },
+});
 
 // Listen for changes to the current location.
 history.listen((location, action) => {
-    // location is an object like window.location
-    console.log(action, location.pathname, location.state);
-    if (action === 'POP' && location.state && location.state.stepId) {
-        store.dispatch(setStep(location.state.stepId));
+    const path = location.pathname.substring(1);
+    if (action === 'POP' && Object.values(ID).includes(path)) {
+        store.dispatch(setStep(path));
     }
 });
-
-// Use push, replace, and go to navigate around.
-// history.push('/home', { some: 'state' });
-
-// To stop listening, call the function returned from listen().
-// unlisten();
 
 export default history;
