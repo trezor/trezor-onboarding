@@ -9,7 +9,7 @@ import types from 'config/types';
 import { RESET_DEVICE } from 'actions/constants/calls';
 import { OptionsList } from 'components/Options';
 import { ID } from 'constants/steps';
-
+import Recovery from './components/Recovery';
 import {
     StepWrapper, StepBodyWrapper, StepHeadingWrapper,
 } from '../../components/Wrapper';
@@ -32,48 +32,79 @@ const RecoverOption = () => (
     </React.Fragment>
 );
 
-const StartStep = ({ isResolved, onboardingActions, connectActions }) => (
-    <StepWrapper>
-        <StepHeadingWrapper>
-            <FormattedMessage {...l10nMessages.TR_START_HEADING} />
-        </StepHeadingWrapper>
-        <StepBodyWrapper>
-            {
-                !isResolved && (
-                    <OptionsList
-                        options={[{
-                            content: <StartOption />,
-                            value: ID.SECURITY_STEP,
-                            key: 1,
-                            onClick: () => {
-                                connectActions.callActionAndGoToNextStep(RESET_DEVICE, null, ID.SECURITY_STEP, true, false);
-                            },
-                        }, {
-                            content: <RecoverOption />,
-                            value: ID.RECOVERY_STEP,
-                            key: 2,
-                            onClick: () => {
-                                onboardingActions.goToNextStep(ID.RECOVERY_STEP);
-                            },
-                        }]}
-                        selected={null}
-                        selectedAccessor="value" // todo: maybe not needed
-                    />
-                )
-            }
+class StartStep extends React.Component {
+    constructor() {
+        super();
+        this.state = {
+            status: null,
+        };
+    }
 
-            {
-                isResolved && (
-                    <React.Fragment>
-                        <H4>Step finished</H4>
-                        <Text>You have already created a new wallet from scratch or through recovery.</Text>
-                        <Button onClick={() => onboardingActions.goToNextStep()}>Continue</Button>
-                    </React.Fragment>
-                )
-            }
-        </StepBodyWrapper>
-    </StepWrapper>
-);
+    render() {
+        const {
+            isResolved, onboardingActions, activeSubStep, recoveryActions, connectActions,
+            recovery, device, uiInteraction, deviceCall,
+        } = this.props;
+        return (
+            <StepWrapper>
+                <StepHeadingWrapper>
+                    <FormattedMessage {...l10nMessages.TR_START_HEADING} />
+                </StepHeadingWrapper>
+                <StepBodyWrapper>
+                    {
+                        !isResolved && this.state.status === ID.RECOVERY_STEP && (
+                            <Recovery
+                                onboardingActions={onboardingActions}
+                                activeSubStep={activeSubStep}
+                                recoveryActions={recoveryActions}
+                                connectActions={connectActions}
+                                recovery={recovery}
+                                device={device}
+                                uiInteraction={uiInteraction}
+                                deviceCall={deviceCall}
+                            />
+                        )
+                    }
+
+                    {
+                        !isResolved && this.state.status === null && (
+                            <OptionsList
+                                options={[{
+                                    content: <StartOption />,
+                                    value: ID.SECURITY_STEP,
+                                    key: 1,
+                                    onClick: () => {
+                                        connectActions.callActionAndGoToNextStep(RESET_DEVICE, null, ID.SECURITY_STEP, true, false);
+                                    },
+                                }, {
+                                    content: <RecoverOption />,
+                                    value: ID.RECOVERY_STEP,
+                                    key: 2,
+                                    onClick: () => {
+                                        this.setState({ status: ID.RECOVERY_STEP });
+                                    },
+                                }]}
+                                selected={null}
+                                selectedAccessor="value"
+                            />
+                        )
+                    }
+
+                    {
+                        isResolved && (
+                            <React.Fragment>
+                                <H4>Step finished</H4>
+                                <Text>You have already created a new wallet from scratch or through recovery.</Text>
+                                <Button onClick={() => onboardingActions.goToNextStep()}>Continue</Button>
+                            </React.Fragment>
+                        )
+                    }
+
+                </StepBodyWrapper>
+            </StepWrapper>
+        );
+    }
+}
 
 StartStep.propTypes = {
     connectActions: types.connectActions.isRequired,

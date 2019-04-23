@@ -214,9 +214,9 @@ const init = () => async (dispatch) => {
         }
     });
 
-    // if (connectConfig.endpoint) {
-    //     window.__TREZOR_CONNECT_SRC = connectConfig.endpoint; // eslint-disable-line no-underscore-dangle
-    // }
+    if (connectConfig.endpoint) {
+        window.__TREZOR_CONNECT_SRC = connectConfig.endpoint; // eslint-disable-line no-underscore-dangle
+    }
 
     try {
         await TrezorConnect.init(connectConfig.init);

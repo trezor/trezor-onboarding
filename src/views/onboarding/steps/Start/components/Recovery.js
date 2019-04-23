@@ -16,10 +16,10 @@ import { WORD_REQUEST_PLAIN, WORD_REQUEST_MATRIX9 } from 'actions/constants/even
 import { OptionsList } from 'components/Options';
 import Text from 'views/onboarding/components/Text';
 import l10nCommonMessages from 'support/commonMessages';
-import l10nMessages from './index.messages';
+import l10nMessages from './Recovery.messages';
 import {
-    StepWrapper, StepBodyWrapper, StepHeadingWrapper, ControlsWrapper,
-} from '../../components/Wrapper';
+    StepWrapper, StepBodyWrapper, ControlsWrapper,
+} from '../../../components/Wrapper';
 
 const sortedBip39 = bip39List.map(item => ({ label: item, value: item }));
 
@@ -70,10 +70,8 @@ class RecoveryStep extends React.Component {
     }
 
     getStatus = () => {
-        const { deviceCall, uiInteraction, isResolved } = this.props;
-        if (isResolved) {
-            return 'resolved';
-        }
+        const { deviceCall, uiInteraction } = this.props;
+
         if (deviceCall.result && deviceCall.name === RECOVER_DEVICE) {
             return 'success';
         }
@@ -104,12 +102,13 @@ class RecoveryStep extends React.Component {
         const { deviceCall, uiInteraction, device } = this.props;
 
         return (
-            <StepWrapper>
-                <StepHeadingWrapper>
+            <React.Fragment>
+                {/* <StepHeadingWrapper>
                     <FormattedMessage {...l10nMessages.TR_RECOVER_HEADING} />
-                </StepHeadingWrapper>
+                </StepHeadingWrapper> */}
 
                 <StepBodyWrapper>
+                    { this.getStatus() || 'no recovery status'}
                     { this.getStatus() === null && (
                         <React.Fragment>
 
@@ -316,20 +315,8 @@ class RecoveryStep extends React.Component {
                             </React.Fragment>
                         )
                     }
-
-                    { this.getStatus() === 'resolved' && (
-                        <React.Fragment>
-                            <Text>
-                                    You have already carried out recovery process.
-                                {/* <FormattedMessage {...l10nMessages.TR_RECOVERY_SUCCESS} /> */}
-                            </Text>
-                            <Button onClick={() => this.props.onboardingActions.goToNextStep()}>
-                                <FormattedMessage {...l10nCommonMessages.TR_CONTINUE} />
-                            </Button>
-                        </React.Fragment>
-                    )}
                 </StepBodyWrapper>
-            </StepWrapper>
+            </React.Fragment>
         );
     }
 }

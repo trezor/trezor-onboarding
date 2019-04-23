@@ -68,17 +68,6 @@ const initialState = {
             ],
         },
         {
-            id: ID.RECOVERY_STEP,
-            title: TITLE.START_STEP,
-            cluster: TITLE.INIT_DEVICE,
-            disallowedDeviceStates: [
-                DISALLOWED_STATE.DEVICE_IS_NOT_CONNECTED,
-                DISALLOWED_STATE.DEVICE_IS_IN_BOOTLOADER,
-                DISALLOWED_STATE.IS_NOT_SAME_DEVICE,
-                DISALLOWED_STATE.DEVICE_IS_NOT_USED_HERE,
-            ],
-        },
-        {
             id: ID.SECURITY_STEP,
             disallowedDeviceStates: [
                 DISALLOWED_STATE.DEVICE_IS_NOT_CONNECTED,

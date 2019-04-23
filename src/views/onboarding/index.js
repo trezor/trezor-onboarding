@@ -32,7 +32,7 @@ import SecurityStep from 'views/onboarding/steps/Security';
 import WelcomeStep from 'views/onboarding/steps/Welcome';
 import NameStep from 'views/onboarding/steps/Name';
 import ConnectStep from 'views/onboarding/steps/Connect';
-import RecoveryStep from 'views/onboarding/steps/Recovery';
+// import RecoveryStep from 'views/onboarding/steps/Recovery';
 
 const BORDER_RADIUS = 12;
 const ANIMATION_DURATION = 401;
@@ -333,25 +333,12 @@ class Onboarding extends React.PureComponent {
                             connectActions={connectActions}
                             deviceCall={deviceCall}
                             isResolved={this.isStepResolved(ID.START_STEP)}
-                        />
-                    </CSSTransition>
-
-                    <CSSTransition
-                        in={activeStepId === ID.RECOVERY_STEP}
-                        timeout={ANIMATION_DURATION}
-                        classNames="step-transition"
-                        unmountOnExit
-                    >
-                        <RecoveryStep
-                            onboardingActions={onboardingActions}
+                            activeSubStep={activeSubStep}
                             recoveryActions={recoveryActions}
-                            connectActions={connectActions}
                             recovery={recovery}
                             device={device}
                             uiInteraction={uiInteraction}
-                            deviceCall={deviceCall}
-                            activeSubStep={activeSubStep}
-                            isResolved={this.isStepResolved(ID.START_STEP)}
+
                         />
                     </CSSTransition>
 
