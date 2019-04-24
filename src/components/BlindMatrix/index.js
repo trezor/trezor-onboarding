@@ -2,21 +2,29 @@ import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import {
-    ButtonPin,
+    ButtonPin, Button, Icon,
 } from 'trezor-ui-components';
 
-
 const Wrapper = styled.div`
-    max-width: 260px;
+    width: 260px;
     margin-left: auto;
     margin-right: auto;
 `;
 
 const Row = styled.div`
     display: flex;
-    justify-content: space-between;
-    margin-top: 8px;
-    margin-bottom: 8px;
+    justify-content: center;
+    width: 100%;
+    button {
+        width: 30%;
+        padding-bottom: 30%;
+        margin: 1%;
+    }
+`;
+
+const Backspace = styled(Button)`
+    width: 95%;
+    margin: 2%;
 `;
 
 class BlindMatrix extends React.Component {
@@ -31,8 +39,10 @@ class BlindMatrix extends React.Component {
 
     keyboardHandler(event) {
         const { onSubmit, count } = this.props;
-
         event.preventDefault();
+        if (event.keyCode === 8) {
+            this.backspace();
+        }
         if (count === 9) {
             switch (event.keyCode) {
                 // numeric and numpad
@@ -105,6 +115,10 @@ class BlindMatrix extends React.Component {
         }
     }
 
+    backspace() {
+        this.props.onSubmit(String.fromCharCode(8));
+    }
+
     render() {
         const { onSubmit } = this.props;
 
@@ -114,19 +128,19 @@ class BlindMatrix extends React.Component {
                     this.props.count === 9 && (
                         <React.Fragment>
                             <Row>
-                                <ButtonPin type="button" data-value="7" onClick={() => onSubmit(7)}>&#8226; </ButtonPin>
-                                <ButtonPin type="button" data-value="8" onClick={() => onSubmit(8)}>&#8226;</ButtonPin>
-                                <ButtonPin type="button" data-value="9" onClick={() => onSubmit(9)}>&#8226;</ButtonPin>
+                                <ButtonPin type="button" data-value="7" onClick={() => onSubmit(7)} />
+                                <ButtonPin type="button" data-value="8" onClick={() => onSubmit(8)} />
+                                <ButtonPin type="button" data-value="9" onClick={() => onSubmit(9)} />
                             </Row>
                             <Row>
-                                <ButtonPin type="button" data-value="4" onClick={() => onSubmit(4)}>&#8226; </ButtonPin>
-                                <ButtonPin type="button" data-value="5" onClick={() => onSubmit(5)}>&#8226;</ButtonPin>
-                                <ButtonPin type="button" data-value="6" onClick={() => onSubmit(6)}>&#8226;</ButtonPin>
+                                <ButtonPin type="button" data-value="4" onClick={() => onSubmit(4)} />
+                                <ButtonPin type="button" data-value="5" onClick={() => onSubmit(5)} />
+                                <ButtonPin type="button" data-value="6" onClick={() => onSubmit(6)} />
                             </Row>
                             <Row>
-                                <ButtonPin type="button" data-value="1" onClick={() => onSubmit(1)}>&#8226; </ButtonPin>
-                                <ButtonPin type="button" data-value="2" onClick={() => onSubmit(2)}>&#8226;</ButtonPin>
-                                <ButtonPin type="button" data-value="3" onClick={() => onSubmit(3)}>&#8226;</ButtonPin>
+                                <ButtonPin type="button" data-value="1" onClick={() => onSubmit(1)} />
+                                <ButtonPin type="button" data-value="2" onClick={() => onSubmit(2)} />
+                                <ButtonPin type="button" data-value="3" onClick={() => onSubmit(3)} />
                             </Row>
                         </React.Fragment>
                     )
@@ -136,20 +150,24 @@ class BlindMatrix extends React.Component {
                     this.props.count === 6 && (
                         <React.Fragment>
                             <Row>
-                                <ButtonPin type="button" data-value="8" onClick={() => onSubmit(7)}>&#8226;</ButtonPin>
-                                <ButtonPin type="button" data-value="9" onClick={() => onSubmit(9)}>&#8226;</ButtonPin>
+                                <ButtonPin type="button" data-value="8" onClick={() => onSubmit(7)} />
+                                <ButtonPin type="button" data-value="9" onClick={() => onSubmit(9)} />
                             </Row>
                             <Row>
-                                <ButtonPin type="button" data-value="5" onClick={() => onSubmit(4)}>&#8226; </ButtonPin>
-                                <ButtonPin type="button" data-value="6" onClick={() => onSubmit(6)}>&#8226;</ButtonPin>
+                                <ButtonPin type="button" data-value="5" onClick={() => onSubmit(4)} />
+                                <ButtonPin type="button" data-value="6" onClick={() => onSubmit(6)} />
                             </Row>
                             <Row>
-                                <ButtonPin type="button" data-value="2" onClick={() => onSubmit(1)}>&#8226; </ButtonPin>
-                                <ButtonPin type="button" data-value="3" onClick={() => onSubmit(3)}>&#8226;</ButtonPin>
+                                <ButtonPin type="button" data-value="2" onClick={() => onSubmit(1)} />
+                                <ButtonPin type="button" data-value="3" onClick={() => onSubmit(3)} />
                             </Row>
                         </React.Fragment>
                     )
                 }
+                <Backspace isWhite onClick={() => this.backspace()}>
+                    <Icon style={{ marginRight: '5px' }} icon="BACK" />
+                    Backspace
+                </Backspace>
             </Wrapper>
         );
     }
@@ -157,6 +175,7 @@ class BlindMatrix extends React.Component {
 
 BlindMatrix.propTypes = {
     onSubmit: PropTypes.func.isRequired,
+    count: PropTypes.number,
 };
 
 export default BlindMatrix;

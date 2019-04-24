@@ -15,6 +15,7 @@ const history = createHashHistory({
 
 // Listen for changes to the current location.
 history.listen((location, action) => {
+    console.warn(location, action);
     const path = location.pathname.substring(1);
     if (action === 'POP' && Object.values(ID).includes(path)) {
         store.dispatch(setStep(path));
