@@ -18,18 +18,14 @@ const Wrapper = styled.div`
     width: 100%;
 `;
 
-const UnexpectedStateCommon = ({ children, onboardingActions }) => (
+const UnexpectedStateCommon = ({ children }) => (
     <Wrapper>
         {children}
-        <ControlsWrapper>
-            <Button isWhite onClick={onboardingActions.startAgain}>Restart</Button>
-        </ControlsWrapper>
     </Wrapper>
 );
 
 UnexpectedStateCommon.propTypes = {
     children: PropTypes.element,
-    onboardingActions: types.onboardingActions,
 };
 
 const IsSameDevice = () => (

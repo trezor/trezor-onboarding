@@ -117,7 +117,12 @@ const UnexpectedStateOverlay = styled.div`
 
 class Onboarding extends React.PureComponent {
     componentDidMount() {
-        // window.onbeforeunload = () => 'Are you sure want to close';
+        window.onbeforeunload = () => {
+            if (this.props.activeStepId !== ID.FINAL_STEP) {
+                return 'Are you sure want to close';
+            }
+            return null;
+        };
         this.props.connectActions.init();
     }
 
@@ -207,8 +212,8 @@ class Onboarding extends React.PureComponent {
         } = this.props;
 
         // model is either selected by user or later overrided by connected device
-        const model = device && device.features ? device.features.major_version : selectedModel || 1;
 
+        const model = device && device.features && device.features.major_version ? device.features.major_version : selectedModel;
         // todo: solve how to handle cases we fail to init connect;
         const errorStates = this.handleErrors();
         // todo: wrap this up to separete component probably

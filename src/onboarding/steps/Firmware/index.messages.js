@@ -28,7 +28,7 @@ const definedMessages = defineMessages({
     },
     TR_FIRMWARE_INSTALLED: {
         id: 'TR_FIRMWARE_INSTALLED',
-        defaultMessage: 'Perfect. The newest firwmare is installed. Time to continue',
+        defaultMessage: 'Perfect. The newest firmware is installed. Time to continue',
         description: 'Message to display in case firmware is installed',
     },
     TR_CONNECT_YOUR_DEVICE_AGAIN: {

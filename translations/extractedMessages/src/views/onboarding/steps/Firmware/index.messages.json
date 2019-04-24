@@ -72,7 +72,7 @@
   {
     "id": "TR_FIRMWARE_INSTALLED",
     "description": "Message to display in case firmware is installed",
-    "defaultMessage": "Perfect. The newest firwmare is installed. Time to continue",
+    "defaultMessage": "Perfect. The newest firmware is installed. Time to continue",
     "file": "src/views/onboarding/steps/Firmware/index.messages.js",
     "start": {
       "line": 29,

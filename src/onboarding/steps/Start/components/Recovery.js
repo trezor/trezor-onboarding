@@ -50,6 +50,13 @@ const SelectWrapper = styled.div`
 `;
 
 class RecoveryStep extends React.Component {
+    constructor() {
+        super();
+        this.state = {
+            status: null,
+        };
+    }
+
     componentWillMount() {
         this.keyboardHandler = this.keyboardHandler.bind(this);
         window.addEventListener('keydown', this.keyboardHandler, false);
@@ -85,7 +92,7 @@ class RecoveryStep extends React.Component {
         if (deviceCall.error && deviceCall.name === RECOVER_DEVICE) {
             return 'error';
         }
-        return this.props.activeSubStep;
+        return this.state.status;
     }
 
     recoveryDevice() {
@@ -139,11 +146,11 @@ class RecoveryStep extends React.Component {
                                         <ControlsWrapper>
                                             <Button
                                                 isDisabled={this.props.recovery.wordsCount === null}
-                                                onClick={() => { this.props.onboardingActions.goToSubStep('select-advanced-recovery'); }}
+                                                onClick={() => { this.setStatus('select-advanced-recovery'); }}
                                             >
                                                 <FormattedMessage {...l10nCommonMessages.TR_CONTINUE} />
                                             </Button>
-                                            <Button isWhite onClick={() => { this.props.onboardingActions.goToPreviousStep(); }}>
+                                            <Button isWhite onClick={() => { this.props.onboardingActions.goToSubStep(null); }}>
                                                 <FormattedMessage {...l10nCommonMessages.TR_BACK} />
                                             </Button>
                                         </ControlsWrapper>
@@ -230,7 +237,6 @@ class RecoveryStep extends React.Component {
                                                 },
                                                 borderColor: state.isFocused ? colors.brandPrimary : 'transparent',
                                             }),
-                                            // todo: use prop to hide indicator, not a custom style.
                                             dropdownIndicator: () => ({
                                                 display: 'none',
                                             }),
@@ -244,10 +250,12 @@ class RecoveryStep extends React.Component {
                                         }}
                                         autoFocus
                                         isSearchable
+                                        // withDropdownIndicator={false}
                                         isClearable={false}
                                         value={this.props.recovery.word}
                                         noOptionsMessage={({ inputValue }) => `word "${inputValue}" does not exist in words list`}
                                         onChange={(item) => {
+                                            console.warn('onchange');
                                             this.props.recoveryActions.setWord(item.value);
                                             this.props.recoveryActions.submit();
                                         }}
@@ -259,6 +267,7 @@ class RecoveryStep extends React.Component {
                                             matchFrom: 'start',
                                         })}
                                         onInputChange={(input) => {
+                                            console.warn('onInputChange', input);
                                             if (input) {
                                                 this.props.recoveryActions.setWord(input);
                                             }
@@ -294,7 +303,7 @@ class RecoveryStep extends React.Component {
                                     <FormattedMessage {...l10nMessages.TR_RECOVERY_ERROR} values={{ error: deviceCall.error }} />
                                 </Text>
 
-                                <Button onClick={() => { this.props.connectActions.resetCall(); this.props.onboardingActions.goToSubStep(null); }}>
+                                <Button onClick={() => { this.props.connectActions.resetCall(); this.setStatus(null); }}>
                                     <FormattedMessage {...l10nCommonMessages.TR_RETRY} />
                                 </Button>
 
@@ -326,7 +335,6 @@ RecoveryStep.propTypes = {
     deviceCall: types.deviceCall,
     uiInteraction: types.uiInteraction,
     device: types.device,
-    activeSubStep: types.activeSubStep,
     recovery: types.recovery,
     recoveryActions: types.recoveryActions,
     intl: intlShape,

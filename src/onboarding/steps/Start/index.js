@@ -34,85 +34,72 @@ const RecoverOption = () => (
     </React.Fragment>
 );
 
-class StartStep extends React.Component {
-    constructor() {
-        super();
-        this.state = {
-            status: null,
-        };
-    }
+const StartStep = ({
+    isResolved,
+    onboardingActions,
+    activeSubStep,
+    recoveryActions,
+    connectActions,
+    recovery,
+    device,
+    uiInteraction,
+    deviceCall,
+}) => (
+    <StepWrapper>
+        <StepHeadingWrapper>
+            <FormattedMessage {...l10nMessages.TR_START_HEADING} />
+        </StepHeadingWrapper>
+        <StepBodyWrapper>
+            {
+                !isResolved && activeSubStep === ID.RECOVERY_STEP && (
+                    <Recovery
+                        onboardingActions={onboardingActions}
+                        activeSubStep={activeSubStep}
+                        recoveryActions={recoveryActions}
+                        connectActions={connectActions}
+                        recovery={recovery}
+                        device={device}
+                        uiInteraction={uiInteraction}
+                        deviceCall={deviceCall}
+                    />
+                )
+            }
 
-    render() {
-        const {
-            isResolved,
-            onboardingActions,
-            activeSubStep,
-            recoveryActions,
-            connectActions,
-            recovery,
-            device,
-            uiInteraction,
-            deviceCall,
-        } = this.props;
-        return (
-            <StepWrapper>
-                <StepHeadingWrapper>
-                    <FormattedMessage {...l10nMessages.TR_START_HEADING} />
-                </StepHeadingWrapper>
-                <StepBodyWrapper>
-                    {
-                        !isResolved && this.state.status === ID.RECOVERY_STEP && (
-                            <Recovery
-                                onboardingActions={onboardingActions}
-                                activeSubStep={activeSubStep}
-                                recoveryActions={recoveryActions}
-                                connectActions={connectActions}
-                                recovery={recovery}
-                                device={device}
-                                uiInteraction={uiInteraction}
-                                deviceCall={deviceCall}
-                            />
-                        )
-                    }
+            {
+                !isResolved && activeSubStep === null && (
+                    <OptionsList
+                        options={[{
+                            content: <StartOption />,
+                            value: ID.SECURITY_STEP,
+                            key: 1,
+                            onClick: () => {
+                                connectActions.callActionAndGoToNextStep(RESET_DEVICE, null, ID.SECURITY_STEP, true, false);
+                            },
+                        }, {
+                            content: <RecoverOption />,
+                            value: ID.RECOVERY_STEP,
+                            key: 2,
+                            onClick: () => {
+                                onboardingActions.goToSubStep(ID.RECOVERY_STEP);
+                            },
+                        }]}
+                        selected={null}
+                        selectedAccessor="value"
+                    />
+                )
+            }
 
-                    {
-                        !isResolved && this.state.status === null && (
-                            <OptionsList
-                                options={[{
-                                    content: <StartOption />,
-                                    value: ID.SECURITY_STEP,
-                                    key: 1,
-                                    onClick: () => {
-                                        connectActions.callActionAndGoToNextStep(RESET_DEVICE, null, ID.SECURITY_STEP, true, false);
-                                    },
-                                }, {
-                                    content: <RecoverOption />,
-                                    value: ID.RECOVERY_STEP,
-                                    key: 2,
-                                    onClick: () => {
-                                        this.setState({ status: ID.RECOVERY_STEP });
-                                    },
-                                }]}
-                                selected={null}
-                                selectedAccessor="value"
-                            />
-                        )
-                    }
-
-                    {
-                        isResolved && (
-                            <React.Fragment>
-                                <Text>You have already created a new wallet from scratch or through recovery.</Text>
-                                <Button onClick={() => onboardingActions.goToNextStep()}>Continue</Button>
-                            </React.Fragment>
-                        )
-                    }
-
-                </StepBodyWrapper>
-            </StepWrapper>
-        );
-    }
-}
+            {
+                isResolved && (
+                    <React.Fragment>
+                        <Text>You have already created a new wallet from scratch or through recovery.</Text>
+                        <Button onClick={() => onboardingActions.goToNextStep()}>Continue</Button>
+                    </React.Fragment>
+                )
+            }
+        </StepBodyWrapper>
+    </StepWrapper>
+);
 
 StartStep.propTypes = {
     isResolved: PropTypes.bool.isRequired, // todo: might be removed later. if not, move to types;

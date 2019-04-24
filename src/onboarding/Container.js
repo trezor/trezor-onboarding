@@ -21,7 +21,7 @@ const mapStateToProps = state => ({
     uiInteraction: state.connect.uiInteraction,
 
     // onboarding reducer
-    selectedModel: state.onboarding.selectedModel,
+    selectedModel: state.onboarding.selectedModel || 1,
     activeStepId: state.onboarding.activeStepId,
     activeClusterId: state.onboarding.activeClusterId,
     activeSubStep: state.onboarding.activeSubStep,
