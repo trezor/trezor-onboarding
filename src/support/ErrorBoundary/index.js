@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import Proptypes from 'prop-types';
 import { P, Button } from 'trezor-ui-components';
-import { ControlsWrapper } from 'views/onboarding/components/Wrapper';
+import { ControlsWrapper } from 'components/Wrapper';
 
 import ErrorLogService from 'support/ErrorLogService';
 import { isBeta, isProduction, isDevelopment } from 'support/build';
