@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import {
-    H4, P, Button, Checkbox,
+    H4, P, Button, Checkbox, Icon,
 } from 'trezor-ui-components';
 import { FormattedMessage } from '@dragonraider5/react-intl';
 
@@ -26,6 +26,21 @@ const Panel = styled.div`
     padding: 15px;
     margin-top: 10px;
     margin-bottom: 10px;
+`;
+
+const Icons = styled.div`
+    display: flex;
+    flex-direction: row;
+    width: 90%;
+    justify-content: space-around;
+    margin-top: 10px;
+    margin-bottom: 10px;
+`;
+
+const Instruction = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 `;
 
 class BackupStep extends React.Component {
@@ -75,19 +90,6 @@ class BackupStep extends React.Component {
         const {
             device, deviceCall, onboardingActions, deviceInteraction, connectActions,
         } = this.props;
-        const instructions = [{
-            component: <P><FormattedMessage {...l10nMessages.TR_DO_NOT_UPLOAD_INSTRUCTION} /></P>,
-            key: '1',
-        }, {
-            component: <P><FormattedMessage {...l10nMessages.TR_HIDE_TO_SAFE_PLACE_INSTRUCTION} /></P>,
-            key: '2',
-        }, {
-            component: <P><FormattedMessage {...l10nMessages.TR_DO_NOT_SAFE_IN_COMPUTER_INSTRUCTION} /></P>,
-            key: '3',
-        }, {
-            component: <P><FormattedMessage {...l10nMessages.TR_DO_NOT_TAKE_PHOTO_INSTRUCTION} /></P>,
-            key: '4',
-        }];
 
         return (
             <StepWrapper>
@@ -105,7 +107,50 @@ class BackupStep extends React.Component {
                                     <FormattedMessage {...l10nMessages.TR_BACKUP_SUBHEADING_2} />
                                 </P>
 
-                                <UnorderedList items={instructions} />
+                                {/* todo: refactor icons to components */}
+                                <Icons>
+                                    <Instruction>
+                                        <Icon
+                                            size={80}
+                                            icon={{
+                                                paths: [
+                                                    'm2.515 20.899-1.414-1.414.676-.677c-1.084-.92-1.777-2.29-1.777-3.808 0-2.64 2.05-4.78 4.65-4.97.68-3.44 3.71-6.03 7.35-6.03 1.322 0 2.564.343 3.642.944l3.843-3.843 1.414 1.414zm16.135-12.869c3.01.33 5.35 2.87 5.35 5.97 0 3.29-2.71 6-6 6h-11.615l11.962-11.962c.114-.005.215-.008.303-.008z',
+                                                ],
+                                                viewBox: '0 0 24 24',
+                                                ratio: 1,
+                                            }}
+                                        />
+                                        <FormattedMessage {...l10nMessages.TR_DO_NOT_UPLOAD_INSTRUCTION} />
+                                    </Instruction>
+
+                                    <Instruction>
+                                        <Icon
+                                            size={80}
+                                            icon={{
+                                                paths: [
+                                                    'm2.515 20.899-1.414-1.414.967-.967c-.044-.165-.068-.339-.068-.518v-13c0-1.11.89-2 2-2h6l2 2h3.586l3.899-3.899 1.414 1.414zm18.558-15.587c.557.355.927.978.927 1.688v11c0 1.105-.895 2-2 2h-13.615l6.182-6.183 3.433 3.433 4.25-4.25h-3.25v-3.615zm-7.688 7.688 1.615-1.615v1.615z',
+                                                ],
+                                                viewBox: '0 0 24 24',
+                                                ratio: 1,
+                                            }}
+                                        />
+                                        <FormattedMessage {...l10nMessages.TR_DO_NOT_SAFE_IN_COMPUTER_INSTRUCTION} />
+                                    </Instruction>
+
+                                    <Instruction>
+                                        <Icon
+                                            size={80}
+                                            icon={{
+                                                paths: [
+                                                    'm2.515 20.899-1.414-1.414.967-.967c-.044-.165-.068-.339-.068-.518v-12c0-1.105.895-2 2-2h3l2-2h6l1.793 1.793 2.692-2.692 1.414 1.414zm19.079-16.108c.255.336.406.755.406 1.209v12c0 1.105-.895 2-2 2h-13.615l3.478-3.478c.648.306 1.372.478 2.137.478 2.761 0 5-2.239 5-5 0-.765-.172-1.489-.478-2.137zm-10.157 10.156 3.51-3.51c.035.183.053.371.053.563 0 1.657-1.343 3-3 3-.192 0-.38-.018-.563-.053zm-4.241-1.557 1.837-1.837c.194-1.299 1.221-2.326 2.52-2.52l1.837-1.837c-.441-.128-.908-.196-1.39-.196-2.761 0-5 2.239-5 5 0 .482.068.949.196 1.39z',
+                                                ],
+                                                viewBox: '0 0 24 24',
+                                                ratio: 1,
+                                            }}
+                                        />
+                                        <FormattedMessage {...l10nMessages.TR_DO_NOT_TAKE_PHOTO_INSTRUCTION} />
+                                    </Instruction>
+                                </Icons>
 
                                 <Panel>
                                     <P>
