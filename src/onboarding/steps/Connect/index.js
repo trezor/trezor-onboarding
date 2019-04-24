@@ -156,6 +156,7 @@ class ConnectStep extends React.PureComponent {
 }
 
 ConnectStep.propTypes = {
+    isResolved: PropTypes.bool.isRequired, // todo: migth be removed, dunno
     device: types.device,
     deviceCall: types.deviceCall,
     connectActions: types.connectActions,

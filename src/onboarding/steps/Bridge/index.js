@@ -141,7 +141,6 @@ class InstallBridge extends PureComponent {
                                         </Text>
                                     )
                                 }
-                                
                                 <Text>2.</Text>
                                 <Text><FormattedMessage {...l10nMessages.TR_DOUBLE_CLICK_IT_TO_RUN_INSTALLER} /></Text>
                                 <Text>3.</Text>

@@ -4,21 +4,25 @@ import { Link, P, Prompt } from 'trezor-ui-components';
 import { CSSTransition } from 'react-transition-group';
 import { hot } from 'react-hot-loader/root';
 
+import * as EVENTS from 'actions/constants/events';
 import types from 'config/types';
 import colors from 'config/colors';
 import { SM } from 'config/breakpoints';
 import { TOS_URL } from 'config/urls';
 import {
-    PROGRESSBAR_HEIGHT, PROGRESSBAR_HEIGHT_UNIT, STEP_HEIGHT, STEP_HEIGHT_UNIT, NAVBAR_HEIGHT, NAVBAR_HEIGHT_UNIT,
+    PROGRESSBAR_HEIGHT,
+    PROGRESSBAR_HEIGHT_UNIT,
+    STEP_HEIGHT,
+    STEP_HEIGHT_UNIT,
+    NAVBAR_HEIGHT,
+    NAVBAR_HEIGHT_UNIT,
 } from 'config/layout';
-import * as EVENTS from 'actions/constants/events';
 import ProgressSteps from 'components/ProgressSteps';
 
 import { ID } from 'constants/steps';
 import { getFnForRule } from 'utils/rules';
 
 import UnexpectedState from 'components/UnexpectedState';
-
 import BackupStep from 'onboarding/steps/Backup';
 import BookmarkStep from 'onboarding/steps/Bookmark';
 import BridgeStep from 'onboarding/steps/Bridge';
@@ -42,14 +46,11 @@ const ANIMATION_DURATION = 401;
 const WrapperOutside = styled.div`
     display: flex;
     flex-direction: column;
-    min-height: 100vh;
     background-image: url(${background2});
     background-size: cover;
-
     
     @media only screen and (min-width: ${SM}px) {
         ${props => (props.animate && css`animation: ${backgroundAnimation} 1s linear`)};
-        background-color: ${props => (props.show ? colors.gray : colors.white)};
     }
 `;
 
@@ -70,8 +71,8 @@ const WrapperInside = styled.div`
 `;
 
 const backgroundAnimation = keyframes`
-    0% { background-color: ${colors.white} }
-    100% { background-color: ${colors.gray} }
+    0% { opacity: 0 }
+    100% { opacity: 1 }
 `;
 
 const ProgressStepsWrapper = styled.div`
@@ -105,7 +106,6 @@ const TrezorActionOverlay = styled.div`
     border-radius: ${BORDER_RADIUS}px;
 `;
 
-// todo: UnexpectedStateOverlay might end up having the same attrs as TrezorActionOverlay, consider merge
 const UnexpectedStateOverlay = styled.div`
     position: absolute;
     width: 100%;
@@ -194,7 +194,6 @@ class Onboarding extends React.PureComponent {
             selectedModel,
             transport,
             activeStepId,
-            activeClusterId,
             activeSubStep,
             device,
             deviceCall,
@@ -208,7 +207,7 @@ class Onboarding extends React.PureComponent {
         } = this.props;
 
         // model is either selected by user or later overrided by connected device
-        const model = Number(device && device.features ? device.features.major_version : selectedModel) || 1;
+        const model = device && device.features ? device.features.major_version : selectedModel || 1;
 
         // todo: solve how to handle cases we fail to init connect;
         const errorStates = this.handleErrors();
@@ -224,13 +223,17 @@ class Onboarding extends React.PureComponent {
         return (
             <WrapperOutside
                 animate={![ID.WELCOME_STEP, ID.FINAL_STEP].includes(activeStepId)}
-                show={![ID.WELCOME_STEP, ID.FINAL_STEP].includes(activeStepId)}
             >
                 <WrapperInside isGlobalInteraction={this.isGlobalInteraction()}>
                     {
                         errorStates.length > 0 && (
                             <UnexpectedStateOverlay>
-                                <UnexpectedState caseType={errorStates[0]} model={model} connectActions={connectActions} onboardingActions={onboardingActions} />
+                                <UnexpectedState
+                                    caseType={errorStates[0]}
+                                    model={model}
+                                    connectActions={connectActions}
+                                    onboardingActions={onboardingActions}
+                                />
                             </UnexpectedStateOverlay>
                         )
                     }
@@ -238,14 +241,7 @@ class Onboarding extends React.PureComponent {
                         { this.getStep(activeStepId).title && this.getStep(activeStepId).title !== 'Basic setup' && (
                             <ProgressStepsWrapper>
                                 <ProgressSteps
-                                // steps={steps.reduce((accumulator, current) => {
-                                //     if (!accumulator.find(item => item.title === current.title)) {
-                                //         accumulator.push(current);
-                                //     }
-                                //     return accumulator;
-                                // }, [])}
                                     steps={steps}
-                                    activeClusterId={activeClusterId}
                                     activeStep={this.getStep(activeStepId)}
                                     onboardingActions={onboardingActions}
                                 />
@@ -471,7 +467,37 @@ class Onboarding extends React.PureComponent {
 }
 
 Onboarding.propTypes = {
+    // connectReducer
+    device: types.device,
+    prevDeviceId: types.prevDeviceId,
+    transport: types.transport,
+    deviceCall: types.deviceCall,
+    deviceInteraction: types.deviceInteraction,
+    uiInteraction: types.uiInteraction,
+    connectError: types.connectError,
+    connectActions: types.connectActions,
 
+    // onboardingReducer
+    selectedModel: types.selectedModel,
+    activeStepId: types.activeStepId,
+    activeSubStep: types.activeSubStep,
+    steps: types.steps,
+    onboardingActions: types.onboardingActions,
+
+    // newsletterReducer
+    newsletter: types.newsletter,
+    newsletterActions: types.newsletterActions,
+
+    // recoveryReducer
+    recovery: types.recovery,
+    recoveryActions: types.recoveryActions,
+
+    // firmwareUpdateReducer
+    firmwareUpdate: types.firmwareUpdate,
+    firmwareUpdateActions: types.firmwareUpdateActions,
+
+    // fetchReducer
+    fetchCall: types.fetchCall,
 };
 
 export default hot(Onboarding);

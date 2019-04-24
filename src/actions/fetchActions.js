@@ -1,10 +1,5 @@
 import { FETCH_START, FETCH_ERROR, FETCH_SUCCESS } from 'actions/constants/fetch';
 import { GET_FIRMWARE, SUBMIT_EMAIL, GET_LOCALIZATION } from 'actions/constants/fetchCalls';
-import {
-    MAILCHIMP_U, MAILCHIMP_ID, MAILCHIMP_BASE, MAILCHIMP_GROUP_ID,
-} from 'config/mailchimp';
-
-// this is a little scary way how to add more checkboxes, just add the section: &group[${MAILCHIMP_GROUP_ID}][3]=3
 
 const getParams = (name) => {
     switch (name) {

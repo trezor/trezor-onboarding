@@ -3,9 +3,11 @@ import styled from 'styled-components';
 import { P, H2, Button } from 'trezor-ui-components';
 import { FormattedMessage } from '@dragonraider5/react-intl';
 import PropTypes from 'prop-types';
-import { DISALLOWED_STATE } from 'constants/steps';
 
+import { DISALLOWED_STATE } from 'constants/steps';
+import types from 'config/types';
 import PinMatrix from 'components/PinMatrix';
+
 import l10nMessages from './index.messages';
 import Reconnect from './Reconnect';
 import { ControlsWrapper } from '../Wrapper';
@@ -27,6 +29,7 @@ const UnexpectedStateCommon = ({ children, onboardingActions }) => (
 
 UnexpectedStateCommon.propTypes = {
     children: PropTypes.element,
+    onboardingActions: types.onboardingActions,
 };
 
 const IsSameDevice = () => (
@@ -57,8 +60,11 @@ const IsDeviceRequestingPin = ({ connectActions }) => (
         }
         />
     </React.Fragment>
-
 );
+
+IsDeviceRequestingPin.propTypes = {
+    connectActions: types.connectActions,
+};
 
 const DeviceIsUsedHere = ({ connectActions }) => (
     <React.Fragment>
@@ -74,8 +80,11 @@ const DeviceIsUsedHere = ({ connectActions }) => (
             </Button>
         </ControlsWrapper>
     </React.Fragment>
-
 );
+
+DeviceIsUsedHere.propTypes = {
+    connectActions: types.connectActions,
+};
 
 const UnexpectedState = ({
     caseType, model, connectActions, onboardingActions,
@@ -98,7 +107,9 @@ const UnexpectedState = ({
 
 UnexpectedState.propTypes = {
     caseType: PropTypes.string.isRequired,
-    model: PropTypes.number.isRequired,
+    model: types.selectedModel,
+    connectActions: types.connectActions,
+    onboardingActions: types.onboardingActions,
 };
 
 export default UnexpectedState;

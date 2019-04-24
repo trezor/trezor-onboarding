@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { UI } from 'trezor-connect';
 import {
-    P, Button, Link,
+    Button, Link,
 } from 'trezor-ui-components';
 import { FormattedMessage } from '@dragonraider5/react-intl';
 
@@ -198,6 +198,7 @@ class SetPinStep extends React.Component {
 }
 
 SetPinStep.propTypes = {
+    activeSubStep: types.activeSubStep,
     device: types.device,
     connectActions: types.connectActions.isRequired,
     onboardingActions: types.onboardingActions.isRequired,

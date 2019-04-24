@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import ReactSVG from 'react-svg';
 import { P, Button } from 'trezor-ui-components';
 import { FormattedMessage } from '@dragonraider5/react-intl';
@@ -43,8 +44,15 @@ class StartStep extends React.Component {
 
     render() {
         const {
-            isResolved, onboardingActions, activeSubStep, recoveryActions, connectActions,
-            recovery, device, uiInteraction, deviceCall,
+            isResolved,
+            onboardingActions,
+            activeSubStep,
+            recoveryActions,
+            connectActions,
+            recovery,
+            device,
+            uiInteraction,
+            deviceCall,
         } = this.props;
         return (
             <StepWrapper>
@@ -107,9 +115,15 @@ class StartStep extends React.Component {
 }
 
 StartStep.propTypes = {
+    isResolved: PropTypes.bool.isRequired, // todo: might be removed later. if not, move to types;
+    activeSubStep: types.activeSubStep,
+    recoveryActions: types.recoveryActions.isRequired,
+    recovery: types.recovery.isRequired,
     connectActions: types.connectActions.isRequired,
     onboardingActions: types.onboardingActions.isRequired,
     deviceCall: types.deviceCall.isRequired,
+    uiInteraction: types.uiInteraction.isRequired,
+    device: types.device,
 };
 
 export default StartStep;

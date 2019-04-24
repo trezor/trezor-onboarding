@@ -14,11 +14,9 @@ import { ID, TITLE, DISALLOWED_STATE } from 'constants/steps';
 const initialState = {
     selectedModel: null,
     activeStepId: ID.WELCOME_STEP,
-    activeClusterId: TITLE.INIT_DEVICE,
     activeSubStep: null,
     language: 'en',
     messages: {},
-    downloadClicked: false,
     steps: [
         {
             id: ID.WELCOME_STEP,

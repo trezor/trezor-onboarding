@@ -1,6 +1,6 @@
 import React from 'react';
 import { P, Button } from 'trezor-ui-components';
-import { FormattedMessage, injectIntl } from '@dragonraider5/react-intl';
+import { FormattedMessage, injectIntl, intlShape } from '@dragonraider5/react-intl';
 
 import types from 'config/types';
 import { DONUT_STROKE, DONUT_RADIUS } from 'config/constants';
@@ -65,7 +65,7 @@ class FirmwareStep extends React.Component {
             // todo: this state is not used
             return 'connect-device';
         }
-        // throw new Error('Unexpected state of firmware');
+        throw new Error('Unexpected state of firmware');
     }
 
     getMessageForStatus = () => {
@@ -213,9 +213,12 @@ class FirmwareStep extends React.Component {
 FirmwareStep.propTypes = {
     connectActions: types.connectActions,
     onboardingActions: types.onboardingActions,
+    firmwareUpdateActions: types.firmwareUpdateActions,
+    firmwareUpdate: types.firmwareUpdate,
     device: types.device,
     fetchCall: types.fetchCall,
     deviceCall: types.deviceCall,
+    intl: intlShape,
 };
 
 

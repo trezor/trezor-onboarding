@@ -65,7 +65,7 @@ const call = (name, params) => async (dispatch, getState) => {
         const currentCall = getState().connect.deviceCall;
         if (currentCall.isProgress) {
             console.warn('[ConnectActions]: device call in progress. Aborting call');
-            return;
+            return null;
         }
 
         dispatch({ type: CONNECT.DEVICE_CALL_RESET });
@@ -81,7 +81,7 @@ const call = (name, params) => async (dispatch, getState) => {
                 error: 'no device connected',
                 name,
             });
-            return;
+            return null;
         }
 
         const callParams = {

@@ -8,14 +8,12 @@ import {
 } from 'trezor-ui-components';
 import { FormattedMessage } from '@dragonraider5/react-intl';
 
-import colors from 'config/colors';
+import { APPLY_FLAGS } from 'actions/constants/calls';
+import l10nCommonMessages from 'support/commonMessages';
 import { PHISHING_URL } from 'config/urls';
 import types from 'config/types';
-import { APPLY_FLAGS } from 'actions/constants/calls';
 import Key from 'components/Key';
 import Text from 'components/Text';
-
-import l10nCommonMessages from 'support/commonMessages';
 import {
     StepWrapper, StepBodyWrapper, StepHeadingWrapper, ControlsWrapper,
 } from 'components/Wrapper';
@@ -24,7 +22,6 @@ import l10nMessages from './index.messages';
 
 const Keys = styled.div`
     display: flex;
-    /* align-items: center; */
 `;
 class BookmarkStep extends React.Component {
     static TARGET_FLAG = 'hasBookmark';

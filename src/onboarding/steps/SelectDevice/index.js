@@ -31,7 +31,7 @@ const SelectDeviceStep = ({ onboardingActions }) => (
                             <H6><FormattedMessage {...l10nMessages.TR_MODEL_ONE} /></H6>
                         </OptionWrapper>
                     ),
-                    value: '1',
+                    value: 1,
                     key: 1,
                 }, {
                     content: (
@@ -40,7 +40,7 @@ const SelectDeviceStep = ({ onboardingActions }) => (
                             <H6><FormattedMessage {...l10nMessages.TR_MODEL_T} /></H6>
                         </OptionWrapper>
                     ),
-                    value: '2',
+                    value: 2,
                     key: 2,
                 }]}
                 selectedAccessor="value"

@@ -1,8 +1,10 @@
-import * as React from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import colors from 'config/colors';
 import ReactSelect from 'react-select';
 
+import types from 'config/types';
 import LANGUAGE from 'config/languages';
 import * as BREAKPOINTS from 'config/breakpoints';
 
@@ -102,5 +104,10 @@ const LanguagePicker = ({ language, setLocale }) => (
         />
     </SelectWrapper>
 );
+
+LanguagePicker.propTypes = {
+    language: types.language.isRequired,
+    setLocale: PropTypes.func.isRequired,
+};
 
 export default LanguagePicker;

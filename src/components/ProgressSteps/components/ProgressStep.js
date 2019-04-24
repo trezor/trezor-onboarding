@@ -109,6 +109,8 @@ ProgressStep.propTypes = {
     index: PropTypes.number.isRequired,
     step: PropTypes.object, // todo: better
     onboardingActions: types.onboardingActions,
+    isGoingForward: PropTypes.bool,
+    changeOverHowManySteps: PropTypes.number,
 };
 
 export default ProgressStep;

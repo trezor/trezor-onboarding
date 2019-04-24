@@ -82,7 +82,7 @@ module.exports = env => ({
         }),
         new CopyWebpackPlugin([
             { from: 'l10n', to: 'l10n' },
-            { from: 'public/unspupported-browsers', to: 'unsupported-browsers' },
+            { from: 'public/unsupported-browsers', to: 'unsupported-browsers' },
             { from: 'public/images', to: 'images' },
         ]),
         new Dotenv({

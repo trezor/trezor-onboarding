@@ -4,7 +4,7 @@ import {
     Button, Link, Input, Checkbox,
 } from 'trezor-ui-components';
 import { Flags } from 'trezor-flags';
-import { FormattedMessage, injectIntl } from '@dragonraider5/react-intl';
+import { FormattedMessage, injectIntl, intlShape } from '@dragonraider5/react-intl';
 
 import types from 'config/types';
 import { SOCIAL_FACEBOOK_URL, SOCIAL_BLOG_URL, SOCIAL_TWITTER_URL } from 'config/urls';
@@ -145,7 +145,7 @@ class NewsleterStep extends React.Component {
                                         </Text>
                                     </CheckboxWrapper>
                                 </CheckboxexSection>
-                                
+
                                 <ControlsWrapper>
                                     <Button
                                         isDisabled={this.validateInput().state !== 'success' || this.getEmailStatus() === 'sending'}
@@ -207,6 +207,9 @@ NewsleterStep.propTypes = {
     connectActions: types.connectActions.isRequired,
     fetchCall: types.fetchCall,
     device: types.device,
+    newsletter: types.newsletter,
+    newsletterActions: types.newsletterActions,
+    intl: intlShape,
 };
 
 export default injectIntl(NewsleterStep);

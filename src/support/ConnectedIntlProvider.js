@@ -1,5 +1,6 @@
 
 import * as React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import { IntlProvider, addLocaleData } from '@dragonraider5/react-intl';
@@ -54,6 +55,12 @@ const ReactIntlProvider = ({ children, locale, messages }) => (
         {children}
     </IntlProvider>
 );
+
+ReactIntlProvider.propTypes = {
+    children: PropTypes.node.isRequired,
+    locale: PropTypes.string.isRequired,
+    messages: PropTypes.object.isRequired, // todo: better
+};
 
 export default connect(
     mapStateToProps,

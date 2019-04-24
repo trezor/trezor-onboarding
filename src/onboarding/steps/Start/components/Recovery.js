@@ -3,7 +3,7 @@ import styled, { keyframes } from 'styled-components';
 import {
     P, Button, Select, Link,
 } from 'trezor-ui-components';
-import { FormattedMessage, injectIntl } from '@dragonraider5/react-intl';
+import { FormattedMessage, injectIntl, intlShape } from '@dragonraider5/react-intl';
 import { createFilter } from 'react-select';
 
 import BlindMatrix from 'components/BlindMatrix';
@@ -230,11 +230,12 @@ class RecoveryStep extends React.Component {
                                                 },
                                                 borderColor: state.isFocused ? colors.brandPrimary : 'transparent',
                                             }),
-                                            dropdownIndicator: (provided, state) => ({
+                                            // todo: use prop to hide indicator, not a custom style.
+                                            dropdownIndicator: () => ({
                                                 display: 'none',
                                             }),
                                             indicatorSeparator: () => ({ display: 'none' }),
-                                            menu: (provided, state) => {
+                                            menu: (provided) => {
                                                 if (!this.props.recovery.word) {
                                                     return { display: 'none' };
                                                 }
@@ -326,6 +327,9 @@ RecoveryStep.propTypes = {
     uiInteraction: types.uiInteraction,
     device: types.device,
     activeSubStep: types.activeSubStep,
+    recovery: types.recovery,
+    recoveryActions: types.recoveryActions,
+    intl: intlShape,
 };
 
 export default injectIntl(RecoveryStep);

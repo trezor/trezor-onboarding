@@ -11,17 +11,6 @@ const Wrapper = styled.div`
     width: 100%;
 `;
 
-// todo: move clustering logic here.
-const INIT_DEVICE_CLUSTER = [
-    ID.WELCOME_STEP,
-    ID.SELECT_DEVICE_STEP,
-    ID.UNBOXING_STEP,
-    ID.BRIDGE_STEP,
-    ID.FIRMWARE_STEP,
-    ID.START_STEP,
-    ID.RECOVERY_STEP,
-];
-
 const SECURITY_CLUSTER = [
     ID.BACKUP_STEP,
     ID.SET_PIN_STEP,
@@ -109,7 +98,6 @@ class ProgressSteps extends React.Component {
 ProgressSteps.propTypes = {
     activeStep: PropTypes.object.isRequired, // todo: better
     steps: types.steps,
-    activeClusterId: types.activeClusterId,
 };
 
 export default ProgressSteps;

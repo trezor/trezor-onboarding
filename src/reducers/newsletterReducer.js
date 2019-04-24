@@ -11,7 +11,7 @@ const initialState = {
     },
 };
 
-const recovery = (state = initialState, action) => {
+const newsletter = (state = initialState, action) => {
     switch (action.type) {
         case TOGGLE_CHECKBOX:
             return {
@@ -33,4 +33,4 @@ const recovery = (state = initialState, action) => {
     }
 };
 
-export default recovery;
+export default newsletter;
