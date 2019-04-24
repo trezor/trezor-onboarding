@@ -152,7 +152,6 @@ const onboarding = (state = initialState, action) => {
                     if (step.id === action.stepId) {
                         return {
                             ...step,
-                            ...{ visited: true },
                         };
                     }
                     return step;

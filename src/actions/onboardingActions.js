@@ -1,10 +1,8 @@
 import * as ONBOARDING from 'actions/constants/onboarding';
-import history from 'support/history';
 
 import { getLocalization } from './fetchActions';
 
-const goToStep = stepId => (dispatch, getState) => {
-    history.push(stepId);
+const goToStep = stepId => (dispatch) => {
     dispatch(setStep(stepId));
 };
 
@@ -25,7 +23,6 @@ const goToNextStep = stepId => (dispatch, getState) => {
     const nextStep = findNextStep(activeStepId, steps);
     const activeStep = steps.find(step => step.id === activeStepId);
 
-    // only nextStep
     if (!activeStep.resolved) {
         dispatch({
             type: ONBOARDING.SET_STEP_RESOLVED,
