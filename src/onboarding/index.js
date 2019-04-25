@@ -68,7 +68,7 @@ const WrapperInside = styled.div`
     flex-direction: column;
     background-color: ${colors.white};
     border-radius: ${BORDER_RADIUS}px;
-    z-index: 1;
+    z-index: 0;
     max-height: ${({ isGlobalInteraction }) => (isGlobalInteraction ? `calc(100vh - ${PROGRESSBAR_HEIGHT}${PROGRESSBAR_HEIGHT_UNIT} - ${NAVBAR_HEIGHT}${NAVBAR_HEIGHT_UNIT})` : 'none')};
 
     @media only screen and (min-width: ${SM}px) {
