@@ -21,7 +21,13 @@ const firmwareUpload = params => async (dispatch) => {
 };
 
 const resetDevice = () => async (dispatch) => {
-    dispatch(call(CALLS.RESET_DEVICE));
+    dispatch(call(
+        CALLS.RESET_DEVICE, {
+            label: 'My Trezor',
+            skipBackup: true,
+            passhpraseProtection: true,
+        },
+    ));
 };
 
 const backupDevice = () => async (dispatch) => {
@@ -40,8 +46,21 @@ const changePin = () => async (dispatch) => {
     dispatch(call(CALLS.CHANGE_PIN));
 };
 
-const recoveryDevice = params => async (dispatch) => {
-    dispatch(call(CALLS.RECOVER_DEVICE, params));
+const recoveryDevice = params => async (dispatch, getState) => {
+    let defaults;
+    const { device } = getState().connect;
+    const { recovery } = getState();
+    if (device.features.major_version === 2) {
+        defaults = {
+            passphrase_protection: true,
+        };
+    }
+    defaults = {
+        passphrase_protection: true,
+        type: recovery.advancedRecovery ? 1 : 0,
+        word_count: recovery.wordsCount,
+    };
+    dispatch(call(CALLS.RECOVER_DEVICE, { ...defaults, ...params }));
 };
 
 const wipeDevice = () => async (dispatch) => {
@@ -66,33 +85,8 @@ const callActionAndGoToNextStep = (name, params, stepId, goOnSuccess = true, goO
     });
 };
 
-// todo: refactor, remove this fuj fuj method;
-const getDefaultParams = (name, { device, recovery }) => {
-    console.warn(device);
-    if (name === CALLS.RESET_DEVICE) {
-        return {
-            label: 'My Trezor',
-            skipBackup: true,
-            passhpraseProtection: true,
-        };
-    } if (name === CALLS.RECOVER_DEVICE) {
-        if (device.features.major_version === 2) {
-            return {
-                passphrase_protection: true,
-            };
-        }
-        return {
-            passphrase_protection: true,
-            type: recovery.advancedRecovery ? 1 : 0,
-            word_count: recovery.wordsCount,
-        };
-    }
-    return {};
-};
-
 const call = (name, params) => async (dispatch, getState) => {
     const { device } = getState().connect;
-    const { recovery } = getState();
 
     try {
         const currentCall = getState().connect.deviceCall;
@@ -119,10 +113,9 @@ const call = (name, params) => async (dispatch, getState) => {
 
         const callParams = {
             useEmptyPassphrase: true,
+            device,
         };
-        Object.assign(callParams, getDefaultParams(name, { device, recovery }), params);
-        callParams.device = device;
-        console.warn('callParams', callParams);
+        Object.assign(callParams, params);
         let fn;
         switch (name) {
             case CALLS.FIRMWARE_ERASE:
@@ -173,7 +166,7 @@ const call = (name, params) => async (dispatch, getState) => {
         });
         return response;
     } catch (error) {
-        console.warn('app error');
+        // todo: this is probably not used anymore.
         dispatch({
             type: ONBOARDING.SET_APPLICATION_ERROR,
             error,
@@ -203,11 +196,12 @@ const uiResponseCall = (name, params) => async (dispatch) => {
     }
 };
 
+// todo: maybe connect this with getFeatures call and use it as "initialize" in terms of connect?
 const resetCall = () => ({ type: CONNECT.DEVICE_CALL_RESET });
 
 const init = () => async (dispatch) => {
     TrezorConnect.on(DEVICE_EVENT, (event) => {
-        if (event.type === DEVICE.CONNECT || DEVICE.CONNECT_UNACQUIRED || event.type === DEVICE.CHANGED || event.type === DEVICE.DISCONNECT) {
+        if ([DEVICE.CONNECT, DEVICE.CONNECT_UNACQUIRED, DEVICE.CHANGED, DEVICE.DISCONNECT].includes(event.type)) {
             dispatch({
                 type: event.type,
                 device: event.payload,
@@ -265,7 +259,6 @@ const init = () => async (dispatch) => {
         });
     }
 };
-
 
 export {
     init,
