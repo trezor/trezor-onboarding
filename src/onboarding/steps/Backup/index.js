@@ -9,7 +9,6 @@ import colors from 'config/colors';
 import types from 'config/types';
 import { WIPE_DEVICE, BACKUP_DEVICE } from 'actions/constants/calls';
 
-import { UnorderedList } from 'components/Lists';
 import { ID } from 'constants/steps';
 import Text from 'components/Text';
 import l10nCommonMessages from 'support/commonMessages';
