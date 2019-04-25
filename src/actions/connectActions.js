@@ -1,11 +1,11 @@
 import TrezorConnect, {
     DEVICE_EVENT, DEVICE, TRANSPORT_EVENT, UI_EVENT, UI, TRANSPORT,
 } from 'trezor-connect';
-
 import connectConfig from 'config/connect';
 import * as CONNECT from 'actions/constants/connect';
 import * as ONBOARDING from 'actions/constants/onboarding';
 import * as CALLS from 'actions/constants/calls';
+import { DEFAULT_LABEL } from 'constants/trezor';
 
 import { goToNextStep } from './onboardingActions';
 
@@ -23,7 +23,7 @@ const firmwareUpload = params => async (dispatch) => {
 const resetDevice = () => async (dispatch) => {
     dispatch(call(
         CALLS.RESET_DEVICE, {
-            label: 'My Trezor',
+            label: DEFAULT_LABEL,
             skipBackup: true,
             passhpraseProtection: true,
         },
@@ -75,6 +75,8 @@ const submitWord = params => async (dispatch) => {
     dispatch(uiResponseCall(UI.RECEIVE_WORD, params));
 };
 
+// todo: maybe rework this function to take concrete call function as argument;
+// todo: not used now.
 const callActionAndGoToNextStep = (name, params, stepId, goOnSuccess = true, goOnError = false) => (dispatch) => {
     dispatch(call(name, params)).then((response) => {
         if (response.success && goOnSuccess) {
@@ -116,6 +118,7 @@ const call = (name, params) => async (dispatch, getState) => {
             device,
         };
         Object.assign(callParams, params);
+        console.warn('callParams', callParams);
         let fn;
         switch (name) {
             case CALLS.FIRMWARE_ERASE:

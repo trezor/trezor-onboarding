@@ -60,12 +60,7 @@ class FirmwareStep extends React.Component {
         if (device.firmware === 'outdated') {
             return 'outdated';
         }
-
-        if (device === null || !device.connected) {
-            // todo: this state is not used
-            return 'connect-device';
-        }
-        throw new Error('Unexpected state of firmware');
+        return null;
     }
 
     getMessageForStatus = () => {

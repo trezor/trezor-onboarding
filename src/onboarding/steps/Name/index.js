@@ -6,6 +6,7 @@ import styled from 'styled-components';
 import { FormattedMessage, injectIntl, intlShape } from '@dragonraider5/react-intl';
 
 import types from 'config/types';
+import { DEFAULT_LABEL } from 'constants/trezor';
 import { validateASCII } from 'utils/validate';
 import l10nCommonMessages from 'support/commonMessages';
 import Text from 'components/Text';
@@ -25,26 +26,33 @@ class NameStep extends React.Component {
         super();
         this.state = {
             label: '',
-            labelChanged: false,
         };
     }
 
-    changeLabel = async () => {
+    changeLabel = () => {
         const { label } = this.state;
-        await this.props.connectActions.applySettings({ label });
-        // call was successful
-        if (this.props.deviceCall.result) {
-            this.setState({ labelChanged: true });
-        }
+        this.props.connectActions.applySettings({ label });
     }
 
     handleInputChange = (event) => {
         this.setState({ label: event.target.value });
     }
 
+    getStatus = () => {
+        const { device } = this.props;
+        if (device.features.label !== DEFAULT_LABEL) {
+            return 'changed';
+        }
+        return 'initial';
+    }
+
     validateInput = () => {
         if (!this.state.label) {
             return { state: '' };
+        }
+        if (this.state.label === DEFAULT_LABEL) {
+            // todo: add translation
+            return { state: 'error', bottomText: 'Nah.. too boring, chose a different label' };
         }
         if (!validateASCII(this.state.label)) {
             return { state: 'error', bottomText: this.props.intl.formatMessage(l10nMessages.TR_NAME_ONLY_ASCII) };
@@ -57,15 +65,16 @@ class NameStep extends React.Component {
 
     render() {
         const { device } = this.props;
+        const status = this.getStatus();
         return (
             <StepWrapper>
                 <StepHeadingWrapper>
-                    { !this.state.labelChanged && <FormattedMessage {...l10nMessages.TR_NAME_HEADING} /> }
-                    { this.state.labelChanged && <FormattedMessage {...l10nMessages.TR_NAME_HEADING_CHANGED} values={{ label: device.features.label }} /> }
+                    { status === 'initial' && <FormattedMessage {...l10nMessages.TR_NAME_HEADING} /> }
+                    { status === 'changed' && <FormattedMessage {...l10nMessages.TR_NAME_HEADING_CHANGED} values={{ label: device.features.label }} /> }
                 </StepHeadingWrapper>
                 <StepBodyWrapper>
                     {
-                        !this.state.labelChanged && (
+                        status === 'initial' && (
                             <React.Fragment>
                                 <Text>
                                     <FormattedMessage {...l10nMessages.TR_NAME_SUBHEADING} />
@@ -93,7 +102,7 @@ class NameStep extends React.Component {
                     }
 
                     {
-                        this.state.labelChanged && (
+                        status === 'changed' && (
                             <React.Fragment>
                                 <Text>
                                     <FormattedMessage {...l10nMessages.TR_NAME_CHANGED_TEXT} />
