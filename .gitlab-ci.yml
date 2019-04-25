@@ -24,22 +24,22 @@ test:
     - yarn run test-all
 
 # todo: rename to build development
-build production:
+build development:
   stage: build
   script:
     - yarn install
-    - yarn run build:production
+    - yarn run build:development
   artifacts:
     expire_in: 1 week
     paths:
-      - build/dev
+      - dist/devevelopment
 
 deploy review:
   stage: deploy
   variables:
     GIT_STRATEGY: none
   dependencies:
-    - build production
+    - build development
   environment:
     name: $CI_BUILD_REF_NAME
     url: $BASE_REVIEW_URL/$CI_BUILD_REF_NAME
@@ -50,7 +50,7 @@ deploy review:
     - env
     - mkdir -p "${DEPLOY_BASE_DIR}/${CI_BUILD_REF_NAME}"
     - echo "Copy dev build to web server ${DEPLOY_BASE_DIR}/${CI_BUILD_REF_NAME}..."
-    - rsync --delete -va build/dev/ "${DEPLOY_BASE_DIR}/${CI_BUILD_REF_NAME}/"
+    - rsync --delete -va dist/development/ "${DEPLOY_BASE_DIR}/${CI_BUILD_REF_NAME}/"
     # - curl "https://api.telegram.org/bot699197118:AAGXNTaC5Q-ljmy_dMvaIvAKy1XjlkA3Iss/sendMessage?chat_id=-1001354778014&text=https://trezor-wallet-dev.trezor.io/${CI_BUILD_REF_NAME}"
     - 'echo "Remove working dir, workaround for cache" && rm -r ./*'
   #only:

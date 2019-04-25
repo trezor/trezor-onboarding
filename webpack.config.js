@@ -13,7 +13,7 @@ module.exports = env => ({
     mode: 'development',
     output: {
         filename: '[git-revision-version]-[git-revision-branch]-app.js',
-        path: path.resolve(__dirname, 'dist'),
+        path: path.resolve(__dirname, `dist/${env.BUILD}`),
     },
     module: {
         rules: [

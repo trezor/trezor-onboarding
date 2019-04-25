@@ -18,9 +18,6 @@ const setAdvancedRecovery = value => ({
 
 const submit = word => (dispatch, getState) => {
     const normalizedWord = word || getState().recovery.word;
-    console.warn('normalizedWord', normalizedWord);
-    console.warn('getState().recovery.word', getState().recovery.word);
-
     if (normalizedWord) {
         dispatch(submitWord({ word: `${normalizedWord}` })).then(() => {
             dispatch({

@@ -9,6 +9,7 @@
     "lint": "run-s lint:*",
     "lint:js": "npx eslint ./src",
     "lint:css": "npx stylelint './src/**/*.js'",
+    "build:development": "rimraf dist && npx webpack --progress --bail --env.BUILD=development",
     "build:beta": "rimraf dist && npx webpack --progress --bail --env.BUILD=beta",
     "build:production": "rimraf dist && npx webpack --progress --bail --env.BUILD=production",
     "test-all": "jest",

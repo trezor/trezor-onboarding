@@ -9,20 +9,52 @@ import * as CALLS from 'actions/constants/calls';
 
 import { goToNextStep } from './onboardingActions';
 
-const getFeatures = () => call(CALLS.GET_FEATURES);
-const firmwareErase = params => call(CALLS.FIRMWARE_ERASE, params);
-const firmwareUpload = params => call(CALLS.FIRMWARE_UPLOAD, params);
-const resetDevice = () => call(CALLS.RESET_DEVICE);
-const backupDevice = () => call(CALLS.BACKUP_DEVICE);
-const applySettings = params => call(CALLS.APPLY_SETTINGS, params);
-const applyFlags = params => call(CALLS.APPLY_FLAGS, params);
-const changePin = () => call(CALLS.CHANGE_PIN);
-// todo [szymon]: unify recoveryDevice from connect with recoverDevice here
-const recoveryDevice = params => call(CALLS.RECOVER_DEVICE, params);
-const wipeDevice = () => call(CALLS.WIPE_DEVICE);
+const getFeatures = () => async (dispatch) => {
+    dispatch(call(CALLS.GET_FEATURES));
+};
 
-const submitNewPin = params => uiResponseCall(UI.RECEIVE_PIN, params);
-const submitWord = params => uiResponseCall(UI.RECEIVE_WORD, params);
+const firmwareErase = params => async (dispatch) => {
+    dispatch(call(CALLS.FIRMWARE_ERASE, params));
+};
+const firmwareUpload = params => async (dispatch) => {
+    dispatch(call(CALLS.FIRMWARE_UPLOAD, params));
+};
+
+const resetDevice = () => async (dispatch) => {
+    dispatch(call(CALLS.RESET_DEVICE));
+};
+
+const backupDevice = () => async (dispatch) => {
+    dispatch(call(CALLS.BACKUP_DEVICE));
+};
+
+const applySettings = params => async (dispatch) => {
+    dispatch(call(CALLS.APPLY_SETTINGS, params));
+};
+
+const applyFlags = params => async (dispatch) => {
+    dispatch(call(CALLS.APPLY_FLAGS, params));
+};
+
+const changePin = () => async (dispatch) => {
+    dispatch(call(CALLS.CHANGE_PIN));
+};
+
+const recoveryDevice = params => async (dispatch) => {
+    dispatch(call(CALLS.RECOVER_DEVICE, params));
+};
+
+const wipeDevice = () => async (dispatch) => {
+    dispatch(call(CALLS.WIPE_DEVICE));
+};
+
+const submitNewPin = params => async (dispatch) => {
+    dispatch(uiResponseCall(UI.RECEIVE_PIN, params));
+};
+
+const submitWord = params => async (dispatch) => {
+    dispatch(uiResponseCall(UI.RECEIVE_WORD, params));
+};
 
 const callActionAndGoToNextStep = (name, params, stepId, goOnSuccess = true, goOnError = false) => (dispatch) => {
     dispatch(call(name, params)).then((response) => {
@@ -34,6 +66,7 @@ const callActionAndGoToNextStep = (name, params, stepId, goOnSuccess = true, goO
     });
 };
 
+// todo: refactor, remove this fuj fuj method;
 const getDefaultParams = (name, { device, recovery }) => {
     console.warn(device);
     if (name === CALLS.RESET_DEVICE) {
