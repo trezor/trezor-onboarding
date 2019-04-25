@@ -51,11 +51,14 @@ const TRANSITION_PROPS = {
 const WrapperOutside = styled.div`
     display: flex;
     flex-direction: column;
-    background-image: url(${background2});
-    background-size: cover;
     
     @media only screen and (min-width: ${SM}px) {
         ${props => (props.animate && css`animation: ${backgroundAnimation} 1s linear`)};
+        ${props => (
+        props.animate && css`
+            background-image: url(${background2});
+            background-size: cover;
+        `)};        
     }
 `;
 
