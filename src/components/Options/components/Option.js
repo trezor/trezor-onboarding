@@ -7,9 +7,8 @@ import * as BREAKPOINTS from 'config/breakpoints';
 const OptionWrapper = styled.div`
     flex-grow: 1;
     width: 100%;
-    min-width: 120px;
     padding: 10px;
-    margin: 5px;
+    margin: 7px;
     border: solid 0.2px ${colors.gray};
     border-radius: 4px;
     display: flex;
@@ -20,7 +19,8 @@ const OptionWrapper = styled.div`
     box-shadow: ${({ isSelected }) => (isSelected ? `0px 0px 2px 1px ${colors.brandPrimary}` : '0px 0px 6px 2px rgba(0,0,0,0.05)')};
 
     @media (min-width: ${BREAKPOINTS.SM}px) {
-        height: 200px;    
+        height: 200px;
+        min-width: 200px;    
     }
 `;
 

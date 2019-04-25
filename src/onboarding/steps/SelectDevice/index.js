@@ -17,7 +17,7 @@ const OptionWrapper = styled.div`
 
 const DEVICE_HEIGHT = 130;
 
-const SelectDeviceStep = ({ onboardingActions }) => (
+const SelectDeviceStep = ({ onboardingActions, model }) => (
     <StepWrapper>
         <StepHeadingWrapper>
             <FormattedMessage {...l10nMessages.TR_SELECT_YOUR_DEVICE_HEADING} />
@@ -43,9 +43,9 @@ const SelectDeviceStep = ({ onboardingActions }) => (
                     value: 2,
                     key: 2,
                 }]}
-                selectedAccessor="value"
-                onSelect={(model) => {
-                    onboardingActions.selectTrezorModel(model);
+                selected={model}
+                onSelect={(value) => {
+                    onboardingActions.selectTrezorModel(value);
                     onboardingActions.goToNextStep();
                 }}
             />

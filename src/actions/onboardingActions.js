@@ -45,22 +45,7 @@ const selectTrezorModel = model => ({
     model,
 });
 
-const findNextStep = (currentStep, onboardingSteps) => {
-    const currentIndex = onboardingSteps.findIndex(step => step.id === currentStep);
-    if (currentIndex + 1 > onboardingSteps.length) {
-        throw new Error('no next step exists');
-    }
-    return onboardingSteps[currentIndex + 1];
-};
-
-const findPrevStep = (currentStep, onboardingSteps) => {
-    const currentIndex = onboardingSteps.findIndex(step => step.id === currentStep);
-    if (currentIndex - 1 > onboardingSteps.length) {
-        throw new Error('no next step exists');
-    }
-    return onboardingSteps[currentIndex - 1];
-};
-
+// todo: is this used?
 const setApplicationError = error => ({
     type: ONBOARDING.SET_APPLICATION_ERROR,
     error,
@@ -77,12 +62,25 @@ const setLocale = locale => (dispatch) => {
     });
 };
 
-const toggleDownloadClicked = () => ({
-    type: ONBOARDING.TOGGLE_DOWNLOAD_CLICKED,
-});
-
 const startAgain = () => () => {
     window.location.reload();
+};
+
+// utils
+const findNextStep = (currentStep, onboardingSteps) => {
+    const currentIndex = onboardingSteps.findIndex(step => step.id === currentStep);
+    if (currentIndex + 1 > onboardingSteps.length) {
+        throw new Error('no next step exists');
+    }
+    return onboardingSteps[currentIndex + 1];
+};
+
+const findPrevStep = (currentStep, onboardingSteps) => {
+    const currentIndex = onboardingSteps.findIndex(step => step.id === currentStep);
+    if (currentIndex - 1 > onboardingSteps.length) {
+        throw new Error('no next step exists');
+    }
+    return onboardingSteps[currentIndex - 1];
 };
 
 export {
@@ -94,6 +92,5 @@ export {
     selectTrezorModel,
     setApplicationError,
     setLocale,
-    toggleDownloadClicked,
     startAgain,
 };

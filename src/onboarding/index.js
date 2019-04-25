@@ -42,6 +42,11 @@ import background2 from './background2.jpg';
 
 const BORDER_RADIUS = 12;
 const ANIMATION_DURATION = 401;
+const TRANSITION_PROPS = {
+    timeout: ANIMATION_DURATION,
+    classNames: 'step-transition',
+    unmountOnExit: true,
+};
 
 const WrapperOutside = styled.div`
     display: flex;
@@ -119,7 +124,7 @@ class Onboarding extends React.PureComponent {
     componentDidMount() {
         window.onbeforeunload = () => {
             if (this.props.activeStepId !== ID.FINAL_STEP) {
-                return 'Are you sure want to close';
+                return 'Are you sure want to leave onboarding without saving?';
             }
             return null;
         };
@@ -254,43 +259,32 @@ class Onboarding extends React.PureComponent {
                         )}
                     </ProgressStepsSlot>
                     <ComponentWrapper>
-                        <TrezorActionOverlay style={{ display: !this.isGlobalInteraction() ? 'none' : 'flex' }}>
-                            <Prompt model={model} size={100}>
-                                <TrezorActionText />
-                            </Prompt>
-                        </TrezorActionOverlay>
+                        {
+                            this.isGlobalInteraction() && (
+                                <TrezorActionOverlay>
+                                    <Prompt model={model} size={100}>
+                                        <TrezorActionText />
+                                    </Prompt>
+                                </TrezorActionOverlay>
+                            )
+                        }
 
                         {/* todo [vladimir]: how to find that I pass props and dont use them in component? any tooling? */}
-                        <CSSTransition
-                            in={activeStepId === ID.WELCOME_STEP}
-                            timeout={ANIMATION_DURATION}
-                            classNames="step-transition"
-                            unmountOnExit
-                        >
+                        <CSSTransition in={activeStepId === ID.WELCOME_STEP} {...TRANSITION_PROPS}>
                             <WelcomeStep
                                 onboardingActions={onboardingActions}
                                 transport={transport}
                             />
                         </CSSTransition>
 
-                        <CSSTransition
-                            in={activeStepId === ID.SELECT_DEVICE_STEP}
-                            timeout={ANIMATION_DURATION}
-                            classNames="step-transition"
-                            unmountOnExit
-                        >
+                        <CSSTransition in={activeStepId === ID.SELECT_DEVICE_STEP} {...TRANSITION_PROPS}>
                             <SelectDeviceStep
-                                deviceCall={deviceCall}
+                                model={model}
                                 onboardingActions={onboardingActions}
                             />
                         </CSSTransition>
 
-                        <CSSTransition
-                            in={activeStepId === ID.UNBOXING_STEP}
-                            timeout={ANIMATION_DURATION}
-                            classNames="step-transition"
-                            unmountOnExit
-                        >
+                        <CSSTransition in={activeStepId === ID.UNBOXING_STEP} {...TRANSITION_PROPS}>
                             <HologramStep
                                 onboardingActions={onboardingActions}
                                 model={model}
@@ -298,12 +292,7 @@ class Onboarding extends React.PureComponent {
                             />
                         </CSSTransition>
 
-                        <CSSTransition
-                            in={activeStepId === ID.BRIDGE_STEP}
-                            timeout={ANIMATION_DURATION}
-                            classNames="step-transition"
-                            unmountOnExit
-                        >
+                        <CSSTransition in={activeStepId === ID.BRIDGE_STEP} {...TRANSITION_PROPS}>
                             <BridgeStep
                                 onboardingActions={onboardingActions}
                                 activeSubStep={activeSubStep}
@@ -311,12 +300,7 @@ class Onboarding extends React.PureComponent {
                             />
                         </CSSTransition>
 
-                        <CSSTransition
-                            in={activeStepId === ID.CONNECT_STEP}
-                            timeout={ANIMATION_DURATION}
-                            classNames="step-transition"
-                            unmountOnExit
-                        >
+                        <CSSTransition in={activeStepId === ID.CONNECT_STEP} {...TRANSITION_PROPS}>
                             <ConnectStep
                                 onboardingActions={onboardingActions}
                                 connectActions={connectActions}
@@ -328,12 +312,7 @@ class Onboarding extends React.PureComponent {
                             />
                         </CSSTransition>
 
-                        <CSSTransition
-                            in={activeStepId === ID.FIRMWARE_STEP}
-                            timeout={ANIMATION_DURATION}
-                            classNames="step-transition"
-                            unmountOnExit
-                        >
+                        <CSSTransition in={activeStepId === ID.FIRMWARE_STEP} {...TRANSITION_PROPS}>
                             <FirmwareStep
                                 onboardingActions={onboardingActions}
                                 connectActions={connectActions}
@@ -345,12 +324,7 @@ class Onboarding extends React.PureComponent {
                             />
                         </CSSTransition>
 
-                        <CSSTransition
-                            in={activeStepId === ID.START_STEP}
-                            timeout={ANIMATION_DURATION}
-                            classNames="step-transition"
-                            unmountOnExit
-                        >
+                        <CSSTransition in={activeStepId === ID.START_STEP} {...TRANSITION_PROPS}>
                             <StartStep
                                 onboardingActions={onboardingActions}
                                 connectActions={connectActions}
@@ -365,23 +339,13 @@ class Onboarding extends React.PureComponent {
                             />
                         </CSSTransition>
 
-                        <CSSTransition
-                            in={activeStepId === ID.SECURITY_STEP}
-                            timeout={ANIMATION_DURATION}
-                            classNames="step-transition"
-                            unmountOnExit
-                        >
+                        <CSSTransition in={activeStepId === ID.SECURITY_STEP} {...TRANSITION_PROPS}>
                             <SecurityStep
                                 onboardingActions={onboardingActions}
                             />
                         </CSSTransition>
 
-                        <CSSTransition
-                            in={activeStepId === ID.BACKUP_STEP}
-                            timeout={ANIMATION_DURATION}
-                            classNames="step-transition"
-                            unmountOnExit
-                        >
+                        <CSSTransition in={activeStepId === ID.BACKUP_STEP} {...TRANSITION_PROPS}>
                             <BackupStep
                                 onboardingActions={onboardingActions}
                                 connectActions={connectActions}
@@ -392,12 +356,7 @@ class Onboarding extends React.PureComponent {
                             />
                         </CSSTransition>
 
-                        <CSSTransition
-                            in={activeStepId === ID.SET_PIN_STEP}
-                            timeout={ANIMATION_DURATION}
-                            classNames="step-transition"
-                            unmountOnExit
-                        >
+                        <CSSTransition in={activeStepId === ID.SET_PIN_STEP} {...TRANSITION_PROPS}>
                             <SetPinStep
                                 device={device}
                                 onboardingActions={onboardingActions}
@@ -408,13 +367,7 @@ class Onboarding extends React.PureComponent {
                             />
                         </CSSTransition>
 
-
-                        <CSSTransition
-                            in={activeStepId === ID.NAME_STEP}
-                            timeout={ANIMATION_DURATION}
-                            classNames="step-transition"
-                            unmountOnExit
-                        >
+                        <CSSTransition in={activeStepId === ID.NAME_STEP} {...TRANSITION_PROPS}>
                             <NameStep
                                 onboardingActions={onboardingActions}
                                 connectActions={connectActions}
@@ -423,12 +376,7 @@ class Onboarding extends React.PureComponent {
                             />
                         </CSSTransition>
 
-                        <CSSTransition
-                            in={activeStepId === ID.NEWSLETTER_STEP}
-                            timeout={ANIMATION_DURATION}
-                            classNames="step-transition"
-                            unmountOnExit
-                        >
+                        <CSSTransition in={activeStepId === ID.NEWSLETTER_STEP} {...TRANSITION_PROPS}>
                             <NewsletterStep
                                 onboardingActions={onboardingActions}
                                 connectActions={connectActions}
@@ -440,12 +388,7 @@ class Onboarding extends React.PureComponent {
                             />
                         </CSSTransition>
 
-                        <CSSTransition
-                            in={activeStepId === ID.BOOKMARK_STEP}
-                            timeout={ANIMATION_DURATION}
-                            classNames="step-transition"
-                            unmountOnExit
-                        >
+                        <CSSTransition in={activeStepId === ID.BOOKMARK_STEP} {...TRANSITION_PROPS}>
                             <BookmarkStep
                                 onboardingActions={onboardingActions}
                                 connectActions={connectActions}
@@ -453,12 +396,7 @@ class Onboarding extends React.PureComponent {
                             />
                         </CSSTransition>
 
-                        <CSSTransition
-                            in={activeStepId === ID.FINAL_STEP}
-                            timeout={ANIMATION_DURATION}
-                            classNames="step-transition"
-                            unmountOnExit
-                        >
+                        <CSSTransition in={activeStepId === ID.FINAL_STEP} {...TRANSITION_PROPS}>
                             <FinalStep
                                 onboardingActions={onboardingActions}
                             />
