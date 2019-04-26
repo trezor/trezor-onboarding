@@ -1,0 +1,226 @@
+[
+  {
+    "id": "TR_BACKUP_HEADING",
+    "description": "Heading in start page",
+    "defaultMessage": "Create or recover",
+    "file": "src/onboarding/steps/Backup/index.messages.js",
+    "start": {
+      "line": 4,
+      "column": 23
+    },
+    "end": {
+      "line": 8,
+      "column": 5
+    }
+  },
+  {
+    "id": "TR_BACKUP_SUBHEADING_1",
+    "description": "Explanation what recovery seed is",
+    "defaultMessage": "Your recovery seed is the backup key to all your cryptocurrencies and applications.",
+    "file": "src/onboarding/steps/Backup/index.messages.js",
+    "start": {
+      "line": 9,
+      "column": 28
+    },
+    "end": {
+      "line": 13,
+      "column": 5
+    }
+  },
+  {
+    "id": "TR_BACKUP_SUBHEADING_2",
+    "description": "Explanation what recovery seed is",
+    "defaultMessage": "Your recovery seed can only be displayed once. Never make a digital copy of your recovery seed and never upload it online. Keep your recovery seed in a safe place.",
+    "file": "src/onboarding/steps/Backup/index.messages.js",
+    "start": {
+      "line": 14,
+      "column": 28
+    },
+    "end": {
+      "line": 18,
+      "column": 5
+    }
+  },
+  {
+    "id": "TR_DO_NOT_UPLOAD_INSTRUCTION",
+    "description": "Instruction what user should never do with his seed.",
+    "defaultMessage": "Do not upload words on the internet",
+    "file": "src/onboarding/steps/Backup/index.messages.js",
+    "start": {
+      "line": 19,
+      "column": 34
+    },
+    "end": {
+      "line": 23,
+      "column": 5
+    }
+  },
+  {
+    "id": "TR_HIDE_TO_SAFE_PLACE_INSTRUCTION",
+    "description": "Instruction what user should do with his seed.",
+    "defaultMessage": "Hide them somewhere safe",
+    "file": "src/onboarding/steps/Backup/index.messages.js",
+    "start": {
+      "line": 24,
+      "column": 39
+    },
+    "end": {
+      "line": 28,
+      "column": 5
+    }
+  },
+  {
+    "id": "TR_DO_NOT_SAFE_IN_COMPUTER_INSTRUCTION",
+    "description": "Instruction what user should never do with his seed.",
+    "defaultMessage": "Do not write it into a computer",
+    "file": "src/onboarding/steps/Backup/index.messages.js",
+    "start": {
+      "line": 29,
+      "column": 44
+    },
+    "end": {
+      "line": 33,
+      "column": 5
+    }
+  },
+  {
+    "id": "TR_DO_NOT_TAKE_PHOTO_INSTRUCTION",
+    "description": "Instruction what user should never do with his seed.",
+    "defaultMessage": "Do not take a photo of your recovery seed",
+    "file": "src/onboarding/steps/Backup/index.messages.js",
+    "start": {
+      "line": 34,
+      "column": 38
+    },
+    "end": {
+      "line": 38,
+      "column": 5
+    }
+  },
+  {
+    "id": "TR_SEED_IS_MORE_IMPORTANT_THAN_YOUR_DEVICE",
+    "description": "Instruction what user should never do with his seed.",
+    "defaultMessage": "Seed is more important than your device",
+    "file": "src/onboarding/steps/Backup/index.messages.js",
+    "start": {
+      "line": 39,
+      "column": 48
+    },
+    "end": {
+      "line": 43,
+      "column": 5
+    }
+  },
+  {
+    "id": "TR_SATOSHILABS_CANNOT_BE_HELD_RESPONSIBLE",
+    "description": "Liability disclaimer.",
+    "defaultMessage": "SatoshiLabs cannot be held responsible for security liabilities or financial losses resulting from not following security instructions described here.",
+    "file": "src/onboarding/steps/Backup/index.messages.js",
+    "start": {
+      "line": 44,
+      "column": 47
+    },
+    "end": {
+      "line": 48,
+      "column": 5
+    }
+  },
+  {
+    "id": "TR_I_HAVE_READ_INSTRUCTIONS",
+    "description": "Checkbox text",
+    "defaultMessage": "I have read the instructions and agree",
+    "file": "src/onboarding/steps/Backup/index.messages.js",
+    "start": {
+      "line": 49,
+      "column": 33
+    },
+    "end": {
+      "line": 53,
+      "column": 5
+    }
+  },
+  {
+    "id": "TR_START_BACKUP",
+    "description": "Button text",
+    "defaultMessage": "Start backup",
+    "file": "src/onboarding/steps/Backup/index.messages.js",
+    "start": {
+      "line": 54,
+      "column": 21
+    },
+    "end": {
+      "line": 58,
+      "column": 5
+    }
+  },
+  {
+    "id": "TR_DEVICE_DISCONNECTED_DURING_ACTION",
+    "description": "Error message",
+    "defaultMessage": "Device disconnected during action",
+    "file": "src/onboarding/steps/Backup/index.messages.js",
+    "start": {
+      "line": 59,
+      "column": 42
+    },
+    "end": {
+      "line": 63,
+      "column": 5
+    }
+  },
+  {
+    "id": "TR_DEVICE_DISCONNECTED_DURING_ACTION_DESCRIPTION",
+    "description": "Error message. Instruction what to do.",
+    "defaultMessage": "You device disconnected during action which resulted in interuption of backup process. For security reasons you need to wipe your device now and start the backup process again.",
+    "file": "src/onboarding/steps/Backup/index.messages.js",
+    "start": {
+      "line": 64,
+      "column": 54
+    },
+    "end": {
+      "line": 68,
+      "column": 5
+    }
+  },
+  {
+    "id": "TR_WIPE_DEVICE_AND_START_AGAIN",
+    "description": "Button text",
+    "defaultMessage": "Wipe device and start again",
+    "file": "src/onboarding/steps/Backup/index.messages.js",
+    "start": {
+      "line": 69,
+      "column": 36
+    },
+    "end": {
+      "line": 73,
+      "column": 5
+    }
+  },
+  {
+    "id": "TR_BACKUP_FINISHED_TEXT",
+    "description": "Text that appears after backup is finished",
+    "defaultMessage": "Backup is now on your recovery seed card. Once again dont lose it and keep it private!",
+    "file": "src/onboarding/steps/Backup/index.messages.js",
+    "start": {
+      "line": 74,
+      "column": 29
+    },
+    "end": {
+      "line": 78,
+      "column": 5
+    }
+  },
+  {
+    "id": "TR_BACKUP_FINISHED_BUTTON",
+    "description": "Exit button after backup is finished",
+    "defaultMessage": "My recovery card is safe",
+    "file": "src/onboarding/steps/Backup/index.messages.js",
+    "start": {
+      "line": 79,
+      "column": 31
+    },
+    "end": {
+      "line": 83,
+      "column": 5
+    }
+  }
+]

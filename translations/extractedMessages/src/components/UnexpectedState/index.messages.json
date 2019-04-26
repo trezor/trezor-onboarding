@@ -1,0 +1,100 @@
+[
+  {
+    "id": "TR_DEVICE_YOU_RECONNECTED_IS_DIFFERENT",
+    "description": "Text that indicates that user reconnected different device than he was working with before",
+    "defaultMessage": "Device you reconnected is different from the previous device. Connect the right one or refresh your internet browser and start again.",
+    "file": "src/components/UnexpectedState/index.messages.js",
+    "start": {
+      "line": 4,
+      "column": 44
+    },
+    "end": {
+      "line": 8,
+      "column": 5
+    }
+  },
+  {
+    "id": "TR_CONNECTED_DEVICE_IS_IN_BOOTLOADER",
+    "description": "Text that indicates that user connected device in bootloader mode",
+    "defaultMessage": "Connected device is in bootloader mode. Reconnect it to continue.",
+    "file": "src/components/UnexpectedState/index.messages.js",
+    "start": {
+      "line": 9,
+      "column": 42
+    },
+    "end": {
+      "line": 13,
+      "column": 5
+    }
+  },
+  {
+    "id": "TR_DEVICE_IS_USED_IN_OTHER_WINDOW_HEADING",
+    "description": "",
+    "defaultMessage": "Device is used in other window",
+    "file": "src/components/UnexpectedState/index.messages.js",
+    "start": {
+      "line": 14,
+      "column": 47
+    },
+    "end": {
+      "line": 18,
+      "column": 5
+    }
+  },
+  {
+    "id": "TR_DEVICE_IS_USED_IN_OTHER_WINDOW_TEXT",
+    "description": "",
+    "defaultMessage": "This is a big no no. Please dont use device in other window. Close all other windows or tabs that might be using your Trezor device.",
+    "file": "src/components/UnexpectedState/index.messages.js",
+    "start": {
+      "line": 19,
+      "column": 44
+    },
+    "end": {
+      "line": 23,
+      "column": 5
+    }
+  },
+  {
+    "id": "TR_DEVICE_IS_USED_IN_OTHER_WINDOW_BUTTON",
+    "description": "",
+    "defaultMessage": "Continue",
+    "file": "src/components/UnexpectedState/index.messages.js",
+    "start": {
+      "line": 24,
+      "column": 46
+    },
+    "end": {
+      "line": 28,
+      "column": 5
+    }
+  },
+  {
+    "id": "TR_ENTER_PIN_HEADING",
+    "description": "",
+    "defaultMessage": "Enter PIN",
+    "file": "src/components/UnexpectedState/index.messages.js",
+    "start": {
+      "line": 29,
+      "column": 26
+    },
+    "end": {
+      "line": 33,
+      "column": 5
+    }
+  },
+  {
+    "id": "TR_ENTER_PIN_TEXT",
+    "description": "",
+    "defaultMessage": "Your device gets locked anytime you disconnect it. You now need to enter your PIN to continue.",
+    "file": "src/components/UnexpectedState/index.messages.js",
+    "start": {
+      "line": 34,
+      "column": 23
+    },
+    "end": {
+      "line": 38,
+      "column": 5
+    }
+  }
+]

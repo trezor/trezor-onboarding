@@ -1,0 +1,58 @@
+[
+  {
+    "id": "TR_BOOKMARK_HEADING",
+    "description": "Heading in bookmark step",
+    "defaultMessage": "Browser bookmark",
+    "file": "src/onboarding/steps/Bookmark/index.messages.js",
+    "start": {
+      "line": 4,
+      "column": 25
+    },
+    "end": {
+      "line": 8,
+      "column": 5
+    }
+  },
+  {
+    "id": "TR_BOOKMARK_SUBHEADING",
+    "description": "Heading in bookmark step",
+    "defaultMessage": "Protect yourself against {TR_PHISHING_ATTACKS}. Bookmark Trezor Wallet (wallet.trezor.io) to avoid visiting fake sites.",
+    "file": "src/onboarding/steps/Bookmark/index.messages.js",
+    "start": {
+      "line": 9,
+      "column": 28
+    },
+    "end": {
+      "line": 13,
+      "column": 5
+    }
+  },
+  {
+    "id": "TR_PHISHING_ATTACKS",
+    "description": "Term, type of hacker attack trying to fool user to enter his sensitive data into a fake site.",
+    "defaultMessage": "phishing attacks",
+    "file": "src/onboarding/steps/Bookmark/index.messages.js",
+    "start": {
+      "line": 14,
+      "column": 25
+    },
+    "end": {
+      "line": 18,
+      "column": 5
+    }
+  },
+  {
+    "id": "TR_USE_THE_KEYBOARD_SHORTCUT",
+    "description": "We want user to pres Ctrl + D",
+    "defaultMessage": "Use the keyboard shortcut:",
+    "file": "src/onboarding/steps/Bookmark/index.messages.js",
+    "start": {
+      "line": 19,
+      "column": 34
+    },
+    "end": {
+      "line": 23,
+      "column": 5
+    }
+  }
+]

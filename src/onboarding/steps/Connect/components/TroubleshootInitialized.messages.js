@@ -1,4 +1,4 @@
-import { defineMessages } from '@dragonraider5/react-intl';
+import { defineMessages } from 'react-intl';
 
 const definedMessages = defineMessages({
     TR_DEVICE_IS_INITIALIZED: {

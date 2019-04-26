@@ -1,0 +1,100 @@
+[
+  {
+    "id": "TR_HOLOGRAM_STEPHEADING",
+    "description": "Heading on hologram step page",
+    "defaultMessage": "Hologram check",
+    "file": "src/onboarding/steps/Hologram/index.messages.js",
+    "start": {
+      "line": 4,
+      "column": 30
+    },
+    "end": {
+      "line": 8,
+      "column": 5
+    }
+  },
+  {
+    "id": "TR_HOLOGRAM_STEP_SUBHEADING",
+    "description": "Subheading on hologram step page",
+    "defaultMessage": "Please make sure hologram protecting your device is authentic",
+    "file": "src/onboarding/steps/Hologram/index.messages.js",
+    "start": {
+      "line": 9,
+      "column": 33
+    },
+    "end": {
+      "line": 13,
+      "column": 5
+    }
+  },
+  {
+    "id": "TR_HOLOGRAM_STEP_ACTION_OK",
+    "description": "Button to click in allright case",
+    "defaultMessage": "My hologram is OK",
+    "file": "src/onboarding/steps/Hologram/index.messages.js",
+    "start": {
+      "line": 14,
+      "column": 32
+    },
+    "end": {
+      "line": 18,
+      "column": 5
+    }
+  },
+  {
+    "id": "TR_HOLOGRAM_STEP_ACTION_NOT_OK",
+    "description": "Button to click when hologram looks different",
+    "defaultMessage": "My hologram looks different",
+    "file": "src/onboarding/steps/Hologram/index.messages.js",
+    "start": {
+      "line": 19,
+      "column": 36
+    },
+    "end": {
+      "line": 23,
+      "column": 5
+    }
+  },
+  {
+    "id": "TR_RESELLERS_LINK",
+    "description": "Part of sentence. Link to page with trusted resellers list",
+    "defaultMessage": "a trusted reseller",
+    "file": "src/onboarding/steps/Hologram/index.messages.js",
+    "start": {
+      "line": 24,
+      "column": 23
+    },
+    "end": {
+      "line": 28,
+      "column": 5
+    }
+  },
+  {
+    "id": "TR_CONTACT_OUR_SUPPORT_LINK",
+    "description": "Part of sentence. Link to support",
+    "defaultMessage": "contact our support",
+    "file": "src/onboarding/steps/Hologram/index.messages.js",
+    "start": {
+      "line": 29,
+      "column": 33
+    },
+    "end": {
+      "line": 33,
+      "column": 5
+    }
+  },
+  {
+    "id": "TR_DID_YOU_PURCHASE",
+    "description": "Text to display when user is unhappy with his hologram.",
+    "defaultMessage": "Did you purchase your device from {TR_RESELLERS_LINK}? If no, device you are holding in hands might be a counterfeit. Please {TR_CONTACT_OUR_SUPPORT_LINK}",
+    "file": "src/onboarding/steps/Hologram/index.messages.js",
+    "start": {
+      "line": 34,
+      "column": 25
+    },
+    "end": {
+      "line": 38,
+      "column": 5
+    }
+  }
+]

@@ -1,0 +1,30 @@
+[
+  {
+    "id": "TR_WELCOME_TO_TREZOR",
+    "description": "Welcome message on welcome page",
+    "defaultMessage": "Welcome to Trezor",
+    "file": "src/onboarding/steps/Welcome/index.messages.js",
+    "start": {
+      "line": 4,
+      "column": 26
+    },
+    "end": {
+      "line": 8,
+      "column": 5
+    }
+  },
+  {
+    "id": "TR_GET_STARTED",
+    "description": "Button on welcome page",
+    "defaultMessage": "Get started (5 minutes)",
+    "file": "src/onboarding/steps/Welcome/index.messages.js",
+    "start": {
+      "line": 9,
+      "column": 20
+    },
+    "end": {
+      "line": 13,
+      "column": 5
+    }
+  }
+]

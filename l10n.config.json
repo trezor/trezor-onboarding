@@ -3,7 +3,8 @@
     "localesOutputDir": "l10n/locales/",
     "outputDir": "translations/",
     "project": {
-        "identifier": "trotro",
+        "identifier": "trezor-wallet-test",
+        "filename": "trezor-onboarding",
         "apiKeyEnv": "CROWDIN_API_KEY"
     },
     "languages": ["af", "ar", "bn", "zh-CN", "zh-TW", "cs", "nl", "en", "et", "fr", "de", "el", "he", "hi", "hu", "id", "it", "ja", "ko", "no", "fa", "pl", "pt-PT", "ru", "es-ES", "sv-SE", "tr", "uk", "vi"],
