@@ -80,7 +80,7 @@ class WelcomeStep extends React.PureComponent {
                                     <FormattedMessage {...l10nMessages.TR_WELCOME_TO_TREZOR} />
                                 </H1>
 
-                                <Button onClick={() => this.props.onboardingActions.goToNextStep()}>
+                                <Button data-test="button-continue" onClick={() => this.props.onboardingActions.goToNextStep()}>
                                     <FormattedMessage {...l10nMessages.TR_GET_STARTED} />
                                 </Button>
                             </FadeInWrapper>

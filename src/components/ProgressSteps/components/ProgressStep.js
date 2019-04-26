@@ -70,6 +70,7 @@ const ProgressStep = (props) => {
             {/* <Link to="/about">bla</Link> */}
 
             <Circle
+                data-test={`step-${props.step.id}`}
                 style={{
                     borderColor,
                     color,

@@ -107,7 +107,12 @@ const StartStep = ({
                         {/* todo: translations */}
                         <Text>You have already created a new wallet from scratch or through recovery.</Text>
                         <ControlsWrapper>
-                            <Button onClick={() => onboardingActions.goToNextStep()}>Continue</Button>
+                            <Button
+                                data-test="button-continue"
+                                onClick={() => onboardingActions.goToNextStep()}
+                            >
+                            Continue
+                            </Button>
                         </ControlsWrapper>
                     </React.Fragment>
                 )

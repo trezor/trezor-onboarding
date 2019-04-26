@@ -4,6 +4,7 @@ import { Link, P, Prompt } from 'trezor-ui-components';
 import { CSSTransition } from 'react-transition-group';
 import { hot } from 'react-hot-loader/root';
 
+import { isDevelopment } from 'support/build';
 import * as EVENTS from 'actions/constants/events';
 import types from 'config/types';
 import colors from 'config/colors';
@@ -125,12 +126,15 @@ const UnexpectedStateOverlay = styled.div`
 
 class Onboarding extends React.PureComponent {
     componentDidMount() {
-        window.onbeforeunload = () => {
-            if (this.props.activeStepId !== ID.FINAL_STEP) {
-                return 'Are you sure want to leave onboarding without saving?';
-            }
-            return null;
-        };
+        if (!isDevelopment) {
+            window.onbeforeunload = () => {
+                if (this.props.activeStepId !== ID.FINAL_STEP) {
+                    return 'Are you sure want to leave onboarding without saving?';
+                }
+                return null;
+            };
+        }
+
         this.props.connectActions.init();
     }
 

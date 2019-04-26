@@ -47,7 +47,11 @@ const HologramStep = ({ onboardingActions, activeSubStep, model }) => (
                             <Button onClick={() => onboardingActions.goToNextStep()}>
                                 <FormattedMessage {...l10nMessages.TR_HOLOGRAM_STEP_ACTION_OK} />
                             </Button>
-                            <Button onClick={() => onboardingActions.goToSubStep('hologram-different')} isWhite>
+                            <Button
+                                data-test="button-hologram-different"
+                                onClick={() => onboardingActions.goToSubStep('hologram-different')}
+                                isWhite
+                            >
                                 <FormattedMessage {...l10nMessages.TR_HOLOGRAM_STEP_ACTION_NOT_OK} />
                             </Button>
                         </ControlsWrapper>
@@ -67,12 +71,21 @@ const HologramStep = ({ onboardingActions, activeSubStep, model }) => (
                             />
                         </Text>
                         <ControlsWrapper>
-                            <Link href={SUPPORT_URL}>
-                                <Button style={{ width: '100%' }}>
+                            <Link href={SUPPORT_URL} target="_self">
+                                <Button
+                                    data-test="button-contact-support"
+                                    style={{ width: '100%' }}
+                                >
                                     <FormattedMessage {...l10nCommonMessages.TR_CONTACT_SUPPORT} />
                                 </Button>
                             </Link>
-                            <Button isWhite onClick={() => onboardingActions.goToSubStep(null)}>Back</Button>
+                            <Button
+                                isWhite
+                                onClick={() => onboardingActions.goToSubStep(null)}
+                                data-test="button-back"
+                            >
+                                Back
+                            </Button>
                         </ControlsWrapper>
                     </React.Fragment>
                 )

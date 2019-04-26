@@ -26,7 +26,7 @@ const SelectDeviceStep = ({ onboardingActions, model }) => (
             <OptionsList
                 options={[{
                     content: (
-                        <OptionWrapper>
+                        <OptionWrapper data-test="select-device-1">
                             <TrezorImage style={{ margin: '15px' }} model={1} height={DEVICE_HEIGHT} />
                             <H6><FormattedMessage {...l10nMessages.TR_MODEL_ONE} /></H6>
                         </OptionWrapper>
@@ -35,7 +35,7 @@ const SelectDeviceStep = ({ onboardingActions, model }) => (
                     key: 1,
                 }, {
                     content: (
-                        <OptionWrapper>
+                        <OptionWrapper data-test="select-device-2">
                             <TrezorImage style={{ margin: '15px' }} model={2} height={DEVICE_HEIGHT} />
                             <H6><FormattedMessage {...l10nMessages.TR_MODEL_T} /></H6>
                         </OptionWrapper>

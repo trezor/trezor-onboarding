@@ -79,3 +79,8 @@ typings/
 
 #DynamoDB Local files 
 .dynamodb/ 
+
+
+test/integration/screenshots
+test/integration/videos
+__diff_output__
