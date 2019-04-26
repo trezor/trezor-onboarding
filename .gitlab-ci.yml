@@ -53,8 +53,8 @@ deploy review:
     - rsync --delete -va dist/development/ "${DEPLOY_BASE_DIR}/${CI_BUILD_REF_NAME}/"
     - curl "https://api.telegram.org/bot699197118:AAGXNTaC5Q-ljmy_dMvaIvAKy1XjlkA3Iss/sendMessage?chat_id=-1001354778014&text=https://onboarding.sldev.cz/${CI_BUILD_REF_NAME}"
     - 'echo "Remove working dir, workaround for cache" && rm -r ./*'
-  only:
-    - branches
+  #only:
+  #  - branches
   tags:
     - deploy
 
