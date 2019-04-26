@@ -7,7 +7,6 @@ import { FormattedMessage } from '@dragonraider5/react-intl';
 import Text from 'components/Text';
 
 import types from 'config/types';
-import { RESET_DEVICE } from 'actions/constants/calls';
 import { OptionsList } from 'components/Options';
 import { ID } from 'constants/steps';
 import {
