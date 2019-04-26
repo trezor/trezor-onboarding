@@ -7,7 +7,7 @@ import { FormattedMessage, injectIntl, intlShape } from '@dragonraider5/react-in
 import { createFilter } from 'react-select';
 
 import BlindMatrix from 'components/BlindMatrix';
-import bip39List from 'utils/bip39'; // todo: its not utils but constants I guess.
+import bip39List from 'constants/bip39';
 import types from 'config/types';
 import colors from 'config/colors';
 import { RECOVERY_MODEL_ONE_URL } from 'config/urls';
