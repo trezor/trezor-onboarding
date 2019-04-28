@@ -49,7 +49,7 @@
     "styled-reset": "^1.6.4",
     "trezor-connect": "^7.0.3",
     "trezor-flags": "^1.0.2",
-    "trezor-ui-components": "^1.0.0-beta.12"
+    "trezor-ui-components": "^1.0.0-beta.16"
   },
   "devDependencies": {
     "@babel/cli": "^7.2.3",
