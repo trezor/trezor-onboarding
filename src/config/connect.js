@@ -14,5 +14,5 @@ export default {
             appUrl: 'http://localhost:8080',
         },
     },
-    endpoint: isDevelopment ? ENDPOINT : null,
+    endpoint: isDevelopment() ? ENDPOINT : null,
 };
