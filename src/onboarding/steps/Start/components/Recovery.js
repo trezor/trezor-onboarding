@@ -111,11 +111,6 @@ class RecoveryStep extends React.Component {
 
         return (
             <React.Fragment>
-                {/* <StepHeadingWrapper>
-                    <FormattedMessage {...l10nMessages.TR_RECOVER_HEADING} />
-                </StepHeadingWrapper> */}
-
-                <StepBodyWrapper>
                     { this.getStatus() === null && (
                         <React.Fragment>
                             {
@@ -323,7 +318,6 @@ class RecoveryStep extends React.Component {
                             </React.Fragment>
                         )
                     }
-                </StepBodyWrapper>
             </React.Fragment>
         );
     }

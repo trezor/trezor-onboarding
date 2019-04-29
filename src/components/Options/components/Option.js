@@ -20,7 +20,7 @@ const OptionWrapper = styled.div`
 
     @media (min-width: ${BREAKPOINTS.SM}px) {
         height: 200px;
-        min-width: 200px;    
+        /* width: 200px;     */
     }
 `;
 

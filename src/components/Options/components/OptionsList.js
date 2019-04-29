@@ -9,10 +9,13 @@ import Option from './Option';
 const OptionsWrapper = styled.div`
     display: flex;
     justify-content: space-around;
-    width: ${props => props.count * 200}px;
+    flex-direction: column;
+    width: 100%;
 
-    @media (max-width: ${BREAKPOINT.SM}px) {
-        flex-direction: column
+    @media (min-width: ${BREAKPOINT.SM}px) {
+        width: ${(props) => props.count * 200 };
+        max-width: 130%;
+        flex-direction: row;
     }
 `;
 
