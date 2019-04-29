@@ -36,6 +36,11 @@ const definedMessages = defineMessages({
         defaultMessage: 'Cool name',
         description: 'Validation message in label input',
     },
+    TR_NAME_BORING: {
+        id: 'TR_NAME_BORING',
+        defaultMessage: 'Nah.. too boring, chose a different label',
+        description: 'User shouldnt use My Trezor (default name) as their new custom name',
+    },
 
 
 });

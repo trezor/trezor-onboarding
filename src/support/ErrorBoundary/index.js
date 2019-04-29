@@ -33,7 +33,6 @@ const Bug = styled.div`
 const Message = styled(P)`
     padding: 30px;
     max-width: 600px;
-    /* todo: some constant for max-width */
 `;
 
 const Attribution = styled(P)`

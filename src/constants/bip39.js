@@ -1,5 +1,3 @@
-// todo: this should be moved somehwhere up
-
 export default [
     'abandon', 'ability', 'able', 'about', 'above', 'absent',
     'absorb', 'abstract', 'absurd', 'abuse', 'access', 'accident', 'account',

@@ -96,7 +96,7 @@ class ProgressSteps extends React.Component {
 }
 
 ProgressSteps.propTypes = {
-    activeStep: PropTypes.object.isRequired, // todo: better
+    activeStep: types.step.isRequired,
     steps: types.steps,
 };
 

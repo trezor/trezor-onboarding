@@ -51,8 +51,7 @@ class NameStep extends React.Component {
             return { state: '' };
         }
         if (this.state.label === DEFAULT_LABEL) {
-            // todo: add translation
-            return { state: 'error', bottomText: 'Nah.. too boring, chose a different label' };
+            return { state: 'error', bottomText: this.props.intl.formatMessage(l10nMessages.TR_NAME_BORING) };
         }
         if (!validateASCII(this.state.label)) {
             return { state: 'error', bottomText: this.props.intl.formatMessage(l10nMessages.TR_NAME_ONLY_ASCII) };

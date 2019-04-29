@@ -108,7 +108,7 @@ ProgressStep.propTypes = {
     isFinished: PropTypes.bool,
     isLast: PropTypes.bool,
     index: PropTypes.number.isRequired,
-    step: PropTypes.object, // todo: better
+    step: types.step,
     onboardingActions: types.onboardingActions,
     isGoingForward: PropTypes.bool,
     changeOverHowManySteps: PropTypes.number,

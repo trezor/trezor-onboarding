@@ -1,12 +1,18 @@
 import PropTypes from 'prop-types';
-import { ID, TITLE } from 'constants/steps';
+import { ID, TITLE, DISALLOWED_STATE } from 'constants/steps';
 import languages from 'config/languages';
+
+const step = PropTypes.shape({
+    id: PropTypes.oneOf([...Object.values(ID)]),
+    title: PropTypes.oneOf([...Object.values(TITLE)]),
+    disdisallowedDeviceStates: PropTypes.arrayOf(PropTypes.oneOf([...Object.values(DISALLOWED_STATE)])),
+});
 
 export default {
     // connectReducer
-    device: PropTypes.object, // todo: improve;
+    device: PropTypes.object,
     prevDeviceId: PropTypes.string,
-    transport: PropTypes.object, // todo: improve ?? not sure if needed.
+    transport: PropTypes.object,
     deviceCall: PropTypes.shape({
         name: PropTypes.string,
         isProgress: PropTypes.bool,
@@ -35,14 +41,9 @@ export default {
     language: PropTypes.oneOf([
         ...Object.values(languages).map(lang => lang.code),
     ]),
-    messages: PropTypes.object, // todo better,
-    steps: PropTypes.arrayOf(
-        PropTypes.shape({
-            id: PropTypes.oneOf([...Object.values(ID)]),
-            title: PropTypes.oneOf([...Object.values(TITLE)]),
-            disdisallowedDeviceStates: PropTypes.array, // todo: better,
-        }),
-    ),
+    messages: PropTypes.object, // todo: better,
+    step,
+    steps: PropTypes.arrayOf(step),
     onboardingActions: PropTypes.objectOf(PropTypes.func), // todo: name all functions
 
     // fetchReducer

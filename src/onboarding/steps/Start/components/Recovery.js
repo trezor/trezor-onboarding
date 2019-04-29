@@ -15,9 +15,7 @@ import { RECOVER_DEVICE } from 'actions/constants/calls';
 import { WORD_REQUEST_PLAIN, WORD_REQUEST_MATRIX9 } from 'actions/constants/events';
 import { OptionsList } from 'components/Options';
 import Text from 'components/Text';
-import {
-    StepBodyWrapper, ControlsWrapper,
-} from 'components/Wrapper';
+import { ControlsWrapper } from 'components/Wrapper';
 
 import l10nCommonMessages from 'support/commonMessages';
 import l10nMessages from './Recovery.messages';
@@ -111,213 +109,213 @@ class RecoveryStep extends React.Component {
 
         return (
             <React.Fragment>
-                    { this.getStatus() === null && (
-                        <React.Fragment>
-                            {
-                                device.features.major_version === 1 && (
-                                    <React.Fragment>
-                                        <Text>
-                                            <FormattedMessage {...l10nMessages.TR_RECOVER_SUBHEADING} />
-                                        </Text>
-                                        <OptionsList
-                                            options={[{
-                                                content: <div><P><FormattedMessage {...l10nMessages.TR_WORDS} values={{ count: '12' }} /></P></div>,
-                                                value: 12,
-                                                key: 1,
-                                            }, {
-                                                content: <div><P><FormattedMessage {...l10nMessages.TR_WORDS} values={{ count: '18' }} /></P></div>,
-                                                value: 18,
-                                                key: 2,
-                                            }, {
-                                                content: <div><P><FormattedMessage {...l10nMessages.TR_WORDS} values={{ count: '24' }} /></P></div>,
-                                                value: 24,
-                                                key: 3,
-                                            }]}
-                                            selected={this.props.recovery.wordsCount}
-                                            selectedAccessor="value"
-                                            onSelect={(value) => { this.props.recoveryActions.setWordsCount(value); }}
-                                        />
+                { this.getStatus() === null && (
+                    <React.Fragment>
+                        {
+                            device.features.major_version === 1 && (
+                                <React.Fragment>
+                                    <Text>
+                                        <FormattedMessage {...l10nMessages.TR_RECOVER_SUBHEADING} />
+                                    </Text>
+                                    <OptionsList
+                                        options={[{
+                                            content: <div><P><FormattedMessage {...l10nMessages.TR_WORDS} values={{ count: '12' }} /></P></div>,
+                                            value: 12,
+                                            key: 1,
+                                        }, {
+                                            content: <div><P><FormattedMessage {...l10nMessages.TR_WORDS} values={{ count: '18' }} /></P></div>,
+                                            value: 18,
+                                            key: 2,
+                                        }, {
+                                            content: <div><P><FormattedMessage {...l10nMessages.TR_WORDS} values={{ count: '24' }} /></P></div>,
+                                            value: 24,
+                                            key: 3,
+                                        }]}
+                                        selected={this.props.recovery.wordsCount}
+                                        selectedAccessor="value"
+                                        onSelect={(value) => { this.props.recoveryActions.setWordsCount(value); }}
+                                    />
 
-                                        <ControlsWrapper>
-                                            <Button
-                                                isDisabled={this.props.recovery.wordsCount === null}
-                                                onClick={() => { this.setStatus('select-advanced-recovery'); }}
-                                            >
-                                                <FormattedMessage {...l10nCommonMessages.TR_CONTINUE} />
-                                            </Button>
-                                            <Button isWhite onClick={() => { this.props.onboardingActions.goToSubStep(null); }}>
-                                                <FormattedMessage {...l10nCommonMessages.TR_BACK} />
-                                            </Button>
-                                        </ControlsWrapper>
-                                    </React.Fragment>
-                                )
-                            }
+                                    <ControlsWrapper>
+                                        <Button
+                                            isDisabled={this.props.recovery.wordsCount === null}
+                                            onClick={() => { this.setStatus('select-advanced-recovery'); }}
+                                        >
+                                            <FormattedMessage {...l10nCommonMessages.TR_CONTINUE} />
+                                        </Button>
+                                        <Button isWhite onClick={() => { this.props.onboardingActions.goToSubStep(null); }}>
+                                            <FormattedMessage {...l10nCommonMessages.TR_BACK} />
+                                        </Button>
+                                    </ControlsWrapper>
+                                </React.Fragment>
+                            )
+                        }
 
-                            {
-                                device.features.major_version === 2 && (
-                                    <React.Fragment>
-                                        <Text>
-                                            <FormattedMessage {...l10nMessages.TR_RECOVER_SUBHEADING} />
-                                        </Text>
-                                        <ControlsWrapper>
-                                            <Button onClick={() => { this.recoveryDevice(); }}>
-                                                <FormattedMessage {...l10nMessages.TR_START_RECOVERY} />
-                                            </Button>
-                                        </ControlsWrapper>
-                                    </React.Fragment>
-                                )
-                            }
+                        {
+                            device.features.major_version === 2 && (
+                                <React.Fragment>
+                                    <Text>
+                                        <FormattedMessage {...l10nMessages.TR_RECOVER_SUBHEADING} />
+                                    </Text>
+                                    <ControlsWrapper>
+                                        <Button onClick={() => { this.recoveryDevice(); }}>
+                                            <FormattedMessage {...l10nMessages.TR_START_RECOVERY} />
+                                        </Button>
+                                    </ControlsWrapper>
+                                </React.Fragment>
+                            )
+                        }
 
-                        </React.Fragment>
-                    )}
+                    </React.Fragment>
+                )}
 
-                    { this.getStatus() === 'select-advanced-recovery' && (
+                { this.getStatus() === 'select-advanced-recovery' && (
+                    <React.Fragment>
+                        <Text>
+                            <FormattedMessage
+                                {...l10nMessages.TR_RECOVERY_TYPES_DESCRIPTION}
+                                values={{
+                                    TR_LEARN_MORE_LINK: <Link href={RECOVERY_MODEL_ONE_URL}><FormattedMessage {...l10nCommonMessages.TR_LEARN_MORE_LINK} /></Link>,
+                                }}
+                            />
+                        </Text>
+                        <OptionsList
+                            options={[{
+                                content: <P><FormattedMessage {...l10nMessages.TR_BASIC_RECOVERY_OPTION} /></P>,
+                                value: false,
+                                key: 1,
+                            }, {
+                                content: <P><FormattedMessage {...l10nMessages.TR_ADVANCED_RECOVERY_OPTION} /></P>,
+                                value: true,
+                                key: 2,
+                            }]}
+                            selected={this.props.recovery.advancedRecovery}
+                            selectedAccessor="value"
+                            onSelect={(value) => { this.props.recoveryActions.setAdvancedRecovery(value); }}
+                        />
+
+                        <ControlsWrapper>
+                            <Button onClick={() => { this.recoveryDevice(); }}>
+                                <FormattedMessage {...l10nMessages.TR_START_RECOVERY} />
+                            </Button>
+                            <Button isWhite onClick={() => { this.props.onboardingActions.goToSubStep(null); }}>
+                                <FormattedMessage {...l10nCommonMessages.TR_BACK} />
+                            </Button>
+                        </ControlsWrapper>
+                    </React.Fragment>
+                )}
+
+                {
+                    this.getStatus() === 'recovering' && (
                         <React.Fragment>
                             <Text>
-                                <FormattedMessage
-                                    {...l10nMessages.TR_RECOVERY_TYPES_DESCRIPTION}
-                                    values={{
-                                        TR_LEARN_MORE_LINK: <Link href={RECOVERY_MODEL_ONE_URL}><FormattedMessage {...l10nCommonMessages.TR_LEARN_MORE_LINK} /></Link>,
+                                <FormattedMessage {...l10nMessages.TR_ENTER_SEED_WORDS_INSTRUCTION} />
+                                {' '}
+                                { this.props.recovery.wordsCount < 24 && <FormattedMessage {...l10nMessages.TR_RANDOM_SEED_WORDS_DISCLAIMER} values={{ count: 24 - this.props.recovery.wordsCount }} /> }
+                            </Text>
+                            <SelectWrapper>
+                                <Select
+                                    styles={{
+                                        option: (provided, state) => ({
+                                            ...provided,
+                                            backgroundColor: state.isFocused ? colors.brandPrimary : provided.backgroundColor,
+                                            color: colors.grayDark,
+                                            textAlign: 'initial',
+                                        }),
+                                        control: (provided, state) => ({
+                                            ...provided,
+                                            boxShadow: `0 0 0 1px ${colors.brandPrimary}`,
+                                            '&:hover': {
+                                                borderColor: colors.brandPrimary,
+                                            },
+                                            borderColor: state.isFocused ? colors.brandPrimary : 'transparent',
+                                        }),
+                                        dropdownIndicator: () => ({
+                                            display: 'none',
+                                        }),
+                                        indicatorSeparator: () => ({ display: 'none' }),
+                                        menu: (provided) => {
+                                            if (!this.props.recovery.word) {
+                                                return { display: 'none' };
+                                            }
+                                            return provided;
+                                        },
+                                    }}
+                                    autoFocus
+                                    isSearchable
+                                    // withDropdownIndicator={false}
+                                    isClearable={false}
+                                    value={this.props.recovery.word}
+                                    noOptionsMessage={({ inputValue }) => `word "${inputValue}" does not exist in words list`}
+                                    onChange={(item) => {
+                                        console.warn('onchange');
+                                        this.props.recoveryActions.setWord(item.value);
+                                        this.props.recoveryActions.submit();
+                                    }}
+                                    placeholder={this.props.intl.formatMessage(l10nMessages.TR_CHECK_YOUR_DEVICE)}
+                                    options={sortedBip39}
+                                    filterOption={createFilter({
+                                        ignoreCase: true,
+                                        trim: true,
+                                        matchFrom: 'start',
+                                    })}
+                                    onInputChange={(input) => {
+                                        console.warn('onInputChange', input);
+                                        if (input) {
+                                            this.props.recoveryActions.setWord(input);
+                                        }
                                     }}
                                 />
-                            </Text>
-                            <OptionsList
-                                options={[{
-                                    content: <P><FormattedMessage {...l10nMessages.TR_BASIC_RECOVERY_OPTION} /></P>,
-                                    value: false,
-                                    key: 1,
-                                }, {
-                                    content: <P><FormattedMessage {...l10nMessages.TR_ADVANCED_RECOVERY_OPTION} /></P>,
-                                    value: true,
-                                    key: 2,
-                                }]}
-                                selected={this.props.recovery.advancedRecovery}
-                                selectedAccessor="value"
-                                onSelect={(value) => { this.props.recoveryActions.setAdvancedRecovery(value); }}
-                            />
-
-                            <ControlsWrapper>
-                                <Button onClick={() => { this.recoveryDevice(); }}>
-                                    <FormattedMessage {...l10nMessages.TR_START_RECOVERY} />
-                                </Button>
-                                <Button isWhite onClick={() => { this.props.onboardingActions.goToSubStep(null); }}>
-                                    <FormattedMessage {...l10nCommonMessages.TR_BACK} />
-                                </Button>
-                            </ControlsWrapper>
+                            </SelectWrapper>
+                            {
+                                uiInteraction.counter > 1 && (
+                                    <P size="small">
+                                        <FormattedMessage {...l10nMessages.TR_MORE_WORDS_TO_ENTER} values={{ count: 25 - uiInteraction.counter }} />
+                                    </P>
+                                )
+                            }
                         </React.Fragment>
-                    )}
+                    )
+                }
 
-                    {
-                        this.getStatus() === 'recovering' && (
-                            <React.Fragment>
-                                <Text>
-                                    <FormattedMessage {...l10nMessages.TR_ENTER_SEED_WORDS_INSTRUCTION} />
-                                    {' '}
-                                    { this.props.recovery.wordsCount < 24 && <FormattedMessage {...l10nMessages.TR_RANDOM_SEED_WORDS_DISCLAIMER} values={{ count: 24 - this.props.recovery.wordsCount }} /> }
-                                </Text>
-                                <SelectWrapper>
-                                    <Select
-                                        styles={{
-                                            option: (provided, state) => ({
-                                                ...provided,
-                                                backgroundColor: state.isFocused ? colors.brandPrimary : provided.backgroundColor,
-                                                color: colors.grayDark,
-                                                textAlign: 'initial',
-                                            }),
-                                            control: (provided, state) => ({
-                                                ...provided,
-                                                boxShadow: `0 0 0 1px ${colors.brandPrimary}`,
-                                                '&:hover': {
-                                                    borderColor: colors.brandPrimary,
-                                                },
-                                                borderColor: state.isFocused ? colors.brandPrimary : 'transparent',
-                                            }),
-                                            dropdownIndicator: () => ({
-                                                display: 'none',
-                                            }),
-                                            indicatorSeparator: () => ({ display: 'none' }),
-                                            menu: (provided) => {
-                                                if (!this.props.recovery.word) {
-                                                    return { display: 'none' };
-                                                }
-                                                return provided;
-                                            },
-                                        }}
-                                        autoFocus
-                                        isSearchable
-                                        // withDropdownIndicator={false}
-                                        isClearable={false}
-                                        value={this.props.recovery.word}
-                                        noOptionsMessage={({ inputValue }) => `word "${inputValue}" does not exist in words list`}
-                                        onChange={(item) => {
-                                            console.warn('onchange');
-                                            this.props.recoveryActions.setWord(item.value);
-                                            this.props.recoveryActions.submit();
-                                        }}
-                                        placeholder={this.props.intl.formatMessage(l10nMessages.TR_CHECK_YOUR_DEVICE)}
-                                        options={sortedBip39}
-                                        filterOption={createFilter({
-                                            ignoreCase: true,
-                                            trim: true,
-                                            matchFrom: 'start',
-                                        })}
-                                        onInputChange={(input) => {
-                                            console.warn('onInputChange', input);
-                                            if (input) {
-                                                this.props.recoveryActions.setWord(input);
-                                            }
-                                        }}
-                                    />
-                                </SelectWrapper>
-                                {
-                                    uiInteraction.counter > 1 && (
-                                        <P size="small">
-                                            <FormattedMessage {...l10nMessages.TR_MORE_WORDS_TO_ENTER} values={{ count: 25 - uiInteraction.counter }} />
-                                        </P>
-                                    )
-                                }
-                            </React.Fragment>
-                        )
-                    }
+                {
+                    this.getStatus() === 'recovering-advanced' && (
+                        <React.Fragment>
+                            <BlindMatrix
+                                count={uiInteraction.name === WORD_REQUEST_MATRIX9 ? 9 : 6}
+                                onSubmit={this.props.recoveryActions.submit}
+                            />
+                        </React.Fragment>
+                    )
+                }
 
-                    {
-                        this.getStatus() === 'recovering-advanced' && (
-                            <React.Fragment>
-                                <BlindMatrix
-                                    count={uiInteraction.name === WORD_REQUEST_MATRIX9 ? 9 : 6}
-                                    onSubmit={this.props.recoveryActions.submit}
-                                />
-                            </React.Fragment>
-                        )
-                    }
+                {
+                    this.getStatus() === 'error' && (
+                        <React.Fragment>
+                            <Text style={{ color: colors.error }}>
+                                <FormattedMessage {...l10nMessages.TR_RECOVERY_ERROR} values={{ error: deviceCall.error }} />
+                            </Text>
 
-                    {
-                        this.getStatus() === 'error' && (
-                            <React.Fragment>
-                                <Text style={{ color: colors.error }}>
-                                    <FormattedMessage {...l10nMessages.TR_RECOVERY_ERROR} values={{ error: deviceCall.error }} />
-                                </Text>
+                            <Button onClick={() => { this.props.connectActions.resetCall(); this.setStatus(null); }}>
+                                <FormattedMessage {...l10nCommonMessages.TR_RETRY} />
+                            </Button>
 
-                                <Button onClick={() => { this.props.connectActions.resetCall(); this.setStatus(null); }}>
-                                    <FormattedMessage {...l10nCommonMessages.TR_RETRY} />
-                                </Button>
+                        </React.Fragment>
+                    )
+                }
 
-                            </React.Fragment>
-                        )
-                    }
-
-                    {
-                        this.getStatus() === 'success' && (
-                            <React.Fragment>
-                                <Text>
-                                    <FormattedMessage {...l10nMessages.TR_RECOVERY_SUCCESS} />
-                                </Text>
-                                <Button onClick={() => this.props.onboardingActions.goToNextStep()}>
-                                    <FormattedMessage {...l10nCommonMessages.TR_CONTINUE} />
-                                </Button>
-                            </React.Fragment>
-                        )
-                    }
+                {
+                    this.getStatus() === 'success' && (
+                        <React.Fragment>
+                            <Text>
+                                <FormattedMessage {...l10nMessages.TR_RECOVERY_SUCCESS} />
+                            </Text>
+                            <Button onClick={() => this.props.onboardingActions.goToNextStep()}>
+                                <FormattedMessage {...l10nCommonMessages.TR_CONTINUE} />
+                            </Button>
+                        </React.Fragment>
+                    )
+                }
             </React.Fragment>
         );
     }

@@ -2,6 +2,7 @@ import { ID } from 'constants/steps';
 import { SUPPORT_URL } from 'config/urls';
 
 // todo: currently, it works only with local connect, investigate why.
+// todo: tests are in experimental phase
 
 describe('User unwraps Trezor and realizes that Hologram is fake', () => {
     before(() => {

@@ -13,8 +13,8 @@ const OptionsWrapper = styled.div`
     width: 100%;
 
     @media (min-width: ${BREAKPOINT.SM}px) {
-        width: ${(props) => props.count * 200 };
-        max-width: 130%;
+        width: ${props => props.count * 200};
+        max-width: 120%;
         flex-direction: row;
     }
 `;
@@ -35,7 +35,7 @@ const OptionsList = ({ selectedAccessor = 'value', ...props }) => (
 OptionsList.propTypes = {
     options: PropTypes.arrayOf(PropTypes.shape({
         content: PropTypes.element,
-        key: PropTypes.any, // todo: ?
+        key: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
         value: PropTypes.any,
         onClick: PropTypes.func,
     })),

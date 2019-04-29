@@ -1,5 +1,3 @@
-// todo: consider different style, for example: https://codepen.io/ruandre/pen/howFi
-
 import React from 'react';
 import PropTypes from 'prop-types';
 

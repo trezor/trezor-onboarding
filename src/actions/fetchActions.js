@@ -20,8 +20,8 @@ const fetchResource = (name, url) => async (dispatch) => {
         const params = getParams(name);
         console.warn(params);
         const response = await fetch(url, params.options);
-        // todo: response.status === 0 is cors-hack, cors doest allow us to read response status, we will need to use
-        // mailchimp API directly.
+        // response.status === 0 is cors-hack, cors doesnt allow us to read response status,
+        // mailchimp api cant be used as well as it does not support CORS
         if (response.ok || response.status === 0) {
             dispatch({ type: FETCH_SUCCESS, result: response });
         } else {

@@ -20,7 +20,14 @@ const NthWord = ({ number }) => {
 };
 
 NthWord.propTypes = {
-    number: PropTypes.number, // todo: 1-24
+    number(props, propName, componentName) {
+        if (props[propName] < 1 || props[propName] > 24) {
+            return new Error(
+                `Invalid prop \`${propName}\` supplied to`
+                + ` \`${componentName}\`. Validation failed.`,
+            );
+        }
+    },
 };
 
 export default NthWord;
