@@ -67,18 +67,16 @@ class FirmwareStep extends React.Component {
     getMessageForStatus = () => {
         const { device } = this.props;
         const status = this.getStatus();
-        if (device.features.major_version === 1) {
-            if (status === 'reconnect' && !device.connected) {
-                return this.props.intl.formatMessage(l10nMessages.TR_CONNECT_YOUR_DEVICE_AGAIN);
-            }
-            if (status === 'reconnect' && device.connected) {
-                return this.props.intl.formatMessage(l10nMessages.TR_DISCONNECT_YOUR_DEVICE);
-            }
-        } else if (status === 'reconnect') {
+        if (status === 'reconnect' && !device.connected && device.features.major_version === 1) {
+            return this.props.intl.formatMessage(l10nMessages.TR_CONNECT_YOUR_DEVICE_AGAIN);
+        }
+        if (status === 'reconnect' && device.connected && device.features.major_version === 1) {
+            return this.props.intl.formatMessage(l10nMessages.TR_DISCONNECT_YOUR_DEVICE);
+        }
+        if (status === 'reconnect' && device.features.major_version === 2) {
             return this.props.intl.formatMessage(l10nMessages.TR_WAIT_FOR_REBOOT);
         }
-
-        return status;
+        return this.props.intl.formatMessage(l10nMessages.TR_INSTALLING);
     }
 
     install = async () => {

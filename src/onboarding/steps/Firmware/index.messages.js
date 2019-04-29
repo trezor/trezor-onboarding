@@ -16,6 +16,11 @@ const definedMessages = defineMessages({
         defaultMessage: 'Install',
         description: 'Install button',
     },
+    TR_INSTALLING: {
+        id: 'TR_INSTALLING',
+        defaultMessage: 'Do not disconnect your device. Installing',
+        description: 'Message that is visible when installing process is in progress.',
+    },
     TR_INSTALL_ERROR_OCCURRED: {
         id: 'TR_INSTALL_ERROR_OCCURRED',
         defaultMessage: 'Error occurred during firmware install: {error}',
