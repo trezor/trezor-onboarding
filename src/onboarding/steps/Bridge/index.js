@@ -22,7 +22,6 @@ import l10nMessages from './index.messages';
 const SelectWrapper = styled(Select)`
     margin-right: 10px;
     width: 180px;
-    margin-bottom: 5px;
 `;
 
 const Download = styled.div`
@@ -34,11 +33,8 @@ const Download = styled.div`
 `;
 
 const DownloadBridgeButton = styled(Button)`
-    padding-top: 5px;
-    padding-bottom: 5px;
     display: flex;
     align-items: center;
-    margin-bottom: 5px;
 `;
 
 class InstallBridge extends PureComponent {
