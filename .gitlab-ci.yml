@@ -23,7 +23,6 @@ test:
     - yarn install
     - yarn run test-all
 
-# todo: rename to build development
 build development:
   stage: build
   script:
@@ -72,7 +71,7 @@ delete review:
     - '[ -z "${CI_BUILD_REF_NAME}" ] && echo "Build name can not be empty" && exit 1'
     - '[ ! -d "${DEPLOY_BASE_DIR}/${CI_BUILD_REF_NAME}" ] && echo "Folder can not be found, skipping..." && exit 0'
     - 'rm -r "${DEPLOY_BASE_DIR}/${CI_BUILD_REF_NAME}"'
-  only:
-    - branches
+  #only:
+  #  - branches
   tags:
     - deploy
