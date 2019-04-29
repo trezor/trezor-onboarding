@@ -91,6 +91,10 @@ const connect = (state = initialState, action) => {
                     connected: false,
                     ...action.device,
                 },
+                uiInteraction: {
+                    name: null,
+                    counter: 0,
+                },
                 prevDeviceId: setPrevDeviceId(state, action.device),
             };
         case DEVICE_CALL_RESET: {
