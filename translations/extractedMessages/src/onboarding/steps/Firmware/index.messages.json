@@ -42,16 +42,30 @@
     }
   },
   {
+    "id": "TR_INSTALLING",
+    "description": "Message that is visible when installing process is in progress.",
+    "defaultMessage": "Do not disconnect your device. Installing",
+    "file": "src/onboarding/steps/Firmware/index.messages.js",
+    "start": {
+      "line": 19,
+      "column": 19
+    },
+    "end": {
+      "line": 23,
+      "column": 5
+    }
+  },
+  {
     "id": "TR_INSTALL_ERROR_OCCURRED",
     "description": "Error message when installing firmware to device",
     "defaultMessage": "Error occurred during firmware install: {error}",
     "file": "src/onboarding/steps/Firmware/index.messages.js",
     "start": {
-      "line": 19,
+      "line": 24,
       "column": 31
     },
     "end": {
-      "line": 23,
+      "line": 28,
       "column": 5
     }
   },
@@ -61,11 +75,11 @@
     "defaultMessage": "Error occured during firmware download: {error}",
     "file": "src/onboarding/steps/Firmware/index.messages.js",
     "start": {
-      "line": 24,
+      "line": 29,
       "column": 29
     },
     "end": {
-      "line": 28,
+      "line": 33,
       "column": 5
     }
   },
@@ -75,11 +89,11 @@
     "defaultMessage": "Perfect. The newest firmware is installed. Time to continue",
     "file": "src/onboarding/steps/Firmware/index.messages.js",
     "start": {
-      "line": 29,
+      "line": 34,
       "column": 27
     },
     "end": {
-      "line": 33,
+      "line": 38,
       "column": 5
     }
   },
@@ -89,11 +103,11 @@
     "defaultMessage": "Connect your device again",
     "file": "src/onboarding/steps/Firmware/index.messages.js",
     "start": {
-      "line": 34,
+      "line": 39,
       "column": 34
     },
     "end": {
-      "line": 38,
+      "line": 43,
       "column": 5
     }
   },
@@ -103,11 +117,11 @@
     "defaultMessage": "Disconnect your device",
     "file": "src/onboarding/steps/Firmware/index.messages.js",
     "start": {
-      "line": 39,
+      "line": 44,
       "column": 31
     },
     "end": {
-      "line": 43,
+      "line": 48,
       "column": 5
     }
   },
@@ -117,11 +131,11 @@
     "defaultMessage": "Wait for your device to reboot",
     "file": "src/onboarding/steps/Firmware/index.messages.js",
     "start": {
-      "line": 44,
+      "line": 49,
       "column": 24
     },
     "end": {
-      "line": 48,
+      "line": 53,
       "column": 5
     }
   },
@@ -131,11 +145,11 @@
     "defaultMessage": "This device has already installed firmware version: {version}",
     "file": "src/onboarding/steps/Firmware/index.messages.js",
     "start": {
-      "line": 49,
+      "line": 54,
       "column": 32
     },
     "end": {
-      "line": 53,
+      "line": 58,
       "column": 5
     }
   }

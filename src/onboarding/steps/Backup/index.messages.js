@@ -8,8 +8,13 @@ const definedMessages = defineMessages({
     },
     TR_BACKUP_SUBHEADING_1: {
         id: 'TR_BACKUP_SUBHEADING_1',
-        defaultMessage: 'Your recovery seed is the backup key to all your cryptocurrencies and applications.',
+        defaultMessage: 'Your {TR_SEED_MANUAL_LINK} is the backup key to all your cryptocurrencies and applications.',
         description: 'Explanation what recovery seed is',
+    },
+    TR_SEED_MANUAL_LINK: {
+        id: 'TR_SEED_MANUAL_LINK',
+        defaultMessage: 'recovery seed',
+        description: 'Link. Part of TR_BACKUP_SUBHEADING_1',
     },
     TR_BACKUP_SUBHEADING_2: {
         id: 'TR_BACKUP_SUBHEADING_2',

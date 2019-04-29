@@ -214,9 +214,18 @@
     }
   },
   "TR_BACKUP_SUBHEADING_1": {
-    "source": "Your recovery seed is the backup key to all your cryptocurrencies and applications.",
+    "source": "Your {TR_SEED_MANUAL_LINK} is the backup key to all your cryptocurrencies and applications.",
     "meta": {
       "comment": "Explanation what recovery seed is",
+      "occurrences": [
+        "src/onboarding/steps/Backup/index.messages.js"
+      ]
+    }
+  },
+  "TR_SEED_MANUAL_LINK": {
+    "source": "recovery seed",
+    "meta": {
+      "comment": "Link. Part of TR_BACKUP_SUBHEADING_1",
       "occurrences": [
         "src/onboarding/steps/Backup/index.messages.js"
       ]
@@ -766,6 +775,15 @@
     "source": "Install",
     "meta": {
       "comment": "Install button",
+      "occurrences": [
+        "src/onboarding/steps/Firmware/index.messages.js"
+      ]
+    }
+  },
+  "TR_INSTALLING": {
+    "source": "Do not disconnect your device. Installing",
+    "meta": {
+      "comment": "Message that is visible when installing process is in progress.",
       "occurrences": [
         "src/onboarding/steps/Firmware/index.messages.js"
       ]

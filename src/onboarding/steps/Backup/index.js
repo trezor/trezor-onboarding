@@ -1,14 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
 import {
-    H4, P, Button, Checkbox, Icon,
+    H4, P, Button, Checkbox, Icon, Link,
 } from 'trezor-ui-components';
 import { FormattedMessage } from '@dragonraider5/react-intl';
 
 import colors from 'config/colors';
 import types from 'config/types';
+import { SEED_MANUAL_URL } from 'config/urls';
 import { WIPE_DEVICE, BACKUP_DEVICE } from 'actions/constants/calls';
-
 import { ID } from 'constants/steps';
 import Text from 'components/Text';
 import l10nCommonMessages from 'support/commonMessages';
@@ -100,7 +100,12 @@ class BackupStep extends React.Component {
                         this.getStatus() === BackupStep.INITIAL_STATUS && (
                             <React.Fragment>
                                 <P>
-                                    <FormattedMessage {...l10nMessages.TR_BACKUP_SUBHEADING_1} />
+                                    <FormattedMessage
+                                        {...l10nMessages.TR_BACKUP_SUBHEADING_1}
+                                        values={{
+                                            TR_SEED_MANUAL_LINK: <Link href={SEED_MANUAL_URL}><FormattedMessage {...l10nMessages.TR_SEED_MANUAL_LINK} /></Link>,
+                                        }}
+                                    />
                                 </P>
                                 <P>
                                     <FormattedMessage {...l10nMessages.TR_BACKUP_SUBHEADING_2} />

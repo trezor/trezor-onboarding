@@ -16,7 +16,7 @@
   {
     "id": "TR_BACKUP_SUBHEADING_1",
     "description": "Explanation what recovery seed is",
-    "defaultMessage": "Your recovery seed is the backup key to all your cryptocurrencies and applications.",
+    "defaultMessage": "Your {TR_SEED_MANUAL_LINK} is the backup key to all your cryptocurrencies and applications.",
     "file": "src/onboarding/steps/Backup/index.messages.js",
     "start": {
       "line": 9,
@@ -28,16 +28,30 @@
     }
   },
   {
+    "id": "TR_SEED_MANUAL_LINK",
+    "description": "Link. Part of TR_BACKUP_SUBHEADING_1",
+    "defaultMessage": "recovery seed",
+    "file": "src/onboarding/steps/Backup/index.messages.js",
+    "start": {
+      "line": 14,
+      "column": 25
+    },
+    "end": {
+      "line": 18,
+      "column": 5
+    }
+  },
+  {
     "id": "TR_BACKUP_SUBHEADING_2",
     "description": "Explanation what recovery seed is",
     "defaultMessage": "Your recovery seed can only be displayed once. Never make a digital copy of your recovery seed and never upload it online. Keep your recovery seed in a safe place.",
     "file": "src/onboarding/steps/Backup/index.messages.js",
     "start": {
-      "line": 14,
+      "line": 19,
       "column": 28
     },
     "end": {
-      "line": 18,
+      "line": 23,
       "column": 5
     }
   },
@@ -47,11 +61,11 @@
     "defaultMessage": "Do not upload words on the internet",
     "file": "src/onboarding/steps/Backup/index.messages.js",
     "start": {
-      "line": 19,
+      "line": 24,
       "column": 34
     },
     "end": {
-      "line": 23,
+      "line": 28,
       "column": 5
     }
   },
@@ -61,11 +75,11 @@
     "defaultMessage": "Hide them somewhere safe",
     "file": "src/onboarding/steps/Backup/index.messages.js",
     "start": {
-      "line": 24,
+      "line": 29,
       "column": 39
     },
     "end": {
-      "line": 28,
+      "line": 33,
       "column": 5
     }
   },
@@ -75,11 +89,11 @@
     "defaultMessage": "Do not write it into a computer",
     "file": "src/onboarding/steps/Backup/index.messages.js",
     "start": {
-      "line": 29,
+      "line": 34,
       "column": 44
     },
     "end": {
-      "line": 33,
+      "line": 38,
       "column": 5
     }
   },
@@ -89,11 +103,11 @@
     "defaultMessage": "Do not take a photo of your recovery seed",
     "file": "src/onboarding/steps/Backup/index.messages.js",
     "start": {
-      "line": 34,
+      "line": 39,
       "column": 38
     },
     "end": {
-      "line": 38,
+      "line": 43,
       "column": 5
     }
   },
@@ -103,11 +117,11 @@
     "defaultMessage": "Seed is more important than your device",
     "file": "src/onboarding/steps/Backup/index.messages.js",
     "start": {
-      "line": 39,
+      "line": 44,
       "column": 48
     },
     "end": {
-      "line": 43,
+      "line": 48,
       "column": 5
     }
   },
@@ -117,11 +131,11 @@
     "defaultMessage": "SatoshiLabs cannot be held responsible for security liabilities or financial losses resulting from not following security instructions described here.",
     "file": "src/onboarding/steps/Backup/index.messages.js",
     "start": {
-      "line": 44,
+      "line": 49,
       "column": 47
     },
     "end": {
-      "line": 48,
+      "line": 53,
       "column": 5
     }
   },
@@ -131,11 +145,11 @@
     "defaultMessage": "I have read the instructions and agree",
     "file": "src/onboarding/steps/Backup/index.messages.js",
     "start": {
-      "line": 49,
+      "line": 54,
       "column": 33
     },
     "end": {
-      "line": 53,
+      "line": 58,
       "column": 5
     }
   },
@@ -145,11 +159,11 @@
     "defaultMessage": "Start backup",
     "file": "src/onboarding/steps/Backup/index.messages.js",
     "start": {
-      "line": 54,
+      "line": 59,
       "column": 21
     },
     "end": {
-      "line": 58,
+      "line": 63,
       "column": 5
     }
   },
@@ -159,11 +173,11 @@
     "defaultMessage": "Device disconnected during action",
     "file": "src/onboarding/steps/Backup/index.messages.js",
     "start": {
-      "line": 59,
+      "line": 64,
       "column": 42
     },
     "end": {
-      "line": 63,
+      "line": 68,
       "column": 5
     }
   },
@@ -173,11 +187,11 @@
     "defaultMessage": "You device disconnected during action which resulted in interuption of backup process. For security reasons you need to wipe your device now and start the backup process again.",
     "file": "src/onboarding/steps/Backup/index.messages.js",
     "start": {
-      "line": 64,
+      "line": 69,
       "column": 54
     },
     "end": {
-      "line": 68,
+      "line": 73,
       "column": 5
     }
   },
@@ -187,11 +201,11 @@
     "defaultMessage": "Wipe device and start again",
     "file": "src/onboarding/steps/Backup/index.messages.js",
     "start": {
-      "line": 69,
+      "line": 74,
       "column": 36
     },
     "end": {
-      "line": 73,
+      "line": 78,
       "column": 5
     }
   },
@@ -201,11 +215,11 @@
     "defaultMessage": "Backup is now on your recovery seed card. Once again dont lose it and keep it private!",
     "file": "src/onboarding/steps/Backup/index.messages.js",
     "start": {
-      "line": 74,
+      "line": 79,
       "column": 29
     },
     "end": {
-      "line": 78,
+      "line": 83,
       "column": 5
     }
   },
@@ -215,11 +229,11 @@
     "defaultMessage": "My recovery card is safe",
     "file": "src/onboarding/steps/Backup/index.messages.js",
     "start": {
-      "line": 79,
+      "line": 84,
       "column": 31
     },
     "end": {
-      "line": 83,
+      "line": 88,
       "column": 5
     }
   }
