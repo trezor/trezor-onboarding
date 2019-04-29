@@ -3,7 +3,6 @@ import { P, Button } from 'trezor-ui-components';
 import { FormattedMessage, injectIntl, intlShape } from '@dragonraider5/react-intl';
 
 import types from 'config/types';
-import { DONUT_STROKE, DONUT_RADIUS } from 'config/constants';
 import colors from 'config/colors';
 import { GET_FIRMWARE } from 'actions/constants/fetchCalls';
 import { FIRMWARE_ERASE, FIRMWARE_UPLOAD } from 'actions/constants/calls';
@@ -18,6 +17,8 @@ import {
 
 import l10nMessages from './index.messages';
 
+const DONUT_STROKE = 20;
+const DONUT_RADIUS = 60;
 //todo: handle case when already has firmware, but it is outdated
 class FirmwareStep extends React.Component {
     getStatus() {

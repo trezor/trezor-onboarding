@@ -64,26 +64,21 @@ const updateFirmware = () => async (dispatch, getState) => {
                 fw = ab.slice(0);
             }
             fw = arrayBufferToBuffer(fw);
-            dispatch(firmwareErase({ keepSession: true, skipFinalReload: true, length: fw.byteLength }))
-                .then((callResponse) => {
-                    if (callResponse.success) {
-                        const payload = {
-                            payload: fw,
-                            keepSession: false,
-                            skipFinalReload: true,
-                        };
-                        if (callResponse.offset) {
-                            payload.offset = callResponse.offset;
-                        }
-                        if (callResponse.length) {
-                            payload.length = callResponse.lenght;
-                        }
-                        maxProgress = 99;
-                        dispatch(firmwareUpload(payload)).then(() => {
-                            maxProgress = 100;
-                        });
-                    }
-                });
+            const callResponse = await dispatch(firmwareErase({ keepSession: true, skipFinalReload: true, length: fw.byteLength }));
+            const payload = {
+                payload: fw,
+                keepSession: false,
+                skipFinalReload: true,
+            };
+            if (callResponse.offset) {
+                payload.offset = callResponse.offset;
+            }
+            if (callResponse.length) {
+                payload.length = callResponse.lenght;
+            }
+            maxProgress = 99;
+            await dispatch(firmwareUpload(payload));
+            maxProgress = 100;
         });
     } catch (err) {
         dispatch({

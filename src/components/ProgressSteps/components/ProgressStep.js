@@ -67,8 +67,6 @@ const ProgressStep = (props) => {
                 order={props.isGoingForward ? order + 1 : order - (props.index * 2)}
                 isFirst={props.index === 0}
             />
-            {/* <Link to="/about">bla</Link> */}
-
             <Circle
                 data-test={`step-${props.step.id}`}
                 style={{

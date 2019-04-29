@@ -232,7 +232,7 @@ class Onboarding extends React.PureComponent {
         let TrezorActionText;
         if (activeStepId === ID.START_STEP) {
             // StartStep call require custom text
-            TrezorActionText = () => <P>Complete action on your device. By clicking continue you agree with <Link href={TOS_URL}>Terms of services</Link></P>;
+            TrezorActionText = () => <P>Complete action on your device. By clicking continue you agree with <Link target="_blank" href={TOS_URL}>Terms of services</Link></P>;
         } else {
             TrezorActionText = () => <P>Complete action on your device.</P>;
         }

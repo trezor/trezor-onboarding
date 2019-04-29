@@ -9,44 +9,21 @@ import { DEFAULT_LABEL } from 'constants/trezor';
 
 import { goToNextStep } from './onboardingActions';
 
-const getFeatures = () => async (dispatch) => {
-    dispatch(call(CALLS.GET_FEATURES));
-};
-
-const firmwareErase = params => async (dispatch) => {
-    dispatch(call(CALLS.FIRMWARE_ERASE, params));
-};
-const firmwareUpload = params => async (dispatch) => {
-    dispatch(call(CALLS.FIRMWARE_UPLOAD, params));
-};
-
-const resetDevice = () => async (dispatch) => {
-    dispatch(call(
-        CALLS.RESET_DEVICE, {
-            label: DEFAULT_LABEL,
-            skipBackup: true,
-            passhpraseProtection: true,
-        },
-    ));
-};
-
-const backupDevice = () => async (dispatch) => {
-    dispatch(call(CALLS.BACKUP_DEVICE));
-};
-
-const applySettings = params => async (dispatch) => {
-    dispatch(call(CALLS.APPLY_SETTINGS, params));
-};
-
-const applyFlags = params => async (dispatch) => {
-    dispatch(call(CALLS.APPLY_FLAGS, params));
-};
-
-const changePin = () => async (dispatch) => {
-    dispatch(call(CALLS.CHANGE_PIN));
-};
-
-const recoveryDevice = params => async (dispatch, getState) => {
+const getFeatures = () => dispatch => dispatch(call(CALLS.GET_FEATURES));
+const firmwareErase = params => dispatch => dispatch(call(CALLS.FIRMWARE_ERASE, params));
+const firmwareUpload = params => dispatch => dispatch(call(CALLS.FIRMWARE_UPLOAD, params));
+const resetDevice = () => dispatch => dispatch(call(
+    CALLS.RESET_DEVICE, {
+        label: DEFAULT_LABEL,
+        skipBackup: true,
+        passhpraseProtection: true,
+    },
+));
+const backupDevice = () => dispatch => dispatch(call(CALLS.BACKUP_DEVICE));
+const applySettings = params => dispatch => dispatch(call(CALLS.APPLY_SETTINGS, params));
+const applyFlags = params => dispatch => dispatch(call(CALLS.APPLY_FLAGS, params));
+const changePin = () => dispatch => dispatch(call(CALLS.CHANGE_PIN));
+const recoveryDevice = params => (dispatch, getState) => {
     let defaults;
     const { device } = getState().connect;
     const { recovery } = getState();
@@ -60,20 +37,11 @@ const recoveryDevice = params => async (dispatch, getState) => {
         type: recovery.advancedRecovery ? 1 : 0,
         word_count: recovery.wordsCount,
     };
-    dispatch(call(CALLS.RECOVER_DEVICE, { ...defaults, ...params }));
+    return dispatch(call(CALLS.RECOVER_DEVICE, { ...defaults, ...params }));
 };
-
-const wipeDevice = () => async (dispatch) => {
-    dispatch(call(CALLS.WIPE_DEVICE));
-};
-
-const submitNewPin = params => async (dispatch) => {
-    dispatch(uiResponseCall(UI.RECEIVE_PIN, params));
-};
-
-const submitWord = params => async (dispatch) => {
-    dispatch(uiResponseCall(UI.RECEIVE_WORD, params));
-};
+const wipeDevice = () => dispatch => dispatch(call(CALLS.WIPE_DEVICE));
+const submitNewPin = params => dispatch => dispatch(uiResponseCall(UI.RECEIVE_PIN, params));
+const submitWord = params => dispatch => dispatch(uiResponseCall(UI.RECEIVE_WORD, params));
 
 // todo: maybe rework this function to take concrete call function as argument;
 // todo: not used now.
