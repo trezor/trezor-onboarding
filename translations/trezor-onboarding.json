@@ -1,13 +1,4 @@
 {
-  "TR_MENU": {
-    "source": "Menu",
-    "meta": {
-      "comment": "Mobile sidebar toggler",
-      "occurrences": [
-        "src/components/GlobalWebNavigation/index.messages.js"
-      ]
-    }
-  },
   "TR_WIKI": {
     "source": "Wiki",
     "meta": {
@@ -882,7 +873,7 @@
   "TR_RESELLERS_LINK": {
     "source": "a trusted reseller",
     "meta": {
-      "comment": "Part of sentence. Link to page with trusted resellers list",
+      "comment": "Part of sentence TR_DID_YOU_PURCHASE. Link to page with trusted resellers list",
       "occurrences": [
         "src/onboarding/steps/Hologram/index.messages.js"
       ]
@@ -891,14 +882,23 @@
   "TR_CONTACT_OUR_SUPPORT_LINK": {
     "source": "contact our support",
     "meta": {
-      "comment": "Part of sentence. Link to support",
+      "comment": "Part of sentence TR_DID_YOU_PURCHASE. Link to support",
+      "occurrences": [
+        "src/onboarding/steps/Hologram/index.messages.js"
+      ]
+    }
+  },
+  "TR_PACKAGING_LINK": {
+    "source": "here",
+    "meta": {
+      "comment": "Part of sentence TR_DID_YOU_PURCHASE. Link to support",
       "occurrences": [
         "src/onboarding/steps/Hologram/index.messages.js"
       ]
     }
   },
   "TR_DID_YOU_PURCHASE": {
-    "source": "Did you purchase your device from {TR_RESELLERS_LINK}? If no, device you are holding in hands might be a counterfeit. Please {TR_CONTACT_OUR_SUPPORT_LINK}",
+    "source": "Please note, that device packaging including holograms have changed over time. You can check packaging details {TR_PACKAGING_LINK}. Also be sure you made your purchase from {TR_RESELLERS_LINK}. Otherwise device you are holding in your hands might be a counterfeit. Please {TR_CONTACT_OUR_SUPPORT_LINK}",
     "meta": {
       "comment": "Text to display when user is unhappy with his hologram.",
       "occurrences": [
@@ -964,6 +964,15 @@
     "source": "Cool name",
     "meta": {
       "comment": "Validation message in label input",
+      "occurrences": [
+        "src/onboarding/steps/Name/index.messages.js"
+      ]
+    }
+  },
+  "TR_NAME_BORING": {
+    "source": "Nah.. too boring, chose a different label",
+    "meta": {
+      "comment": "User shouldnt use My Trezor (default name) as their new custom name",
       "occurrences": [
         "src/onboarding/steps/Name/index.messages.js"
       ]
@@ -1159,7 +1168,7 @@
     }
   },
   "TR_GO_TO_SECURITY": {
-    "source": "Take me to security (5 minutes)",
+    "source": "Take me to security (recommended)",
     "meta": {
       "comment": "Button in security page (start security setup)",
       "occurrences": [
@@ -1375,7 +1384,7 @@
     }
   },
   "TR_GET_STARTED": {
-    "source": "Get started (5 minutes)",
+    "source": "Get started",
     "meta": {
       "comment": "Button on welcome page",
       "occurrences": [

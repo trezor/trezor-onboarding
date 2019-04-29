@@ -30,7 +30,7 @@
   {
     "id": "TR_GO_TO_SECURITY",
     "description": "Button in security page (start security setup)",
-    "defaultMessage": "Take me to security (5 minutes)",
+    "defaultMessage": "Take me to security (recommended)",
     "file": "src/onboarding/steps/Security/index.messages.js",
     "start": {
       "line": 14,

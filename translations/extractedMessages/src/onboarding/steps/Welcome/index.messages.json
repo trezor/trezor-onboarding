@@ -16,7 +16,7 @@
   {
     "id": "TR_GET_STARTED",
     "description": "Button on welcome page",
-    "defaultMessage": "Get started (5 minutes)",
+    "defaultMessage": "Get started",
     "file": "src/onboarding/steps/Welcome/index.messages.js",
     "start": {
       "line": 9,

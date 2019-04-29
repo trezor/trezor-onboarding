@@ -13,7 +13,7 @@ const definedMessages = defineMessages({
     },
     TR_GO_TO_SECURITY: {
         id: 'TR_GO_TO_SECURITY',
-        defaultMessage: 'Take me to security (5 minutes)',
+        defaultMessage: 'Take me to security (recommended)',
         description: 'Button in security page (start security setup)',
     },
     TR_SKIP_SECURITY: {

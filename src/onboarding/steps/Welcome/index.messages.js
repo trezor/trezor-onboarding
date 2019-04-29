@@ -8,7 +8,7 @@ const definedMessages = defineMessages({
     },
     TR_GET_STARTED: {
         id: 'TR_GET_STARTED',
-        defaultMessage: 'Get started (5 minutes)',
+        defaultMessage: 'Get started',
         description: 'Button on welcome page',
     },
 });

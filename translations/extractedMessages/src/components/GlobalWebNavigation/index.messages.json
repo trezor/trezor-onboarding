@@ -1,8 +1,8 @@
 [
   {
-    "id": "TR_MENU",
-    "description": "Mobile sidebar toggler",
-    "defaultMessage": "Menu",
+    "id": "TR_WIKI",
+    "description": "Link in header navigation",
+    "defaultMessage": "Wiki",
     "file": "src/components/GlobalWebNavigation/index.messages.js",
     "start": {
       "line": 4,
@@ -14,9 +14,9 @@
     }
   },
   {
-    "id": "TR_WIKI",
+    "id": "TR_BLOG",
     "description": "Link in header navigation",
-    "defaultMessage": "Wiki",
+    "defaultMessage": "Blog",
     "file": "src/components/GlobalWebNavigation/index.messages.js",
     "start": {
       "line": 9,
@@ -28,30 +28,16 @@
     }
   },
   {
-    "id": "TR_BLOG",
-    "description": "Link in header navigation",
-    "defaultMessage": "Blog",
-    "file": "src/components/GlobalWebNavigation/index.messages.js",
-    "start": {
-      "line": 14,
-      "column": 13
-    },
-    "end": {
-      "line": 18,
-      "column": 5
-    }
-  },
-  {
     "id": "TR_SUPPORT",
     "description": "Link in header navigation",
     "defaultMessage": "Support",
     "file": "src/components/GlobalWebNavigation/index.messages.js",
     "start": {
-      "line": 19,
+      "line": 14,
       "column": 16
     },
     "end": {
-      "line": 23,
+      "line": 18,
       "column": 5
     }
   }

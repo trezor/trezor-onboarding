@@ -96,5 +96,19 @@
       "line": 38,
       "column": 5
     }
+  },
+  {
+    "id": "TR_NAME_BORING",
+    "description": "User shouldnt use My Trezor (default name) as their new custom name",
+    "defaultMessage": "Nah.. too boring, chose a different label",
+    "file": "src/onboarding/steps/Name/index.messages.js",
+    "start": {
+      "line": 39,
+      "column": 20
+    },
+    "end": {
+      "line": 43,
+      "column": 5
+    }
   }
 ]
