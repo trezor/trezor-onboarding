@@ -1,11 +1,6 @@
 import { defineMessages } from 'react-intl';
 
 const definedMessages = defineMessages({
-    TR_MENU: {
-        id: 'TR_MENU',
-        defaultMessage: 'Menu',
-        description: 'Mobile sidebar toggler',
-    },
     TR_WIKI: {
         id: 'TR_WIKI',
         defaultMessage: 'Wiki',

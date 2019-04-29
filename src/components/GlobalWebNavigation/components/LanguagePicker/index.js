@@ -10,7 +10,7 @@ import * as BREAKPOINTS from 'config/breakpoints';
 
 const SelectWrapper = styled.div`
     display: flex;
-    color: ${colors.WHITE};
+    color: ${colors.white};
     align-items: center;
     width: 180px;
     
@@ -32,7 +32,7 @@ const SelectIcon = styled.span`
 const styles = {
     singleValue: base => ({
         ...base,
-        color: colors.WHITE,
+        color: colors.white,
         paddingLeft: '25px', // flag
     }),
     control: base => ({
@@ -56,7 +56,7 @@ const styles = {
     }),
     menu: base => ({
         ...base,
-        color: colors.WHITE,
+        color: colors.white,
         marginTop: '6px',
         boxShadow: 'none',
     }),
@@ -64,20 +64,20 @@ const styles = {
         ...base,
         padding: 0,
         boxShadow: 'none',
-        background: colors.WHITE,
-        borderLeft: `1px solid ${colors.BLACK}`,
-        borderRight: `1px solid ${colors.BLACK}`,
-        borderBottom: `1px solid ${colors.BLACK}`,
+        background: colors.white,
+        borderLeft: `1px solid ${colors.black}`,
+        borderRight: `1px solid ${colors.black}`,
+        borderBottom: `1px solid ${colors.black}`,
     }),
     option: (base, { isFocused }) => ({
         ...base,
-        color: colors.TEXT_SECONDARY,
-        background: isFocused ? colors.WHITE : colors.WHITE,
+        color: colors.black,
+        background: isFocused ? colors.white : colors.white,
         borderRadius: 0,
         textAlign: 'left',
         '&:hover': {
             cursor: 'pointer',
-            background: colors.WHITE,
+            background: colors.white,
         },
     }),
 };

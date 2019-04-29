@@ -7,7 +7,7 @@ import { Flags } from 'trezor-flags';
 import { FormattedMessage, injectIntl, intlShape } from '@dragonraider5/react-intl';
 
 import types from 'config/types';
-import { SOCIAL_FACEBOOK_URL, SOCIAL_BLOG_URL, SOCIAL_TWITTER_URL } from 'config/urls';
+import { SOCIAL_FACEBOOK_URL, BLOG_URL, SOCIAL_TWITTER_URL } from 'config/urls';
 import { IconSocial } from 'components/Icons';
 import { validateEmail } from 'utils/validate';
 import { SUBMIT_EMAIL } from 'actions/constants/fetchCalls';
@@ -179,7 +179,7 @@ class NewsleterStep extends React.Component {
                                     )
                                 }
                                 <SocialWrapper>
-                                    <Link href={SOCIAL_BLOG_URL}>
+                                    <Link href={BLOG_URL}>
                                         <IconSocial name="medium" sizeMultiplier={2} />
                                     </Link>
                                     <Link href={SOCIAL_FACEBOOK_URL}>
