@@ -5,7 +5,7 @@ import {
 } from 'trezor-ui-components';
 import { FormattedMessage } from '@dragonraider5/react-intl';
 
-import { TREZOR_RESELLERS_URL, SUPPORT_URL } from 'config/urls';
+import { TREZOR_RESELLERS_URL, TREZOR_PACKAGING_URL, SUPPORT_URL } from 'config/urls';
 import types from 'config/types';
 import { MD } from 'config/breakpoints';
 
@@ -65,6 +65,7 @@ const HologramStep = ({ onboardingActions, activeSubStep, model }) => (
                             <FormattedMessage
                                 {...l10nMessages.TR_DID_YOU_PURCHASE}
                                 values={{
+                                    TR_PACKAGING_LINK: <Link href={TREZOR_PACKAGING_URL}><FormattedMessage {...l10nMessages.TR_PACKAGING_LINK} /></Link>,
                                     TR_RESELLERS_LINK: <Link href={TREZOR_RESELLERS_URL}><FormattedMessage {...l10nMessages.TR_RESELLERS_LINK} /></Link>,
                                     TR_CONTACT_OUR_SUPPORT_LINK: <Link href={SUPPORT_URL}><FormattedMessage {...l10nMessages.TR_CONTACT_OUR_SUPPORT_LINK} /></Link>,
                                 }}

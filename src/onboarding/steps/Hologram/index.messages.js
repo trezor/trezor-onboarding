@@ -24,16 +24,21 @@ const definedMessages = defineMessages({
     TR_RESELLERS_LINK: {
         id: 'TR_RESELLERS_LINK',
         defaultMessage: 'a trusted reseller',
-        description: 'Part of sentence. Link to page with trusted resellers list',
+        description: 'Part of sentence TR_DID_YOU_PURCHASE. Link to page with trusted resellers list',
     },
     TR_CONTACT_OUR_SUPPORT_LINK: {
         id: 'TR_CONTACT_OUR_SUPPORT_LINK',
         defaultMessage: 'contact our support',
-        description: 'Part of sentence. Link to support',
+        description: 'Part of sentence TR_DID_YOU_PURCHASE. Link to support',
+    },
+    TR_PACKAGING_LINK: {
+        id: 'TR_PACKAGING_LINK',
+        defaultMessage: 'here',
+        description: 'Part of sentence TR_DID_YOU_PURCHASE. Link to support',
     },
     TR_DID_YOU_PURCHASE: {
         id: 'TR_DID_YOU_PURCHASE',
-        defaultMessage: 'Did you purchase your device from {TR_RESELLERS_LINK}? If no, device you are holding in hands might be a counterfeit. Please {TR_CONTACT_OUR_SUPPORT_LINK}',
+        defaultMessage: 'Please note, that device packaging including holograms have changed over time. You can check packaging details {TR_PACKAGING_LINK}. Also be sure you made your purchase from {TR_RESELLERS_LINK}. Otherwise device you are holding in your hands might be a counterfeit. Please {TR_CONTACT_OUR_SUPPORT_LINK}',
         description: 'Text to display when user is unhappy with his hologram.',
     },
 });
