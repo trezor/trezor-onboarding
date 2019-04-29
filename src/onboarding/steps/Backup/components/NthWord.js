@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { FormattedMessage } from '@dragonraider5/react-intl';
 
@@ -20,13 +19,14 @@ const NthWord = ({ number }) => {
 };
 
 NthWord.propTypes = {
-    number(props, propName, componentName) {
+    number: (props, propName, componentName) => {
         if (props[propName] < 1 || props[propName] > 24) {
             return new Error(
                 `Invalid prop \`${propName}\` supplied to`
                 + ` \`${componentName}\`. Validation failed.`,
             );
         }
+        return null;
     },
 };
 

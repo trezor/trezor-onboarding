@@ -1,7 +1,6 @@
 import React from 'react';
 import { injectIntl, intlShape } from '@dragonraider5/react-intl';
 
-// import { SCREEN_SIZE } from 'config/variables';
 import { Header } from 'trezor-ui-components';
 import { NAVBAR_HEIGHT, NAVBAR_HEIGHT_UNIT } from 'config/layout';
 import {
