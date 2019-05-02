@@ -29,7 +29,7 @@ export default {
         name: PropTypes.string,
         counter: PropTypes.number,
     }),
-    connectError: PropTypes.object, // todo: improve, todo: is used?
+    connectError: PropTypes.string,
     connectActions: PropTypes.objectOf(PropTypes.func), // todo: name all functions
 
     // onboardingReducer

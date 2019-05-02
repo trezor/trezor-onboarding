@@ -221,6 +221,7 @@ class Onboarding extends React.PureComponent {
             recovery,
             firmwareUpdate,
             newsletter,
+            connectError,
         } = this.props;
 
         // model is either selected by user or later overrided by connected device
@@ -281,6 +282,7 @@ class Onboarding extends React.PureComponent {
                             <WelcomeStep
                                 onboardingActions={onboardingActions}
                                 transport={transport}
+                                connectError={connectError}
                             />
                         </CSSTransition>
 

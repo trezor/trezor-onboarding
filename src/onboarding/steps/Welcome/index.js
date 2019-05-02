@@ -52,7 +52,6 @@ const FadeInWrapper = styled.div`
     }
 `;
 
-
 class WelcomeStep extends React.PureComponent {
     render() {
         return (
@@ -70,11 +69,15 @@ class WelcomeStep extends React.PureComponent {
                     </Logo>
 
                     {
-                        this.props.transport == null && <Loader>Loading<Dots maxCount={3} /></Loader>
+                        this.props.transport == null && !this.props.connectError && <Loader>Loading<Dots maxCount={3} /></Loader>
                     }
 
                     {
-                        this.props.transport !== null && (
+                        this.props.connectError && <Loader>Loading takes too long. But we are still trying. If problem persist, connect Trezor support</Loader>
+                    }
+
+                    {
+                        this.props.transport !== null && !this.props.connectError && (
                             <FadeInWrapper isConnectLoaded={this.props.transport !== null}>
                                 <H1>
                                     <FormattedMessage {...l10nMessages.TR_WELCOME_TO_TREZOR} />
@@ -95,6 +98,7 @@ class WelcomeStep extends React.PureComponent {
 WelcomeStep.propTypes = {
     onboardingActions: types.onboardingActions.isRequired,
     transport: types.transport,
+    connectError: types.connectError,
 };
 
 export default ReactTimeout(WelcomeStep);

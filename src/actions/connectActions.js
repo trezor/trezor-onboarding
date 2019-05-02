@@ -224,6 +224,7 @@ const init = () => async (dispatch) => {
     try {
         await TrezorConnect.init(connectConfig.init);
     } catch (error) {
+        // typically iframe timeout
         dispatch({
             type: CONNECT.SET_CONNECT_ERROR,
             error,

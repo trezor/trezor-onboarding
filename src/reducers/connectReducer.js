@@ -58,6 +58,7 @@ const connect = (state = initialState, action) => {
             return {
                 ...state,
                 transport: action.transport,
+                connectError: null,
             };
         case TRANSPORT_ERROR:
             return {
