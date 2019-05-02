@@ -8,6 +8,7 @@ import types from 'config/types';
 import { Dots } from 'components/Loaders';
 import { StepBodyWrapper, StepWrapper } from 'components/Wrapper';
 
+import { SeedCardModelT } from 'onboarding/steps/Backup/components/SeedCard';
 import l10nMessages from './index.messages';
 
 const ANIMATION_DURATION = 2.5;
@@ -89,6 +90,9 @@ class WelcomeStep extends React.PureComponent {
                             </FadeInWrapper>
                         )
                     }
+
+                    <SeedCardModelT showWords showBack words={Array.from(Array(24)).map(item => '*****')} />
+
                 </StepBodyWrapper>
             </StepWrapper>
         );

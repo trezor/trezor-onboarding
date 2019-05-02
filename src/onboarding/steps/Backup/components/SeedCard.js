@@ -13,9 +13,43 @@ const BORDER = `1px solid ${colors.gray}`;
 const Card = styled.div`
     width: ${WIDTH}px;
     height: ${WIDTH * RATIO}px;
-    border: ${BORDER};
-    display: flex;
     font-size: 12px;
+
+    perspective: 1000px;
+     
+`;
+
+const CardInner = styled.div`
+    position: relative;
+
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+
+    box-shadow: 0 4px 8px 0 ${colors.gray};
+    border: ${BORDER};
+
+    &:hover {
+        transform: rotateY(180deg);
+    }   
+`;
+
+const CardFront = styled.div`
+    position: absolute;
+    display: flex;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+`;
+
+const CardBack = styled.div`
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    transform: rotateY(180deg);
 `;
 
 const Line = styled.div`
@@ -116,10 +150,10 @@ const Back = styled.div`
 
 const SeedCardModelT = ({
     showBack = false, words = [], wordsNumber = 24, checkingWordNumber = null, writingWordNumber = null,
-}) => {
-    if (!showBack) {
-        return (
-            <Card>
+}) => (
+    <Card>
+        <CardInner>
+            <CardFront>
                 <FrontLeft>
                     <TrezorLogoVertical />
                 </FrontLeft>
@@ -135,28 +169,28 @@ const SeedCardModelT = ({
                         DO NOT DISCLOSE THE SEED <br /> TO ANYBODY
                     </DoNotDisclose>
                 </FrontRight>
-            </Card>
-        );
-    }
-    return (
-        <Card>
-            <Back>
-                { Array.from(Array(wordsNumber)).map((item, index) => (
-                    <Line key={item}>
-                        <LineNumber>{ index + 1 }</LineNumber>
-                        <LineBox isChecking={index + 1 === checkingWordNumber}>
-                            <LineWord>{ words[index] }</LineWord>
-                            {
-                                (index + 1 === writingWordNumber || index + 1 === checkingWordNumber) && <Pencil animate={index + 1 === writingWordNumber} style={{ marginBottom: '24px' }} />
-                            }
-                        </LineBox>
-                    </Line>
-                ))
-                }
-            </Back>
-        </Card>
-    );
-};
+            </CardFront>
+            <CardBack>
+                <Back>
+                    { Array.from(Array(wordsNumber)).map((item, index) => (
+                        <Line key={item}>
+                            <LineNumber>{ index + 1 }</LineNumber>
+                            <LineBox isChecking={index + 1 === checkingWordNumber}>
+                                <LineWord>{ words[index] }</LineWord>
+                                {
+                                    (index + 1 === writingWordNumber || index + 1 === checkingWordNumber) && <Pencil animate={index + 1 === writingWordNumber} style={{ marginBottom: '24px' }} />
+                                }
+                            </LineBox>
+                        </Line>
+                    ))
+                    }
+                </Back>
+            </CardBack>
+        </CardInner>
+
+
+    </Card>
+);
 
 SeedCardModelT.propTypes = {
     showBack: PropTypes.bool,
