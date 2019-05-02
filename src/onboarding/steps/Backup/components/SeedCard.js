@@ -15,8 +15,7 @@ const Card = styled.div`
     height: ${WIDTH * RATIO}px;
     font-size: 12px;
 
-    perspective: 1000px;
-     
+    perspective: 1000px; 
 `;
 
 const CardInner = styled.div`
@@ -27,12 +26,13 @@ const CardInner = styled.div`
     text-align: center;
     transition: transform 0.8s;
     transform-style: preserve-3d;
-
+    
+    transform: ${({ showBack }) => (showBack ? 'rotateY(180deg)' : 'rotateY(0)')};
     box-shadow: 0 4px 8px 0 ${colors.gray};
     border: ${BORDER};
 
     &:hover {
-        transform: rotateY(180deg);
+        transform: ${({ showBack }) => (!showBack ? 'rotateY(180deg)' : 'rotateY(0)')};
     }   
 `;
 
@@ -152,7 +152,7 @@ const SeedCardModelT = ({
     showBack = false, words = [], wordsNumber = 24, checkingWordNumber = null, writingWordNumber = null,
 }) => (
     <Card>
-        <CardInner>
+        <CardInner showBack={showBack}>
             <CardFront>
                 <FrontLeft>
                     <TrezorLogoVertical />
@@ -173,7 +173,8 @@ const SeedCardModelT = ({
             <CardBack>
                 <Back>
                     { Array.from(Array(wordsNumber)).map((item, index) => (
-                        <Line key={item}>
+                        // eslint-disable-next-line react/no-array-index-key
+                        <Line key={`${item}-${index}`}>
                             <LineNumber>{ index + 1 }</LineNumber>
                             <LineBox isChecking={index + 1 === checkingWordNumber}>
                                 <LineWord>{ words[index] }</LineWord>

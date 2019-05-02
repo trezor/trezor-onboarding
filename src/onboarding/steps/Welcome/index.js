@@ -91,7 +91,8 @@ class WelcomeStep extends React.PureComponent {
                         )
                     }
 
-                    <SeedCardModelT showWords showBack words={Array.from(Array(24)).map(item => '*****')} />
+                    <SeedCardModelT showWords words={Array.from(Array(24)).map(() => '*****')} />
+                    <SeedCardModelT showWords showBack words={Array.from(Array(24)).map(() => '*****')} />
 
                 </StepBodyWrapper>
             </StepWrapper>

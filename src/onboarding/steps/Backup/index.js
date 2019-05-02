@@ -58,6 +58,7 @@ class BackupStep extends React.Component {
         this.state = {
             userUnderstands: false,
             words: [],
+            // cardFlipped: false,
         };
         this.interval = null;
     }
