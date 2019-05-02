@@ -52,7 +52,8 @@ const TRANSITION_PROPS = {
 const WrapperOutside = styled.div`
     display: flex;
     flex-direction: column;
-    
+    min-height: calc(100vh - ${NAVBAR_HEIGHT}${NAVBAR_HEIGHT_UNIT});
+
     @media only screen and (min-width: ${SM}px) {
         ${props => (props.animate && css`animation: ${backgroundAnimation} 1s linear`)};
         ${props => (
