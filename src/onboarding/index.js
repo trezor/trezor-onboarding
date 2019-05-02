@@ -101,7 +101,6 @@ const ProgressStepsSlot = styled.div`
 
 const ComponentWrapper = styled.div`
     display: flex;
-    margin-bottom: 5%;
     min-height: ${STEP_HEIGHT}${STEP_HEIGHT_UNIT}
 `;
 
