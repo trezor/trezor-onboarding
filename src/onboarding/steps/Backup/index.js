@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import {
-    H4, P, Button, Checkbox, Icon, Link,
+    H4, P, Button, Checkbox, Icon, Link, Prompt,
 } from 'trezor-ui-components';
 import { FormattedMessage } from '@dragonraider5/react-intl';
 
@@ -98,8 +98,12 @@ class BackupStep extends React.Component {
             'into', 'a', 'form', 'like', 'this', 'only', 'scammers', 'will', 'do'];
         if (this.interval === null && this.state.words.length === 0) {
             this.interval = setInterval(() => {
+                if (words.length === this.state.words.length) {
+                    clearInterval(this.interval);
+                    return;
+                }
                 this.setState(prevState => ({ words: [...prevState.words, words[prevState.words.length + 1]] }));
-            }, 800);
+            }, 600);
         }
     }
 
@@ -116,7 +120,7 @@ class BackupStep extends React.Component {
                     { this.getStatus() === BackupStep.FAILED_STATUS && 'Backup failed' }
                     {
                         this.getStatus() === BackupStep.STARTED_STATUS && deviceInteraction.counter <= 24 && (
-                            'Write down seed words'
+                            'Write down seed words from your device'
                         )
                     }
                     {
@@ -193,7 +197,7 @@ class BackupStep extends React.Component {
                                         <FormattedMessage {...l10nMessages.TR_SATOSHILABS_CANNOT_BE_HELD_RESPONSIBLE} />
                                     </P>
                                 </Panel>
-                                <CheckboxWrapper style={{ alignSelf: 'flex-start' }}>
+                                <CheckboxWrapper>
                                     <Checkbox
                                         isChecked={this.state.userUnderstands}
                                         onClick={() => this.setState(prevState => ({ userUnderstands: !prevState.userUnderstands }))}
@@ -208,7 +212,7 @@ class BackupStep extends React.Component {
                                         onClick={() => { this.props.onboardingActions.goToSubStep('recovery-card-front'); }}
                                         isDisabled={!device || !this.state.userUnderstands}
                                     >
-                                        <FormattedMessage {...l10nMessages.TR_START_BACKUP} />
+                                        Continue
                                     </Button>
                                 </ControlsWrapper>
                             </React.Fragment>
@@ -222,7 +226,7 @@ class BackupStep extends React.Component {
                                     This is your recovery card. You should find two of them in the package. In few moments, this
                                     piece of paper will become more important than your device.
                                 </Text>
-                                <SeedCardModelT />
+                                <SeedCardModelT flipOnMouseOver />
                                 <ControlsWrapper>
                                     <Button
                                         // onClick={() => this.setState({ showWords: true })}
@@ -239,7 +243,7 @@ class BackupStep extends React.Component {
                         this.getStatus() === 'recovery-card-back' && (
                             <React.Fragment>
                                 <Text>
-                                    Device will tell secret sequence of words. You should write them down here.
+                                    Device will show you a secret sequence of words. You should write them down here.
                                 </Text>
                                 <SeedCardModelT showBack />
                                 <ControlsWrapper>
@@ -257,13 +261,27 @@ class BackupStep extends React.Component {
 
                     {
                         this.getStatus() === BackupStep.STARTED_STATUS && (
-                            <SeedCardModelT
-                                showBack
-                                wordsNumber={24}
-                                words={Array.from(Array(deviceInteraction.counter < 24 ? deviceInteraction.counter - 1 : 24)).map(() => '*****')}
-                                checkingWordNumber={deviceInteraction.counter - 24 > 0 ? deviceInteraction.counter - 24 : null}
-                                writingWordNumber={deviceInteraction.counter <= 24 ? deviceInteraction.counter : null}
-                            />
+                            <React.Fragment>
+
+                                <SeedCardModelT
+                                    showBack
+                                    wordsNumber={24}
+                                    words={Array.from(Array(deviceInteraction.counter < 24 ? deviceInteraction.counter - 1 : 24)).map(() => '*****')}
+                                    checkingWordNumber={deviceInteraction.counter - 24 > 0 ? deviceInteraction.counter - 24 : null}
+                                    writingWordNumber={deviceInteraction.counter <= 24 ? deviceInteraction.counter : null}
+                                />
+                                <div style={{ marginTop: '100px' }}>
+                                    <Prompt model={device.features.major_version} size={32}>
+                                        {
+                                            deviceInteraction.counter > 24 && <Text>Check the {deviceInteraction.counter - 24}. word on your device</Text>
+                                        }
+                                        {
+                                            deviceInteraction.counter <= 24 && <Text>Write down the {deviceInteraction.counter}. word from your device</Text>
+                                        }
+                                    </Prompt>
+                                </div>
+                            </React.Fragment>
+
                         )
                     }
 
@@ -325,9 +343,14 @@ class BackupStep extends React.Component {
                                 />
 
                                 <ControlsWrapper>
-                                    <Button onClick={() => onboardingActions.goToNextStep()}>
-                                        <FormattedMessage {...l10nMessages.TR_BACKUP_FINISHED_BUTTON} />
-                                    </Button>
+                                    {/* todo: this is just temporary protyping */}
+                                    {
+                                        this.state.words.length === 22 && (
+                                            <Button onClick={() => onboardingActions.goToNextStep()}>
+                                                <FormattedMessage {...l10nMessages.TR_BACKUP_FINISHED_BUTTON} />
+                                            </Button>
+                                        )
+                                    }
                                 </ControlsWrapper>
                             </React.Fragment>
                         )

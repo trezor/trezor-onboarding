@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import PropTypes from 'prop-types';
 import { Icon } from 'trezor-ui-components';
 
@@ -31,9 +31,11 @@ const CardInner = styled.div`
     box-shadow: 0 4px 8px 0 ${colors.gray};
     border: ${BORDER};
 
-    &:hover {
-        transform: ${({ showBack }) => (!showBack ? 'rotateY(180deg)' : 'rotateY(0)')};
-    }   
+    ${props => (props.flipOnMouseOver && css`
+        &:hover {
+            transform: ${({ showBack }) => (!showBack ? 'rotateY(180deg)' : 'rotateY(0)')};
+        }
+    `)};
 `;
 
 const CardFront = styled.div`
@@ -149,10 +151,15 @@ const Back = styled.div`
 `;
 
 const SeedCardModelT = ({
-    showBack = false, words = [], wordsNumber = 24, checkingWordNumber = null, writingWordNumber = null,
+    showBack = false,
+    words = [],
+    wordsNumber = 24,
+    checkingWordNumber = null,
+    writingWordNumber = null,
+    flipOnMouseOver = false,
 }) => (
     <Card>
-        <CardInner showBack={showBack}>
+        <CardInner showBack={showBack} flipOnMouseOver={flipOnMouseOver}>
             <CardFront>
                 <FrontLeft>
                     <TrezorLogoVertical />
@@ -199,6 +206,7 @@ SeedCardModelT.propTypes = {
     wordsNumber: PropTypes.number,
     checkingWordNumber: PropTypes.number,
     writingWordNumber: PropTypes.number,
+    flipOnMouseOver: PropTypes.bool,
 };
 
 export { SeedCardModelT };
