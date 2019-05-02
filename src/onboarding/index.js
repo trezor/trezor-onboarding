@@ -62,7 +62,7 @@ const WrapperOutside = styled.div`
         props.animate && css`
             background-image: url(${background2});
             background-size: cover;
-        `)};        
+        `)};
     }
 `;
 
