@@ -18,6 +18,7 @@ import {
     NAVBAR_HEIGHT,
     NAVBAR_HEIGHT_UNIT,
 } from 'config/layout';
+import { STEP_ANIMATION_DURATION } from 'constants/constants';
 import ProgressSteps from 'components/ProgressSteps';
 
 import { ID } from 'constants/steps';
@@ -42,9 +43,8 @@ import ConnectStep from 'onboarding/steps/Connect';
 import background2 from './background2.jpg';
 
 const BORDER_RADIUS = 12;
-const ANIMATION_DURATION = 401;
 const TRANSITION_PROPS = {
-    timeout: ANIMATION_DURATION,
+    timeout: STEP_ANIMATION_DURATION,
     classNames: 'step-transition',
     unmountOnExit: true,
 };
@@ -53,6 +53,8 @@ const WrapperOutside = styled.div`
     display: flex;
     flex-direction: column;
     min-height: calc(100vh - ${NAVBAR_HEIGHT}${NAVBAR_HEIGHT_UNIT});
+    max-width: 100vw;
+    overflow-x: hidden;
 
     @media only screen and (min-width: ${SM}px) {
         ${props => (props.animate && css`animation: ${backgroundAnimation} 1s linear`)};
@@ -278,7 +280,6 @@ class Onboarding extends React.PureComponent {
                             )
                         }
 
-                        {/* todo [vladimir]: how to find that I pass props and dont use them in component? any tooling? */}
                         <CSSTransition in={activeStepId === ID.WELCOME_STEP} {...TRANSITION_PROPS}>
                             <WelcomeStep
                                 onboardingActions={onboardingActions}

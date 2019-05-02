@@ -1,5 +1,6 @@
 import { createGlobalStyle } from 'styled-components';
 import reset from 'styled-reset';
+import { STEP_ANIMATION_DURATION } from 'constants/constants';
 
 const baseStyles = createGlobalStyle`
     ${reset}
@@ -47,7 +48,7 @@ const baseStyles = createGlobalStyle`
     .step-transition-enter-active {
         opacity: 1;
         transform: translateX(0);
-        transition: opacity 400ms cubic-bezier(1,-0.01,1,-0.02), transform 400ms linear;
+        transition: opacity ${STEP_ANIMATION_DURATION}ms cubic-bezier(1,-0.01,1,-0.02), transform ${STEP_ANIMATION_DURATION}ms linear;
     }
 
     .step-transition-exit {
@@ -58,7 +59,7 @@ const baseStyles = createGlobalStyle`
     .step-transition-exit-active {
         opacity: 0;
         transform: translateX(-20%);
-        transition: opacity 400ms cubic-bezier(0,1.01,0,1), transform 400ms linear;
+        transition: opacity ${STEP_ANIMATION_DURATION}ms cubic-bezier(0,1.01,0,1), transform ${STEP_ANIMATION_DURATION}ms linear;
     }
 `;
 
