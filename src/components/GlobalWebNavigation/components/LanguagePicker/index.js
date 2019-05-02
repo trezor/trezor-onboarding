@@ -13,7 +13,8 @@ const SelectWrapper = styled.div`
     color: ${colors.white};
     align-items: center;
     width: 180px;
-    
+    max-width: 30vw;
+
     @media screen and (max-width: ${BREAKPOINTS.MD}) {
         width: 140px;
     }
