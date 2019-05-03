@@ -63,15 +63,15 @@ const HologramStep = ({
                                 {
                                     (!actualVersion || actualVersion === model) && (
                                         <React.Fragment>
+                                            <Button onClick={() => onboardingActions.goToNextStep()}>
+                                                <FormattedMessage {...l10nMessages.TR_HOLOGRAM_STEP_ACTION_OK} />
+                                            </Button>
                                             <Button
                                                 data-test="button-hologram-different"
                                                 onClick={() => onboardingActions.goToSubStep('hologram-different')}
                                                 isWhite
                                             >
                                                 <FormattedMessage {...l10nMessages.TR_HOLOGRAM_STEP_ACTION_NOT_OK} />
-                                            </Button>
-                                            <Button onClick={() => onboardingActions.goToNextStep()}>
-                                                <FormattedMessage {...l10nMessages.TR_HOLOGRAM_STEP_ACTION_OK} />
                                             </Button>
                                         </React.Fragment>
                                     )

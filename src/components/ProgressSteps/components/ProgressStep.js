@@ -4,7 +4,6 @@ import styled from 'styled-components';
 
 import colors from 'config/colors';
 import types from 'config/types';
-import { ID } from 'constants/steps';
 import Line from './Line';
 
 const ProgressStepWrapper = styled.div`
@@ -48,9 +47,7 @@ const ProgressStep = (props) => {
         backgroundColor = colors.brandPrimary;
     }
 
-    const notClickableDots = [ID.INIT_DEVICE];
-
-    const isClickable = !notClickableDots.includes(props.step.id) && props.isFinished;
+    const isClickable = props.isFinished && !props.isDisabled && props.step.id;
 
     let order;
     if (props.isGoingForward) {
@@ -110,6 +107,7 @@ ProgressStep.propTypes = {
     onboardingActions: types.onboardingActions,
     isGoingForward: PropTypes.bool,
     changeOverHowManySteps: PropTypes.number,
+    isDisabled: PropTypes.bool,
 };
 
 export default ProgressStep;

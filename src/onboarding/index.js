@@ -264,6 +264,7 @@ class Onboarding extends React.PureComponent {
                                     steps={steps}
                                     activeStep={this.getStep(activeStepId)}
                                     onboardingActions={onboardingActions}
+                                    isDisabled={deviceCall.isProgress}
                                 />
                             </ProgressStepsWrapper>
                         )}

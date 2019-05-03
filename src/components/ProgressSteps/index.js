@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
 import types from 'config/types';
 import { ID } from 'constants/steps';
@@ -34,7 +35,7 @@ class ProgressSteps extends React.Component {
     }
 
     getStepsWithDots() {
-        const isSecurityActive = SECURITY_CLUSTER.includes(this.props.activeStep.id);
+        const isSecurityActive = this.isSecurityActive();
         let steps = [];
         if (isSecurityActive) {
             steps = this.props.steps.reduce((accumulator, current) => {
@@ -44,7 +45,6 @@ class ProgressSteps extends React.Component {
                 return accumulator;
             }, [{
                 title: 'Basic setup',
-                id: 'select-device',
             }]);
         } else {
             steps = this.props.steps.reduce((accumulator, current) => {
@@ -61,30 +61,35 @@ class ProgressSteps extends React.Component {
         return steps.filter(step => step.title);
     }
 
+    isSecurityActive() {
+        return SECURITY_CLUSTER.includes(this.props.activeStep.id);
+    }
+
     isStepFinished(steps, index, activeStep) {
         const activeStepIndex = steps.findIndex(s => s.title === activeStep.title);
         return activeStepIndex > index;
     }
 
     render() {
-        const { props } = this;
+        const { isDisabled, onboardingActions, activeStep } = this.props;
         const steps = this.getStepsWithDots();
 
         return (
             <React.Fragment>
                 <Wrapper>
                     { steps.map((step, index) => (
-                        <React.Fragment key={step.id}>
+                        <React.Fragment key={`${step.id}-${step.title}`}>
                             <ProgressStep
                                 isGoingForward={this.isGoingForward}
                                 step={step}
                                 index={index}
-                                length={props.steps.length}
-                                isActive={props.activeStep.title === step.title}
-                                isFinished={this.isStepFinished(steps, index, props.activeStep)}
+                                length={steps.length}
+                                isActive={activeStep.title === step.title}
+                                isFinished={this.isStepFinished(steps, index, activeStep)}
                                 isLast={steps.length - 1 === index}
-                                onboardingActions={props.onboardingActions}
+                                onboardingActions={onboardingActions}
                                 changeOverHowManySteps={this.changeOverHowManySteps}
+                                isDisabled={isDisabled}
                             />
                         </React.Fragment>
                     ))}
@@ -97,6 +102,9 @@ class ProgressSteps extends React.Component {
 ProgressSteps.propTypes = {
     activeStep: types.step.isRequired,
     steps: types.steps,
+    onboardingActions: types.onboardingActions,
+    isDisabled: PropTypes.bool,
+
 };
 
 export default ProgressSteps;

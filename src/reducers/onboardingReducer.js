@@ -24,22 +24,18 @@ const initialState = {
         {
             id: ID.SELECT_DEVICE_STEP,
             title: TITLE.SELECT_DEVICE_STEP,
-            cluster: TITLE.INIT_DEVICE,
         },
         {
             id: ID.UNBOXING_STEP,
             title: TITLE.UNBOXING_STEP,
-            cluster: TITLE.INIT_DEVICE,
         },
         {
             id: ID.BRIDGE_STEP,
             title: TITLE.BRIDGE_STEP,
-            cluster: TITLE.INIT_DEVICE,
         },
         {
             id: ID.CONNECT_STEP,
             title: TITLE.BRIDGE_STEP,
-            cluster: TITLE.INIT_DEVICE,
             disdisallowedDeviceStates: [
                 DISALLOWED_STATE.DEVICE_IS_NOT_USED_HERE,
             ],
@@ -47,7 +43,6 @@ const initialState = {
         {
             id: ID.FIRMWARE_STEP,
             title: TITLE.FIRMWARE_STEP,
-            cluster: TITLE.INIT_DEVICE,
             disallowedDeviceStates: [
                 DISALLOWED_STATE.DEVICE_IS_NOT_USED_HERE,
                 DISALLOWED_STATE.IS_NOT_SAME_DEVICE,
@@ -56,7 +51,6 @@ const initialState = {
         {
             id: ID.START_STEP,
             title: TITLE.START_STEP,
-            cluster: TITLE.INIT_DEVICE,
             disallowedDeviceStates: [
                 DISALLOWED_STATE.DEVICE_IS_NOT_CONNECTED,
                 DISALLOWED_STATE.DEVICE_IS_IN_BOOTLOADER,
@@ -76,7 +70,6 @@ const initialState = {
         {
             id: ID.BACKUP_STEP,
             title: TITLE.BACKUP_STEP,
-            cluster: TITLE.SECURITY_STEP,
             disallowedDeviceStates: [
                 DISALLOWED_STATE.DEVICE_IS_NOT_CONNECTED,
                 DISALLOWED_STATE.DEVICE_IS_IN_BOOTLOADER,
@@ -87,7 +80,6 @@ const initialState = {
         {
             id: ID.SET_PIN_STEP,
             title: TITLE.SET_PIN_STEP,
-            cluster: TITLE.SECURITY_STEP,
             disallowedDeviceStates: [
                 DISALLOWED_STATE.DEVICE_IS_NOT_CONNECTED,
                 DISALLOWED_STATE.DEVICE_IS_IN_BOOTLOADER,
@@ -98,7 +90,6 @@ const initialState = {
         {
             id: ID.NAME_STEP,
             title: TITLE.NAME_STEP,
-            cluster: TITLE.SECURITY_STEP,
             disallowedDeviceStates: [
                 DISALLOWED_STATE.DEVICE_IS_NOT_CONNECTED,
                 DISALLOWED_STATE.DEVICE_IS_IN_BOOTLOADER,
@@ -110,7 +101,6 @@ const initialState = {
         {
             id: ID.BOOKMARK_STEP,
             title: TITLE.BOOKMARK_STEP,
-            cluster: TITLE.SECURITY_STEP,
             disallowedDeviceStates: [
                 DISALLOWED_STATE.DEVICE_IS_NOT_CONNECTED,
                 DISALLOWED_STATE.DEVICE_IS_IN_BOOTLOADER,
@@ -122,7 +112,6 @@ const initialState = {
         {
             id: ID.NEWSLETTER_STEP,
             title: TITLE.NEWSLETTER_STEP,
-            cluster: TITLE.SECURITY_STEP,
             disallowedDeviceStates: [
                 DISALLOWED_STATE.DEVICE_IS_NOT_CONNECTED,
                 DISALLOWED_STATE.DEVICE_IS_IN_BOOTLOADER,
