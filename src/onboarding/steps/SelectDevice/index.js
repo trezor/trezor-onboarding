@@ -55,12 +55,12 @@ const SelectDeviceStep = ({ onboardingActions, model, device }) => {
             </StepBodyWrapper>
         </StepWrapper>
     );
-
 };
 
 SelectDeviceStep.propTypes = {
     onboardingActions: types.onboardingActions,
     model: types.model,
+    device: types.device,
 };
 
 export default SelectDeviceStep;

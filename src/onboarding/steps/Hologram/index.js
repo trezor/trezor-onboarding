@@ -61,7 +61,7 @@ const HologramStep = ({
                                     )
                                 }
                                 {
-                                    actualVersion === model && (
+                                    (!actualVersion || actualVersion === model) && (
                                         <React.Fragment>
                                             <Button
                                                 data-test="button-hologram-different"

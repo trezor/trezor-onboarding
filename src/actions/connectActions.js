@@ -12,13 +12,27 @@ import { goToNextStep } from './onboardingActions';
 const getFeatures = () => dispatch => dispatch(call(CALLS.GET_FEATURES));
 const firmwareErase = params => dispatch => dispatch(call(CALLS.FIRMWARE_ERASE, params));
 const firmwareUpload = params => dispatch => dispatch(call(CALLS.FIRMWARE_UPLOAD, params));
-const resetDevice = () => dispatch => dispatch(call(
-    CALLS.RESET_DEVICE, {
-        label: DEFAULT_LABEL,
-        skipBackup: true,
-        passhpraseProtection: true,
-    },
-));
+const resetDevice = () => (dispatch, getState) => {
+    const { device } = getState().connect;
+    if (device.features.major_version === 1) {
+        return dispatch(call(
+            CALLS.RESET_DEVICE, {
+                label: DEFAULT_LABEL,
+                skipBackup: true,
+                passhpraseProtection: true,
+            },
+        ));
+    }
+    return dispatch(call(
+        CALLS.RESET_DEVICE, {
+            strength: 128,
+            label: DEFAULT_LABEL,
+            skipBackup: true,
+            passhpraseProtection: true,
+        },
+    ));
+};
+
 const backupDevice = () => dispatch => dispatch(call(CALLS.BACKUP_DEVICE));
 const applySettings = params => dispatch => dispatch(call(CALLS.APPLY_SETTINGS, params));
 const applyFlags = params => dispatch => dispatch(call(CALLS.APPLY_FLAGS, params));
@@ -31,12 +45,14 @@ const recoveryDevice = params => (dispatch, getState) => {
         defaults = {
             passphrase_protection: true,
         };
+    } else {
+        defaults = {
+            passphrase_protection: true,
+            type: recovery.advancedRecovery ? 1 : 0,
+            word_count: recovery.wordsCount,
+        };
     }
-    defaults = {
-        passphrase_protection: true,
-        type: recovery.advancedRecovery ? 1 : 0,
-        word_count: recovery.wordsCount,
-    };
+
     return dispatch(call(CALLS.RECOVER_DEVICE, { ...defaults, ...params }));
 };
 const wipeDevice = () => dispatch => dispatch(call(CALLS.WIPE_DEVICE));
