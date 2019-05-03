@@ -145,7 +145,6 @@ const onboarding = (state = initialState, action) => {
                 ...state,
                 activeStepId: action.stepId,
                 activeSubStep: null,
-                downloadClicked: false,
                 steps: state.steps.map(((step) => {
                     if (step.id === action.stepId) {
                         return {
@@ -199,12 +198,6 @@ const onboarding = (state = initialState, action) => {
                 ...state,
                 language: action.language,
                 messages: action.messages,
-            };
-        }
-        case TOGGLE_DOWNLOAD_CLICKED: {
-            return {
-                ...state,
-                downloadClicked: !state.downloadClicked,
             };
         }
         default:

@@ -72,7 +72,6 @@ class InstallBridge extends PureComponent {
 
     download() {
         this.props.onboardingActions.goToSubStep('downloading');
-        this.props.onboardingActions.toggleDownloadClicked();
     }
 
     render() {
