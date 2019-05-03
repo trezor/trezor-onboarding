@@ -7,6 +7,7 @@ import PropTypes from 'prop-types';
 import { DISALLOWED_STATE } from 'constants/steps';
 import types from 'config/types';
 import PinMatrix from 'components/PinMatrix';
+import Text from 'components/Text';
 
 import l10nMessages from './index.messages';
 import Reconnect from './Reconnect';
@@ -40,17 +41,23 @@ const IsNotInBootloader = () => (
     </P>
 );
 
-const IsDeviceRequestingPin = ({ connectActions }) => (
+const IsDeviceRequestingPin = ({ connectActions, uiInteraction }) => (
     <React.Fragment>
         <H2>
-            <FormattedMessage {...l10nMessages.TR_ENTER_PIN_HEADING} />
+            { uiInteraction.counter === 1 && <FormattedMessage {...l10nMessages.TR_ENTER_PIN_HEADING} /> }
+            { uiInteraction.counter > 1 && 'Incorrect PIN entered' }
         </H2>
-        <P>
-            <FormattedMessage {...l10nMessages.TR_ENTER_PIN_TEXT} />
-        </P>
+        <Text>
+            {
+                uiInteraction.counter === 1 && <FormattedMessage {...l10nMessages.TR_ENTER_PIN_TEXT} />
+            }
+            {
+                uiInteraction.counter > 1 && 'You entered wrong PIN. To make sure, that your device can not be accessed by unauthorized person, it will get wiped after 16 incorrect entries.'
+            }
+
+        </Text>
         <PinMatrix onPinSubmit={
             (pin) => {
-                console.warn('pin', pin, connectActions);
                 connectActions.submitNewPin({ pin });
             }
         }
@@ -60,6 +67,7 @@ const IsDeviceRequestingPin = ({ connectActions }) => (
 
 IsDeviceRequestingPin.propTypes = {
     connectActions: types.connectActions,
+    uiInteraction: types.uiInteraction,
 };
 
 const DeviceIsUsedHere = ({ connectActions }) => (
@@ -83,7 +91,7 @@ DeviceIsUsedHere.propTypes = {
 };
 
 const UnexpectedState = ({
-    caseType, model, connectActions, onboardingActions,
+    caseType, model, connectActions, onboardingActions, uiInteraction,
 }) => {
     switch (caseType) {
         case DISALLOWED_STATE.DEVICE_IS_NOT_CONNECTED:
@@ -93,7 +101,7 @@ const UnexpectedState = ({
         case DISALLOWED_STATE.DEVICE_IS_IN_BOOTLOADER:
             return <UnexpectedStateCommon onboardingActions={onboardingActions}><IsNotInBootloader /></UnexpectedStateCommon>;
         case DISALLOWED_STATE.DEVICE_IS_REQUESTING_PIN:
-            return <UnexpectedStateCommon onboardingActions={onboardingActions}><IsDeviceRequestingPin connectActions={connectActions} /></UnexpectedStateCommon>;
+            return <UnexpectedStateCommon onboardingActions={onboardingActions}><IsDeviceRequestingPin uiInteraction={uiInteraction} connectActions={connectActions} /></UnexpectedStateCommon>;
         case DISALLOWED_STATE.DEVICE_IS_NOT_USED_HERE:
             return <UnexpectedStateCommon onboardingActions={onboardingActions}><DeviceIsUsedHere connectActions={connectActions} /></UnexpectedStateCommon>;
         default:
@@ -106,6 +114,7 @@ UnexpectedState.propTypes = {
     model: types.selectedModel,
     connectActions: types.connectActions,
     onboardingActions: types.onboardingActions,
+    uiInteraction: types.uiInteraction,
 };
 
 export default UnexpectedState;

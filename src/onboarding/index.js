@@ -252,6 +252,7 @@ class Onboarding extends React.PureComponent {
                                     model={model}
                                     connectActions={connectActions}
                                     onboardingActions={onboardingActions}
+                                    uiInteraction={uiInteraction}
                                 />
                             </UnexpectedStateOverlay>
                         )

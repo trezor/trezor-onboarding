@@ -158,7 +158,13 @@ class PinMatrix extends React.Component {
                 </PinRow>
 
                 <PinFooter>
-                    <Button type="button" onClick={() => onPinSubmit(pin)}>
+                    <Button
+                        type="button"
+                        onClick={() => {
+                            onPinSubmit(pin);
+                            this.setState({ pin: '' });
+                        }}
+                    >
                         <FormattedMessage {...l10nMessages.TR_ENTER_PIN} />
                     </Button>
                     <P isSmaller>
