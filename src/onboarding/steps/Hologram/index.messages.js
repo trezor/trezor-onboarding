@@ -38,7 +38,7 @@ const definedMessages = defineMessages({
     },
     TR_DID_YOU_PURCHASE: {
         id: 'TR_DID_YOU_PURCHASE',
-        defaultMessage: 'Please note, that device packaging including holograms have changed over time. You can check packaging details {TR_PACKAGING_LINK}. Also be sure you made your purchase from {TR_RESELLERS_LINK}. Otherwise device you are holding in your hands might be a counterfeit. Please {TR_CONTACT_OUR_SUPPORT_LINK}',
+        defaultMessage: 'Please note, that device packaging including holograms have changed over time. You can check packaging details {TR_PACKAGING_LINK}. Also be sure you made your purchase from {TR_RESELLERS_LINK}. Otherwise, the device you are holding in your hands might be a counterfeit. Please {TR_CONTACT_OUR_SUPPORT_LINK}',
         description: 'Text to display when user is unhappy with his hologram.',
     },
 });

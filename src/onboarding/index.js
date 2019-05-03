@@ -226,10 +226,9 @@ class Onboarding extends React.PureComponent {
             newsletter,
             connectError,
         } = this.props;
+        // todo: refactor model to selectedModel;
+        const model = selectedModel;
 
-        // model is either selected by user or later overrided by connected device
-
-        const model = device && device.features && device.features.major_version ? device.features.major_version : selectedModel;
         // todo: solve how to handle cases we fail to init connect;
         const errorStates = this.handleErrors();
         // todo: wrap this up to separete component probably
@@ -292,6 +291,7 @@ class Onboarding extends React.PureComponent {
                             <SelectDeviceStep
                                 model={model}
                                 onboardingActions={onboardingActions}
+                                device={device}
                             />
                         </CSSTransition>
 
@@ -300,6 +300,7 @@ class Onboarding extends React.PureComponent {
                                 onboardingActions={onboardingActions}
                                 model={model}
                                 activeSubStep={activeSubStep}
+                                device={device}
                             />
                         </CSSTransition>
 

@@ -303,19 +303,6 @@ class RecoveryStep extends React.Component {
                         </React.Fragment>
                     )
                 }
-
-                {
-                    this.getStatus() === 'success' && (
-                        <React.Fragment>
-                            <Text>
-                                <FormattedMessage {...l10nMessages.TR_RECOVERY_SUCCESS} />
-                            </Text>
-                            <Button onClick={() => this.props.onboardingActions.goToNextStep()}>
-                                <FormattedMessage {...l10nCommonMessages.TR_CONTINUE} />
-                            </Button>
-                        </React.Fragment>
-                    )
-                }
             </React.Fragment>
         );
     }
