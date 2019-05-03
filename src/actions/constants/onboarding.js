@@ -6,5 +6,3 @@ export const SET_ACTIVE_CLUSTER_ID = 'onboarding__set__active__cluster__id';
 export const SET_APPLICATION_ERROR = 'onboarding__set__application__error';
 export const SET_STEPS = 'onboarding__set__steps';
 export const SET_LOCALIZATION = 'onboarding__set__localization';
-
-export const TOGGLE_DOWNLOAD_CLICKED = 'onboarding__toggle__download__clicked';

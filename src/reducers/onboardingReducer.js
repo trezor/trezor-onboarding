@@ -6,7 +6,6 @@ import {
     SET_STEPS,
     SET_APPLICATION_ERROR,
     SET_LOCALIZATION,
-    TOGGLE_DOWNLOAD_CLICKED,
     SET_ACTIVE_CLUSTER_ID,
 } from 'actions/constants/onboarding';
 import { ID, TITLE, DISALLOWED_STATE } from 'constants/steps';

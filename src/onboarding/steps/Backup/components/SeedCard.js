@@ -55,8 +55,8 @@ const CardBack = styled.div`
 `;
 
 const Line = styled.div`
-    height: calc(88% / 6)  ;
-    width: 23%;
+    height: calc(88% / 6);
+    width: ${props => (props.wordsNumber === 24 ? '23%' : '48%')};
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -181,7 +181,7 @@ const SeedCardModelT = ({
                 <Back>
                     { Array.from(Array(wordsNumber)).map((item, index) => (
                         // eslint-disable-next-line react/no-array-index-key
-                        <Line key={`${item}-${index}`}>
+                        <Line key={`${item}-${index}`} wordsNumber={wordsNumber}>
                             <LineNumber>{ index + 1 }</LineNumber>
                             <LineBox isChecking={index + 1 === checkingWordNumber}>
                                 <LineWord>{ words[index] }</LineWord>
@@ -203,7 +203,7 @@ const SeedCardModelT = ({
 SeedCardModelT.propTypes = {
     showBack: PropTypes.bool,
     words: PropTypes.arrayOf(PropTypes.string),
-    wordsNumber: PropTypes.number,
+    wordsNumber: PropTypes.oneOf([12, 24]),
     checkingWordNumber: PropTypes.number,
     writingWordNumber: PropTypes.number,
     flipOnMouseOver: PropTypes.bool,

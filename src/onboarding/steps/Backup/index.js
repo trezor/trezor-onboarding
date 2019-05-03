@@ -245,7 +245,7 @@ class BackupStep extends React.Component {
                                 <Text>
                                     Device will show you a secret sequence of words. You should write them down here.
                                 </Text>
-                                <SeedCardModelT showBack />
+                                <SeedCardModelT showBack wordsNumber={device.features.major_version === 2 ? 12 : 24} />
                                 <ControlsWrapper>
                                     <Button
                                         onClick={() => { this.props.connectActions.backupDevice(); }}
@@ -253,7 +253,6 @@ class BackupStep extends React.Component {
                                         <FormattedMessage {...l10nMessages.TR_START_BACKUP} />
                                     </Button>
                                 </ControlsWrapper>
-
                             </React.Fragment>
 
                         )
@@ -332,25 +331,14 @@ class BackupStep extends React.Component {
                     {
                         this.getStatus() === BackupStep.SUCCESS_STATUS && (
                             <React.Fragment>
-                                { this.generateWords() }
                                 <Text>
                                     <FormattedMessage {...l10nMessages.TR_BACKUP_FINISHED_TEXT} />
                                 </Text>
-                                <SeedCardModelT
-                                    showBack
-                                    wordsNumber={24}
-                                    words={this.state.words}
-                                />
 
                                 <ControlsWrapper>
-                                    {/* todo: this is just temporary protyping */}
-                                    {
-                                        this.state.words.length === 22 && (
-                                            <Button onClick={() => onboardingActions.goToNextStep()}>
-                                                <FormattedMessage {...l10nMessages.TR_BACKUP_FINISHED_BUTTON} />
-                                            </Button>
-                                        )
-                                    }
+                                    <Button onClick={() => onboardingActions.goToNextStep()}>
+                                        <FormattedMessage {...l10nMessages.TR_BACKUP_FINISHED_BUTTON} />
+                                    </Button>
                                 </ControlsWrapper>
                             </React.Fragment>
                         )
