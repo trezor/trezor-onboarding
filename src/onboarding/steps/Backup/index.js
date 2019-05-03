@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import {
-    H4, P, Button, Checkbox, Icon, Link,
+    H4, P, Button, Checkbox, Icon, Link, Prompt,
 } from 'trezor-ui-components';
 import { FormattedMessage } from '@dragonraider5/react-intl';
 
@@ -16,7 +16,9 @@ import l10nCommonMessages from 'support/commonMessages';
 import {
     StepWrapper, StepBodyWrapper, StepHeadingWrapper, ControlsWrapper, CheckboxWrapper,
 } from 'components/Wrapper';
-import BackupModelOne from './components/BackupModelOne';
+import { SeedCardModelT } from 'onboarding/steps/Backup/components/SeedCard';
+
+// import BackupModelOne from './components/BackupModelOne';
 import l10nMessages from './index.messages';
 
 const Panel = styled.div`
@@ -55,7 +57,10 @@ class BackupStep extends React.Component {
         super(props);
         this.state = {
             userUnderstands: false,
+            words: [],
+            // cardFlipped: false,
         };
+        this.interval = null;
     }
 
     componentDidMount() {
@@ -64,19 +69,22 @@ class BackupStep extends React.Component {
 
     getStatus() {
         const {
-            device, deviceCall, deviceInteraction,
+            device, deviceCall, deviceInteraction, activeSubStep,
         } = this.props;
         if ((deviceCall.name === BACKUP_DEVICE && deviceCall.error) || device.features.no_backup === true || device.features.initialized === false) {
             return BackupStep.FAILED_STATUS;
         }
+        if (device && device.features.needs_backup === false) {
+            return BackupStep.SUCCESS_STATUS;
+        }
         if (device && device.features.needs_backup === true && deviceInteraction.counter > 0) {
             return BackupStep.STARTED_STATUS;
         }
+        if (activeSubStep === 'recovery-card-front' || activeSubStep === 'recovery-card-back') {
+            return activeSubStep;
+        }
         if (device && device.features.needs_backup && !deviceCall.isProgress) {
             return BackupStep.INITIAL_STATUS;
-        }
-        if (device && device.features.needs_backup === false) {
-            return BackupStep.SUCCESS_STATUS;
         }
         return null;
     }
@@ -85,15 +93,43 @@ class BackupStep extends React.Component {
         this.props.connectActions.callActionAndGoToNextStep(WIPE_DEVICE, null, ID.START_STEP);
     }
 
+    generateWords() {
+        const words = ['', 'Trezor', 'will', 'never', 'ask', 'you', 'to', 'enter', 'seed', 'into', 'anywhere', 'especially', 'not',
+            'into', 'a', 'form', 'like', 'this', 'only', 'scammers', 'will', 'do'];
+        if (this.interval === null && this.state.words.length === 0) {
+            this.interval = setInterval(() => {
+                if (words.length === this.state.words.length) {
+                    clearInterval(this.interval);
+                    return;
+                }
+                this.setState(prevState => ({ words: [...prevState.words, words[prevState.words.length + 1]] }));
+            }, 600);
+        }
+    }
+
     render() {
         const {
-            device, deviceCall, onboardingActions, deviceInteraction, connectActions,
+            device, onboardingActions, deviceInteraction,
         } = this.props;
 
         return (
             <StepWrapper>
                 <StepHeadingWrapper>
-                    <FormattedMessage {...l10nMessages.TR_SEED_IS_MORE_IMPORTANT_THAN_YOUR_DEVICE} />
+                    { this.getStatus() === BackupStep.INITIAL_STATUS && 'Backup your device' }
+                    { this.getStatus() === BackupStep.SUCCESS_STATUS && 'Backup finished' }
+                    { this.getStatus() === BackupStep.FAILED_STATUS && 'Backup failed' }
+                    {
+                        this.getStatus() === BackupStep.STARTED_STATUS && deviceInteraction.counter <= 24 && (
+                            'Write down seed words from your device'
+                        )
+                    }
+                    {
+                        this.getStatus() === BackupStep.STARTED_STATUS && deviceInteraction.counter > 24 && (
+                            'Check seed words'
+                        )
+                    }
+                    { this.getStatus() === 'recovery-card-front' && 'Get your recovery card' }
+                    { this.getStatus() === 'recovery-card-back' && 'Get your recovery card' }
                 </StepHeadingWrapper>
                 <StepBodyWrapper>
                     {
@@ -161,7 +197,7 @@ class BackupStep extends React.Component {
                                         <FormattedMessage {...l10nMessages.TR_SATOSHILABS_CANNOT_BE_HELD_RESPONSIBLE} />
                                     </P>
                                 </Panel>
-                                <CheckboxWrapper style={{ alignSelf: 'flex-start' }}>
+                                <CheckboxWrapper>
                                     <Checkbox
                                         isChecked={this.state.userUnderstands}
                                         onClick={() => this.setState(prevState => ({ userUnderstands: !prevState.userUnderstands }))}
@@ -173,10 +209,10 @@ class BackupStep extends React.Component {
 
                                 <ControlsWrapper>
                                     <Button
-                                        onClick={() => { this.props.connectActions.backupDevice(); }}
+                                        onClick={() => { this.props.onboardingActions.goToSubStep('recovery-card-front'); }}
                                         isDisabled={!device || !this.state.userUnderstands}
                                     >
-                                        <FormattedMessage {...l10nMessages.TR_START_BACKUP} />
+                                        Continue
                                     </Button>
                                 </ControlsWrapper>
                             </React.Fragment>
@@ -184,14 +220,68 @@ class BackupStep extends React.Component {
                     }
 
                     {
+                        this.getStatus() === 'recovery-card-front' && (
+                            <React.Fragment>
+                                <Text>
+                                    This is your recovery card. You should find two of them in the package. In few moments, this
+                                    piece of paper will become more important than your device.
+                                </Text>
+                                <SeedCardModelT flipOnMouseOver />
+                                <ControlsWrapper>
+                                    <Button
+                                        // onClick={() => this.setState({ showWords: true })}
+                                        onClick={() => { this.props.onboardingActions.goToSubStep('recovery-card-back'); }}
+                                    >
+                                        Flip it
+                                    </Button>
+                                </ControlsWrapper>
+                            </React.Fragment>
+                        )
+                    }
+
+                    {
+                        this.getStatus() === 'recovery-card-back' && (
+                            <React.Fragment>
+                                <Text>
+                                    Device will show you a secret sequence of words. You should write them down here.
+                                </Text>
+                                <SeedCardModelT showBack />
+                                <ControlsWrapper>
+                                    <Button
+                                        onClick={() => { this.props.connectActions.backupDevice(); }}
+                                    >
+                                        <FormattedMessage {...l10nMessages.TR_START_BACKUP} />
+                                    </Button>
+                                </ControlsWrapper>
+
+                            </React.Fragment>
+
+                        )
+                    }
+
+                    {
                         this.getStatus() === BackupStep.STARTED_STATUS && (
-                            <BackupModelOne
-                                onboardingActions={onboardingActions}
-                                connectActions={connectActions}
-                                deviceCall={deviceCall}
-                                deviceInteraction={deviceInteraction}
-                                device={this.props.device}
-                            />
+                            <React.Fragment>
+
+                                <SeedCardModelT
+                                    showBack
+                                    wordsNumber={24}
+                                    words={Array.from(Array(deviceInteraction.counter < 24 ? deviceInteraction.counter - 1 : 24)).map(() => '*****')}
+                                    checkingWordNumber={deviceInteraction.counter - 24 > 0 ? deviceInteraction.counter - 24 : null}
+                                    writingWordNumber={deviceInteraction.counter <= 24 ? deviceInteraction.counter : null}
+                                />
+                                <div style={{ marginTop: '100px' }}>
+                                    <Prompt model={device.features.major_version} size={32}>
+                                        {
+                                            deviceInteraction.counter > 24 && <Text>Check the {deviceInteraction.counter - 24}. word on your device</Text>
+                                        }
+                                        {
+                                            deviceInteraction.counter <= 24 && <Text>Write down the {deviceInteraction.counter}. word from your device</Text>
+                                        }
+                                    </Prompt>
+                                </div>
+                            </React.Fragment>
+
                         )
                     }
 
@@ -242,13 +332,25 @@ class BackupStep extends React.Component {
                     {
                         this.getStatus() === BackupStep.SUCCESS_STATUS && (
                             <React.Fragment>
+                                { this.generateWords() }
                                 <Text>
                                     <FormattedMessage {...l10nMessages.TR_BACKUP_FINISHED_TEXT} />
                                 </Text>
+                                <SeedCardModelT
+                                    showBack
+                                    wordsNumber={24}
+                                    words={this.state.words}
+                                />
+
                                 <ControlsWrapper>
-                                    <Button onClick={() => onboardingActions.goToNextStep()}>
-                                        <FormattedMessage {...l10nMessages.TR_BACKUP_FINISHED_BUTTON} />
-                                    </Button>
+                                    {/* todo: this is just temporary protyping */}
+                                    {
+                                        this.state.words.length === 22 && (
+                                            <Button onClick={() => onboardingActions.goToNextStep()}>
+                                                <FormattedMessage {...l10nMessages.TR_BACKUP_FINISHED_BUTTON} />
+                                            </Button>
+                                        )
+                                    }
                                 </ControlsWrapper>
                             </React.Fragment>
                         )
@@ -265,6 +367,7 @@ BackupStep.propTypes = {
     device: types.device,
     deviceCall: types.deviceCall,
     deviceInteraction: types.deviceInteraction,
+    activeSubStep: types.activeSubStep,
 };
 
 export default BackupStep;

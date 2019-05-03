@@ -62,7 +62,7 @@ const WrapperOutside = styled.div`
         props.animate && css`
             background-image: url(${background2});
             background-size: cover;
-        `)};        
+        `)};
     }
 `;
 
@@ -101,7 +101,6 @@ const ProgressStepsSlot = styled.div`
 
 const ComponentWrapper = styled.div`
     display: flex;
-    margin-bottom: 5%;
     min-height: ${STEP_HEIGHT}${STEP_HEIGHT_UNIT}
 `;
 

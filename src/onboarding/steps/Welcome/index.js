@@ -73,7 +73,7 @@ class WelcomeStep extends React.PureComponent {
                     }
 
                     {
-                        this.props.connectError && <Loader>Loading takes too long. But we are still trying. If problem persist, connect Trezor support</Loader>
+                        this.props.connectError && <Loader>Loading takes too long. But we are still trying. If the problem persist, contact Trezor support</Loader>
                     }
 
                     {
