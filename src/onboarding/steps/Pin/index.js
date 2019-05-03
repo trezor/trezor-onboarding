@@ -21,21 +21,19 @@ import HowToSetPinGif from './videos/pin.gif';
 
 const NewPinWrapper = styled.div`
     display: flex;
-    flex-direction: column-reverse;
+    flex-direction: column;
+    align-items: center;
 
     @media only screen and (min-width: ${BREAKPOINTS.SM}px) {
         flex-direction: row;
     } 
 `;
 
-const ImgWrapper = styled.div`
-    margin: 10px 30px 30px 30px;
-    max-width: 230px;
-`;
-
-const PinMatrixWrapper = styled.div`
-    margin: 0 30px 0 30px;
-    min-width: 260px;
+const HowToSetPin = styled.img`
+    box-shadow: 0 4px 8px 0 grey;
+    max-width: 400px;
+    width: 100%;
+    height: auto;
 `;
 
 class SetPinStep extends React.Component {
@@ -66,7 +64,6 @@ class SetPinStep extends React.Component {
             <StepWrapper>
                 <StepHeadingWrapper>
                     { this.getStatus() === 'initial' && 'PIN' }
-                    { this.getStatus() === 'tutorial' && 'PIN tutorial' }
                     { this.getStatus() === 'first' && <FormattedMessage {...l10nMessages.TR_PIN_HEADING_FIRST} /> }
                     { this.getStatus() === 'second' && <FormattedMessage {...l10nMessages.TR_PIN_HEADING_REPEAT} /> }
                     { this.getStatus() === 'success' && <FormattedMessage {...l10nMessages.TR_PIN_HEADING_SUCCESS} /> }
@@ -83,9 +80,6 @@ class SetPinStep extends React.Component {
                                     <Button onClick={() => { this.props.connectActions.changePin(); }}>
                                         <FormattedMessage {...l10nMessages.TR_SET_PIN} />
                                     </Button>
-                                    <Button isWhite onClick={() => this.props.onboardingActions.goToSubStep('tutorial')}>
-                                        PIN tutorial
-                                    </Button>
                                     <Button isWhite onClick={() => this.props.onboardingActions.goToNextStep()}>
                                         <FormattedMessage {...l10nCommonMessages.TR_SKIP} />
                                     </Button>
@@ -94,33 +88,18 @@ class SetPinStep extends React.Component {
                         )
                     }
 
-                    {
-                        this.getStatus() === 'tutorial' && (
-                            <React.Fragment>
-                                <Text>
-                                    <FormattedMessage {...l10nMessages.TR_PIN_ENTERING_DESCRIPTION} />
-                                </Text>
-
-                                <ImgWrapper>
-                                    <img src={HowToSetPinGif} alt="How to enter pin" width="200px" />
-                                </ImgWrapper>
-
-                                <ControlsWrapper>
-                                    <Button onClick={() => { this.props.onboardingActions.goToSubStep(null); this.props.connectActions.changePin(); }}>
-                                        I get it, set PIN now
-                                    </Button>
-                                    <Button isWhite onClick={() => this.props.onboardingActions.goToNextStep()}>
-                                        <FormattedMessage {...l10nCommonMessages.TR_SKIP} />
-                                    </Button>
-                                </ControlsWrapper>
-                            </React.Fragment>
-                        )
-                    }
 
                     {
                         this.getStatus() === 'first' && (
                             <NewPinWrapper>
-                                <PinMatrixWrapper>
+                                <div style={{ width: '50%' }}>
+                                    <Text>
+                                    See how pin works.
+                                    </Text>
+                                    <HowToSetPin src={HowToSetPinGif} alt="How to enter pin" />
+                                </div>
+
+                                <div style={{ width: '50%' }}>
                                     <PinMatrix
                                         onPinSubmit={
                                             (pin) => {
@@ -128,7 +107,7 @@ class SetPinStep extends React.Component {
                                             }
                                         }
                                     />
-                                </PinMatrixWrapper>
+                                </div>
                             </NewPinWrapper>
                         )
                     }
@@ -183,9 +162,6 @@ class SetPinStep extends React.Component {
                                 <ControlsWrapper>
                                     <Button onClick={() => { this.props.connectActions.changePin(); }}>
                                         <FormattedMessage {...l10nMessages.TR_START_AGAIN} />
-                                    </Button>
-                                    <Button isWhite onClick={() => this.props.onboardingActions.goToSubStep('tutorial')}>
-                                        PIN tutorial
                                     </Button>
                                 </ControlsWrapper>
                             </React.Fragment>
