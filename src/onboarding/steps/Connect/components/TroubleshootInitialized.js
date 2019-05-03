@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-    H4, Button, Link, ButtonNotification,
+    H4, Button, Link,
 } from 'trezor-ui-components';
 import { FormattedMessage } from '@dragonraider5/react-intl';
 
@@ -74,16 +74,18 @@ const TroubleshootInitialized = ({
                         <Button
                             onClick={() => onboardingActions.goToSubStep(null)}
                             isWhite
+                            isInverse
                         >
                             <FormattedMessage {...l10nCommonMessages.TR_BACK} />
                         </Button>
-                        <ButtonNotification
+                        <Button
                             onClick={() => connectActions.wipeDevice()}
-                            type="warning"
+                            variant="error"
+                            isInverse
                         >
                             <FormattedMessage {...l10nCommonMessages.TR_WIPE_DEVICE} />
-                        </ButtonNotification>
-                        <Button isWhite onClick={() => onboardingActions.goToNextStep(ID.FINAL_STEP)}>
+                        </Button>
+                        <Button onClick={() => onboardingActions.goToNextStep(ID.FINAL_STEP)} isInverse>
                             <FormattedMessage {...l10nCommonMessages.TR_SKIP_ALL} />
                         </Button>
                     </ControlsWrapper>

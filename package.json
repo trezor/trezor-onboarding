@@ -13,7 +13,7 @@
     "build:beta": "rimraf dist && npx webpack --progress --bail --env.BUILD=beta",
     "build:production": "rimraf dist && npx webpack --progress --bail --env.BUILD=production",
     "test-all": "yarn test-unit && yarn test-health",
-    "test-unit": "jest --testPathPattern=src/utils" ,
+    "test-unit": "jest --testPathPattern=src/utils",
     "test-health": "jest --testPathPattern=test/health",
     "test-e2e": "npx cypress run --env updateSnapshots=true",
     "test-e2e:update": "npx cypress run --env updateSnapshots=true",
@@ -34,11 +34,11 @@
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
     "react-hot-loader": "^4.6.3",
+    "react-intl": "^2.8.0",
     "react-redux": "^6.0.0",
     "react-router-dom": "^5.0.0",
     "react-select": "^2.4.2",
     "react-svg": "^7.2.6",
-    "react-intl": "^2.8.0",    
     "react-timeout": "^1.2.0",
     "react-transition-group": "^2.9.0",
     "redux": "^4.0.1",
@@ -50,7 +50,7 @@
     "styled-reset": "^1.6.4",
     "trezor-connect": "^7.0.3",
     "trezor-flags": "^1.0.2",
-    "trezor-ui-components": "1.0.0-beta.17"
+    "trezor-ui-components": "1.0.0-beta.18"
   },
   "devDependencies": {
     "@babel/cli": "^7.2.3",
