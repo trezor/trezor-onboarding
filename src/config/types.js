@@ -59,10 +59,10 @@ export default {
     newsletter: PropTypes.shape({
         email: PropTypes.string,
         skipped: PropTypes.bool.isRequired,
-        checkboxes: PropTypes.shape({
-            security: PropTypes.bool.isRequired,
-            promo: PropTypes.bool.isRequired,
-        }),
+        checkboxes: PropTypes.arrayOf(PropTypes.shape({
+            value: PropTypes.bool.isRequired,
+            label: PropTypes.string.isRequired,
+        })),
     }),
     newsletterActions: PropTypes.objectOf(PropTypes.func),
 

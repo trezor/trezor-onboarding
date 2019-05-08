@@ -201,10 +201,11 @@ class BackupStep extends React.Component {
                                     <Checkbox
                                         isChecked={this.state.userUnderstands}
                                         onClick={() => this.setState(prevState => ({ userUnderstands: !prevState.userUnderstands }))}
-                                    />
-                                    <P>
-                                        <FormattedMessage {...l10nMessages.TR_I_HAVE_READ_INSTRUCTIONS} />
-                                    </P>
+                                    >
+                                        <P>
+                                            <FormattedMessage {...l10nMessages.TR_I_HAVE_READ_INSTRUCTIONS} />
+                                        </P>
+                                    </Checkbox>
                                 </CheckboxWrapper>
 
                                 <ControlsWrapper>

@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import {
-    Button, Link, Input, Checkbox,
+    Button, Link, Input, Checkbox, P,
 } from 'trezor-ui-components';
 import { Flags } from 'trezor-flags';
 import { FormattedMessage, injectIntl, intlShape } from '@dragonraider5/react-intl';
@@ -126,24 +126,18 @@ class NewsleterStep extends React.Component {
                                 </InputWrapper>
 
                                 <CheckboxexSection>
-                                    <CheckboxWrapper>
-                                        <Checkbox
-                                            isChecked={newsletter.checkboxes.security}
-                                            onClick={() => newsletterActions.toggleCheckbox('security')}
-                                        />
-                                        <Text>
-                                            Security
-                                        </Text>
-                                    </CheckboxWrapper>
-                                    <CheckboxWrapper>
-                                        <Checkbox
-                                            isChecked={newsletter.checkboxes.promo}
-                                            onClick={() => newsletterActions.toggleCheckbox('promo')}
-                                        />
-                                        <Text>
-                                            Promo
-                                        </Text>
-                                    </CheckboxWrapper>
+                                    {
+                                        Object.values(newsletter.checkboxes).map(checkbox => (
+                                            <CheckboxWrapper key={checkbox.label}>
+                                                <Checkbox
+                                                    isChecked={checkbox.value}
+                                                    onClick={() => newsletterActions.toggleCheckbox(checkbox.label)}
+                                                >
+                                                    <P>{ checkbox.label }</P>
+                                                </Checkbox>
+                                            </CheckboxWrapper>
+                                        ))
+                                    }
                                 </CheckboxexSection>
 
                                 <ControlsWrapper>

@@ -13,7 +13,7 @@ const definedMessages = defineMessages({
     },
     TR_THANK_YOU_FOR_EMAIL: {
         id: 'TR_THANK_YOU_FOR_EMAIL',
-        defaultMessage: 'Thank you for providing your email. You can also follow us on socials:',
+        defaultMessage: 'Thank you for providing your email. To complete subscription, please click on the link we sent to your email. You can also follow us on socials:',
         description: 'Displayed after user submits contact email',
     },
     TR_EMAIL_SKIPPED: {
