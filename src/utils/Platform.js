@@ -35,4 +35,12 @@ export default class Platform {
 
         return result;
     }
+
+    static isMac() {
+        return Platform.getInfo().os === Platform.OS.MAC;
+    }
+
+    static isMobile() {
+        return Platform.getInfo().isMobile;
+    }
 }

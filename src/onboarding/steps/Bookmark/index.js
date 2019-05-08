@@ -4,7 +4,7 @@ import { Flags } from 'trezor-flags';
 import Platform from 'utils/Platform';
 
 import {
-    Link, Button,
+    Link, Button, P,
 } from 'trezor-ui-components';
 import { FormattedMessage } from '@dragonraider5/react-intl';
 
@@ -28,7 +28,9 @@ class BookmarkStep extends React.Component {
 
     static D_KEY = 68;
 
-    static CTRL_KEY = 17;
+    static CTRL_KEYS_WIN = [17];
+
+    static CTRL_KEYS_MAC = [91, 93]
 
     constructor() {
         super();
@@ -65,11 +67,14 @@ class BookmarkStep extends React.Component {
 
     nextDisabled() {
         const { keys } = this.state;
-        return !keys[BookmarkStep.D_KEY] || !keys[BookmarkStep.CTRL_KEY];
+        const ctrlKeys = Platform.isMac() ? BookmarkStep.CTRL_KEYS_MAC : BookmarkStep.CTRL_KEYS_WIN;
+        return !keys[BookmarkStep.D_KEY] || !ctrlKeys.find(key => keys[key] === true);
     }
 
     render() {
         const { keys } = this.state;
+        const ctrlKeys = Platform.isMac() ? BookmarkStep.CTRL_KEYS_MAC : BookmarkStep.CTRL_KEYS_WIN;
+
         return (
             <StepWrapper>
                 <StepHeadingWrapper>
@@ -90,17 +95,17 @@ class BookmarkStep extends React.Component {
                     </Text>
 
                     {
-                        !Platform.getInfo().isMobile && (
+                        !Platform.isMobile() && (
                             <React.Fragment>
                                 <Text>
                                     <FormattedMessage {...l10nMessages.TR_USE_THE_KEYBOARD_SHORTCUT} />
                                 </Text>
                                 <Keys>
                                     <Key
-                                        isPressed={keys[BookmarkStep.CTRL_KEY] === true}
-                                        text={Platform.getInfo().os === Platform.MAC ? '⌘' : 'Ctrl'}
+                                        isPressed={Boolean(ctrlKeys.find(key => keys[key] === true))}
+                                        text={Platform.isMac() ? '⌘' : 'Ctrl'}
                                     />
-                                    <div style={{ width: '10px' }} />
+                                    <P style={{ width: '10px', marginTop: '6px' }}> + </P>
                                     <Key isPressed={keys[BookmarkStep.D_KEY] === true} text="D" />
                                 </Keys>
                             </React.Fragment>
@@ -109,7 +114,7 @@ class BookmarkStep extends React.Component {
 
                     <ControlsWrapper>
                         {
-                            !Platform.getInfo().isMobile && (
+                            !Platform.isMobile() && (
                                 <React.Fragment>
                                     <Button isDisabled={this.nextDisabled()} onClick={() => this.setBookmarkFlagAndContinue()}>
                                         <FormattedMessage {...l10nCommonMessages.TR_CONTINUE} />
@@ -122,7 +127,7 @@ class BookmarkStep extends React.Component {
                         }
                         {/*  todo: for mobile add to homescreen */}
                         {
-                            Platform.getInfo().isMobile && (
+                            Platform.isMobile() && (
                                 <React.Fragment>
                                     <Button onClick={() => this.setBookmarkFlagAndContinue()}>
                                         <FormattedMessage {...l10nCommonMessages.TR_CONTINUE} />
