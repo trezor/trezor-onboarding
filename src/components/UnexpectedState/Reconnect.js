@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { FormattedMessage } from '@dragonraider5/react-intl';
+import { FormattedMessage } from 'react-intl';
 import { P } from 'trezor-ui-components';
 
 import { UnorderedList } from 'components/Lists';

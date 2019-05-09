@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { P, H2, Button } from 'trezor-ui-components';
-import { FormattedMessage } from '@dragonraider5/react-intl';
+import { FormattedMessage } from 'react-intl';
 import PropTypes from 'prop-types';
 
 import { DISALLOWED_STATE } from 'constants/steps';

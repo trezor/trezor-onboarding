@@ -3,7 +3,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import { IntlProvider, addLocaleData } from '@dragonraider5/react-intl';
+import { IntlProvider, addLocaleData } from 'react-intl';
 
 import en from 'react-intl/locale-data/en';
 import cs from 'react-intl/locale-data/cs';
@@ -41,15 +41,30 @@ addLocaleData([
     ...zh,
 ]);
 
-const mapStateToProps = state => ({
+// todo: just quick experimenting here
+
+interface State {
+    onboarding: any;
+    // selectedModel: any;
+    // activeStepId: any;
+    // activeSubStep: any;
+    // language: any;
+    // steps:any;
+}
+
+interface Props {
+    locale: string;
+    messages: any;
+    children:  any;
+}
+
+const mapStateToProps = (state: State) => ({
     locale: state.onboarding.language,
     messages: state.onboarding.messages,
 });
 
-const ReactIntlProvider = ({ children, locale, messages }) => (
+const ReactIntlProvider = ({ children, locale, messages }: (Props)) => (
     <IntlProvider
-        // key={locale} // forces rerender IntlProvider when lang file is downloaded
-        // see "Documented hacks section in readme"
         locale={locale}
         messages={messages}
     >

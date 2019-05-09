@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button } from 'trezor-ui-components';
-import { FormattedMessage } from '@dragonraider5/react-intl';
+import { FormattedMessage } from 'react-intl';
 import types from 'config/types';
 import { ID } from 'constants/steps';
 import Text from 'components/Text';

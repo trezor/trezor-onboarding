@@ -6,7 +6,7 @@ import { Provider } from 'react-redux';
 import ErrorBoundary from 'support/ErrorBoundary';
 import BaseStyles from 'support/BaseStyles';
 import ErrorLogService from 'support/ErrorLogService';
-import IntlProvider from 'support/ConnectedIntlProvider';
+import IntlProvider from 'support/ConnectedIntlProvider.tsx';
 
 import GlobalWebNavigation from 'components/GlobalWebNavigation';
 import Onboarding from 'onboarding/Container';
@@ -16,7 +16,7 @@ import store from './configureStore';
 ErrorLogService.init();
 
 // eslint-disable-next-line no-undef
-console.log(`[Trezor onboarding] version: ${VERSION}, branch: ${BRANCH}, build: ${BUILD}`);
+// console.log(`[Trezor onboarding] version: ${VERSION}, branch: ${BRANCH}, build: ${BUILD}`);
 
 const root = document.getElementById('root');
 

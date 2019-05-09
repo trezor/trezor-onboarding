@@ -1,42 +1,22 @@
-// module.exports = {
-//     presets: [
-//         '@babel/preset-env',
-//         '@babel/preset-react',
-//     ],
-//     plugins: [
-//         'react-hot-loader/babel',
-//         '@babel/plugin-proposal-class-properties',
-//         ['module-resolver', {
-//             root: ['./src'],
-//         }],
-//     ],
-//     env: {
-//         test: {
-//             plugins: ['@babel/plugin-transform-runtime'],
-//         },
-//     },
-
-// };
-
 module.exports = (api) => {
     // api.cache.forever();
 
     const presets = [
+        '@babel/typescript',
         '@babel/preset-env',
         '@babel/preset-react',
     ];
 
     const plugins = [
         'react-hot-loader/babel',
-        // '@babel/plugin-transform-flow-strip-types',
-        '@babel/plugin-proposal-class-properties',
-        // '@babel/plugin-proposal-object-rest-spread',
-        [
-            '@babel/plugin-transform-runtime',
-            {
-                regenerator: true,
-            },
-        ],
+        '@babel/proposal-class-properties',
+        '@babel/proposal-object-rest-spread',
+        // [
+        //     '@babel/plugin-transform-runtime',
+        //     {
+        //         regenerator: true,
+        //     },
+        // ],
         [
             'module-resolver',
             {
@@ -52,6 +32,25 @@ module.exports = (api) => {
         ],
         // 'babel-plugin-styled-components',
     ];
+
+    const overrides = [
+        {
+            test: ['./src/**/*.ts'],
+            presets: [
+                '@babel/preset-typescript',
+                [
+                    '@babel/preset-env',
+                    {
+                        targets: {
+                            node: 'current',
+                        },
+                    },
+                ],
+                '@babel/preset-react',
+            ],
+        },
+    ];
+
 
     // if (api.env('test')) {
     //     presets.push('jest');
@@ -72,5 +71,6 @@ module.exports = (api) => {
     return {
         presets,
         plugins,
+        overrides,
     };
 };

@@ -6,7 +6,7 @@ import Platform from 'utils/Platform';
 import {
     Link, Button, P,
 } from 'trezor-ui-components';
-import { FormattedMessage } from '@dragonraider5/react-intl';
+import { FormattedMessage } from 'react-intl';
 
 import { APPLY_FLAGS } from 'actions/constants/calls';
 import l10nCommonMessages from 'support/commonMessages';

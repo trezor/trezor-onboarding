@@ -3,7 +3,7 @@ import styled, { keyframes } from 'styled-components';
 import {
     P, Button, Select, Link,
 } from 'trezor-ui-components';
-import { FormattedMessage, injectIntl, intlShape } from '@dragonraider5/react-intl';
+import { FormattedMessage, injectIntl, intlShape } from 'react-intl';
 import { createFilter } from 'react-select';
 
 import BlindMatrix from 'components/BlindMatrix';

@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import {
     H6, TrezorImage,
 } from 'trezor-ui-components';
-import { FormattedMessage } from '@dragonraider5/react-intl';
+import { FormattedMessage } from 'react-intl';
 
 import types from 'config/types';
 import { OptionsList } from 'components/Options';

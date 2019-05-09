@@ -4,7 +4,7 @@ import ReactTimeout from 'react-timeout';
 import {
     H4, Button,
 } from 'trezor-ui-components';
-import { FormattedMessage } from '@dragonraider5/react-intl';
+import { FormattedMessage } from 'react-intl';
 
 import types from 'config/types';
 import { TrezorConnect } from 'components/Prompts';

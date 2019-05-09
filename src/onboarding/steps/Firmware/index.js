@@ -1,6 +1,6 @@
 import React from 'react';
 import { P, Button, Tooltip } from 'trezor-ui-components';
-import { FormattedMessage, injectIntl, intlShape } from '@dragonraider5/react-intl';
+import { FormattedMessage, injectIntl, intlShape } from 'react-intl';
 
 import types from 'config/types';
 import colors from 'config/colors';

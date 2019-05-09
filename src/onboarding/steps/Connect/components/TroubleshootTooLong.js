@@ -1,6 +1,6 @@
 import React from 'react';
 import { P, Link } from 'trezor-ui-components';
-import { FormattedMessage } from '@dragonraider5/react-intl';
+import { FormattedMessage } from 'react-intl';
 
 import { UnorderedList } from 'components/Lists';
 import { SUPPORT_URL } from 'config/urls';

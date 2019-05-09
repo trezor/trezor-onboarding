@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import {
     Button, Link,
 } from 'trezor-ui-components';
-import { FormattedMessage } from '@dragonraider5/react-intl';
+import { FormattedMessage } from 'react-intl';
 
 import { TREZOR_RESELLERS_URL, TREZOR_PACKAGING_URL, SUPPORT_URL } from 'config/urls';
 import types from 'config/types';

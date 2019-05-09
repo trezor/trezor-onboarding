@@ -5,18 +5,29 @@ const GitRevisionPlugin = require('git-revision-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const { DefinePlugin } = require('webpack');
 const Dotenv = require('dotenv-webpack');
+const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 
 const gitRevisionPlugin = new GitRevisionPlugin({ branch: true });
 
 module.exports = env => ({
-    entry: ['@babel/polyfill', './src/index.js'],
+    // entry: ['@babel/polyfill', './src/index.ts'],
+    entry: path.resolve(__dirname, 'src'),
     mode: 'development',
     output: {
         filename: '[git-revision-version]-[git-revision-branch]-app.js',
         path: path.resolve(__dirname, `dist/${env.BUILD}`),
     },
+    resolve: {
+        extensions: ['.ts', '.tsx', '.js', '.json'],
+    },
     module: {
         rules: [
+            {
+                // Include ts, tsx, js, and jsx files.
+                test: /\.(ts|js)x?$/,
+                exclude: /node_modules/,
+                loader: 'babel-loader',
+            },
             {
                 test: /\.js?$/,
                 exclude: /node_modules/,
@@ -92,6 +103,15 @@ module.exports = env => ({
             // silent: true, // hide any errors
             defaults: false, // load '.env.defaults' as the default values if empty.
         }),
+        new ForkTsCheckerWebpackPlugin(),
     ],
 
+    // When importing a module whose path matches one of the following, just
+    // assume a corresponding global variable exists and use that instead.
+    // This is important because it allows us to avoid bundling all of our
+    // dependencies, which allows browsers to cache those libraries between builds.
+    // externals: {
+    //     react: 'React',
+    //     'react-dom': 'ReactDOM',
+    // },
 });

@@ -1,6 +1,6 @@
 import React from 'react';
 import { H4, P } from 'trezor-ui-components';
-import { FormattedMessage } from '@dragonraider5/react-intl';
+import { FormattedMessage } from 'react-intl';
 
 import l10nMessages from './TroubleshootBootloader.messages';
 
