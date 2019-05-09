@@ -14,7 +14,7 @@ const setProgress = progress => ({
 const updateFirmware = () => async (dispatch, getState) => {
     const model = getState().connect.device.features.major_version;
     const versions = {
-        1: 'trezor-1.8.0.bin',
+        1: 'trezor-1.8.1.bin',
         2: 'trezor-2.1.0.bin',
     };
     const { device } = getState().connect;

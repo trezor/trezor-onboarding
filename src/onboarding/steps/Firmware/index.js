@@ -1,5 +1,5 @@
 import React from 'react';
-import { P, Button } from 'trezor-ui-components';
+import { P, Button, Tooltip } from 'trezor-ui-components';
 import { FormattedMessage, injectIntl, intlShape } from '@dragonraider5/react-intl';
 
 import types from 'config/types';
@@ -128,9 +128,22 @@ class FirmwareStep extends React.Component {
                                     />
                                 </Text>
                                 <ControlsWrapper>
-                                    <Button isDisabled={!isConnected} onClick={() => this.props.onboardingActions.goToNextStep()}>
-                                        <FormattedMessage {...commonMessages.TR_CONTINUE} />
-                                    </Button>
+                                    {
+                                        isConnected && (
+                                            <Button isDisabled={!isConnected} onClick={() => this.props.onboardingActions.goToNextStep()}>
+                                                <FormattedMessage {...commonMessages.TR_CONTINUE} />
+                                            </Button>
+                                        )
+                                    }
+                                    {
+                                        !isConnected && (
+                                            <Tooltip placement="bottom" content="Connect device to continue">
+                                                <Button isDisabled={!isConnected} onClick={() => this.props.onboardingActions.goToNextStep()}>
+                                                    <FormattedMessage {...commonMessages.TR_CONTINUE} />
+                                                </Button>
+                                            </Tooltip>
+                                        )
+                                    }
                                 </ControlsWrapper>
                             </React.Fragment>
                         )
@@ -191,9 +204,22 @@ class FirmwareStep extends React.Component {
                                     <FormattedMessage {...l10nMessages.TR_FIRMWARE_INSTALLED} />
                                 </Text>
                                 <ControlsWrapper>
-                                    <Button isDisabled={!isConnected} onClick={() => this.props.onboardingActions.goToNextStep()}>
-                                        <FormattedMessage {...commonMessages.TR_CONTINUE} />
-                                    </Button>
+                                    {
+                                        isConnected && (
+                                            <Button isDisabled={!isConnected} onClick={() => this.props.onboardingActions.goToNextStep()}>
+                                                <FormattedMessage {...commonMessages.TR_CONTINUE} />
+                                            </Button>
+                                        )
+                                    }
+                                    {
+                                        !isConnected && (
+                                            <Tooltip placement="bottom" content="Connect device to continue">
+                                                <Button isDisabled={!isConnected} onClick={() => this.props.onboardingActions.goToNextStep()}>
+                                                    <FormattedMessage {...commonMessages.TR_CONTINUE} />
+                                                </Button>
+                                            </Tooltip>
+                                        )
+                                    }
                                 </ControlsWrapper>
                             </React.Fragment>
                         )
