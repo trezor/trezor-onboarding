@@ -11,4 +11,5 @@ export default {
     white: '#FFF',
     warning: '#EB8A00',
     error: '#FF0000',
+    danger: '#FF0000',
 };
