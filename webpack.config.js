@@ -18,8 +18,9 @@ module.exports = env => ({
         path: path.resolve(__dirname, `dist/${env.BUILD}`),
     },
     resolve: {
-        extensions: ['.ts', '.tsx', '.js', '.json'],
+        extensions: ['.ts', '.tsx', '.js', '.jsx', '.json'],
     },
+    
     module: {
         rules: [
             {
@@ -37,7 +38,12 @@ module.exports = env => ({
                         loader: 'eslint-loader',
                         options: {
                             emitWarning: true,
+                            cache: true,
+                            eslint: {
+                                configFile: path.join(__dirname, '.js.eslintrc')
+                            },
                         },
+                        
                     },
                     {
                         loader: 'stylelint-custom-processor-loader',

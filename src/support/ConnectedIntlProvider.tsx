@@ -43,7 +43,7 @@ addLocaleData([
 interface Props {
     locale: string;
     messages: any;
-    children:  any;
+    children: any;
 }
 
 const ReactIntlProvider: React.FunctionComponent<Props> = ({ children, locale, messages }) => (

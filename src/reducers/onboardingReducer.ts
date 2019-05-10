@@ -1,4 +1,4 @@
-import { 
+import {
     OnboardingReducer,
     Step,
     OnboardingActionTypes,
@@ -9,7 +9,7 @@ import {
     SET_APPLICATION_ERROR,
     SET_LOCALIZATION,
     // @ts-ignore
-} from 'types/onboarding.ts'
+} from 'types/onboarding.ts';
 
 import { ID, TITLE, DISALLOWED_STATE } from 'constants/steps';
 
