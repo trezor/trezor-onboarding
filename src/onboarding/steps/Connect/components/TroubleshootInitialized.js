@@ -6,7 +6,7 @@ import { FormattedMessage } from 'react-intl';
 
 import { SUPPORT_URL } from 'config/urls';
 import colors from 'config/colors';
-import types from 'config/types';
+import types from 'config/proptypes';
 import { ID } from 'constants/steps';
 import { ControlsWrapper } from 'components/Wrapper';
 import Text from 'components/Text';

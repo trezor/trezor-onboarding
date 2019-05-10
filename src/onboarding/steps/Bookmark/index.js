@@ -11,7 +11,7 @@ import { FormattedMessage } from 'react-intl';
 import { APPLY_FLAGS } from 'actions/constants/calls';
 import l10nCommonMessages from 'support/commonMessages';
 import { PHISHING_URL } from 'config/urls';
-import types from 'config/types';
+import types from 'config/proptypes';
 import Key from 'components/Key';
 import Text from 'components/Text';
 import {

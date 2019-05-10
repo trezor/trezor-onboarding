@@ -6,7 +6,7 @@ import { hot } from 'react-hot-loader/root';
 
 import { isDevelopment } from 'support/build';
 import * as EVENTS from 'actions/constants/events';
-import types from 'config/types';
+import types from 'config/proptypes';
 import colors from 'config/colors';
 import { SM } from 'config/breakpoints';
 import { TOS_URL } from 'config/urls';

@@ -8,7 +8,7 @@ import { createFilter } from 'react-select';
 
 import BlindMatrix from 'components/BlindMatrix';
 import bip39List from 'constants/bip39';
-import types from 'config/types';
+import types from 'config/proptypes';
 import colors from 'config/colors';
 import { RECOVERY_MODEL_ONE_URL } from 'config/urls';
 import { RECOVER_DEVICE } from 'actions/constants/calls';

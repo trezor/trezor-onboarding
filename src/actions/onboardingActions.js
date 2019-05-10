@@ -1,4 +1,7 @@
-import * as ONBOARDING from 'actions/constants/onboarding';
+import {
+    SET_STEP_ACTIVE, GO_TO_SUBSTEP, SET_STEP_RESOLVED, SELECT_TREZOR_MODEL, SET_APPLICATION_ERROR, SET_LOCALIZATION,
+    // @ts-ignore
+} from 'types/onboarding.ts';
 
 import { getLocalization } from './fetchActions';
 
@@ -8,13 +11,13 @@ const goToStep = stepId => (dispatch) => {
 
 const setStep = stepId => (dispatch) => {
     dispatch({
-        type: ONBOARDING.SET_STEP_ACTIVE,
+        type: SET_STEP_ACTIVE,
         stepId,
     });
 };
 
 const goToSubStep = subStepId => ({
-    type: ONBOARDING.GO_TO_SUBSTEP,
+    type: GO_TO_SUBSTEP,
     subStepId,
 });
 
@@ -25,7 +28,7 @@ const goToNextStep = stepId => (dispatch, getState) => {
 
     if (!activeStep.resolved) {
         dispatch({
-            type: ONBOARDING.SET_STEP_RESOLVED,
+            type: SET_STEP_RESOLVED,
             stepId: activeStepId,
         });
     }
@@ -41,13 +44,13 @@ const goToPreviousStep = () => (dispatch, getState) => {
 };
 
 const selectTrezorModel = model => ({
-    type: ONBOARDING.SELECT_TREZOR_MODEL,
+    type: SELECT_TREZOR_MODEL,
     model,
 });
 
 // todo: is this used?
 const setApplicationError = error => ({
-    type: ONBOARDING.SET_APPLICATION_ERROR,
+    type: SET_APPLICATION_ERROR,
     error,
 });
 
@@ -55,7 +58,7 @@ const setLocale = locale => (dispatch) => {
     dispatch(getLocalization(`/${locale}.json`)).then(async (result) => {
         const json = await result.json();
         dispatch({
-            type: ONBOARDING.SET_LOCALIZATION,
+            type: SET_LOCALIZATION,
             language: locale,
             messages: json,
         });

@@ -1,6 +1,6 @@
 import * as FIRMWARE_UPDATE from 'actions/constants/firmwareUpdate';
-import * as ONBOARDING from 'actions/constants/onboarding';
-
+// @ts-ignore
+import { SET_APPLICATION_ERROR } from 'types/onboarding.ts';
 import arrayBufferToBuffer from 'utils/arrayBufferToBuffer';
 
 import { getFirmware } from './fetchActions';
@@ -82,7 +82,7 @@ const updateFirmware = () => async (dispatch, getState) => {
         });
     } catch (err) {
         dispatch({
-            type: ONBOARDING.SET_APPLICATION_ERROR,
+            type: SET_APPLICATION_ERROR,
             err,
         });
     }

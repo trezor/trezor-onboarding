@@ -6,7 +6,7 @@ import { FormattedMessage } from 'react-intl';
 
 import Text from 'components/Text';
 
-import types from 'config/types';
+import types from 'config/proptypes';
 import { OptionsList } from 'components/Options';
 import { ID } from 'constants/steps';
 import {

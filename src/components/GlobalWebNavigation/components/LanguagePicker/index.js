@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import colors from 'config/colors';
 import ReactSelect from 'react-select';
 
-import types from 'config/types';
+import types from 'config/proptypes';
 import LANGUAGE from 'config/languages';
 import * as BREAKPOINTS from 'config/breakpoints';
 

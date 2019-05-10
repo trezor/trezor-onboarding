@@ -1,16 +1,19 @@
-import {
+import { 
+    OnboardingReducer,
+    Step,
+    OnboardingActionTypes,
     SET_STEP_ACTIVE,
     SET_STEP_RESOLVED,
     GO_TO_SUBSTEP,
     SELECT_TREZOR_MODEL,
-    SET_STEPS,
     SET_APPLICATION_ERROR,
     SET_LOCALIZATION,
-    SET_ACTIVE_CLUSTER_ID,
-} from 'actions/constants/onboarding';
+    // @ts-ignore
+} from 'types/onboarding.ts'
+
 import { ID, TITLE, DISALLOWED_STATE } from 'constants/steps';
 
-const initialState = {
+const initialState: OnboardingReducer = {
     selectedModel: null,
     activeStepId: ID.WELCOME_STEP,
     activeSubStep: null,
@@ -36,7 +39,7 @@ const initialState = {
         {
             id: ID.CONNECT_STEP,
             title: TITLE.BRIDGE_STEP,
-            disdisallowedDeviceStates: [
+            disallowedDeviceStates: [
                 DISALLOWED_STATE.DEVICE_IS_NOT_USED_HERE,
             ],
         },
@@ -126,14 +129,14 @@ const initialState = {
     ],
 };
 
-const onboarding = (state = initialState, action) => {
+const onboarding = (state = initialState, action: OnboardingActionTypes) => {
     switch (action.type) {
         case SET_STEP_ACTIVE:
             return {
                 ...state,
                 activeStepId: action.stepId,
                 activeSubStep: null,
-                steps: state.steps.map(((step) => {
+                steps: state.steps.map(((step: Step) => {
                     if (step.id === action.stepId) {
                         return {
                             ...step,
@@ -145,7 +148,7 @@ const onboarding = (state = initialState, action) => {
         case SET_STEP_RESOLVED:
             return {
                 ...state,
-                steps: state.steps.map(((step) => {
+                steps: state.steps.map(((step: Step) => {
                     if (step.id === action.stepId) {
                         return {
                             ...step,
@@ -164,16 +167,6 @@ const onboarding = (state = initialState, action) => {
             return {
                 ...state,
                 selectedModel: action.model,
-            };
-        case SET_ACTIVE_CLUSTER_ID:
-            return {
-                ...state,
-                activeClusterId: action.id,
-            };
-        case SET_STEPS:
-            return {
-                ...state,
-                steps: action.steps,
             };
         case SET_APPLICATION_ERROR: {
             return {

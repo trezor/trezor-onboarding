@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
-import types from 'config/types';
+import types from 'config/proptypes';
 import { ID } from 'constants/steps';
 import ProgressStep from './components/ProgressStep';
 

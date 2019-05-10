@@ -6,7 +6,7 @@ import {
 import { FormattedMessage } from 'react-intl';
 
 import { TREZOR_RESELLERS_URL, TREZOR_PACKAGING_URL, SUPPORT_URL } from 'config/urls';
-import types from 'config/types';
+import types from 'config/proptypes';
 import { MD } from 'config/breakpoints';
 
 import Text from 'components/Text';

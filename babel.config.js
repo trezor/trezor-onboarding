@@ -11,12 +11,12 @@ module.exports = (api) => {
         'react-hot-loader/babel',
         '@babel/proposal-class-properties',
         '@babel/proposal-object-rest-spread',
-        // [
-        //     '@babel/plugin-transform-runtime',
-        //     {
-        //         regenerator: true,
-        //     },
-        // ],
+        [
+            '@babel/plugin-transform-runtime',
+            {
+                regenerator: true,
+            },
+        ],
         [
             'module-resolver',
             {
@@ -52,9 +52,9 @@ module.exports = (api) => {
     ];
 
 
-    // if (api.env('test')) {
-    //     presets.push('jest');
-    // }
+    if (api.env('test')) {
+        presets.push('jest');
+    }
 
     if (api.env('translations')) {
         plugins.push(

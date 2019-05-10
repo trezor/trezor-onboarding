@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 import colors from 'config/colors';
-import types from 'config/types';
+import types from 'config/proptypes';
 import Line from './Line';
 
 const ProgressStepWrapper = styled.div`

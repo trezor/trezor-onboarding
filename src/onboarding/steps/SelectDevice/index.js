@@ -5,7 +5,7 @@ import {
 } from 'trezor-ui-components';
 import { FormattedMessage } from 'react-intl';
 
-import types from 'config/types';
+import types from 'config/proptypes';
 import { OptionsList } from 'components/Options';
 import { StepWrapper, StepHeadingWrapper, StepBodyWrapper } from 'components/Wrapper';
 

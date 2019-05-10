@@ -4,7 +4,7 @@ import ReactTimeout from 'react-timeout';
 import { Button, H1, P } from 'trezor-ui-components';
 import { FormattedMessage } from 'react-intl';
 
-import types from 'config/types';
+import types from 'config/proptypes';
 import { Dots } from 'components/Loaders';
 import { StepBodyWrapper, StepWrapper } from 'components/Wrapper';
 

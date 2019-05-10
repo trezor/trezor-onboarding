@@ -2,7 +2,7 @@ import React from 'react';
 import { P, Button, Tooltip } from 'trezor-ui-components';
 import { FormattedMessage, injectIntl, intlShape } from 'react-intl';
 
-import types from 'config/types';
+import types from 'config/proptypes';
 import colors from 'config/colors';
 import { GET_FIRMWARE } from 'actions/constants/fetchCalls';
 import { FIRMWARE_ERASE, FIRMWARE_UPLOAD } from 'actions/constants/calls';

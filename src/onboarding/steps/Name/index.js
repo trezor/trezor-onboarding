@@ -5,7 +5,7 @@ import {
 import styled from 'styled-components';
 import { FormattedMessage, injectIntl, intlShape } from 'react-intl';
 
-import types from 'config/types';
+import types from 'config/proptypes';
 import { DEFAULT_LABEL } from 'constants/trezor';
 import { validateASCII } from 'utils/validate';
 import l10nCommonMessages from 'support/commonMessages';

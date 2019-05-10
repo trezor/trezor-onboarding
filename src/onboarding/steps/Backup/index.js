@@ -6,7 +6,7 @@ import {
 import { FormattedMessage } from 'react-intl';
 
 import colors from 'config/colors';
-import types from 'config/types';
+import types from 'config/proptypes';
 import { SEED_MANUAL_URL } from 'config/urls';
 import { WIPE_DEVICE, BACKUP_DEVICE } from 'actions/constants/calls';
 import { ID } from 'constants/steps';

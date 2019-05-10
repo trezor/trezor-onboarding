@@ -3,7 +3,9 @@ import TrezorConnect, {
 } from 'trezor-connect';
 import connectConfig from 'config/connect';
 import * as CONNECT from 'actions/constants/connect';
-import * as ONBOARDING from 'actions/constants/onboarding';
+
+// @ts-ignore
+import { SET_APPLICATION_ERROR } from 'types/onboarding.ts';
 import * as CALLS from 'actions/constants/calls';
 import { DEFAULT_LABEL } from 'constants/trezor';
 
@@ -155,7 +157,7 @@ const call = (name, params) => async (dispatch, getState) => {
     } catch (error) {
         // todo: this is probably not used anymore.
         dispatch({
-            type: ONBOARDING.SET_APPLICATION_ERROR,
+            type: SET_APPLICATION_ERROR,
             error,
         });
         return error;
@@ -177,7 +179,7 @@ const uiResponseCall = (name, params) => async (dispatch) => {
         await fn(params);
     } catch (err) {
         dispatch({
-            type: ONBOARDING.SET_APPLICATION_ERROR,
+            type: SET_APPLICATION_ERROR,
             err,
         });
     }

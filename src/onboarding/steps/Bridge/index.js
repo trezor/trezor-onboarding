@@ -7,7 +7,7 @@ import {
 } from 'trezor-ui-components';
 import { FormattedMessage, injectIntl } from 'react-intl';
 
-import types from 'config/types';
+import types from 'config/proptypes';
 
 import { Dots } from 'components/Loaders';
 import Text from 'components/Text';

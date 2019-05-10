@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { FormattedMessage } from 'react-intl';
 
-import types from 'config/types';
+import types from 'config/proptypes';
 
 import {
     StepWrapper, StepBodyWrapper, StepHeadingWrapper,

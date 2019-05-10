@@ -7,7 +7,7 @@ import {
 import { FormattedMessage } from 'react-intl';
 
 import { PIN_MANUAL_URL } from 'config/urls';
-import types from 'config/types';
+import types from 'config/proptypes';
 import * as BREAKPOINTS from 'config/breakpoints';
 import l10nCommonMessages from 'support/commonMessages';
 import PinMatrix from 'components/PinMatrix';

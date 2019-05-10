@@ -1,6 +1,5 @@
 
 import * as React from 'react';
-import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import { IntlProvider, addLocaleData } from 'react-intl';
@@ -41,8 +40,22 @@ addLocaleData([
     ...zh,
 ]);
 
-// todo: just quick experimenting here
+interface Props {
+    locale: string;
+    messages: any;
+    children:  any;
+}
 
+const ReactIntlProvider: React.FunctionComponent<Props> = ({ children, locale, messages }) => (
+    <IntlProvider
+        locale={locale}
+        messages={messages}
+    >
+        {children}
+    </IntlProvider>
+);
+
+// todo: just quick experimenting here
 interface State {
     onboarding: any;
     // selectedModel: any;
@@ -52,31 +65,10 @@ interface State {
     // steps:any;
 }
 
-interface Props {
-    locale: string;
-    messages: any;
-    children:  any;
-}
-
 const mapStateToProps = (state: State) => ({
     locale: state.onboarding.language,
     messages: state.onboarding.messages,
 });
-
-const ReactIntlProvider = ({ children, locale, messages }: (Props)) => (
-    <IntlProvider
-        locale={locale}
-        messages={messages}
-    >
-        {children}
-    </IntlProvider>
-);
-
-ReactIntlProvider.propTypes = {
-    children: PropTypes.node.isRequired,
-    locale: PropTypes.string.isRequired,
-    messages: PropTypes.object.isRequired, // todo: better
-};
 
 export default connect(
     mapStateToProps,

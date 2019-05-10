@@ -1,5 +1,5 @@
 import React from 'react';
-import types from 'config/types';
+import types from 'config/proptypes';
 import styled, { keyframes } from 'styled-components';
 
 const connectAnimation = keyframes`

@@ -5,7 +5,7 @@ import { FormattedMessage } from 'react-intl';
 import PropTypes from 'prop-types';
 
 import { DISALLOWED_STATE } from 'constants/steps';
-import types from 'config/types';
+import types from 'config/proptypes';
 import PinMatrix from 'components/PinMatrix';
 import Text from 'components/Text';
 
