@@ -23,22 +23,19 @@ describe('User unwraps Trezor and realizes that Hologram is fake', () => {
             .should('be.visible')
             .click();
 
-
         //'Select device'
         cy.contains('Select your device');
         cy.getTestElement('select-device-2')
             .should('be.visible')
             .click();
 
-
         // 'No, I made a mistake, I wanted to chose different device'
         cy.getTestElement(`step-${ID.SELECT_DEVICE_STEP}`)
             .should('be.visible')
             .click();
-        cy.getTestElement('select-device-2')
+        cy.getTestElement('select-device-1')
             .should('be.visible')
             .click();
-
 
         //'Hmm my hologram looks different'
         cy.getTestElement('button-hologram-different')
@@ -59,7 +56,6 @@ describe('User unwraps Trezor and realizes that Hologram is fake', () => {
             .should('be.visible')
             .wait(1000)
             .matchImageSnapshot('hologram');
-
 
         //'Actualy, I have changed my mind, I want to contact Trezor support
         cy.getTestElement('button-hologram-different')

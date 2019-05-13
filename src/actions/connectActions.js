@@ -3,7 +3,7 @@ import TrezorConnect, {
 } from 'trezor-connect';
 import connectConfig from 'config/connect';
 import * as CONNECT from 'actions/constants/connect';
-
+import { isDevelopment } from 'support/build';
 // @ts-ignore
 import { SET_APPLICATION_ERROR } from 'types/onboarding.ts';
 import * as CALLS from 'actions/constants/calls';
@@ -235,9 +235,9 @@ const init = () => async (dispatch) => {
         }
     });
 
-    // if (connectConfig.endpoint) {
-    //     window.__TREZOR_CONNECT_SRC = connectConfig.endpoint; // eslint-disable-line no-underscore-dangle
-    // }
+    if (isDevelopment()) {
+        window.__TREZOR_CONNECT_SRC = connectConfig.development; // eslint-disable-line no-underscore-dangle
+    }
 
     try {
         await TrezorConnect.init(connectConfig.init);

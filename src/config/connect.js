@@ -1,4 +1,3 @@
-import { isDevelopment } from 'support/build';
 
 const ENDPOINT = 'http://localhost:8088/';
 // const ENDPOINT = 'https://sisyfos.trezor.io/connect/';
@@ -14,5 +13,5 @@ export default {
             appUrl: 'http://localhost:8080',
         },
     },
-    endpoint: isDevelopment() ? ENDPOINT : null,
+    development: ENDPOINT,
 };

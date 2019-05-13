@@ -23,6 +23,12 @@ test:
     - yarn install
     - yarn run test-all
 
+build docker: 
+  stage: build
+  script:
+    - docker build -t docker/Dockerfile .
+    # - docker run Dockerfile /script/to/run/tests
+  
 build development:
   stage: build
   script:
