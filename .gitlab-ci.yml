@@ -25,11 +25,9 @@ test:
 
 test-e2e:
   stage: test
-  image: docker:stable
+  image: car2godeveloper/dind-node-build-runner
   before_script:
-    - apk add --no-cache bash gawk sed grep bc coreutils curl apt-get
-    - curl -sL https://deb.nodesource.com/setup_8.x | bash -
-    - apt-get install -y chromium libappindicator3-1 xdg-utils fonts-liberation nodejs wget dpkg git python python3 python3-pip xvfb libgtk2.0-0 libnotify-dev libgconf-2-4 libnss3 libxss1 libasound2
+    - apk add --no-cache bash gawk sed grep bc coreutils curl
     - npm install -g yarn
   services:
     - docker:dind
