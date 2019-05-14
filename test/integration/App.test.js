@@ -15,8 +15,8 @@ describe('User unwraps Trezor and realizes that Hologram is fake', () => {
         cy.contains('Loading');
         cy.contains('Welcome to Trezor', { timeout: 11000 })
             .getTestElement('onboarding-app')
-            .should('be.visible')
-            .wait(1000)
+            // .should('be.visible')
+            // .wait(1000)
             .matchImageSnapshot('welcome');
 
         cy.getTestElement('button-continue')

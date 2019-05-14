@@ -34,4 +34,4 @@ WORKDIR /usr/src/app
 
 RUN yarn build:development
 
-CMD ["./docker-inside.sh"]
+CMD ["./test-e2e.sh"]

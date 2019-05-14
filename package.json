@@ -16,7 +16,7 @@
     "test-all": "yarn test-unit && yarn test-health && yarn test-e2e",
     "test-unit": "jest --testPathPattern=src/utils",
     "test-health": "jest --testPathPattern=test/health",
-    "test-e2e": "./docker.sh",
+    "test-e2e": "./docker-test-e2e.sh",
     "test-e2e:update": "npx cypress run --env updateSnapshots=true --config baseUrl=https://localhost:8080",
     "translations:extract": "rimraf translations/extractedMessages && cross-env NODE_ENV=translations babel src && yarn ttm merge-msgs && yarn ttm build-csv",
     "translations:upload": "yarn translations:extract && yarn ttm upload",
