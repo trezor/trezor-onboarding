@@ -32,7 +32,7 @@ test-e2e:
   services:
     - docker:dind
   script: 
-    - ./test-e2e.sh
+    - ./docker-test-e2e.sh
   
 build development:
   stage: build
