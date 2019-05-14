@@ -27,7 +27,7 @@ test-e2e:
   stage: test
   image: docker:latest
   script: 
-    - ./docker.sh # this is to test test-e2e
+    - ./test-e2e.sh # this is to test test-e2e
   
 build development:
   stage: build

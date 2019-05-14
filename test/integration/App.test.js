@@ -4,19 +4,17 @@ import { SUPPORT_URL } from '../../src/config/urls';
 // todo: currently, it works only with local connect, investigate why.
 // todo: tests are in experimental phase
 
-describe('User unwraps Trezor and realizes that Hologram is fake', () => {
+describe('e2e tests', () => {
     before(() => {
         cy.viewport(1024, 768);
         cy.visit('/');
     });
 
-    it('bla', () => {
+    it('User unwraps Trezor and realizes that Hologram is fake', () => {
         // 'Wait for page to load',
         cy.contains('Loading');
         cy.contains('Welcome to Trezor', { timeout: 11000 })
             .getTestElement('onboarding-app')
-            // .should('be.visible')
-            // .wait(1000)
             .matchImageSnapshot('welcome');
 
         cy.getTestElement('button-continue')
@@ -44,7 +42,6 @@ describe('User unwraps Trezor and realizes that Hologram is fake', () => {
         cy.contains('Hologram check')
             .getTestElement('onboarding-app')
             .should('be.visible')
-            .wait(1000)
             .matchImageSnapshot('hologram-different');
 
         //'Hmm, no I dont want to contact Trezor support
@@ -53,8 +50,7 @@ describe('User unwraps Trezor and realizes that Hologram is fake', () => {
             .click();
         cy.contains('Hologram check')
             .getTestElement('onboarding-app')
-            .should('be.visible')
-            .wait(1000);
+            .should('be.visible');
 
         //'Actualy, I have changed my mind, I want to contact Trezor support
         cy.getTestElement('button-hologram-different')
@@ -64,5 +60,9 @@ describe('User unwraps Trezor and realizes that Hologram is fake', () => {
             .should('be.visible')
             .click();
         cy.url().should('include', SUPPORT_URL);
+    });
+
+    it('User goes through entire process directly (create wallet)', () => {
+
     });
 });
