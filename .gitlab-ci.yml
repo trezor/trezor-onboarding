@@ -17,11 +17,17 @@ lint:
     - yarn install
     - yarn run lint
 
-test:
+test-unit:
   stage: test
   script:
     - yarn install
-    - yarn run test-all
+    - yarn run test-unit
+
+test-health:
+  stage: test
+  script:
+    - yarn install
+    - yarn run test-health
 
 test-e2e:
   stage: test
