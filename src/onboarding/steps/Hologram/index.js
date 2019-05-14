@@ -63,7 +63,10 @@ const HologramStep = ({
                                 {
                                     (!actualVersion || actualVersion === model) && (
                                         <React.Fragment>
-                                            <Button onClick={() => onboardingActions.goToNextStep()}>
+                                            <Button
+                                                data-test="button-continue"
+                                                onClick={() => onboardingActions.goToNextStep()}
+                                            >
                                                 <FormattedMessage {...l10nMessages.TR_HOLOGRAM_STEP_ACTION_OK} />
                                             </Button>
                                             <Button
