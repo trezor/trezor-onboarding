@@ -67,6 +67,7 @@ const HologramStep = ({
                                                 data-test="button-continue"
                                                 onClick={() => onboardingActions.goToNextStep()}
                                             >
+                                            kkoko
                                                 <FormattedMessage {...l10nMessages.TR_HOLOGRAM_STEP_ACTION_OK} />
                                             </Button>
                                             <Button

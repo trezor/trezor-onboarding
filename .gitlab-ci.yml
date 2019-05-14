@@ -25,7 +25,9 @@ test:
 
 test-e2e:
   stage: test
-  image: docker:dind
+  image: docker:stable
+  services:
+    - docker:dind
   script: 
     - ./test-e2e.sh # this is to test test-e2e
   
