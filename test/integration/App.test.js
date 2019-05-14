@@ -1,5 +1,5 @@
-import { ID } from 'constants/steps';
-import { SUPPORT_URL } from 'config/urls';
+import { ID } from '../../src/constants/steps';
+import { SUPPORT_URL } from '../../src/config/urls';
 
 // todo: currently, it works only with local connect, investigate why.
 // todo: tests are in experimental phase
@@ -54,8 +54,7 @@ describe('User unwraps Trezor and realizes that Hologram is fake', () => {
         cy.contains('Hologram check')
             .getTestElement('onboarding-app')
             .should('be.visible')
-            .wait(1000)
-            .matchImageSnapshot('hologram');
+            .wait(1000);
 
         //'Actualy, I have changed my mind, I want to contact Trezor support
         cy.getTestElement('button-hologram-different')

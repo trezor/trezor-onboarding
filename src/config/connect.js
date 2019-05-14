@@ -1,11 +1,7 @@
-
-const ENDPOINT = 'http://localhost:8088/';
-// const ENDPOINT = 'https://sisyfos.trezor.io/connect/';
-
 export default {
     init: {
         transportReconnect: true,
-        // debug: true,
+        debug: true,
         popup: false,
         webusb: false,
         manifest: {
@@ -13,5 +9,6 @@ export default {
             appUrl: 'http://localhost:8080',
         },
     },
-    development: ENDPOINT,
+    // eslint-disable-next-line no-undef
+    endpoint: CONNECT || null,
 };

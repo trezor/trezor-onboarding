@@ -22,13 +22,8 @@ test:
   script:
     - yarn install
     - yarn run test-all
+    - ./docker.sh # this is to test test-e2e
 
-build docker: 
-  stage: build
-  script:
-    - docker build -t docker/Dockerfile .
-    # - docker run Dockerfile /script/to/run/tests
-  
 build development:
   stage: build
   script:

@@ -10,7 +10,6 @@ const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 const gitRevisionPlugin = new GitRevisionPlugin({ branch: true });
 
 module.exports = env => ({
-    // entry: ['@babel/polyfill', './src/index.ts'],
     entry: path.resolve(__dirname, 'src'),
     mode: 'development',
     output: {
@@ -20,7 +19,7 @@ module.exports = env => ({
     resolve: {
         extensions: ['.ts', '.tsx', '.js', '.jsx', '.json'],
     },
-    
+
     module: {
         rules: [
             {
@@ -40,10 +39,10 @@ module.exports = env => ({
                             emitWarning: true,
                             cache: true,
                             eslint: {
-                                configFile: path.join(__dirname, '.js.eslintrc')
+                                configFile: path.join(__dirname, '.js.eslintrc'),
                             },
                         },
-                        
+
                     },
                     {
                         loader: 'stylelint-custom-processor-loader',
@@ -96,6 +95,7 @@ module.exports = env => ({
             COMMITHASH: JSON.stringify(gitRevisionPlugin.commithash()),
             BRANCH: JSON.stringify(gitRevisionPlugin.branch()),
             BUILD: JSON.stringify(env.BUILD),
+            CONNECT: JSON.stringify(env.CONNECT),
         }),
         new CopyWebpackPlugin([
             { from: 'l10n', to: 'l10n' },
@@ -111,6 +111,9 @@ module.exports = env => ({
         }),
         new ForkTsCheckerWebpackPlugin(),
     ],
+    devServer: {
+        https: true,
+    },
 
     // When importing a module whose path matches one of the following, just
     // assume a corresponding global variable exists and use that instead.
