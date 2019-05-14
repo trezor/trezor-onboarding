@@ -27,7 +27,7 @@ test-e2e:
   stage: test
   image: car2godeveloper/dind-node-build-runner
   before_script:
-    - apk add --no-cache bash gawk sed grep bc coreutils curl
+    # - apk add --no-cache bash gawk sed grep bc coreutils curl
     - npm install -g yarn
   services:
     - docker:dind
