@@ -64,18 +64,17 @@ const HologramStep = ({
                                     (!actualVersion || actualVersion === model) && (
                                         <React.Fragment>
                                             <Button
-                                                data-test="button-continue"
-                                                onClick={() => onboardingActions.goToNextStep()}
-                                            >
-                                            kkoko
-                                                <FormattedMessage {...l10nMessages.TR_HOLOGRAM_STEP_ACTION_OK} />
-                                            </Button>
-                                            <Button
                                                 data-test="button-hologram-different"
                                                 onClick={() => onboardingActions.goToSubStep('hologram-different')}
                                                 isWhite
                                             >
                                                 <FormattedMessage {...l10nMessages.TR_HOLOGRAM_STEP_ACTION_NOT_OK} />
+                                            </Button>
+                                            <Button
+                                                data-test="button-continue"
+                                                onClick={() => onboardingActions.goToNextStep()}
+                                            >
+                                                <FormattedMessage {...l10nMessages.TR_HOLOGRAM_STEP_ACTION_OK} />
                                             </Button>
                                         </React.Fragment>
                                     )
@@ -98,6 +97,14 @@ const HologramStep = ({
                                 />
                             </Text>
                             <ControlsWrapper>
+                                <Button
+                                    isWhite
+                                    onClick={() => onboardingActions.goToSubStep(null)}
+                                    data-test="button-back"
+                                >
+                                Back
+                                </Button>
+
                                 <Link href={SUPPORT_URL} target="_self">
                                     <Button
                                         data-test="button-contact-support"
@@ -106,13 +113,6 @@ const HologramStep = ({
                                         <FormattedMessage {...l10nCommonMessages.TR_CONTACT_SUPPORT} />
                                     </Button>
                                 </Link>
-                                <Button
-                                    isWhite
-                                    onClick={() => onboardingActions.goToSubStep(null)}
-                                    data-test="button-back"
-                                >
-                                Back
-                                </Button>
                             </ControlsWrapper>
                         </React.Fragment>
                     )

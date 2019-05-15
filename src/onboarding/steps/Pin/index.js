@@ -77,17 +77,16 @@ class SetPinStep extends React.Component {
                                     <FormattedMessage {...l10nMessages.TR_PIN_SUBHEADING} />
                                 </Text>
                                 <ControlsWrapper>
-                                    <Button onClick={() => { this.props.connectActions.changePin(); }}>
-                                        <FormattedMessage {...l10nMessages.TR_SET_PIN} />
-                                    </Button>
                                     <Button isWhite onClick={() => this.props.onboardingActions.goToNextStep()}>
                                         <FormattedMessage {...l10nCommonMessages.TR_SKIP} />
+                                    </Button>
+                                    <Button onClick={() => { this.props.connectActions.changePin(); }}>
+                                        <FormattedMessage {...l10nMessages.TR_SET_PIN} />
                                     </Button>
                                 </ControlsWrapper>
                             </React.Fragment>
                         )
                     }
-
 
                     {
                         this.getStatus() === 'first' && (

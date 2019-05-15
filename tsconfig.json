@@ -23,7 +23,9 @@
             },
         "baseUrl": "./src",
     },
-    
+    "files": [
+        "globals.d.ts"
+    ],
 	"include": [
         "src/**/*"
     ],

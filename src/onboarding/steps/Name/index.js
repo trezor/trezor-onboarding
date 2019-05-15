@@ -7,7 +7,7 @@ import { FormattedMessage, injectIntl, intlShape } from 'react-intl';
 
 import types from 'config/proptypes';
 import { DEFAULT_LABEL } from 'constants/trezor';
-import { validateASCII } from 'utils/validate';
+import { validateASCII } from 'utils/validate.ts';
 import l10nCommonMessages from 'support/commonMessages';
 import Text from 'components/Text';
 import {
@@ -88,11 +88,11 @@ class NameStep extends React.Component {
                                 />
 
                                 <ControlsWrapper>
-                                    <Button isDisabled={this.validateInput().state !== 'success'} onClick={this.changeLabel}>
-                                        <FormattedMessage {...l10nCommonMessages.TR_SUBMIT} />
-                                    </Button>
                                     <Button isWhite onClick={() => this.props.onboardingActions.goToNextStep()}>
                                         <FormattedMessage {...l10nCommonMessages.TR_SKIP} />
+                                    </Button>
+                                    <Button isDisabled={this.validateInput().state !== 'success'} onClick={this.changeLabel}>
+                                        <FormattedMessage {...l10nCommonMessages.TR_SUBMIT} />
                                     </Button>
                                 </ControlsWrapper>
 

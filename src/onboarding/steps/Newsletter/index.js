@@ -9,7 +9,7 @@ import { FormattedMessage, injectIntl, intlShape } from 'react-intl';
 import types from 'config/proptypes';
 import { SOCIAL_FACEBOOK_URL, BLOG_URL, SOCIAL_TWITTER_URL } from 'config/urls.ts';
 import { IconSocial } from 'components/Icons';
-import { validateEmail } from 'utils/validate';
+import { validateEmail } from 'utils/validate.ts';
 import { SUBMIT_EMAIL } from 'actions/constants/fetchCalls';
 import { APPLY_FLAGS } from 'actions/constants/calls';
 import Text from 'components/Text';
@@ -141,14 +141,14 @@ class NewsleterStep extends React.Component {
                                 </CheckboxexSection>
 
                                 <ControlsWrapper>
+                                    <Button isWhite onClick={() => this.skipEmail()}>
+                                        <FormattedMessage {...l10nCommonMessages.TR_SKIP} />
+                                    </Button>
                                     <Button
                                         isDisabled={this.validateInput().state !== 'success' || this.getEmailStatus() === 'sending'}
                                         onClick={this.submitEmail}
                                     >
                                         <FormattedMessage {...l10nCommonMessages.TR_SUBMIT} />
-                                    </Button>
-                                    <Button isWhite onClick={() => this.skipEmail()}>
-                                        <FormattedMessage {...l10nCommonMessages.TR_SKIP} />
                                     </Button>
                                 </ControlsWrapper>
                             </React.Fragment>

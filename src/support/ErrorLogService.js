@@ -1,6 +1,6 @@
 import * as Sentry from '@sentry/browser';
 import * as CONFIG from 'config/sentry.ts';
-import { isDevelopment } from 'support/build';
+import { isDevelopment } from 'support/build.ts';
 
 // Not absolutely neccessary here, just using a Proxy to create flat ErrorLogService
 // without need to access its service property.

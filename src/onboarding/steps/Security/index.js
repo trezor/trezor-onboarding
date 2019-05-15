@@ -20,14 +20,14 @@ const SecurityStep = ({ onboardingActions }) => (
                 <FormattedMessage {...l10nMessages.TR_SECURITY_SUBHEADING} />
             </Text>
             <ControlsWrapper>
+                <Button isWhite onClick={() => onboardingActions.goToNextStep(ID.FINAL_STEP)}>
+                    <FormattedMessage {...l10nMessages.TR_SKIP_SECURITY} />
+                </Button>
                 <Button onClick={() => {
                     onboardingActions.goToNextStep();
                 }}
                 >
                     <FormattedMessage {...l10nMessages.TR_GO_TO_SECURITY} />
-                </Button>
-                <Button isWhite onClick={() => onboardingActions.goToNextStep(ID.FINAL_STEP)}>
-                    <FormattedMessage {...l10nMessages.TR_SKIP_SECURITY} />
                 </Button>
             </ControlsWrapper>
         </StepBodyWrapper>

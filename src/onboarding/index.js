@@ -4,7 +4,7 @@ import { Link, P, Prompt } from 'trezor-ui-components';
 import { CSSTransition } from 'react-transition-group';
 import { hot } from 'react-hot-loader/root';
 
-import { isDevelopment } from 'support/build';
+import { isDevelopment } from 'support/build.ts';
 import * as EVENTS from 'actions/constants/events';
 import types from 'config/proptypes';
 import colors from 'config/colors';

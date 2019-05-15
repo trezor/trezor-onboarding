@@ -116,11 +116,11 @@ class BookmarkStep extends React.Component {
                         {
                             !Platform.isMobile() && (
                                 <React.Fragment>
-                                    <Button isDisabled={this.nextDisabled()} onClick={() => this.setBookmarkFlagAndContinue()}>
-                                        <FormattedMessage {...l10nCommonMessages.TR_CONTINUE} />
-                                    </Button>
                                     <Button isWhite onClick={() => this.setBookmarkFlagAndContinue()}>
                                         <FormattedMessage {...l10nCommonMessages.TR_SKIP} />
+                                    </Button>
+                                    <Button isDisabled={this.nextDisabled()} onClick={() => this.setBookmarkFlagAndContinue()}>
+                                        <FormattedMessage {...l10nCommonMessages.TR_CONTINUE} />
                                     </Button>
                                 </React.Fragment>
                             )
@@ -129,11 +129,11 @@ class BookmarkStep extends React.Component {
                         {
                             Platform.isMobile() && (
                                 <React.Fragment>
-                                    <Button onClick={() => this.setBookmarkFlagAndContinue()}>
-                                        <FormattedMessage {...l10nCommonMessages.TR_CONTINUE} />
-                                    </Button>
                                     <Button isWhite onClick={() => this.setBookmarkFlagAndContinue()}>
                                         <FormattedMessage {...l10nCommonMessages.TR_SKIP} />
+                                    </Button>
+                                    <Button onClick={() => this.setBookmarkFlagAndContinue()}>
+                                        <FormattedMessage {...l10nCommonMessages.TR_CONTINUE} />
                                     </Button>
                                 </React.Fragment>
                             )

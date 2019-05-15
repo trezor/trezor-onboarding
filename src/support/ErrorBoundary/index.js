@@ -5,7 +5,7 @@ import { P, Button } from 'trezor-ui-components';
 import { ControlsWrapper } from 'components/Wrapper';
 
 import ErrorLogService from 'support/ErrorLogService';
-import { isBeta, isProduction, isDevelopment } from 'support/build';
+import { isBeta, isProduction, isDevelopment } from 'support/build.ts';
 import BugImage from './images/bug.png';
 
 const ErrorWrapper = styled.div`

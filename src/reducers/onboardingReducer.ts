@@ -25,16 +25,6 @@ const initialState: OnboardingReducer = {
             visited: true,
         },
         {
-            id: ID.START_STEP,
-            title: TITLE.START_STEP,
-            disallowedDeviceStates: [
-                DISALLOWED_STATE.DEVICE_IS_NOT_CONNECTED,
-                DISALLOWED_STATE.DEVICE_IS_IN_BOOTLOADER,
-                DISALLOWED_STATE.IS_NOT_SAME_DEVICE,
-                DISALLOWED_STATE.DEVICE_IS_NOT_USED_HERE,
-            ],
-        },
-        {
             id: ID.SELECT_DEVICE_STEP,
             title: TITLE.SELECT_DEVICE_STEP,
         },
