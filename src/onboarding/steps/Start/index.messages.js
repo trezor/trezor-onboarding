@@ -6,6 +6,11 @@ const definedMessages = defineMessages({
         defaultMessage: 'Create or recover',
         description: 'Heading in start page',
     },
+    TR_RECOVERY_HEADING: {
+        id: 'TR_RECOVERY_HEADING',
+        defaultMessage: 'Recover your device',
+        description: 'Heading in start page, when recovery process is active',
+    },
     TR_START_CREATING: {
         id: 'TR_START_CREATING',
         defaultMessage: 'Creating',

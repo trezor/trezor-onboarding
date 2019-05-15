@@ -219,7 +219,7 @@ class RecoveryStep extends React.Component {
                                         option: (provided, state) => ({
                                             ...provided,
                                             backgroundColor: state.isFocused ? colors.brandPrimary : provided.backgroundColor,
-                                            color: colors.grayDark,
+                                            color: state.isFocused ? colors.grayLight : colors.grayDark,
                                             textAlign: 'initial',
                                         }),
                                         control: (provided, state) => ({
@@ -230,9 +230,7 @@ class RecoveryStep extends React.Component {
                                             },
                                             borderColor: state.isFocused ? colors.brandPrimary : 'transparent',
                                         }),
-                                        dropdownIndicator: () => ({
-                                            display: 'none',
-                                        }),
+                                        dropdownIndicator: () => ({ display: 'none' }),
                                         indicatorSeparator: () => ({ display: 'none' }),
                                         menu: (provided) => {
                                             if (!this.props.recovery.word) {

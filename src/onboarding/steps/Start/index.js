@@ -46,7 +46,12 @@ const StartStep = ({
 }) => (
     <StepWrapper>
         <StepHeadingWrapper>
-            <FormattedMessage {...l10nMessages.TR_START_HEADING} />
+            {
+                activeSubStep === null && <FormattedMessage {...l10nMessages.TR_START_HEADING} />
+            }
+            {
+                activeSubStep === ID.RECOVERY_STEP && <FormattedMessage {...l10nMessages.TR_RECOVERY_HEADING} />
+            }
         </StepHeadingWrapper>
         <StepBodyWrapper>
             {/* todo: reconsider isResolved logic */}
