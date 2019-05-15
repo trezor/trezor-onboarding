@@ -9,7 +9,7 @@ import * as EVENTS from 'actions/constants/events';
 import types from 'config/proptypes';
 import colors from 'config/colors';
 import { SM } from 'config/breakpoints';
-import { TOS_URL } from 'config/urls';
+import { TOS_URL } from 'config/urls.ts';
 import {
     PROGRESSBAR_HEIGHT,
     PROGRESSBAR_HEIGHT_UNIT,

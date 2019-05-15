@@ -6,7 +6,7 @@ import { Header } from 'trezor-ui-components';
 import { NAVBAR_HEIGHT, NAVBAR_HEIGHT_UNIT } from 'config/layout';
 import {
     TREZOR_URL, SUPPORT_URL, WIKI_URL, BLOG_URL,
-} from 'config/urls';
+} from 'config/urls.ts';
 
 import l10nMessages from './index.messages';
 import LanguagePicker from './components/LanguagePicker/Container';

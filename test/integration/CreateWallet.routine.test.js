@@ -1,5 +1,5 @@
 import { ID } from '../../src/constants/steps';
-import { SUPPORT_URL } from '../../src/config/urls';
+import { SUPPORT_URL } from '../../src/config/urls.ts';
 
 describe('Create new wallet routine', () => {
     before(() => {

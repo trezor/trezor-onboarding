@@ -7,7 +7,7 @@ import { Flags } from 'trezor-flags';
 import { FormattedMessage, injectIntl, intlShape } from 'react-intl';
 
 import types from 'config/proptypes';
-import { SOCIAL_FACEBOOK_URL, BLOG_URL, SOCIAL_TWITTER_URL } from 'config/urls';
+import { SOCIAL_FACEBOOK_URL, BLOG_URL, SOCIAL_TWITTER_URL } from 'config/urls.ts';
 import { IconSocial } from 'components/Icons';
 import { validateEmail } from 'utils/validate';
 import { SUBMIT_EMAIL } from 'actions/constants/fetchCalls';

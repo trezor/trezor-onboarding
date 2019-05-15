@@ -10,7 +10,7 @@ import BlindMatrix from 'components/BlindMatrix';
 import bip39List from 'constants/bip39';
 import types from 'config/proptypes';
 import colors from 'config/colors';
-import { RECOVERY_MODEL_ONE_URL } from 'config/urls';
+import { RECOVERY_MODEL_ONE_URL } from 'config/urls.ts';
 import { RECOVER_DEVICE } from 'actions/constants/calls';
 import { WORD_REQUEST_PLAIN, WORD_REQUEST_MATRIX9 } from 'actions/constants/events';
 import { OptionsList } from 'components/Options';

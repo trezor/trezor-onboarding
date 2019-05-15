@@ -1,0 +1,15 @@
+export const SUPPORT_URL: string = 'https://trezor.io/support/';
+export const USER_MANUAL_URL: string = 'https://wiki.trezor.io/User_manual';
+export const TOS_URL: string = 'https://trezor.io/tos';
+export const PIN_MANUAL_URL: string = 'https://wiki.trezor.io/User_manual:Entering_PIN';
+export const SEED_MANUAL_URL: string = 'https://wiki.trezor.io/Recovery_seed';
+export const PHISHING_URL: string = 'https://blog.trezor.io/phishing-attacks-used-to-steal-your-coins-recommended-reading-a39c0679c55d';
+export const SOCIAL_TWITTER_URL: string = 'https://twitter.com/trezor';
+export const SOCIAL_FACEBOOK_URL: string = 'https://www.facebook.com/BitcoinTrezor/';
+export const TREZOR_RESELLERS_URL: string = 'https://trezor.io/resellers/';
+export const TREZOR_PACKAGING_URL: string = 'https://wiki.trezor.io/Trezor_packaging_timeline';
+export const SKIP_URL: string = 'https://wallet.trezor.io';
+export const TREZOR_URL: string = 'https://trezor.io';
+export const RECOVERY_MODEL_ONE_URL: string = 'https://wiki.trezor.io/index.php?title=User+manual%3ARecovery&ModelType=1';
+export const WIKI_URL: string = 'https://wiki.trezor.io/';
+export const BLOG_URL: string = 'https://blog.trezor.io/';

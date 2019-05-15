@@ -4,7 +4,7 @@ import {
 } from 'trezor-ui-components';
 import { FormattedMessage } from 'react-intl';
 
-import { SUPPORT_URL } from 'config/urls';
+import { SUPPORT_URL } from 'config/urls.ts';
 import colors from 'config/colors';
 import types from 'config/proptypes';
 import { ID } from 'constants/steps';

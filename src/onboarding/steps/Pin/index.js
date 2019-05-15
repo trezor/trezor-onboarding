@@ -6,7 +6,7 @@ import {
 } from 'trezor-ui-components';
 import { FormattedMessage } from 'react-intl';
 
-import { PIN_MANUAL_URL } from 'config/urls';
+import { PIN_MANUAL_URL } from 'config/urls.ts';
 import types from 'config/proptypes';
 import * as BREAKPOINTS from 'config/breakpoints';
 import l10nCommonMessages from 'support/commonMessages';

@@ -7,7 +7,7 @@ import {
 
 import { FormattedMessage } from 'react-intl';
 
-import { PIN_MANUAL_URL } from 'config/urls';
+import { PIN_MANUAL_URL } from 'config/urls.ts';
 import l10nMessages from './index.messages';
 
 const Wrapper = styled.div`

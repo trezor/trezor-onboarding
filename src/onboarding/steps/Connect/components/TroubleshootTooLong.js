@@ -3,7 +3,7 @@ import { P, Link } from 'trezor-ui-components';
 import { FormattedMessage } from 'react-intl';
 
 import { UnorderedList } from 'components/Lists';
-import { SUPPORT_URL } from 'config/urls';
+import { SUPPORT_URL } from 'config/urls.ts';
 import Text from 'components/Text';
 
 import l10nMessages from './TroubleshootTooLong.messages';
