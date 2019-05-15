@@ -2,16 +2,16 @@ import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import {
-    P, Button, Link, ButtonPin, InputPin,
+    Button, ButtonPin, InputPin,
 } from 'trezor-ui-components';
 
 import { FormattedMessage } from 'react-intl';
 
-import { PIN_MANUAL_URL } from 'config/urls.ts';
+// import { PIN_MANUAL_URL } from 'config/urls.ts';
 import l10nMessages from './index.messages';
 
 const Wrapper = styled.div`
-    max-width: 200px;
+    max-width: 240px;
     margin-left: auto;
     margin-right: auto;
 `;
@@ -19,7 +19,6 @@ const Wrapper = styled.div`
 const InputWrapper = styled.div`
     margin-top: 12px;
     margin-bottom: 12px;
-    max-width: 200px;
 `;
 
 const PinRow = styled.div`
@@ -167,14 +166,14 @@ class PinMatrix extends React.Component {
                     >
                         <FormattedMessage {...l10nMessages.TR_ENTER_PIN} />
                     </Button>
-                    <P isSmaller>
+                    {/* <P isSmaller>
                         <FormattedMessage
                             {...l10nMessages.TR_NOT_SURE_HOW_PIN_WORKS}
                             values={{
                                 TR_PIN_MANUAL_LINK: <Link isGreen href={PIN_MANUAL_URL}><FormattedMessage {...l10nMessages.TR_PIN_MANUAL_LINK} /></Link>,
                             }}
                         />
-                    </P>
+                    </P> */}
                 </PinFooter>
             </Wrapper>
         );

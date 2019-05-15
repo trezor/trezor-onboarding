@@ -1,8 +1,10 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
+
 import React from 'react';
 import styled from 'styled-components';
 import { UI } from 'trezor-connect';
 import {
-    Button, Link,
+    Button, Link, Modal,
 } from 'trezor-ui-components';
 import { FormattedMessage } from 'react-intl';
 
@@ -24,19 +26,31 @@ const NewPinWrapper = styled.div`
     flex-direction: column;
     align-items: center;
 
-    @media only screen and (min-width: ${BREAKPOINTS.SM}px) {
-        flex-direction: row;
-    } 
+    /* @media only screen and (min-width: ${BREAKPOINTS.SM}px) { 
+        flex-direction: row; 
+    }  */
+`;
+
+const HowToSetPinModal = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    height: 400px;
 `;
 
 const HowToSetPin = styled.img`
     box-shadow: 0 4px 8px 0 grey;
     max-width: 400px;
-    width: 100%;
-    height: auto;
+    width: 80%;
+    object-fit: contain;
 `;
 
 class SetPinStep extends React.Component {
+    state = {
+        instructionsFocused: false,
+    }
+
     getStatus() {
         const {
             deviceCall, uiInteraction, device, activeSubStep,
@@ -91,14 +105,24 @@ class SetPinStep extends React.Component {
                     {
                         this.getStatus() === 'first' && (
                             <NewPinWrapper>
-                                <div style={{ width: '50%' }}>
-                                    <Text>
-                                    See how pin works.
-                                    </Text>
-                                    <HowToSetPin src={HowToSetPinGif} alt="How to enter pin" />
-                                </div>
+                                <Link onClick={() => this.setState({ instructionsFocused: true })}>
+                                    Click to see how pin works.
+                                </Link>
 
-                                <div style={{ width: '50%' }}>
+                                {
+                                    this.state.instructionsFocused && (
+                                        <Modal>
+                                            <HowToSetPinModal>
+                                                <HowToSetPin src={HowToSetPinGif} alt="How to enter pin" />
+                                                <Link onClick={() => this.setState({ instructionsFocused: false })}>
+                                                    Ok, I get it.
+                                                </Link>
+                                            </HowToSetPinModal>
+
+                                        </Modal>
+                                    )
+                                }
+                                <div>
                                     <PinMatrix
                                         onPinSubmit={
                                             (pin) => {
