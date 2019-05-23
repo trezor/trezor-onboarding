@@ -3,7 +3,9 @@ import {
     FETCH_START,
     FETCH_SUCCESS,
     FETCH_ERROR,
-} from 'actions/constants/fetch';
+    FetchReducer,
+    FetchActionTypes,
+} from 'types/fetch';
 
 const initialState = {
     name: null,
@@ -12,7 +14,7 @@ const initialState = {
     result: null,
 };
 
-const connect = (state = initialState, action) => {
+const fetch = (state: FetchReducer = initialState, action: FetchActionTypes): FetchReducer => {
     switch (action.type) {
         case FETCH_START:
             return {
@@ -39,4 +41,4 @@ const connect = (state = initialState, action) => {
     }
 };
 
-export default connect;
+export default fetch;

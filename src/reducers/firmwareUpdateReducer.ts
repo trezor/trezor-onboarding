@@ -1,12 +1,14 @@
 import {
     SET_PROGRESS,
-} from 'actions/constants/firmwareUpdate';
+    FirmwareUpdateReducer,
+    FirmwareUpdateActionTypes
+} from 'types/firmwareUpdate';
 
 const initialState = {
     progress: null,
 };
 
-const firmwareUpdate = (state = initialState, action) => {
+const firmwareUpdate = (state: FirmwareUpdateReducer = initialState , action: FirmwareUpdateActionTypes): FirmwareUpdateReducer => {
     switch (action.type) {
         case SET_PROGRESS:
             return {

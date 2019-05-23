@@ -41,5 +41,23 @@
             "\\.(scss|less|css)$"
         ]
     },
-    "parser": "babel-eslint"
+    "parser": "babel-eslint",
+    "overrides": [
+        {
+            "parser": "@typescript-eslint/parser",
+            "parserOptions": {
+                "ecmaVersion": 2018,
+                "sourceType": "module",
+                "ecmaFeatures": {
+                    "jsx": true,
+                    "modules": true
+                }
+            },  
+            "files": ["*.ts","*.tsx"],
+            "rules": {
+                "no-unused-expressions": "off",
+                "react/jsx-filename-extension": [1, { "extensions": [".ts", ".tsx"]}]
+            }
+        } 
+    ]
 }

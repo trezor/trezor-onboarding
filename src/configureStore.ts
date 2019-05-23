@@ -4,7 +4,7 @@ import thunkMiddleware from 'redux-thunk';
 import loggerMiddleware from 'reducers/middleware/logger';
 import rootReducer from 'reducers';
 
-const configureStore = (preloadedState) => {
+const configureStore = () => {
     const middlewares = [
         thunkMiddleware,
         loggerMiddleware,
@@ -14,7 +14,8 @@ const configureStore = (preloadedState) => {
     const enhancers = [middlewareEnhancer];
     const composedEnhancers = compose(...enhancers);
 
-    const store = createStore(rootReducer, preloadedState, composedEnhancers);
+    // todo typescript as any what?
+    const store = createStore(rootReducer, composedEnhancers as any);
     return store;
 };
 

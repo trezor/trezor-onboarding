@@ -1,6 +1,11 @@
 // todo: some of them are not used
+// todo: use colors from UI components when finished
 
-export default {
+interface ColorsObj {
+    readonly[key: string]: string
+}
+
+const colors: ColorsObj = {
     black: '#333333',
     brandPrimary: '#01B757',
     brandDarker: '#00AB51',
@@ -13,3 +18,5 @@ export default {
     error: '#FF0000',
     danger: '#FF0000',
 };
+
+export default colors;

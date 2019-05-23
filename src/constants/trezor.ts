@@ -1,0 +1,1 @@
+export const DEFAULT_LABEL: string = 'My Trezor';

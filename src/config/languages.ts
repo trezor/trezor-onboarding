@@ -1,4 +1,6 @@
-export default [
+import {Languages} from 'types/languages';
+
+const languages: Languages = [
     { code: 'en', name: 'English', en: 'English' },
     { code: 'bn', name: 'Bengali', en: 'Bengali' },
     { code: 'cs', name: 'Česky', en: 'Czech' },
@@ -17,3 +19,5 @@ export default [
     { code: 'zh', name: '中文(简体)', en: 'Chinese Simplified' },
     { code: 'zh_TW', name: '中文(台灣)', en: 'Chinese Traditional' },
 ];
+
+export default languages;

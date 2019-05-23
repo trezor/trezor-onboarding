@@ -1,3 +1,5 @@
+// todo: deprecated in favor of types/onboarding;
+
 export const GO_TO_SUBSTEP = 'onboarding__go__to__substep';
 export const SET_STEP_ACTIVE = 'onboarding__set__step__active';
 export const SET_STEP_RESOLVED = 'onboarding__set__step__resolved';

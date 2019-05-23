@@ -7,10 +7,10 @@ describe('Create new wallet routine', () => {
         cy.visit('/');
     });
 
-    it.only('User goes through entire process directly (create wallet)', () => {
-        cy.contains('Welcome to Trezor', { timeout: 11000 })
-            .getTestElement('onboarding-app')
-            .matchImageSnapshot('welcome');
+    it('User goes through entire process directly (create wallet)', () => {
+        cy.contains('Welcome to Trezor')
+            .getTestElement('onboarding-app');
+        // .matchImageSnapshot('welcome');
 
         cy.getTestElement('button-continue')
             .should('be.visible')

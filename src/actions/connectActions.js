@@ -4,7 +4,7 @@ import TrezorConnect, {
 import connectConfig from 'config/connect';
 import * as CONNECT from 'actions/constants/connect';
 // @ts-ignore
-import { SET_APPLICATION_ERROR } from 'types/onboarding.ts';
+import { SET_APPLICATION_ERROR } from 'types/onboarding';
 import * as CALLS from 'actions/constants/calls';
 import { DEFAULT_LABEL } from 'constants/trezor';
 

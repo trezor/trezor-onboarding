@@ -1,0 +1,104 @@
+import { Device, Transport } from 'trezor-connect';
+import { Action } from 'redux';
+
+export interface ConnectReducer {
+    device: null | Device;
+    prevDeviceId: string;
+    transport: null | Transport;
+    deviceCall: {
+        name: string // todo: better
+        isProgress: boolean,
+        error: null | string,
+        result: null | Object,
+    };
+    deviceInteraction: {
+        name: string,
+        counter: number,
+    };
+    uiInteraction: {
+        name: string,
+        counter: number,
+    };
+    connectError: null | string,
+}
+
+export const DEVICE_CALL_RESET = 'connect__device__call__reset';
+export const DEVICE_CALL_START = 'connect__device__call__start';
+export const DEVICE_CALL_SUCCESS = 'connect__device__call__success';
+export const DEVICE_CALL_ERROR = 'connect__device__call__error';
+
+export const DEVICE_INTERACTION_EVENT = 'connect__device__interaction__event';
+export const UI_INTERACTION_EVENT = 'connect__ui__interaction__event';
+
+export const TRANSPORT_ERROR = 'connect__transport__error';
+export const TRANSPORT_START = 'connect__transport__start';
+
+export const SET_DEVICE_FEATURES = 'connect__set__device__features';
+export const SET_CONNECT_ERROR = 'connect__set__error';
+
+interface TransportStartAction {
+    type: typeof TRANSPORT_START,
+    transport: Object, // todo: better
+}
+
+interface TransportErrorAction {
+    type: typeof TRANSPORT_ERROR,
+    transport: Object,
+}
+
+interface DeviceConnectAction {
+    type: typeof DEVICE.CONNECT,
+    device: Device,
+}
+
+interface DeviceChangedAction { 
+    type: typeof DEVICE.CHANGED,
+    device: Device,
+}
+
+interface DeviceDisconnectAction {
+    type: typeof DEVICE.DISCONNECT,
+    device: Device,
+}
+
+interface DeviceCallResetAction {
+    type: typeof DEVICE_CALL_RESET,
+}
+
+interface DeviceCallStartAction {
+    type: typeof DEVICE_CALL_START,
+    name: string,
+}
+
+interface DeviceCallSuccessAction {
+    type: typeof DEVICE_CALL_SUCCESS,
+    result: Object,
+}
+
+interface DeviceCallErrorAction {
+    type: typeof DEVICE_CALL_ERROR,
+    name: string, // todo: why use name here and not in success?
+    error: string,
+}
+
+interface DeviceInteractionEventAction {
+    type: typeof DEVICE_INTERACTION_EVENT,
+    name: string,
+}
+
+interface UIInteractionEventAction {
+    type: typeof UI_INTERACTION_EVENT,
+    name: string,
+}
+
+interface SetDeviceFeaturesAction {
+    type: typeof SET_DEVICE_FEATURES,
+    features: Object // todo: better
+}
+
+interface SetConnectErrorAction {
+    type: typeof SET_CONNECT_ERROR,
+    error: string,
+}
+
+export type ConnectActionTypes = TransportStartAction | TransportErrorAction | DeviceConnectAction | DeviceChangedAction | DeviceDisconnectAction | DeviceCallResetAction | DeviceCallStartAction | DeviceCallSuccessAction | DeviceCallErrorAction | DeviceInteractionEventAction | UIInteractionEventAction | SetDeviceFeaturesAction | SetConnectErrorAction;

@@ -1,6 +1,6 @@
 import {
-    OnboardingReducer,
     Step,
+    OnboardingReducer,
     OnboardingActionTypes,
     SET_STEP_ACTIVE,
     SET_STEP_RESOLVED,

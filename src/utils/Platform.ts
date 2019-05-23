@@ -1,3 +1,7 @@
+interface getInfoResult {
+    os: string | null;
+    isMobile: boolean | null;
+}
 export default class Platform {
     static OS = {
         MAC: 'Mac',
@@ -7,12 +11,16 @@ export default class Platform {
         ANDROID: 'Android',
     }
 
-    static getInfo() {
+    static getInfo(): getInfoResult {
+
         const { userAgent, platform } = window.navigator;
         const macosPlatforms = ['Macintosh', 'MacIntel', 'MacPPC', 'Mac68K'];
         const windowsPlatforms = ['Win32', 'Win64', 'Windows', 'WinCE'];
         const iosPlatforms = ['iPhone', 'iPad', 'iPod'];
-        const result = {};
+        const result: getInfoResult = {
+            os: null,
+            isMobile: null
+        };
 
         if (macosPlatforms.includes(platform)) {
             result.os = Platform.OS.MAC;
@@ -36,11 +44,11 @@ export default class Platform {
         return result;
     }
 
-    static isMac() {
+    static isMac(): boolean {
         return Platform.getInfo().os === Platform.OS.MAC;
     }
 
-    static isMobile() {
+    static isMobile(): getInfoResult['isMobile'] {
         return Platform.getInfo().isMobile;
     }
 }
