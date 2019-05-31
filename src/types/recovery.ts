@@ -1,7 +1,18 @@
+import {
+    setWord, setWordsCount, setAdvancedRecovery, submit,
+} from 'actions/recoveryActions';
+
 export interface RecoveryReducer {
     word: null | string;
     advancedRecovery: boolean;
-    wordsCount: null | number;
+    wordsCount: number;
+}
+
+export interface RecoveryActions {
+    setWord: typeof setWord,
+    submit: typeof submit,
+    setWordsCount: typeof setWordsCount,
+    setAdvancedRecovery: typeof setAdvancedRecovery,
 }
 
 export const SET_WORD = 'recovery__set__word';

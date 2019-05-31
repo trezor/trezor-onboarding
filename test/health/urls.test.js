@@ -1,4 +1,4 @@
-import * as URLS from '../../src/config/urls.ts';
+import * as URLS from '../../src/config/urls';
 
 const fetch = require('node-fetch');
 

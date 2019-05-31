@@ -1,5 +1,5 @@
 import * as RECOVERY from 'actions/constants/recovery';
-import { Dispatch, ThunkDispatch, GetState } from 'types/redux';
+import { Dispatch, GetState } from 'types/redux';
 import { submitWord } from './connectActions';
 
 const setWord = (word: string) => ({
@@ -17,7 +17,7 @@ const setAdvancedRecovery = (value: boolean) => ({
     value,
 });
 
-const submit = (word: string) => (dispatch: ThunkDispatch, getState: GetState) => {
+const submit = (word?: string) => (dispatch: Dispatch, getState: GetState) => {
     const normalizedWord = word || getState().recovery.word;
     if (normalizedWord) {
         dispatch(submitWord({ word: `${normalizedWord}` })).then(() => {

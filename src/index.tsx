@@ -1,19 +1,26 @@
 import React from 'react';
+import * as Sentry from '@sentry/browser';
 import { render } from 'react-dom';
 import { Normalize } from 'styled-normalize';
 import { Provider } from 'react-redux';
 
+import * as CONFIG from 'config/sentry';
+import { isDevelopment } from 'support/build';
+
 import ErrorBoundary from 'support/ErrorBoundary';
 import BaseStyles from 'support/BaseStyles';
-import ErrorLogService from 'support/ErrorLogService';
-import IntlProvider from 'support/ConnectedIntlProvider.tsx';
+import IntlProvider from 'support/ConnectedIntlProvider';
 
-import GlobalWebNavigation from 'components/GlobalWebNavigation';
 import Onboarding from 'onboarding/Container';
+import GlobalWebNavigation from './components/GlobalWebNavigation';
 
 import store from './configureStore';
 
-ErrorLogService.init();
+if (!isDevelopment) {
+    Sentry.init({
+        dsn: CONFIG.URL,
+    });
+}
 
 // eslint-disable-next-line no-undef
 // console.log(`[Trezor onboarding] version: ${VERSION}, branch: ${BRANCH}, build: ${BUILD}`);

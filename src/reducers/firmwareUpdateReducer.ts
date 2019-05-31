@@ -5,7 +5,7 @@ import {
 } from 'types/firmwareUpdate';
 
 const initialState = {
-    progress: null,
+    progress: 0,
 };
 
 const firmwareUpdate = (state: FirmwareUpdateReducer = initialState , action: FirmwareUpdateActionTypes): FirmwareUpdateReducer => {

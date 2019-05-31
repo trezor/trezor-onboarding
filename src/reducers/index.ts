@@ -8,8 +8,8 @@ import firmwareUpdate from 'reducers/firmwareUpdateReducer';
 import newsletter from 'reducers/newsletterReducer';
 
 export default combineReducers({
-    onboarding,
     connect,
+    onboarding,
     fetch,
     recovery,
     firmwareUpdate,

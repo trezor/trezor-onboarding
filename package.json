@@ -41,6 +41,7 @@
     "react-hot-loader": "^4.6.3",
     "react-intl": "v3.0.0-beta-1",
     "react-redux": "^6.0.0",
+    "react-router-dom": "^5.0.0",
     "react-select": "^2.4.2",
     "react-svg": "^7.2.6",
     "react-timeout": "^1.2.0",
@@ -53,7 +54,7 @@
     "styled-reset": "^1.6.4",
     "trezor-connect": "^7.0.3",
     "trezor-flags": "^1.0.2",
-    "trezor-ui-components": "1.0.0-beta.18"
+    "trezor-ui-components": "^1.0.0-beta.18"
   },
   "devDependencies": {
     "@babel/cli": "^7.2.3",
@@ -64,11 +65,15 @@
     "@babel/preset-env": "^7.2.3",
     "@babel/preset-react": "^7.0.0",
     "@babel/preset-typescript": "^7.3.3",
+    "@types/jest": "^24.0.13",
     "@types/react": "^16.8.17",
     "@types/react-dom": "^16.8.4",
     "@types/react-intl": "^2.3.17",
     "@types/react-redux": "7.0.1",
+    "@types/react-select": "^2.0.19",
     "@types/react-svg": "^5.0.0",
+    "@types/react-timeout": "^1.1.1",
+    "@types/react-transition-group": "^2.9.1",
     "@types/styled-components": "4.1.8",
     "@typescript-eslint/eslint-plugin": "^1.0.0",
     "@typescript-eslint/parser": "^1.7.0",

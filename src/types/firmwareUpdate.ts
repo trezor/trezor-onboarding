@@ -1,5 +1,15 @@
+import {
+    setProgress,
+    updateFirmware,
+} from 'actions/firmwareUpdateActions';
+
 export interface FirmwareUpdateReducer {
-    progress: number | null;
+    progress: number;
+}
+
+export interface FirmwareUpdateActions {
+    setProgress: typeof setProgress,
+    updateFirmware: typeof updateFirmware,
 }
 
 export const SET_PROGRESS = 'firmware_update__set__progress';

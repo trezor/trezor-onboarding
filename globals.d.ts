@@ -1,12 +1,32 @@
 /*
-    Declaration of global variables, typically provided by webpack 
+    Declaration of global variables, typically provided by webpack
     It should be used minimally
 */
-
-declare const BUILD: string;
+declare const BUILD: 'beta' | 'production' | 'development';
 declare const CONNECT: string;
 
 // todo typescript: is this ok? maybe not.
-interface window {
-    __TREZOR_CONNECT_SRC: string;
+declare module '*.png' {
+    const value: any;
+    export = value;
+}
+
+declare module '*.svg' {
+    const value: any;
+    export = value;
+}
+
+declare module '*.gif' {
+    const value: any;
+    export = value;
+}
+
+declare module '*.mp4' {
+    const value: any;
+    export = value;
+}
+
+declare module '*.jpg' {
+    const value: any;
+    export = value;
 }

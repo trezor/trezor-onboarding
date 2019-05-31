@@ -1,4 +1,4 @@
-import { 
+import {
     RecoveryReducer,
     RecoveryActionTypes,
     SET_WORD,
@@ -6,10 +6,10 @@ import {
     SET_ADVANCED_RECOVERY,
 } from 'types/recovery';
 
-const initialState = {
+const initialState: RecoveryReducer = {
     word: null,
     advancedRecovery: false,
-    wordsCount: null,
+    wordsCount: 12,
 };
 
 const recovery = (state: RecoveryReducer = initialState, action: RecoveryActionTypes): RecoveryReducer => {

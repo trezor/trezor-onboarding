@@ -1,6 +1,3 @@
-// import { ID } from '../../src/constants/steps';
-// import { SUPPORT_URL } from '../../src/config/urls.ts';
-
 describe('Create new wallet routine', () => {
     before(() => {
         cy.viewport(1024, 768);

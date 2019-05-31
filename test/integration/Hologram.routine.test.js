@@ -1,5 +1,5 @@
 import { ID } from '../../src/constants/steps';
-import { SUPPORT_URL } from '../../src/config/urls.ts';
+import { SUPPORT_URL } from '../../src/config/urls';
 
 
 describe('Hologram routine', () => {

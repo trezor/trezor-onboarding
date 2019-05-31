@@ -1,135 +1,133 @@
 import {
-    Step,
     OnboardingReducer,
     OnboardingActionTypes,
     SET_STEP_ACTIVE,
     SET_STEP_RESOLVED,
     GO_TO_SUBSTEP,
     SELECT_TREZOR_MODEL,
-    SET_APPLICATION_ERROR,
     SET_LOCALIZATION,
-    // @ts-ignore
-} from 'types/onboarding.ts';
+} from 'types/onboarding';
+import { Step } from 'types/steps';
 
-import { ID, TITLE, DISALLOWED_STATE } from 'constants/steps';
+import * as STEP from 'constants/steps';
 
 const initialState: OnboardingReducer = {
     selectedModel: null,
-    activeStepId: ID.WELCOME_STEP,
+    activeStepId: STEP.ID_WELCOME_STEP,
     activeSubStep: null,
     language: 'en',
     messages: {},
     steps: [
         {
-            id: ID.WELCOME_STEP,
+            id: STEP.ID_WELCOME_STEP,
             visited: true,
         },
         {
-            id: ID.SELECT_DEVICE_STEP,
-            title: TITLE.SELECT_DEVICE_STEP,
+            id: STEP.ID_SELECT_DEVICE_STEP,
+            title: STEP.TITLE_SELECT_DEVICE_STEP,
         },
         {
-            id: ID.UNBOXING_STEP,
-            title: TITLE.UNBOXING_STEP,
+            id: STEP.ID_UNBOXING_STEP,
+            title: STEP.TITLE_UNBOXING_STEP,
         },
         {
-            id: ID.BRIDGE_STEP,
-            title: TITLE.BRIDGE_STEP,
+            id: STEP.ID_BRIDGE_STEP,
+            title: STEP.TITLE_BRIDGE_STEP,
         },
         {
-            id: ID.CONNECT_STEP,
-            title: TITLE.BRIDGE_STEP,
+            id: STEP.ID_CONNECT_STEP,
+            title: STEP.TITLE_BRIDGE_STEP,
             disallowedDeviceStates: [
-                DISALLOWED_STATE.DEVICE_IS_NOT_USED_HERE,
+                STEP.DISALLOWED_DEVICE_IS_NOT_USED_HERE,
             ],
         },
         {
-            id: ID.FIRMWARE_STEP,
-            title: TITLE.FIRMWARE_STEP,
+            id: STEP.ID_FIRMWARE_STEP,
+            title: STEP.TITLE_FIRMWARE_STEP,
             disallowedDeviceStates: [
-                DISALLOWED_STATE.DEVICE_IS_NOT_USED_HERE,
-                DISALLOWED_STATE.IS_NOT_SAME_DEVICE,
+                STEP.DISALLOWED_DEVICE_IS_NOT_USED_HERE,
+                STEP.DISALLOWED_IS_NOT_SAME_DEVICE,
             ],
         },
         {
-            id: ID.START_STEP,
-            title: TITLE.START_STEP,
+            id: STEP.ID_START_STEP,
+            title: STEP.TITLE_START_STEP,
             disallowedDeviceStates: [
-                DISALLOWED_STATE.DEVICE_IS_NOT_CONNECTED,
-                DISALLOWED_STATE.DEVICE_IS_IN_BOOTLOADER,
-                DISALLOWED_STATE.IS_NOT_SAME_DEVICE,
-                DISALLOWED_STATE.DEVICE_IS_NOT_USED_HERE,
+                STEP.DISALLOWED_DEVICE_IS_NOT_CONNECTED,
+                STEP.DISALLOWED_DEVICE_IS_IN_BOOTLOADER,
+                STEP.DISALLOWED_IS_NOT_SAME_DEVICE,
+                STEP.DISALLOWED_DEVICE_IS_NOT_USED_HERE,
             ],
         },
         {
-            id: ID.SECURITY_STEP,
+            id: STEP.ID_SECURITY_STEP,
             disallowedDeviceStates: [
-                DISALLOWED_STATE.DEVICE_IS_NOT_CONNECTED,
-                DISALLOWED_STATE.DEVICE_IS_IN_BOOTLOADER,
-                DISALLOWED_STATE.DEVICE_IS_NOT_USED_HERE,
-                DISALLOWED_STATE.IS_NOT_SAME_DEVICE,
+                STEP.DISALLOWED_DEVICE_IS_NOT_CONNECTED,
+                STEP.DISALLOWED_DEVICE_IS_IN_BOOTLOADER,
+                STEP.DISALLOWED_DEVICE_IS_NOT_USED_HERE,
+                STEP.DISALLOWED_IS_NOT_SAME_DEVICE,
             ],
         },
         {
-            id: ID.BACKUP_STEP,
-            title: TITLE.BACKUP_STEP,
+            id: STEP.ID_BACKUP_STEP,
+            title: STEP.TITLE_BACKUP_STEP,
             disallowedDeviceStates: [
-                DISALLOWED_STATE.DEVICE_IS_NOT_CONNECTED,
-                DISALLOWED_STATE.DEVICE_IS_IN_BOOTLOADER,
-                DISALLOWED_STATE.DEVICE_IS_NOT_USED_HERE,
-                DISALLOWED_STATE.IS_NOT_SAME_DEVICE,
+                STEP.DISALLOWED_DEVICE_IS_NOT_CONNECTED,
+                STEP.DISALLOWED_DEVICE_IS_IN_BOOTLOADER,
+                STEP.DISALLOWED_DEVICE_IS_NOT_USED_HERE,
+                STEP.DISALLOWED_IS_NOT_SAME_DEVICE,
             ],
         },
         {
-            id: ID.SET_PIN_STEP,
-            title: TITLE.SET_PIN_STEP,
+            id: STEP.ID_SET_PIN_STEP,
+            title: STEP.TITLE_SET_PIN_STEP,
             disallowedDeviceStates: [
-                DISALLOWED_STATE.DEVICE_IS_NOT_CONNECTED,
-                DISALLOWED_STATE.DEVICE_IS_IN_BOOTLOADER,
-                DISALLOWED_STATE.DEVICE_IS_NOT_USED_HERE,
-                DISALLOWED_STATE.IS_NOT_SAME_DEVICE,
+                STEP.DISALLOWED_DEVICE_IS_NOT_CONNECTED,
+                STEP.DISALLOWED_DEVICE_IS_IN_BOOTLOADER,
+                STEP.DISALLOWED_DEVICE_IS_NOT_USED_HERE,
+                STEP.DISALLOWED_IS_NOT_SAME_DEVICE,
             ],
         },
         {
-            id: ID.NAME_STEP,
-            title: TITLE.NAME_STEP,
+            id: STEP.ID_NAME_STEP,
+            title: STEP.TITLE_NAME_STEP,
             disallowedDeviceStates: [
-                DISALLOWED_STATE.DEVICE_IS_NOT_CONNECTED,
-                DISALLOWED_STATE.DEVICE_IS_IN_BOOTLOADER,
-                DISALLOWED_STATE.DEVICE_IS_NOT_USED_HERE,
-                DISALLOWED_STATE.IS_NOT_SAME_DEVICE,
-                DISALLOWED_STATE.DEVICE_IS_REQUESTING_PIN,
+                STEP.DISALLOWED_DEVICE_IS_NOT_CONNECTED,
+                STEP.DISALLOWED_DEVICE_IS_IN_BOOTLOADER,
+                STEP.DISALLOWED_DEVICE_IS_NOT_USED_HERE,
+                STEP.DISALLOWED_IS_NOT_SAME_DEVICE,
+                STEP.DISALLOWED_DEVICE_IS_REQUESTING_PIN,
             ],
         },
         {
-            id: ID.BOOKMARK_STEP,
-            title: TITLE.BOOKMARK_STEP,
+            id: STEP.ID_BOOKMARK_STEP,
+            title: STEP.TITLE_BOOKMARK_STEP,
             disallowedDeviceStates: [
-                DISALLOWED_STATE.DEVICE_IS_NOT_CONNECTED,
-                DISALLOWED_STATE.DEVICE_IS_IN_BOOTLOADER,
-                DISALLOWED_STATE.DEVICE_IS_NOT_USED_HERE,
-                DISALLOWED_STATE.IS_NOT_SAME_DEVICE,
-                DISALLOWED_STATE.DEVICE_IS_REQUESTING_PIN,
+                STEP.DISALLOWED_DEVICE_IS_NOT_CONNECTED,
+                STEP.DISALLOWED_DEVICE_IS_IN_BOOTLOADER,
+                STEP.DISALLOWED_DEVICE_IS_NOT_USED_HERE,
+                STEP.DISALLOWED_IS_NOT_SAME_DEVICE,
+                STEP.DISALLOWED_DEVICE_IS_REQUESTING_PIN,
             ],
         },
         {
-            id: ID.NEWSLETTER_STEP,
-            title: TITLE.NEWSLETTER_STEP,
+            id: STEP.ID_NEWSLETTER_STEP,
+            title: STEP.TITLE_NEWSLETTER_STEP,
             disallowedDeviceStates: [
-                DISALLOWED_STATE.DEVICE_IS_NOT_CONNECTED,
-                DISALLOWED_STATE.DEVICE_IS_IN_BOOTLOADER,
-                DISALLOWED_STATE.DEVICE_IS_NOT_USED_HERE,
-                DISALLOWED_STATE.IS_NOT_SAME_DEVICE,
-                DISALLOWED_STATE.DEVICE_IS_REQUESTING_PIN,
+                STEP.DISALLOWED_DEVICE_IS_NOT_CONNECTED,
+                STEP.DISALLOWED_DEVICE_IS_IN_BOOTLOADER,
+                STEP.DISALLOWED_DEVICE_IS_NOT_USED_HERE,
+                STEP.DISALLOWED_IS_NOT_SAME_DEVICE,
+                STEP.DISALLOWED_DEVICE_IS_REQUESTING_PIN,
             ],
         },
         {
-            id: ID.FINAL_STEP,
+            id: STEP.ID_FINAL_STEP,
         },
     ],
 };
 
-const onboarding = (state = initialState, action: OnboardingActionTypes) => {
+const onboarding = (state: OnboardingReducer = initialState, action: OnboardingActionTypes): OnboardingReducer => {
     switch (action.type) {
         case SET_STEP_ACTIVE:
             return {
@@ -168,12 +166,6 @@ const onboarding = (state = initialState, action: OnboardingActionTypes) => {
                 ...state,
                 selectedModel: action.model,
             };
-        case SET_APPLICATION_ERROR: {
-            return {
-                ...state,
-                error: action.error,
-            };
-        }
         case SET_LOCALIZATION: {
             return {
                 ...state,

@@ -18,8 +18,18 @@ module.exports = env => ({
     },
     resolve: {
         extensions: ['.ts', '.tsx', '.js', '.jsx', '.json'],
+        alias: {
+            components: path.resolve(__dirname, 'src/components/'),
+            actions: path.resolve(__dirname, 'src/actions/'),
+            support: path.resolve(__dirname, 'src/support/'),
+            config: path.resolve(__dirname, 'src/config/'),
+            utils: path.resolve(__dirname, 'src/utils/'),
+            types: path.resolve(__dirname, 'src/types/'),
+            constants: path.resolve(__dirname, 'src/constants/'),
+            reducers: path.resolve(__dirname, 'src/reducers/'),
+            onboarding: path.resolve(__dirname, 'src/onboarding/'),
+        },
     },
-
     module: {
         rules: [
             {

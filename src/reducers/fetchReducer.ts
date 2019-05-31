@@ -7,7 +7,7 @@ import {
     FetchActionTypes,
 } from 'types/fetch';
 
-const initialState = {
+const initialState: FetchReducer = {
     name: null,
     isProgress: false,
     error: null,

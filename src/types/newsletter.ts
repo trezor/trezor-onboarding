@@ -1,7 +1,21 @@
+import {
+    toggleCheckbox,
+    setEmail,
+    submitEmail,
+    setSkipped,
+} from 'actions/newsletterActions';
+
 export interface NewsletterReducer {
     email: string;
     skipped: boolean;
     checkboxes: Array<Checkbox>;
+}
+
+export interface NewsletterActions {
+    toggleCheckbox: typeof toggleCheckbox,
+    setEmail: typeof setEmail,
+    submitEmail: typeof submitEmail,
+    setSkipped: typeof setSkipped,
 }
 
 export interface Checkbox {

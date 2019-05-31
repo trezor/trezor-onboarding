@@ -9,13 +9,15 @@ const configureStore = () => {
         thunkMiddleware,
         loggerMiddleware,
     ];
-    const middlewareEnhancer = applyMiddleware(...middlewares);
+    // const middlewareEnhancer = applyMiddleware(...middlewares);
 
-    const enhancers = [middlewareEnhancer];
-    const composedEnhancers = compose(...enhancers);
+    // const enhancers = [middlewareEnhancer];
+    // const composedEnhancers = compose(...enhancers);
 
     // todo typescript as any what?
-    const store = createStore(rootReducer, composedEnhancers as any);
+    const store = createStore(rootReducer, applyMiddleware(...middlewares));
+    // const store = createStore(rootReducer, applyMiddleware(...middlewares));
+
     return store;
 };
 
